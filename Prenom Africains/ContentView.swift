@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct ContentView: View {
+    @StateObject var firstNameViewModel = FirstNameViewModel()
+
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        MainScreen(firstNameViewModel: firstNameViewModel)
     }
 }
 

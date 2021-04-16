@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct Prenom_AfricainsApp: App {
+
     var body: some Scene {
         WindowGroup {
             ContentView()

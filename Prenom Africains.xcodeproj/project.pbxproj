@@ -3,16 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1547B774261B3EC6006FBF3E /* PrenomAF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1547B773261B3EC6006FBF3E /* PrenomAF.swift */; };
 		156F0AE22608172F0076AB4B /* Prenom_AfricainsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AE12608172F0076AB4B /* Prenom_AfricainsApp.swift */; };
 		156F0AE42608172F0076AB4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AE32608172F0076AB4B /* ContentView.swift */; };
 		156F0AE6260817300076AB4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156F0AE5260817300076AB4B /* Assets.xcassets */; };
 		156F0AE9260817300076AB4B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156F0AE8260817300076AB4B /* Preview Assets.xcassets */; };
 		156F0AF4260817300076AB4B /* Prenom_AfricainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AF3260817300076AB4B /* Prenom_AfricainsTests.swift */; };
 		156F0AFF260817300076AB4B /* Prenom_AfricainsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AFE260817300076AB4B /* Prenom_AfricainsUITests.swift */; };
+		156F0B11260817690076AB4B /* CircleFirstName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B10260817690076AB4B /* CircleFirstName.swift */; };
+		156F0B1A26081CA60076AB4B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 156F0B1926081CA60076AB4B /* Lottie */; };
+		156F0B2226081D6C0076AB4B /* sound.json in Resources */ = {isa = PBXBuildFile; fileRef = 156F0B2126081D6C0076AB4B /* sound.json */; };
+		156F0B2726081DA40076AB4B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B2626081DA40076AB4B /* LottieView.swift */; };
+		156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B2B260821470076AB4B /* DescriptionView.swift */; };
+		156F0B32260825910076AB4B /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B31260825910076AB4B /* MainScreen.swift */; };
+		15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 15BE326D2624D0E700D8DC8D /* Alamofire */; };
+		15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DDF260921A0006BC8F2 /* MenuView.swift */; };
+		15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DE5260933C8006BC8F2 /* Gender.swift */; };
+		15EA7DF026094112006BC8F2 /* FirstNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */; };
+		15EA7DF826094817006BC8F2 /* MOCK_DATA.json in Resources */ = {isa = PBXBuildFile; fileRef = 15EA7DF726094817006BC8F2 /* MOCK_DATA.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1547B773261B3EC6006FBF3E /* PrenomAF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAF.swift; sourceTree = "<group>"; };
 		156F0ADE2608172F0076AB4B /* Prenom Africains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prenom Africains.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		156F0AE12608172F0076AB4B /* Prenom_AfricainsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prenom_AfricainsApp.swift; sourceTree = "<group>"; };
 		156F0AE32608172F0076AB4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +58,15 @@
 		156F0AFA260817300076AB4B /* Prenom AfricainsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prenom AfricainsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		156F0AFE260817300076AB4B /* Prenom_AfricainsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prenom_AfricainsUITests.swift; sourceTree = "<group>"; };
 		156F0B00260817300076AB4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		156F0B10260817690076AB4B /* CircleFirstName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFirstName.swift; sourceTree = "<group>"; };
+		156F0B2126081D6C0076AB4B /* sound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound.json; sourceTree = "<group>"; };
+		156F0B2626081DA40076AB4B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
+		156F0B2B260821470076AB4B /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
+		156F0B31260825910076AB4B /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		15EA7DDF260921A0006BC8F2 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		15EA7DE5260933C8006BC8F2 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
+		15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNameViewModel.swift; sourceTree = "<group>"; };
+		15EA7DF726094817006BC8F2 /* MOCK_DATA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MOCK_DATA.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				156F0B1A26081CA60076AB4B /* Lottie in Frameworks */,
+				15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +119,12 @@
 		156F0AE02608172F0076AB4B /* Prenom Africains */ = {
 			isa = PBXGroup;
 			children = (
+				15CFF01A261396A100B06E32 /* Util */,
+				15EA7DF726094817006BC8F2 /* MOCK_DATA.json */,
+				15EA7DE4260933A3006BC8F2 /* Model */,
+				156F0B30260825750076AB4B /* Screen */,
+				156F0B2126081D6C0076AB4B /* sound.json */,
+				156F0B0F2608173E0076AB4B /* Views */,
 				156F0AE12608172F0076AB4B /* Prenom_AfricainsApp.swift */,
 				156F0AE32608172F0076AB4B /* ContentView.swift */,
 				156F0AE5260817300076AB4B /* Assets.xcassets */,
@@ -130,6 +160,42 @@
 			path = "Prenom AfricainsUITests";
 			sourceTree = "<group>";
 		};
+		156F0B0F2608173E0076AB4B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				156F0B10260817690076AB4B /* CircleFirstName.swift */,
+				156F0B2626081DA40076AB4B /* LottieView.swift */,
+				156F0B2B260821470076AB4B /* DescriptionView.swift */,
+				15EA7DDF260921A0006BC8F2 /* MenuView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		156F0B30260825750076AB4B /* Screen */ = {
+			isa = PBXGroup;
+			children = (
+				156F0B31260825910076AB4B /* MainScreen.swift */,
+			);
+			path = Screen;
+			sourceTree = "<group>";
+		};
+		15CFF01A261396A100B06E32 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		15EA7DE4260933A3006BC8F2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				15EA7DE5260933C8006BC8F2 /* Gender.swift */,
+				15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */,
+				1547B773261B3EC6006FBF3E /* PrenomAF.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +212,10 @@
 			dependencies = (
 			);
 			name = "Prenom Africains";
+			packageProductDependencies = (
+				156F0B1926081CA60076AB4B /* Lottie */,
+				15BE326D2624D0E700D8DC8D /* Alamofire */,
+			);
 			productName = "Prenom Africains";
 			productReference = 156F0ADE2608172F0076AB4B /* Prenom Africains.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +287,10 @@
 				Base,
 			);
 			mainGroup = 156F0AD52608172F0076AB4B;
+			packageReferences = (
+				156F0B1826081CA60076AB4B /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				15BE326C2624D0E700D8DC8D /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 156F0ADF2608172F0076AB4B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -233,7 +307,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				156F0B2226081D6C0076AB4B /* sound.json in Resources */,
 				156F0AE9260817300076AB4B /* Preview Assets.xcassets in Resources */,
+				15EA7DF826094817006BC8F2 /* MOCK_DATA.json in Resources */,
 				156F0AE6260817300076AB4B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,8 +335,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */,
+				15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */,
+				1547B774261B3EC6006FBF3E /* PrenomAF.swift in Sources */,
+				15EA7DF026094112006BC8F2 /* FirstNameViewModel.swift in Sources */,
+				156F0B32260825910076AB4B /* MainScreen.swift in Sources */,
+				156F0B11260817690076AB4B /* CircleFirstName.swift in Sources */,
 				156F0AE42608172F0076AB4B /* ContentView.swift in Sources */,
 				156F0AE22608172F0076AB4B /* Prenom_AfricainsApp.swift in Sources */,
+				156F0B2726081DA40076AB4B /* LottieView.swift in Sources */,
+				156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +414,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -391,6 +476,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -580,6 +666,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		156F0B1826081CA60076AB4B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.2.1;
+			};
+		};
+		15BE326C2624D0E700D8DC8D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		156F0B1926081CA60076AB4B /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 156F0B1826081CA60076AB4B /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+		15BE326D2624D0E700D8DC8D /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15BE326C2624D0E700D8DC8D /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 156F0AD62608172F0076AB4B /* Project object */;
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20D91" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="PrenomAF" representedClassName="PrenomAF" syncable="YES">
+        <attribute name="firstname" optional="YES" attributeType="String"/>
+        <attribute name="genderValue" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="meaning" optional="YES" attributeType="String"/>
+        <attribute name="origins" optional="YES" attributeType="String"/>
+        <attribute name="soundURL" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="PrenomAF" positionX="-63" positionY="-18" width="128" height="134"/>
+    </elements>
+</model>
