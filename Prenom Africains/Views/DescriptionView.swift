@@ -32,35 +32,41 @@ struct DescriptionView: View {
                 HStack {
                     switch prenom.gender {
                     case Gender.male:
+                        HStack {
                         Image("md-male")
                             .resizable()
-                            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
                             .padding()
+                        }
                             
                     case Gender.female:
+                        HStack {
                         Image("md-female")
                             .resizable()
-                            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
                             .padding()
-                            .padding()
+                        }
                     case Gender.mixed:
                         HStack {
                             Image("md-male")
                                 .resizable()
+                                .scaledToFit()
                                 .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                                .padding()
                             Image("md-female")
                                 .resizable()
+                                .scaledToFit()
                                 .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                                .padding()
                         }
                     case .undefined:
                         EmptyView()
+                            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
+                            .padding()
                     }
                     
                     Spacer()
                     Text("Origine: \(prenom.origins ?? "")")
                         .font(.title3)
+                        .lineLimit(1)
                         .padding()
                 }
                 Image("favorite-border")
@@ -86,14 +92,16 @@ extension Color {
     static let offWhite = Color(red: 225 / 255, green: 225 / 255, blue: 235 / 255)
 }
 
-//struct DescriptionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DescriptionView(prenom: firstnames[0])
-//            .previewDevice(PreviewDevice(rawValue: "iPad 12"))
-//            .previewDisplayName("iPad 12")
-//        
-//        DescriptionView(prenom: firstnames[0])
-//            .previewDevice(PreviewDevice(rawValue: "iPhone 12 Pro Max"))
-//            .previewDisplayName("iPhone 12 Pro Max")
-//    }
-//}
+struct DescriptionView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            DescriptionView(prenom: PrenomAF())
+                .previewDevice("iPad Pro (12.9-inch) (4th generation)")
+            .previewDisplayName("iPad Pro 12")
+        
+        DescriptionView(prenom: PrenomAF())
+            .previewDevice("iPhone 12 Pro Max")
+            .previewDisplayName("iPhone 12 Pro Max")
+    }
+    }
+}

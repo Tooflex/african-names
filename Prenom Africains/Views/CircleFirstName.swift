@@ -29,6 +29,9 @@ struct CircleFirstName: View {
                         Text(prenom.firstname ?? "")
                             .foregroundColor(.white)
                             .font(.system(size: 60 * CGFloat(sizeMultiplier())))
+                            .minimumScaleFactor(0.2)
+                            .lineLimit(1)
+                            .frame(width: 250 * sizeMultiplier(), height: 140 * sizeMultiplier())
                             .offset(y:40)
                             .shadow(color: Color.black.opacity(16.0), radius: 6, x: 5, y: 3)
                         
@@ -37,7 +40,7 @@ struct CircleFirstName: View {
                         }) {
                             LottieView(name: "sound", loopMode: .loop)
                                 .frame(width: 54 * sizeMultiplier(), height: 54 * sizeMultiplier())
-                        }.offset(y: 50)
+                        }.offset(y: 0)
                     }
                 }
         }
@@ -80,9 +83,15 @@ struct Triangle: Shape {
     }
 }
 
-//struct CircleFirstName_Previews: PreviewProvider {
-//    
-//    static var previews: some View {
-//        CircleFirstName(prenom: firstnames[0])
-//    }
-//}
+struct CircleFirstName_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        CircleFirstName(prenom: PrenomAF())
+            .previewDevice("iPhone 12 Pro Max")
+            .previewDisplayName("iPhone 12 Pro Max")
+        
+        CircleFirstName(prenom: PrenomAF())
+            .previewDevice("iPad Pro (12.9-inch) (4th generation)")
+            .previewDisplayName("iPad Pro 12")
+    }
+}

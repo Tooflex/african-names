@@ -26,6 +26,7 @@ struct MainScreen: View {
         return Triangle()
             .fill(setColor())
             .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
+            .padding(.bottom, 1 * CGFloat(paddingMultiplier()))
             .rotationEffect(.degrees(-90))
             .onTapGesture {
                 previousFirstname()
@@ -36,6 +37,7 @@ struct MainScreen: View {
         return Triangle()
             .fill(setColor())
             .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
+            .padding(.bottom, 1 * CGFloat(paddingMultiplier()))
             .rotationEffect(.degrees(90))
             .onTapGesture {
                 nextFirstname()
@@ -101,7 +103,15 @@ struct MainScreen: View {
     
     func sizeMultiplier() -> Int {
         if vSizeClass == .regular && hSizeClass == .regular {
-            return 3
+            return 4
+        } else {
+            return 1
+        }
+    }
+    
+    func paddingMultiplier() -> Int {
+        if vSizeClass == .regular && hSizeClass == .regular {
+            return 70
         } else {
             return 1
         }
@@ -147,12 +157,15 @@ struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
         let firstNameViewModel = FirstNameViewModel()
         
-        MainScreen(firstNameViewModel: firstNameViewModel)
-            .previewDevice(PreviewDevice(rawValue: "iPad Pro (11-inch)"))
-            .previewDisplayName("iPad 12")
-        
-        MainScreen(firstNameViewModel: firstNameViewModel)
-            .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-            .previewDisplayName("iPhone 12")
+        Group {
+            MainScreen(firstNameViewModel: firstNameViewModel)
+                .previewDevice("iPhone 12")
+                .previewDisplayName("iPhone 12")
+            
+            MainScreen(firstNameViewModel: firstNameViewModel)
+                .previewDevice("iPad Pro (12.9-inch) (4th generation)")
+                .previewDisplayName("iPad Pro 12")
+        }
+      
     }
 }
