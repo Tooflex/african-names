@@ -15,10 +15,12 @@ class FirstNameViewModel: ObservableObject {
     
     var tokens: Set<AnyCancellable> = []
     
-    private let url = "https://e76d5d817461.ngrok.io/api/firstnames/random"
+    private let apiEndpoint = Bundle.main.infoDictionary!["API_ENDPOINT"] as! String
+    private var url = "https://99804b6711fe.ngrok.io/api/v1/firstnames/random"
     private var task: AnyCancellable?
     
     init() {
+        //url = "\(apiEndpoint)/api/v1/firstnames/random"
         fetchFirstnames()
     }
     

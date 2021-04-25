@@ -20,6 +20,8 @@
 		156F0B2726081DA40076AB4B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B2626081DA40076AB4B /* LottieView.swift */; };
 		156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B2B260821470076AB4B /* DescriptionView.swift */; };
 		156F0B32260825910076AB4B /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B31260825910076AB4B /* MainScreen.swift */; };
+		15ABCB3C262A564B00036B3E /* Prenom_AfricainsSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB3B262A564B00036B3E /* Prenom_AfricainsSlowTests.swift */; };
+		15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB47262A59B600036B3E /* NetworkMonitor.swift */; };
 		15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 15BE326D2624D0E700D8DC8D /* Alamofire */; };
 		15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DDF260921A0006BC8F2 /* MenuView.swift */; };
 		15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DE5260933C8006BC8F2 /* Gender.swift */; };
@@ -36,6 +38,13 @@
 			remoteInfo = "Prenom Africains";
 		};
 		156F0AFB260817300076AB4B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 156F0AD62608172F0076AB4B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 156F0ADD2608172F0076AB4B;
+			remoteInfo = "Prenom Africains";
+		};
+		15ABCB3E262A564B00036B3E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 156F0AD62608172F0076AB4B /* Project object */;
 			proxyType = 1;
@@ -63,6 +72,10 @@
 		156F0B2626081DA40076AB4B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		156F0B2B260821470076AB4B /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		156F0B31260825910076AB4B /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		15ABCB39262A564B00036B3E /* Prenom AfricainsSlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prenom AfricainsSlowTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15ABCB3B262A564B00036B3E /* Prenom_AfricainsSlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prenom_AfricainsSlowTests.swift; sourceTree = "<group>"; };
+		15ABCB3D262A564B00036B3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15ABCB47262A59B600036B3E /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		15EA7DDF260921A0006BC8F2 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		15EA7DE5260933C8006BC8F2 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNameViewModel.swift; sourceTree = "<group>"; };
@@ -93,6 +106,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		15ABCB36262A564B00036B3E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -102,6 +122,7 @@
 				156F0AE02608172F0076AB4B /* Prenom Africains */,
 				156F0AF2260817300076AB4B /* Prenom AfricainsTests */,
 				156F0AFD260817300076AB4B /* Prenom AfricainsUITests */,
+				15ABCB3A262A564B00036B3E /* Prenom AfricainsSlowTests */,
 				156F0ADF2608172F0076AB4B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +133,7 @@
 				156F0ADE2608172F0076AB4B /* Prenom Africains.app */,
 				156F0AEF260817300076AB4B /* Prenom AfricainsTests.xctest */,
 				156F0AFA260817300076AB4B /* Prenom AfricainsUITests.xctest */,
+				15ABCB39262A564B00036B3E /* Prenom AfricainsSlowTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -179,9 +201,19 @@
 			path = Screen;
 			sourceTree = "<group>";
 		};
+		15ABCB3A262A564B00036B3E /* Prenom AfricainsSlowTests */ = {
+			isa = PBXGroup;
+			children = (
+				15ABCB3B262A564B00036B3E /* Prenom_AfricainsSlowTests.swift */,
+				15ABCB3D262A564B00036B3E /* Info.plist */,
+			);
+			path = "Prenom AfricainsSlowTests";
+			sourceTree = "<group>";
+		};
 		15CFF01A261396A100B06E32 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				15ABCB47262A59B600036B3E /* NetworkMonitor.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -256,6 +288,24 @@
 			productReference = 156F0AFA260817300076AB4B /* Prenom AfricainsUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		15ABCB38262A564B00036B3E /* Prenom AfricainsSlowTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15ABCB42262A564B00036B3E /* Build configuration list for PBXNativeTarget "Prenom AfricainsSlowTests" */;
+			buildPhases = (
+				15ABCB35262A564B00036B3E /* Sources */,
+				15ABCB36262A564B00036B3E /* Frameworks */,
+				15ABCB37262A564B00036B3E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15ABCB3F262A564B00036B3E /* PBXTargetDependency */,
+			);
+			name = "Prenom AfricainsSlowTests";
+			productName = "Prenom AfricainsSlowTests";
+			productReference = 15ABCB39262A564B00036B3E /* Prenom AfricainsSlowTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -273,6 +323,10 @@
 						TestTargetID = 156F0ADD2608172F0076AB4B;
 					};
 					156F0AF9260817300076AB4B = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 156F0ADD2608172F0076AB4B;
+					};
+					15ABCB38262A564B00036B3E = {
 						CreatedOnToolsVersion = 12.4;
 						TestTargetID = 156F0ADD2608172F0076AB4B;
 					};
@@ -298,6 +352,7 @@
 				156F0ADD2608172F0076AB4B /* Prenom Africains */,
 				156F0AEE260817300076AB4B /* Prenom AfricainsTests */,
 				156F0AF9260817300076AB4B /* Prenom AfricainsUITests */,
+				15ABCB38262A564B00036B3E /* Prenom AfricainsSlowTests */,
 			);
 		};
 /* End PBXProject section */
@@ -328,6 +383,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		15ABCB37262A564B00036B3E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -335,6 +397,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */,
 				15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */,
 				15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */,
 				1547B774261B3EC6006FBF3E /* PrenomAF.swift in Sources */,
@@ -364,6 +427,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		15ABCB35262A564B00036B3E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15ABCB3C262A564B00036B3E /* Prenom_AfricainsSlowTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -376,6 +447,11 @@
 			isa = PBXTargetDependency;
 			target = 156F0ADD2608172F0076AB4B /* Prenom Africains */;
 			targetProxy = 156F0AFB260817300076AB4B /* PBXContainerItemProxy */;
+		};
+		15ABCB3F262A564B00036B3E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 156F0ADD2608172F0076AB4B /* Prenom Africains */;
+			targetProxy = 15ABCB3E262A564B00036B3E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -501,6 +577,8 @@
 		156F0B04260817300076AB4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_ENDPOINT = " https://99804b6711fe.ngrok.io";
+				APP_DISPLAY_NAME = "DEV Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -513,7 +591,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tooflexdev.Prenom-Africains";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tooflexdev.Prenom-Africains.debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -523,6 +601,8 @@
 		156F0B05260817300076AB4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				API_ENDPOINT = "";
+				APP_DISPLAY_NAME = "Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -626,6 +706,46 @@
 			};
 			name = Release;
 		};
+		15ABCB40262A564B00036B3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6NTQ2Y43QX;
+				INFOPLIST_FILE = "Prenom AfricainsSlowTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tooflexdev.Prenom-AfricainsSlowTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Prenom Africains.app/Prenom Africains";
+			};
+			name = Debug;
+		};
+		15ABCB41262A564B00036B3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6NTQ2Y43QX;
+				INFOPLIST_FILE = "Prenom AfricainsSlowTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tooflexdev.Prenom-AfricainsSlowTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Prenom Africains.app/Prenom Africains";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -661,6 +781,15 @@
 			buildConfigurations = (
 				156F0B0A260817300076AB4B /* Debug */,
 				156F0B0B260817300076AB4B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15ABCB42262A564B00036B3E /* Build configuration list for PBXNativeTarget "Prenom AfricainsSlowTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15ABCB40262A564B00036B3E /* Debug */,
+				15ABCB41262A564B00036B3E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

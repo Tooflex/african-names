@@ -22,19 +22,37 @@ struct MainScreen: View {
     
     @ObservedObject var firstNameViewModel : FirstNameViewModel
             
+    fileprivate func leftButton() -> some View {
+        return Triangle()
+            .fill(setColor())
+            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
+            .rotationEffect(.degrees(-90))
+            .onTapGesture {
+                previousFirstname()
+            }
+    }
+    
+    fileprivate func RightButton() -> some View {
+        return Triangle()
+            .fill(setColor())
+            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
+            .rotationEffect(.degrees(90))
+            .onTapGesture {
+                nextFirstname()
+            }
+    }
+    
     var body: some View {
         ZStack {
             Color.offWhite
             VStack {
                Spacer()
                 HStack {
-                    Triangle()
-                        .fill(setColor())
-                        .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
-                        .rotationEffect(.degrees(-90))
-                        .onTapGesture {
-                            previousFirstname()
-                        }
+                    if(isPreviousFirstname()) {
+                        leftButton()
+                    } else {
+                        Spacer().frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
+                    }
                     // iPad Full or 1/2
                     if vSizeClass == .regular && hSizeClass == .regular {
                         VStack {
@@ -50,14 +68,11 @@ struct MainScreen: View {
                             .padding(.bottom)
                     }
           
-                    
-                    Triangle()
-                        .fill(setColor())
-                        .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
-                        .rotationEffect(.degrees(90))
-                        .onTapGesture {
-                            nextFirstname()
-                        }
+                    if(isNextFirstname()) {
+                        RightButton()
+                    } else {
+                        Spacer().frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
+                    }
                 }
                 .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
                             .onEnded { value in
@@ -105,15 +120,23 @@ struct MainScreen: View {
         }
     }
     
+    fileprivate func isNextFirstname() -> Bool {
+        return self.currentIndex < firstNameViewModel.firstnames.count-1
+    }
+    
     func nextFirstname() {
-        if(self.currentIndex < firstNameViewModel.firstnames.count-1) {
+        if(isNextFirstname()) {
             self.currentIndex = currentIndex + 1
             currentPrenom = firstNameViewModel.firstnames[currentIndex]
         }
     }
     
+    fileprivate func isPreviousFirstname() -> Bool {
+        return self.currentIndex > 0
+    }
+    
     func previousFirstname() {
-        if(self.currentIndex > 0) {
+        if(isPreviousFirstname()) {
             self.currentIndex = currentIndex - 1
             currentPrenom = firstNameViewModel.firstnames[currentIndex]
         }

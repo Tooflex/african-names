@@ -30,6 +30,36 @@ class Prenom_AfricainsUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+    
+    func testMenuExists() throws {
+        let app = XCUIApplication()
+        app.launch()
+        
+        XCTAssert(app.images["search"].exists)
+        XCTAssert(app.images["my-list"].exists)
+        XCTAssert(app.images["share"].exists)
+        XCTAssert(app.images["params"].exists)
+    }
+    
+    func testGoToNextFirstname() throws {
+        
+    }
+    
+    func testGoToPreviousFirstname() throws {
+        
+    }
+    
+    func testFavoriteIconChangeStateOnTap() throws {
+        
+    }
+    
+    func testGenderIconIsCorrect() throws {
+        
+    }
+    
+    func testDisplayMoreInfoPopUpOnTap() throws {
+        
+    }
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
