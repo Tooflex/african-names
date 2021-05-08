@@ -28,6 +28,9 @@
 		15ABCB3C262A564B00036B3E /* Prenom_AfricainsSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB3B262A564B00036B3E /* Prenom_AfricainsSlowTests.swift */; };
 		15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB47262A59B600036B3E /* NetworkMonitor.swift */; };
 		15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 15BE326D2624D0E700D8DC8D /* Alamofire */; };
+		15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5202646D7F7007E838C /* SearchBarView.swift */; };
+		15CAC5232646E837007E838C /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5222646E837007E838C /* SearchScreen.swift */; };
+		15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5242646ECF1007E838C /* ChipsOptionView.swift */; };
 		15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DDF260921A0006BC8F2 /* MenuView.swift */; };
 		15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DE5260933C8006BC8F2 /* Gender.swift */; };
 		15EA7DF026094112006BC8F2 /* FirstNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */; };
@@ -86,6 +89,9 @@
 		15ABCB3B262A564B00036B3E /* Prenom_AfricainsSlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prenom_AfricainsSlowTests.swift; sourceTree = "<group>"; };
 		15ABCB3D262A564B00036B3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15ABCB47262A59B600036B3E /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		15CAC5202646D7F7007E838C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		15CAC5222646E837007E838C /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
+		15CAC5242646ECF1007E838C /* ChipsOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsOptionView.swift; sourceTree = "<group>"; };
 		15EA7DDF260921A0006BC8F2 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		15EA7DE5260933C8006BC8F2 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNameViewModel.swift; sourceTree = "<group>"; };
@@ -203,6 +209,8 @@
 				152E82702635CB01002950E6 /* LottieLikeButtonView.swift */,
 				151AB5E62636D45800585BFC /* LottieUnlikeButtonView.swift */,
 				15645E85263B54E20017E8B7 /* AdaptiveView.swift */,
+				15CAC5202646D7F7007E838C /* SearchBarView.swift */,
+				15CAC5242646ECF1007E838C /* ChipsOptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -211,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				156F0B31260825910076AB4B /* MainScreen.swift */,
+				15CAC5222646E837007E838C /* SearchScreen.swift */,
 			);
 			path = Screen;
 			sourceTree = "<group>";
@@ -416,10 +425,13 @@
 				15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */,
 				15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */,
 				152E82712635CB01002950E6 /* LottieLikeButtonView.swift in Sources */,
+				15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */,
 				15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */,
+				15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */,
 				15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */,
 				151AB5E72636D45800585BFC /* LottieUnlikeButtonView.swift in Sources */,
 				1547B774261B3EC6006FBF3E /* PrenomAF.swift in Sources */,
+				15CAC5232646E837007E838C /* SearchScreen.swift in Sources */,
 				15EA7DF026094112006BC8F2 /* FirstNameViewModel.swift in Sources */,
 				156F0B32260825910076AB4B /* MainScreen.swift in Sources */,
 				156F0B11260817690076AB4B /* CircleFirstName.swift in Sources */,
