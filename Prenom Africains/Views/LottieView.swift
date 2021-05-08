@@ -11,6 +11,8 @@ import Lottie
 struct LottieView: UIViewRepresentable {
     var name: String
     var loopMode: LottieLoopMode = .playOnce
+    var fromMarker: String?
+    var toMarker: String?
     
     var animationView = AnimationView()
     
@@ -20,7 +22,16 @@ struct LottieView: UIViewRepresentable {
         animationView.animation = Animation.named(name)
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = loopMode
-        animationView.play()
+        
+        if let fromMarker = fromMarker {
+            if let toMarker = toMarker {
+                animationView.play(fromMarker: fromMarker, toMarker: toMarker, loopMode: loopMode) { Bool in
+                    print("Animation ended")
+                }
+            }
+        } else {
+            animationView.play()
+        }
         
         animationView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(animationView)

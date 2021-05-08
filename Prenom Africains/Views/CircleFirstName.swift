@@ -18,11 +18,12 @@ struct CircleFirstName: View {
     var color: Color = .blue
     
     var body: some View {
+        GeometryReader { geometry in
         VStack {
                 ZStack {
                     Circle()
                         .fill(color)
-                        .frame(width: 300 * sizeMultiplier(), height: 300 * sizeMultiplier())
+                        .frame(width: geometry.size.width * 0.8 * sizeMultiplier(), height: geometry.size.width * 0.8 * sizeMultiplier())
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
                         .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
                     VStack {
@@ -43,12 +44,16 @@ struct CircleFirstName: View {
                         }.offset(y: 0)
                     }
                 }
+            }
+        .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height, alignment: .center)
+        .padding([.leading, .trailing], 10)
+        .padding(.top, geometry.size.height * 0.1)
         }
     }
     
     func sizeMultiplier() -> CGFloat {
-        if vSizeClass == .regular && hSizeClass == .regular {
-            return 2.2
+        if vSizeClass == .regular && hSizeClass == .regular { //Compact width, regular height
+            return 2
         } else {
             return 1
         }

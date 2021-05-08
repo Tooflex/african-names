@@ -13,70 +13,94 @@ struct DescriptionView: View {
     @Environment(\.horizontalSizeClass) var hSizeClass
     
     var prenom: PrenomAF
+    @State private var isLiked = false
+    
     
     var body: some View {
         VStack {
-            ZStack {
-                RoundedRectangle(cornerRadius: 25, style: .continuous)
-                    .fill(Color.offWhite.opacity(0.71))
-                    .frame(width: UIScreen.main.bounds.width * 0.9, height: 165 * CGFloat(sizeMultiplier()))
-                    .padding(.horizontal)
-                    .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
-                    .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
-                Text(prenom.meaning ?? "")
-                    .multilineTextAlignment(.center)
-                    .frame(width: UIScreen.main.bounds.width * 0.8, height: 100 * CGFloat(sizeMultiplier()), alignment: .center)
-                    .padding(.horizontal)
+            Spacer()
+            GeometryReader { geometry in
+                ZStack {
+                    RoundedRectangle(cornerRadius: 25, style: .continuous)
+                        .fill(Color.offWhite.opacity(0.71))
+                        .frame(width: UIScreen.main.bounds.width , height: 165 * CGFloat(sizeMultiplier()))
+                        //.padding(.horizontal)
+                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                        .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
+                    Text(prenom.meaning ?? "")
+                        .font(.title2)
+                        .multilineTextAlignment(.center)
+                        .frame(width: UIScreen.main.bounds.width * 0.8, height: 100 * CGFloat(sizeMultiplier()), alignment: .center)
+                }
+                .frame(idealWidth: geometry.size.width, maxHeight: geometry.size.height, alignment: .center)
             }
-            VStack {
-                HStack {
-                    switch prenom.gender {
-                    case Gender.male:
-                        HStack {
+            
+            HStack {
+                switch prenom.gender {
+                case Gender.male:
+                    HStack {
                         Image("md-male")
                             .resizable()
                             .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                            .padding()
-                        }
-                            
-                    case Gender.female:
-                        HStack {
+                        //.padding()
+                    }
+                    
+                case Gender.female:
+                    HStack {
                         Image("md-female")
                             .resizable()
                             .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                            .padding()
-                        }
-                    case Gender.mixed:
-                        HStack {
-                            Image("md-male")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                            Image("md-female")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                        }
-                    case .undefined:
-                        EmptyView()
-                            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                            .padding()
+                        //.padding()
                     }
-                    
-                    Spacer()
-                    Text("Origine: \(prenom.origins ?? "")")
-                        .font(.title3)
-                        .lineLimit(1)
-                        .padding()
+                case Gender.mixed:
+                    HStack {
+                        Image("md-male")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
+                            //.padding()
+                        Image("md-female")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
+                           // .padding()
+                    }
+                case .undefined:
+                    EmptyView()
+                        .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
+                //.padding()
                 }
-                Image("favorite-border")
-                    .resizable()
-                    .frame(width: 40 * CGFloat(sizeMultiplier()), height: 40 * CGFloat(sizeMultiplier())
-                           , alignment: .center)
+                
+                Spacer()
+                Text("Origine: \(prenom.origins ?? "")")
+                    .font(.title2)
+                    .lineLimit(1)
+                    .padding(.horizontal)
+            }.frame(alignment: .center)
+            
+            if !isLiked {
+                Button(action: {
+                    self.isLiked.toggle()
+                }) {
+                    LottieView(name: "heart_like", fromMarker: "touchDownStart", toMarker: "touchUpEnd")
+                        .padding(.all, -40)
+                        .frame(width: 40 * CGFloat(sizeMultiplier()), height: 40 * CGFloat(sizeMultiplier())
+                               , alignment: .center)
+                }
+                
+            } else {
+                Button(action: {
+                    self.isLiked.toggle()
+                    
+                }) {
+                    LottieView(name: "heart_like", fromMarker: "touchDownStart1", toMarker: "touchUpEnd1")
+                        .padding(.all, -40)
+                        .frame(width: 40 * CGFloat(sizeMultiplier()), height: 40 * CGFloat(sizeMultiplier())
+                               , alignment: .center)
+                }
             }
-          
+            Spacer()
         }
-        
     }
     
     func sizeMultiplier() -> Int {
@@ -94,14 +118,18 @@ extension Color {
 
 struct DescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            DescriptionView(prenom: PrenomAF())
-                .previewDevice("iPad Pro (12.9-inch) (4th generation)")
-            .previewDisplayName("iPad Pro 12")
+        ForEach(ColorScheme.allCases, id: \.self) {
+            Group {
+                DescriptionView(prenom: PrenomAF())
+                    .previewDevice("iPad Pro (12.9-inch) (4th generation)")
+                    .previewDisplayName("iPad Pro 12")
+                    .landscape()
+                
+                DescriptionView(prenom: PrenomAF())
+                    .previewDevice("iPhone 12 Pro Max")
+                    .previewDisplayName("iPhone 12 Pro Max")
+            }.preferredColorScheme($0)
+        }
         
-        DescriptionView(prenom: PrenomAF())
-            .previewDevice("iPhone 12 Pro Max")
-            .previewDisplayName("iPhone 12 Pro Max")
-    }
     }
 }

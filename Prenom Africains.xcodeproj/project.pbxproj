@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151AB5E72636D45800585BFC /* LottieUnlikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151AB5E62636D45800585BFC /* LottieUnlikeButtonView.swift */; };
+		152E826B2635CA46002950E6 /* heart_like.json in Resources */ = {isa = PBXBuildFile; fileRef = 152E826A2635CA46002950E6 /* heart_like.json */; };
+		152E82712635CB01002950E6 /* LottieLikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152E82702635CB01002950E6 /* LottieLikeButtonView.swift */; };
 		1547B774261B3EC6006FBF3E /* PrenomAF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1547B773261B3EC6006FBF3E /* PrenomAF.swift */; };
+		15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15645E85263B54E20017E8B7 /* AdaptiveView.swift */; };
+		15645E88263B5B8B0017E8B7 /* LandscapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */; };
 		156F0AE22608172F0076AB4B /* Prenom_AfricainsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AE12608172F0076AB4B /* Prenom_AfricainsApp.swift */; };
 		156F0AE42608172F0076AB4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AE32608172F0076AB4B /* ContentView.swift */; };
 		156F0AE6260817300076AB4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156F0AE5260817300076AB4B /* Assets.xcassets */; };
@@ -54,7 +59,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		151AB5E62636D45800585BFC /* LottieUnlikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieUnlikeButtonView.swift; sourceTree = "<group>"; };
+		152E826A2635CA46002950E6 /* heart_like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart_like.json; sourceTree = "<group>"; };
+		152E82702635CB01002950E6 /* LottieLikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieLikeButtonView.swift; sourceTree = "<group>"; };
 		1547B773261B3EC6006FBF3E /* PrenomAF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAF.swift; sourceTree = "<group>"; };
+		15645E85263B54E20017E8B7 /* AdaptiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveView.swift; sourceTree = "<group>"; };
+		15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeModifier.swift; sourceTree = "<group>"; };
 		156F0ADE2608172F0076AB4B /* Prenom Africains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prenom Africains.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		156F0AE12608172F0076AB4B /* Prenom_AfricainsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prenom_AfricainsApp.swift; sourceTree = "<group>"; };
 		156F0AE32608172F0076AB4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -146,6 +156,7 @@
 				15EA7DE4260933A3006BC8F2 /* Model */,
 				156F0B30260825750076AB4B /* Screen */,
 				156F0B2126081D6C0076AB4B /* sound.json */,
+				152E826A2635CA46002950E6 /* heart_like.json */,
 				156F0B0F2608173E0076AB4B /* Views */,
 				156F0AE12608172F0076AB4B /* Prenom_AfricainsApp.swift */,
 				156F0AE32608172F0076AB4B /* ContentView.swift */,
@@ -189,6 +200,9 @@
 				156F0B2626081DA40076AB4B /* LottieView.swift */,
 				156F0B2B260821470076AB4B /* DescriptionView.swift */,
 				15EA7DDF260921A0006BC8F2 /* MenuView.swift */,
+				152E82702635CB01002950E6 /* LottieLikeButtonView.swift */,
+				151AB5E62636D45800585BFC /* LottieUnlikeButtonView.swift */,
+				15645E85263B54E20017E8B7 /* AdaptiveView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -214,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				15ABCB47262A59B600036B3E /* NetworkMonitor.swift */,
+				15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -364,6 +379,7 @@
 			files = (
 				156F0B2226081D6C0076AB4B /* sound.json in Resources */,
 				156F0AE9260817300076AB4B /* Preview Assets.xcassets in Resources */,
+				152E826B2635CA46002950E6 /* heart_like.json in Resources */,
 				15EA7DF826094817006BC8F2 /* MOCK_DATA.json in Resources */,
 				156F0AE6260817300076AB4B /* Assets.xcassets in Resources */,
 			);
@@ -397,9 +413,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */,
 				15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */,
+				152E82712635CB01002950E6 /* LottieLikeButtonView.swift in Sources */,
 				15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */,
 				15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */,
+				151AB5E72636D45800585BFC /* LottieUnlikeButtonView.swift in Sources */,
 				1547B774261B3EC6006FBF3E /* PrenomAF.swift in Sources */,
 				15EA7DF026094112006BC8F2 /* FirstNameViewModel.swift in Sources */,
 				156F0B32260825910076AB4B /* MainScreen.swift in Sources */,
@@ -408,6 +427,7 @@
 				156F0AE22608172F0076AB4B /* Prenom_AfricainsApp.swift in Sources */,
 				156F0B2726081DA40076AB4B /* LottieView.swift in Sources */,
 				156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */,
+				15645E88263B5B8B0017E8B7 /* LandscapeModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

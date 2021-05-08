@@ -87,7 +87,6 @@ struct MainScreen: View {
                             })
                 DescriptionView(prenom: currentPrenom)
                     .padding(.horizontal)
-                //Spacer()
                 MenuView()
                 Spacer()
                     .frame(height:30)
@@ -156,15 +155,20 @@ struct MainScreen: View {
 struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
         let firstNameViewModel = FirstNameViewModel()
-        
+        ForEach(ColorScheme.allCases, id: \.self) {
         Group {
             MainScreen(firstNameViewModel: firstNameViewModel)
                 .previewDevice("iPhone 12")
                 .previewDisplayName("iPhone 12")
             
             MainScreen(firstNameViewModel: firstNameViewModel)
-                .previewDevice("iPad Pro (12.9-inch) (4th generation)")
-                .previewDisplayName("iPad Pro 12")
+                .previewDevice("iPhone 8 Plus")
+                .previewDisplayName("iPhone 8 Plus")
+            
+            MainScreen(firstNameViewModel: firstNameViewModel)
+                .previewDevice("iPhone 8")
+                .previewDisplayName("iPhone 8")
+        }.preferredColorScheme($0)
         }
       
     }
