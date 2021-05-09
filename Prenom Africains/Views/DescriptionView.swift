@@ -20,11 +20,12 @@ struct DescriptionView: View {
         VStack {
             Spacer()
             GeometryReader { geometry in
+                HStack (alignment:.center) {
+                    Spacer()
                 ZStack {
                     RoundedRectangle(cornerRadius: 25, style: .continuous)
                         .fill(Color.offWhite.opacity(0.71))
-                        .frame(width: UIScreen.main.bounds.width , height: 165 * CGFloat(sizeMultiplier()))
-                        //.padding(.horizontal)
+                        .frame(width: UIScreen.main.bounds.width - 50, height: 165 * CGFloat(sizeMultiplier()), alignment: .center)
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
                         .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
                     Text(prenom.meaning ?? "")
@@ -32,7 +33,10 @@ struct DescriptionView: View {
                         .multilineTextAlignment(.center)
                         .frame(width: UIScreen.main.bounds.width * 0.8, height: 100 * CGFloat(sizeMultiplier()), alignment: .center)
                 }
-                .frame(idealWidth: geometry.size.width, maxHeight: geometry.size.height, alignment: .center)
+                    Spacer()
+                }
+                .padding(.horizontal)
+                .frame(idealWidth: geometry.size.width * 0.8, maxHeight: geometry.size.height, alignment: .center)
             }
             
             HStack {

@@ -86,12 +86,9 @@ struct MainScreen: View {
                                 }
                             })
                 DescriptionView(prenom: currentPrenom)
-                    .padding(.horizontal)
                 MenuView()
-                Spacer()
-                    .frame(height:30)
-                    
             }
+            .padding(.vertical)
         }.onReceive(firstNameViewModel.$firstnames) { firstnames in
             if(!firstnames.isEmpty) {
                 currentPrenom = firstnames[currentIndex]

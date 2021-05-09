@@ -11,12 +11,17 @@ struct SearchScreen: View {
     @State private var vibrateOnRing = false
     
     var body: some View {
-        VStack{
+        ZStack {
+            Color.offWhite
+        VStack {
+            Spacer()
             Text("Search")
                 .font(.largeTitle)
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
+            // Filters Options
+            Group {
             SearchBarView(text: .constant(""))
                 .padding(.horizontal)
             HStack() {
@@ -37,6 +42,8 @@ struct SearchScreen: View {
                     .frame(width: 30, height: 30, alignment: .center)
             }
             ChipsOptionView(title: "Size")
+            }
+            // Filter Submit Button
             Button(action: {
                 print("Filter tapped!")
             }) {
@@ -51,9 +58,12 @@ struct SearchScreen: View {
                 .background(Color.blue)
                 .cornerRadius(10)
             }.padding()
+            // Menu Bar
             MenuView()
+            Spacer()
         }
-
+        .padding(.vertical)
+        }.edgesIgnoringSafeArea(.all)
     }
 }
 

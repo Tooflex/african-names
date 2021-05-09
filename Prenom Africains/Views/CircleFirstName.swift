@@ -47,7 +47,6 @@ struct CircleFirstName: View {
             }
         .frame(maxWidth: geometry.size.width, maxHeight: geometry.size.height, alignment: .center)
         .padding([.leading, .trailing], 10)
-        .padding(.top, geometry.size.height * 0.1)
         }
     }
     
