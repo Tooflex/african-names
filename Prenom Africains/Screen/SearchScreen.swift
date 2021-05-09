@@ -11,8 +11,6 @@ struct SearchScreen: View {
     @State private var vibrateOnRing = false
     
     var body: some View {
-        ZStack {
-            Color.offWhite
         VStack {
             Spacer()
             Text("Search")
@@ -58,12 +56,8 @@ struct SearchScreen: View {
                 .background(Color.blue)
                 .cornerRadius(10)
             }.padding()
-            // Menu Bar
-            MenuView()
             Spacer()
         }
-        .padding(.vertical)
-        }.edgesIgnoringSafeArea(.all)
     }
 }
 

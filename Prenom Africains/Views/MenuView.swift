@@ -13,18 +13,79 @@ struct MenuView: View {
     
     @Environment(\.horizontalSizeClass) var hSizeClass
     
+    @Binding var selectedTab: Int
+    
+    
+        
     var body: some View {
+        let iconFont = Font.system(size: 27).bold()
+        let textFont = Font.system(size: 12)
         ZStack {
             RoundedRectangle(cornerRadius: 25.0)
                 .frame(width: 360 * CGFloat(sizeMultiplier()), height: 80, alignment: .center)
                 .foregroundColor(.offWhite)
                 .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
                 .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
-            HStack(alignment: .center, spacing: 60.0 * CGFloat(sizeMultiplier())) {
-                Image("search")
-                Image("my-list")
-                Image("share")
-                Image("params")
+            HStack(alignment: .center, spacing: 35.0 * CGFloat(sizeMultiplier())) {
+                Button(action: {
+                    self.selectedTab = MenuItemEnum.home.rawValue
+                }) {
+                    VStack (alignment: .center, spacing: 3) {
+                    Image(systemName: "house")
+                            .font(iconFont)
+                            .foregroundColor(selectedTab == MenuItemEnum.home.rawValue ? Color.blue : Color.black)
+                    Text("Home").font(textFont)
+                        .foregroundColor(selectedTab == MenuItemEnum.home.rawValue ? Color.blue : Color.black)
+                    }
+ 
+                }
+                
+                Button(action: {
+                    self.selectedTab = MenuItemEnum.search.rawValue
+                }) {
+                    VStack (alignment: .center, spacing: 3) {
+                    Image(systemName: "magnifyingglass")
+                        .font(iconFont)
+                            .foregroundColor(selectedTab == MenuItemEnum.search.rawValue ? Color.blue : Color.black)
+                        Text("Search").font(textFont)
+                            .foregroundColor(selectedTab == MenuItemEnum.search.rawValue ? Color.blue : Color.black)
+                    }
+                }
+              
+                Button(action: {
+                        self.selectedTab = MenuItemEnum.myList.rawValue
+                }, label: {
+                    VStack (alignment: .center, spacing: 3) {
+                        Image(systemName: "bookmark")
+                            .font(iconFont)
+                            .foregroundColor(selectedTab == MenuItemEnum.myList.rawValue ? Color.blue : Color.black)
+                        Text("My List").font(textFont)
+                            .foregroundColor(selectedTab == MenuItemEnum.myList.rawValue ? Color.blue : Color.black)
+                    }
+                })
+
+                Button(action: {
+                    self.selectedTab = MenuItemEnum.share.rawValue
+                }, label: {
+                    VStack (alignment: .center, spacing: 3) {
+                        Image(systemName: "square.and.arrow.up")
+                            .font(iconFont)
+                            .foregroundColor(selectedTab == MenuItemEnum.share.rawValue ? Color.blue : Color.black)
+                        Text("Share").font(textFont).foregroundColor(selectedTab == MenuItemEnum.share.rawValue ? Color.blue : Color.black)
+                    }
+
+                })
+
+                Button(action: {
+                    self.selectedTab = MenuItemEnum.params.rawValue
+                }, label: {
+                    VStack (alignment: .center, spacing: 3){
+                        Image(systemName: "gearshape")
+                            .font(iconFont)
+                            .foregroundColor(selectedTab == MenuItemEnum.params.rawValue ? Color.blue : Color.black)
+                        Text("Share").font(textFont).foregroundColor(selectedTab == MenuItemEnum.params.rawValue ? Color.blue : Color.black)
+                    }
+                })
             }
         }
     }
@@ -40,11 +101,11 @@ struct MenuView: View {
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView()
+        MenuView(selectedTab: .constant(0))
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
             .previewDisplayName("iPhone 12")
         
-        MenuView()
+        MenuView(selectedTab: .constant(0))
             .previewDevice(PreviewDevice(rawValue: "iPad 12"))
             .previewDisplayName("iPad 12")
     }

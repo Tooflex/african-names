@@ -45,8 +45,7 @@ struct MainScreen: View {
     }
     
     var body: some View {
-        ZStack {
-            Color.offWhite
+
             VStack {
                Spacer()
                 HStack {
@@ -86,15 +85,13 @@ struct MainScreen: View {
                                 }
                             })
                 DescriptionView(prenom: currentPrenom)
-                MenuView()
             }
             .padding(.vertical)
-        }.onReceive(firstNameViewModel.$firstnames) { firstnames in
+        .onReceive(firstNameViewModel.$firstnames) { firstnames in
             if(!firstnames.isEmpty) {
                 currentPrenom = firstnames[currentIndex]
             }
         }
-        .edgesIgnoringSafeArea(.all)
     }
     
     func sizeMultiplier() -> Int {

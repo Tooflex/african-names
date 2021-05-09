@@ -35,6 +35,7 @@
 		15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DE5260933C8006BC8F2 /* Gender.swift */; };
 		15EA7DF026094112006BC8F2 /* FirstNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */; };
 		15EA7DF826094817006BC8F2 /* MOCK_DATA.json in Resources */ = {isa = PBXBuildFile; fileRef = 15EA7DF726094817006BC8F2 /* MOCK_DATA.json */; };
+		15FC2A4726483CF40025BCF3 /* MenuItemEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC2A4626483CF40025BCF3 /* MenuItemEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		15EA7DE5260933C8006BC8F2 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNameViewModel.swift; sourceTree = "<group>"; };
 		15EA7DF726094817006BC8F2 /* MOCK_DATA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MOCK_DATA.json; sourceTree = "<group>"; };
+		15FC2A4626483CF40025BCF3 /* MenuItemEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +240,7 @@
 			children = (
 				15ABCB47262A59B600036B3E /* NetworkMonitor.swift */,
 				15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */,
+				15FC2A4626483CF40025BCF3 /* MenuItemEnum.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				152E82712635CB01002950E6 /* LottieLikeButtonView.swift in Sources */,
 				15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */,
 				15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */,
+				15FC2A4726483CF40025BCF3 /* MenuItemEnum.swift in Sources */,
 				15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */,
 				15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */,
 				151AB5E72636D45800585BFC /* LottieUnlikeButtonView.swift in Sources */,
