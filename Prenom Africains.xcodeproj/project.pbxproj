@@ -159,15 +159,13 @@
 		156F0AE02608172F0076AB4B /* Prenom Africains */ = {
 			isa = PBXGroup;
 			children = (
+				15FC2A49264855760025BCF3 /* Misc */,
 				15CFF01A261396A100B06E32 /* Util */,
-				15EA7DF726094817006BC8F2 /* MOCK_DATA.json */,
-				15EA7DE4260933A3006BC8F2 /* Model */,
 				156F0B30260825750076AB4B /* Screen */,
-				156F0B2126081D6C0076AB4B /* sound.json */,
-				152E826A2635CA46002950E6 /* heart_like.json */,
+				15EA7DE4260933A3006BC8F2 /* Model */,
 				156F0B0F2608173E0076AB4B /* Views */,
+				15FC2A48264854F60025BCF3 /* ViewModel */,
 				156F0AE12608172F0076AB4B /* Prenom_AfricainsApp.swift */,
-				156F0AE32608172F0076AB4B /* ContentView.swift */,
 				156F0AE5260817300076AB4B /* Assets.xcassets */,
 				156F0AEA260817300076AB4B /* Info.plist */,
 				156F0AE7260817300076AB4B /* Preview Content */,
@@ -220,6 +218,7 @@
 		156F0B30260825750076AB4B /* Screen */ = {
 			isa = PBXGroup;
 			children = (
+				156F0AE32608172F0076AB4B /* ContentView.swift */,
 				156F0B31260825910076AB4B /* MainScreen.swift */,
 				15CAC5222646E837007E838C /* SearchScreen.swift */,
 			);
@@ -249,10 +248,27 @@
 			isa = PBXGroup;
 			children = (
 				15EA7DE5260933C8006BC8F2 /* Gender.swift */,
-				15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */,
 				1547B773261B3EC6006FBF3E /* PrenomAF.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		15FC2A48264854F60025BCF3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		15FC2A49264855760025BCF3 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				15EA7DF726094817006BC8F2 /* MOCK_DATA.json */,
+				156F0B2126081D6C0076AB4B /* sound.json */,
+				152E826A2635CA46002950E6 /* heart_like.json */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
