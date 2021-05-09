@@ -16,8 +16,8 @@ struct SearchBarView: View {
         HStack (alignment: .center, spacing: 30)  {
             Image("feather-search").foregroundColor(.black)
             TextField("Search a firstname", text: $text)
-                //.frame(height: 79, alignment: .center)
                .textFieldStyle(DefaultTextFieldStyle())
+                .id(true) //Force TextField to accept editable
         }
         .padding()
         .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.gray, lineWidth: 1))

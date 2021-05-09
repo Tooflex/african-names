@@ -76,7 +76,7 @@ struct DescriptionView: View {
                 }
                 
                 Spacer()
-                Text("Origine: \(prenom.origins ?? "")")
+                Text("Origins: \(prenom.origins ?? "")")
                     .font(.title2)
                     .lineLimit(1)
                     .padding(.horizontal)
