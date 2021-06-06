@@ -9,19 +9,19 @@ import SwiftUI
 import CoreData
 
 struct MainScreen: View {
-    
+
     @Environment(\.verticalSizeClass) var vSizeClass
 
     @Environment(\.horizontalSizeClass) var hSizeClass
 
-    @State private var currentPrenom: PrenomAF = PrenomAF()
-    
+    @State private var currentPrenom: FirstnameDataModel = FirstnameDataModel()
+
     @State private var currentColor = Color.gray
-    
+
     @State private var currentIndex = 0
-    
-    @ObservedObject var firstNameViewModel : FirstNameViewModel
-            
+
+    @ObservedObject var firstNameViewModel: FirstNameViewModel
+
     fileprivate func leftButton() -> some View {
         return Triangle()
             .fill(setColor())
@@ -32,8 +32,8 @@ struct MainScreen: View {
                 previousFirstname()
             }
     }
-    
-    fileprivate func RightButton() -> some View {
+
+    fileprivate func rightButton() -> some View {
         return Triangle()
             .fill(setColor())
             .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
@@ -43,13 +43,13 @@ struct MainScreen: View {
                 nextFirstname()
             }
     }
-    
+
     var body: some View {
 
             VStack {
                Spacer()
                 HStack {
-                    if(isPreviousFirstname()) {
+                    if isPreviousFirstname() {
                         leftButton()
                     } else {
                         Spacer().frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
@@ -63,37 +63,37 @@ struct MainScreen: View {
                                 .frame(width: 600, height: 600)
                             Spacer()
                         }
-                        
+
                     } else {
                         CircleFirstName(prenom: currentPrenom, color: setColor())
                             .padding(.bottom)
                     }
-          
-                    if(isNextFirstname()) {
-                        RightButton()
+
+                    if isNextFirstname() {
+                        rightButton()
                     } else {
                         Spacer().frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
                     }
                 }
-                .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
-                            .onEnded { value in
-                                let horizontalAmount = value.translation.width as CGFloat
-                                let verticalAmount = value.translation.height as CGFloat
-                                
-                                if abs(horizontalAmount) > abs(verticalAmount) {
-                                    print(horizontalAmount < 0 ? nextFirstname() : previousFirstname())
-                                }
-                            })
                 DescriptionView(prenom: currentPrenom)
             }
+            .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
+                        .onEnded { value in
+                            let horizontalAmount = value.translation.width as CGFloat
+                            let verticalAmount = value.translation.height as CGFloat
+
+                            if abs(horizontalAmount) > abs(verticalAmount) {
+                                print(horizontalAmount < 0 ? nextFirstname() : previousFirstname())
+                            }
+                        })
             .padding(.vertical)
         .onReceive(firstNameViewModel.$firstnames) { firstnames in
-            if(!firstnames.isEmpty) {
+            if !firstnames.isEmpty {
                 currentPrenom = firstnames[currentIndex]
             }
         }
     }
-    
+
     func sizeMultiplier() -> Int {
         if vSizeClass == .regular && hSizeClass == .regular {
             return 4
@@ -101,7 +101,7 @@ struct MainScreen: View {
             return 1
         }
     }
-    
+
     func paddingMultiplier() -> Int {
         if vSizeClass == .regular && hSizeClass == .regular {
             return 70
@@ -109,37 +109,37 @@ struct MainScreen: View {
             return 1
         }
     }
-    
+
     func setColor() -> Color {
         switch currentPrenom.gender {
-            case Gender.male:
+        case Gender.male:
                 return Color.blue
-            case Gender.female:
+        case Gender.female:
                 return Color.pink
-            case Gender.mixed:
+        case Gender.mixed:
                 return Color.purple
         case .undefined:
             return Color.black
         }
     }
-    
+
     fileprivate func isNextFirstname() -> Bool {
         return self.currentIndex < firstNameViewModel.firstnames.count-1
     }
-    
+
     func nextFirstname() {
-        if(isNextFirstname()) {
+        if isNextFirstname() {
             self.currentIndex = currentIndex + 1
             currentPrenom = firstNameViewModel.firstnames[currentIndex]
         }
     }
-    
+
     fileprivate func isPreviousFirstname() -> Bool {
         return self.currentIndex > 0
     }
-    
+
     func previousFirstname() {
-        if(isPreviousFirstname()) {
+        if isPreviousFirstname() {
             self.currentIndex = currentIndex - 1
             currentPrenom = firstNameViewModel.firstnames[currentIndex]
         }
@@ -154,16 +154,16 @@ struct MainScreen_Previews: PreviewProvider {
             MainScreen(firstNameViewModel: firstNameViewModel)
                 .previewDevice("iPhone 12")
                 .previewDisplayName("iPhone 12")
-            
+
             MainScreen(firstNameViewModel: firstNameViewModel)
                 .previewDevice("iPhone 8 Plus")
                 .previewDisplayName("iPhone 8 Plus")
-            
+
             MainScreen(firstNameViewModel: firstNameViewModel)
                 .previewDevice("iPhone 8")
                 .previewDisplayName("iPhone 8")
         }.preferredColorScheme($0)
         }
-      
+
     }
 }

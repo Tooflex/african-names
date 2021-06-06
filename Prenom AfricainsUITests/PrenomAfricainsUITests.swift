@@ -7,7 +7,7 @@
 
 import XCTest
 
-class Prenom_AfricainsUITests: XCTestCase {
+class PrenomAfricainsUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -30,39 +30,47 @@ class Prenom_AfricainsUITests: XCTestCase {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-    
+
     func testMenuExists() throws {
         let app = XCUIApplication()
         app.launch()
-        
+
         XCTAssert(app.images["search"].exists)
         XCTAssert(app.images["my-list"].exists)
         XCTAssert(app.images["share"].exists)
         XCTAssert(app.images["params"].exists)
     }
-    
+
     func testGoToNextFirstname() throws {
-        
+
     }
-    
+
     func testGoToPreviousFirstname() throws {
-        
+
     }
-    
+
     func testFavoriteIconChangeStateOnTap() throws {
-        
+
     }
-    
+
     func testGenderIconIsCorrect() throws {
-        
+
     }
-    
+
     func testDisplayMoreInfoPopUpOnTap() throws {
-        
+
     }
-    
-    func testFIrstnameCIrcleDoNotMoveFollowingFirstnameLength() throws {
-        
+
+    func testFirstnameCircleDoNotMoveFollowingFirstnameLength() throws {
+
+    }
+
+    func testGoToHomeScreenWhenTappingHomeButton() throws {
+
+    }
+
+    func testGoToSearchScreenWhenTappingSearchButton() throws {
+
     }
 
     func testLaunchPerformance() throws {

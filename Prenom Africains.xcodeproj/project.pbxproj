@@ -10,32 +10,44 @@
 		151AB5E72636D45800585BFC /* LottieUnlikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151AB5E62636D45800585BFC /* LottieUnlikeButtonView.swift */; };
 		152E826B2635CA46002950E6 /* heart_like.json in Resources */ = {isa = PBXBuildFile; fileRef = 152E826A2635CA46002950E6 /* heart_like.json */; };
 		152E82712635CB01002950E6 /* LottieLikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152E82702635CB01002950E6 /* LottieLikeButtonView.swift */; };
-		1547B774261B3EC6006FBF3E /* PrenomAF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1547B773261B3EC6006FBF3E /* PrenomAF.swift */; };
+		152F3C492649B53F000D564B /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 152F3C482649B53F000D564B /* SlideOverCard */; };
+		152F3C4B264C6F71000D564B /* SearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F3C4A264C6F71000D564B /* SearchBarButton.swift */; };
+		152F3C4E264C7B3B000D564B /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 152F3C4D264C7B3B000D564B /* SwiftUIX */; };
+		15300A88266C1F47000AAAF6 /* SearchCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15300A87266C1F47000AAAF6 /* SearchCriteria.swift */; };
+		1544144F264F52BD00BA6887 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1544144E264F52BD00BA6887 /* Colors.xcassets */; };
+		1547B774261B3EC6006FBF3E /* FirstnameDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1547B773261B3EC6006FBF3E /* FirstnameDataModel.swift */; };
+		15640716266836830084908F /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15640715266836830084908F /* Vibration.swift */; };
 		15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15645E85263B54E20017E8B7 /* AdaptiveView.swift */; };
 		15645E88263B5B8B0017E8B7 /* LandscapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */; };
-		156F0AE22608172F0076AB4B /* Prenom_AfricainsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AE12608172F0076AB4B /* Prenom_AfricainsApp.swift */; };
+		156F0AE22608172F0076AB4B /* PrenomAfricainsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AE12608172F0076AB4B /* PrenomAfricainsApp.swift */; };
 		156F0AE42608172F0076AB4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AE32608172F0076AB4B /* ContentView.swift */; };
 		156F0AE6260817300076AB4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156F0AE5260817300076AB4B /* Assets.xcassets */; };
 		156F0AE9260817300076AB4B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156F0AE8260817300076AB4B /* Preview Assets.xcassets */; };
-		156F0AF4260817300076AB4B /* Prenom_AfricainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AF3260817300076AB4B /* Prenom_AfricainsTests.swift */; };
-		156F0AFF260817300076AB4B /* Prenom_AfricainsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AFE260817300076AB4B /* Prenom_AfricainsUITests.swift */; };
+		156F0AF4260817300076AB4B /* PrenomAfricainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AF3260817300076AB4B /* PrenomAfricainsTests.swift */; };
+		156F0AFF260817300076AB4B /* PrenomAfricainsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AFE260817300076AB4B /* PrenomAfricainsUITests.swift */; };
 		156F0B11260817690076AB4B /* CircleFirstName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B10260817690076AB4B /* CircleFirstName.swift */; };
 		156F0B1A26081CA60076AB4B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 156F0B1926081CA60076AB4B /* Lottie */; };
 		156F0B2226081D6C0076AB4B /* sound.json in Resources */ = {isa = PBXBuildFile; fileRef = 156F0B2126081D6C0076AB4B /* sound.json */; };
 		156F0B2726081DA40076AB4B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B2626081DA40076AB4B /* LottieView.swift */; };
 		156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B2B260821470076AB4B /* DescriptionView.swift */; };
 		156F0B32260825910076AB4B /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B31260825910076AB4B /* MainScreen.swift */; };
-		15ABCB3C262A564B00036B3E /* Prenom_AfricainsSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB3B262A564B00036B3E /* Prenom_AfricainsSlowTests.swift */; };
+		15ABCB3C262A564B00036B3E /* PrenomAfricainsSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB3B262A564B00036B3E /* PrenomAfricainsSlowTests.swift */; };
 		15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB47262A59B600036B3E /* NetworkMonitor.swift */; };
 		15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 15BE326D2624D0E700D8DC8D /* Alamofire */; };
 		15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5202646D7F7007E838C /* SearchBarView.swift */; };
 		15CAC5232646E837007E838C /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5222646E837007E838C /* SearchScreen.swift */; };
 		15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5242646ECF1007E838C /* ChipsOptionView.swift */; };
+		15E8DE432662E0050036A99F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15E8DE422662E0050036A99F /* Localizable.strings */; };
+		15E8DE45266308DE0036A99F /* ChipsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8DE44266308DE0036A99F /* ChipsDataModel.swift */; };
+		15E8DE472663093B0036A99F /* ChipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8DE462663093B0036A99F /* ChipsView.swift */; };
+		15E8DE49266366390036A99F /* SearchScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8DE48266366390036A99F /* SearchScreenViewModel.swift */; };
 		15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DDF260921A0006BC8F2 /* MenuView.swift */; };
 		15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DE5260933C8006BC8F2 /* Gender.swift */; };
 		15EA7DF026094112006BC8F2 /* FirstNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */; };
 		15EA7DF826094817006BC8F2 /* MOCK_DATA.json in Resources */ = {isa = PBXBuildFile; fileRef = 15EA7DF726094817006BC8F2 /* MOCK_DATA.json */; };
 		15FC2A4726483CF40025BCF3 /* MenuItemEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC2A4626483CF40025BCF3 /* MenuItemEnum.swift */; };
+		15FC2A4B2648A10B0025BCF3 /* SlidingOverCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC2A4A2648A10B0025BCF3 /* SlidingOverCard.swift */; };
+		15FC2A4D2648A12F0025BCF3 /* Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC2A4C2648A12F0025BCF3 /* Handle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,20 +78,24 @@
 		151AB5E62636D45800585BFC /* LottieUnlikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieUnlikeButtonView.swift; sourceTree = "<group>"; };
 		152E826A2635CA46002950E6 /* heart_like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart_like.json; sourceTree = "<group>"; };
 		152E82702635CB01002950E6 /* LottieLikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieLikeButtonView.swift; sourceTree = "<group>"; };
-		1547B773261B3EC6006FBF3E /* PrenomAF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAF.swift; sourceTree = "<group>"; };
+		152F3C4A264C6F71000D564B /* SearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarButton.swift; sourceTree = "<group>"; };
+		15300A87266C1F47000AAAF6 /* SearchCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCriteria.swift; sourceTree = "<group>"; };
+		1544144E264F52BD00BA6887 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		1547B773261B3EC6006FBF3E /* FirstnameDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnameDataModel.swift; sourceTree = "<group>"; };
+		15640715266836830084908F /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		15645E85263B54E20017E8B7 /* AdaptiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveView.swift; sourceTree = "<group>"; };
 		15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeModifier.swift; sourceTree = "<group>"; };
 		156F0ADE2608172F0076AB4B /* Prenom Africains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prenom Africains.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		156F0AE12608172F0076AB4B /* Prenom_AfricainsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prenom_AfricainsApp.swift; sourceTree = "<group>"; };
+		156F0AE12608172F0076AB4B /* PrenomAfricainsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAfricainsApp.swift; sourceTree = "<group>"; };
 		156F0AE32608172F0076AB4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		156F0AE5260817300076AB4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		156F0AE8260817300076AB4B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		156F0AEA260817300076AB4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		156F0AEF260817300076AB4B /* Prenom AfricainsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prenom AfricainsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		156F0AF3260817300076AB4B /* Prenom_AfricainsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prenom_AfricainsTests.swift; sourceTree = "<group>"; };
+		156F0AF3260817300076AB4B /* PrenomAfricainsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAfricainsTests.swift; sourceTree = "<group>"; };
 		156F0AF5260817300076AB4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		156F0AFA260817300076AB4B /* Prenom AfricainsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prenom AfricainsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		156F0AFE260817300076AB4B /* Prenom_AfricainsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prenom_AfricainsUITests.swift; sourceTree = "<group>"; };
+		156F0AFE260817300076AB4B /* PrenomAfricainsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAfricainsUITests.swift; sourceTree = "<group>"; };
 		156F0B00260817300076AB4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		156F0B10260817690076AB4B /* CircleFirstName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleFirstName.swift; sourceTree = "<group>"; };
 		156F0B2126081D6C0076AB4B /* sound.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sound.json; sourceTree = "<group>"; };
@@ -87,17 +103,23 @@
 		156F0B2B260821470076AB4B /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		156F0B31260825910076AB4B /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		15ABCB39262A564B00036B3E /* Prenom AfricainsSlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prenom AfricainsSlowTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		15ABCB3B262A564B00036B3E /* Prenom_AfricainsSlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prenom_AfricainsSlowTests.swift; sourceTree = "<group>"; };
+		15ABCB3B262A564B00036B3E /* PrenomAfricainsSlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAfricainsSlowTests.swift; sourceTree = "<group>"; };
 		15ABCB3D262A564B00036B3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15ABCB47262A59B600036B3E /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		15CAC5202646D7F7007E838C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		15CAC5222646E837007E838C /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		15CAC5242646ECF1007E838C /* ChipsOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsOptionView.swift; sourceTree = "<group>"; };
+		15E8DE422662E0050036A99F /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		15E8DE44266308DE0036A99F /* ChipsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsDataModel.swift; sourceTree = "<group>"; };
+		15E8DE462663093B0036A99F /* ChipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsView.swift; sourceTree = "<group>"; };
+		15E8DE48266366390036A99F /* SearchScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenViewModel.swift; sourceTree = "<group>"; };
 		15EA7DDF260921A0006BC8F2 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		15EA7DE5260933C8006BC8F2 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNameViewModel.swift; sourceTree = "<group>"; };
 		15EA7DF726094817006BC8F2 /* MOCK_DATA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MOCK_DATA.json; sourceTree = "<group>"; };
 		15FC2A4626483CF40025BCF3 /* MenuItemEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemEnum.swift; sourceTree = "<group>"; };
+		15FC2A4A2648A10B0025BCF3 /* SlidingOverCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingOverCard.swift; sourceTree = "<group>"; };
+		15FC2A4C2648A12F0025BCF3 /* Handle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +128,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				156F0B1A26081CA60076AB4B /* Lottie in Frameworks */,
+				152F3C492649B53F000D564B /* SlideOverCard in Frameworks */,
 				15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */,
+				152F3C4E264C7B3B000D564B /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,10 +189,12 @@
 				15EA7DE4260933A3006BC8F2 /* Model */,
 				156F0B0F2608173E0076AB4B /* Views */,
 				15FC2A48264854F60025BCF3 /* ViewModel */,
-				156F0AE12608172F0076AB4B /* Prenom_AfricainsApp.swift */,
+				156F0AE12608172F0076AB4B /* PrenomAfricainsApp.swift */,
 				156F0AE5260817300076AB4B /* Assets.xcassets */,
 				156F0AEA260817300076AB4B /* Info.plist */,
 				156F0AE7260817300076AB4B /* Preview Content */,
+				1544144E264F52BD00BA6887 /* Colors.xcassets */,
+				15E8DE422662E0050036A99F /* Localizable.strings */,
 			);
 			path = "Prenom Africains";
 			sourceTree = "<group>";
@@ -184,7 +210,7 @@
 		156F0AF2260817300076AB4B /* Prenom AfricainsTests */ = {
 			isa = PBXGroup;
 			children = (
-				156F0AF3260817300076AB4B /* Prenom_AfricainsTests.swift */,
+				156F0AF3260817300076AB4B /* PrenomAfricainsTests.swift */,
 				156F0AF5260817300076AB4B /* Info.plist */,
 			);
 			path = "Prenom AfricainsTests";
@@ -193,7 +219,7 @@
 		156F0AFD260817300076AB4B /* Prenom AfricainsUITests */ = {
 			isa = PBXGroup;
 			children = (
-				156F0AFE260817300076AB4B /* Prenom_AfricainsUITests.swift */,
+				156F0AFE260817300076AB4B /* PrenomAfricainsUITests.swift */,
 				156F0B00260817300076AB4B /* Info.plist */,
 			);
 			path = "Prenom AfricainsUITests";
@@ -210,7 +236,11 @@
 				151AB5E62636D45800585BFC /* LottieUnlikeButtonView.swift */,
 				15645E85263B54E20017E8B7 /* AdaptiveView.swift */,
 				15CAC5202646D7F7007E838C /* SearchBarView.swift */,
+				152F3C4A264C6F71000D564B /* SearchBarButton.swift */,
 				15CAC5242646ECF1007E838C /* ChipsOptionView.swift */,
+				15FC2A4A2648A10B0025BCF3 /* SlidingOverCard.swift */,
+				15FC2A4C2648A12F0025BCF3 /* Handle.swift */,
+				15E8DE462663093B0036A99F /* ChipsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,7 +258,7 @@
 		15ABCB3A262A564B00036B3E /* Prenom AfricainsSlowTests */ = {
 			isa = PBXGroup;
 			children = (
-				15ABCB3B262A564B00036B3E /* Prenom_AfricainsSlowTests.swift */,
+				15ABCB3B262A564B00036B3E /* PrenomAfricainsSlowTests.swift */,
 				15ABCB3D262A564B00036B3E /* Info.plist */,
 			);
 			path = "Prenom AfricainsSlowTests";
@@ -240,6 +270,7 @@
 				15ABCB47262A59B600036B3E /* NetworkMonitor.swift */,
 				15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */,
 				15FC2A4626483CF40025BCF3 /* MenuItemEnum.swift */,
+				15640715266836830084908F /* Vibration.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -248,7 +279,9 @@
 			isa = PBXGroup;
 			children = (
 				15EA7DE5260933C8006BC8F2 /* Gender.swift */,
-				1547B773261B3EC6006FBF3E /* PrenomAF.swift */,
+				1547B773261B3EC6006FBF3E /* FirstnameDataModel.swift */,
+				15E8DE44266308DE0036A99F /* ChipsDataModel.swift */,
+				15300A87266C1F47000AAAF6 /* SearchCriteria.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -257,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */,
+				15E8DE48266366390036A99F /* SearchScreenViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -278,6 +312,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 156F0B03260817300076AB4B /* Build configuration list for PBXNativeTarget "Prenom Africains" */;
 			buildPhases = (
+				15640717266840A80084908F /* ShellScript */,
 				156F0ADA2608172F0076AB4B /* Sources */,
 				156F0ADB2608172F0076AB4B /* Frameworks */,
 				156F0ADC2608172F0076AB4B /* Resources */,
@@ -290,6 +325,8 @@
 			packageProductDependencies = (
 				156F0B1926081CA60076AB4B /* Lottie */,
 				15BE326D2624D0E700D8DC8D /* Alamofire */,
+				152F3C482649B53F000D564B /* SlideOverCard */,
+				152F3C4D264C7B3B000D564B /* SwiftUIX */,
 			);
 			productName = "Prenom Africains";
 			productReference = 156F0ADE2608172F0076AB4B /* Prenom Africains.app */;
@@ -356,7 +393,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1240;
+				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					156F0ADD2608172F0076AB4B = {
 						CreatedOnToolsVersion = 12.4;
@@ -382,11 +419,16 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
+				it,
+				de,
 			);
 			mainGroup = 156F0AD52608172F0076AB4B;
 			packageReferences = (
 				156F0B1826081CA60076AB4B /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				15BE326C2624D0E700D8DC8D /* XCRemoteSwiftPackageReference "Alamofire" */,
+				152F3C472649B53F000D564B /* XCRemoteSwiftPackageReference "SlideOverCard" */,
+				152F3C4C264C7B3B000D564B /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 156F0ADF2608172F0076AB4B /* Products */;
 			projectDirPath = "";
@@ -408,6 +450,8 @@
 				156F0B2226081D6C0076AB4B /* sound.json in Resources */,
 				156F0AE9260817300076AB4B /* Preview Assets.xcassets in Resources */,
 				152E826B2635CA46002950E6 /* heart_like.json in Resources */,
+				15E8DE432662E0050036A99F /* Localizable.strings in Resources */,
+				1544144F264F52BD00BA6887 /* Colors.xcassets in Resources */,
 				15EA7DF826094817006BC8F2 /* MOCK_DATA.json in Resources */,
 				156F0AE6260817300076AB4B /* Assets.xcassets in Resources */,
 			);
@@ -436,6 +480,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		15640717266840A80084908F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		156F0ADA2608172F0076AB4B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -444,21 +508,29 @@
 				15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */,
 				15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */,
 				152E82712635CB01002950E6 /* LottieLikeButtonView.swift in Sources */,
+				15E8DE49266366390036A99F /* SearchScreenViewModel.swift in Sources */,
 				15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */,
+				15FC2A4B2648A10B0025BCF3 /* SlidingOverCard.swift in Sources */,
+				152F3C4B264C6F71000D564B /* SearchBarButton.swift in Sources */,
+				15300A88266C1F47000AAAF6 /* SearchCriteria.swift in Sources */,
 				15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */,
 				15FC2A4726483CF40025BCF3 /* MenuItemEnum.swift in Sources */,
 				15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */,
 				15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */,
 				151AB5E72636D45800585BFC /* LottieUnlikeButtonView.swift in Sources */,
-				1547B774261B3EC6006FBF3E /* PrenomAF.swift in Sources */,
+				1547B774261B3EC6006FBF3E /* FirstnameDataModel.swift in Sources */,
+				15E8DE472663093B0036A99F /* ChipsView.swift in Sources */,
 				15CAC5232646E837007E838C /* SearchScreen.swift in Sources */,
+				15E8DE45266308DE0036A99F /* ChipsDataModel.swift in Sources */,
 				15EA7DF026094112006BC8F2 /* FirstNameViewModel.swift in Sources */,
 				156F0B32260825910076AB4B /* MainScreen.swift in Sources */,
 				156F0B11260817690076AB4B /* CircleFirstName.swift in Sources */,
 				156F0AE42608172F0076AB4B /* ContentView.swift in Sources */,
-				156F0AE22608172F0076AB4B /* Prenom_AfricainsApp.swift in Sources */,
+				156F0AE22608172F0076AB4B /* PrenomAfricainsApp.swift in Sources */,
+				15FC2A4D2648A12F0025BCF3 /* Handle.swift in Sources */,
 				156F0B2726081DA40076AB4B /* LottieView.swift in Sources */,
 				156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */,
+				15640716266836830084908F /* Vibration.swift in Sources */,
 				15645E88263B5B8B0017E8B7 /* LandscapeModifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,7 +539,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				156F0AF4260817300076AB4B /* Prenom_AfricainsTests.swift in Sources */,
+				156F0AF4260817300076AB4B /* PrenomAfricainsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,7 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				156F0AFF260817300076AB4B /* Prenom_AfricainsUITests.swift in Sources */,
+				156F0AFF260817300076AB4B /* PrenomAfricainsUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,7 +555,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15ABCB3C262A564B00036B3E /* Prenom_AfricainsSlowTests.swift in Sources */,
+				15ABCB3C262A564B00036B3E /* PrenomAfricainsSlowTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +584,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -574,6 +647,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -629,7 +703,7 @@
 		156F0B04260817300076AB4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = " https://99804b6711fe.ngrok.io";
+				API_ENDPOINT = "https://3cc7169d08ed.ngrok.io";
 				APP_DISPLAY_NAME = "DEV Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -849,6 +923,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		152F3C472649B53F000D564B /* XCRemoteSwiftPackageReference "SlideOverCard" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/joogps/SlideOverCard";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		152F3C4C264C7B3B000D564B /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.6;
+			};
+		};
 		156F0B1826081CA60076AB4B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -868,6 +958,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		152F3C482649B53F000D564B /* SlideOverCard */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 152F3C472649B53F000D564B /* XCRemoteSwiftPackageReference "SlideOverCard" */;
+			productName = SlideOverCard;
+		};
+		152F3C4D264C7B3B000D564B /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 152F3C4C264C7B3B000D564B /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
 		156F0B1926081CA60076AB4B /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 156F0B1826081CA60076AB4B /* XCRemoteSwiftPackageReference "lottie-ios" */;

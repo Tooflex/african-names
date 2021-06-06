@@ -7,113 +7,85 @@
 
 import SwiftUI
 
-struct ChipsDataModel: Identifiable {
-    let id = UUID()
-    @State var isSelected: Bool
-    let systemImage: String
-    let titleKey: LocalizedStringKey
-}
-
-class ChipsViewModel: ObservableObject {
-    @Published var dataObject: [ChipsDataModel] = [ChipsDataModel.init(isSelected: false, systemImage: "pencil.circle", titleKey: "Pencil Circle")]
-    
-    func addChip() {
-        dataObject.append(ChipsDataModel.init(isSelected: false, systemImage: "pencil.circle", titleKey: "Pencil"))
-    }
-    
-    func initChips(optionList:[ChipsDataModel]) {
-        dataObject = optionList
-    }
-    
-    func removeLast() {
-        guard dataObject.count != 0 else {
-            return
-        }
-        dataObject.removeLast()
-    }
-}
-
 struct ChipsOptionView: View {
-    @StateObject var viewModel = ChipsViewModel()
+
+    @StateObject var searchScreenViewModel: SearchScreenViewModel
     @State var title: String
+    @State var data: [ChipsDataModel]
     var body: some View {
         VStack {
-            ScrollView {
-                ChipsContent(viewModel: viewModel, title: title)
-            }
+            ChipsContent( searchScreenViewModel: searchScreenViewModel, title: title, data: data)
             Spacer()
         }
     }
 }
 
 struct ChipsContent: View {
-    @ObservedObject var viewModel = ChipsViewModel()
-    var title: String
+    @ObservedObject var searchScreenViewModel: SearchScreenViewModel
+    @State var title: String
+    @State var data: [ChipsDataModel]
+    fileprivate func filterByChip(isSelected: Bool, chipsData: ChipsDataModel) {
+
+        if isSelected {
+            print("selected")
+            searchScreenViewModel.addToFilterChainString(newFilter: title, newFilterValue: chipsData.titleKey)
+        } else {
+            print("unselected")
+            searchScreenViewModel.removeFromFilterChainString(filterToRemove: title, filterValueToRemove: chipsData.titleKey)
+        }
+
+        print(searchScreenViewModel.currentFilterChain)
+    }
+
     var body: some View {
         var width = CGFloat.zero
         var height = CGFloat.zero
-        return GeometryReader { geo in
+        return GeometryReader { _ in
             Text(title)
                 .font(.title2)
                 .bold()
             ZStack(alignment: .topLeading, content: {
-                ForEach(viewModel.dataObject) { chipsData in
-                    Chips(systemImage: chipsData.systemImage,
-                          titleKey: chipsData.titleKey,
-                          isSelected: chipsData.isSelected)
-                        .padding(.all, 5)
-                        .alignmentGuide(.leading) { dimension in
-                            if (abs(width - dimension.width) > geo.size.width) {
-                                width = 0
-                                height -= dimension.height
+                ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(data) { chipsData in
+                        let chipView: ChipsView = ChipsView(chip: chipsData)
+                            chipView.onTapGesture {
+                                chipsData.isSelected.toggle()
+
+                                filterByChip(isSelected: chipsData.isSelected, chipsData: chipsData)
                             }
-                            
-                            let result = width
-                            if chipsData.id == viewModel.dataObject.last!.id {
-                                width = 0
-                            } else {
-                                width -= dimension.width
-                            }
-                            return result
-                        }
-                        .alignmentGuide(.top) { dimension in
-                            let result = height
-                            if chipsData.id == viewModel.dataObject.last!.id {
-                                height = 0
-                            }
-                            return result
-                        }
+                            .padding(.all, 5)
+
+                    }
                 }
+                }
+
             }).padding(.vertical, 30)
         }.padding(.all, 10)
     }
 }
 
-
-struct Chips: View {
-    let systemImage: String
-    let titleKey: LocalizedStringKey
-    @State var isSelected: Bool
-    var body: some View {
-        HStack {
-            Image.init(systemName: systemImage).font(.title3)
-            Text(titleKey).font(.title3).lineLimit(1)
-        }.padding(.all, 10)
-        .foregroundColor(isSelected ? .white : .blue)
-        .background(isSelected ? Color.blue : Color.white)
-        .cornerRadius(40)
-        .overlay(
-            RoundedRectangle(cornerRadius: 40)
-                .stroke(Color.blue, lineWidth: 1.5)
-            
-        ).onTapGesture {
-            isSelected.toggle()
-        }
-    }
-}
-
-struct ChipsOptionView_Previews: PreviewProvider {
+ struct ChipsOptionView_Previews: PreviewProvider {
     static var previews: some View {
-        ChipsOptionView( title: "Test")
+        ChipsOptionView(
+            searchScreenViewModel: SearchScreenViewModel(),
+            title: "Test",
+            data: [
+                ChipsDataModel(isSelected: false, titleKey: "Wesh"),
+                ChipsDataModel(isSelected: false, titleKey: "Yo")
+            ])
     }
-}
+ }
+
+// extension ChipsContent {
+//
+//    typealias CompletionHandler = (_ success: Bool) -> Void
+//
+//    public func onChipTapped(completionHandler: CompletionHandler) -> some View {
+//
+//        let flag = true // true if download succeed,false otherwise
+//
+//        completionHandler(flag)
+//        return self
+//    }
+// }

@@ -6,21 +6,23 @@
 //
 
 import SwiftUI
+import CoreHaptics
 
 struct DescriptionView: View {
     @Environment(\.verticalSizeClass) var vSizeClass
-    
+
     @Environment(\.horizontalSizeClass) var hSizeClass
-    
-    var prenom: PrenomAF
+
+    var prenom: FirstnameDataModel
     @State private var isLiked = false
-    
-    
+
+    @State private var engine: CHHapticEngine?
+
     var body: some View {
         VStack {
             Spacer()
             GeometryReader { geometry in
-                HStack (alignment:.center) {
+                HStack(alignment: .center) {
                     Spacer()
                 ZStack {
                     RoundedRectangle(cornerRadius: 25, style: .continuous)
@@ -38,7 +40,7 @@ struct DescriptionView: View {
                 .padding(.horizontal)
                 .frame(idealWidth: geometry.size.width * 0.8, maxHeight: geometry.size.height, alignment: .center)
             }
-            
+
             HStack {
                 switch prenom.gender {
                 case Gender.male:
@@ -46,15 +48,15 @@ struct DescriptionView: View {
                         Image("md-male")
                             .resizable()
                             .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                        //.padding()
+                        // .padding()
                     }
-                    
+
                 case Gender.female:
                     HStack {
                         Image("md-female")
                             .resizable()
                             .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                        //.padding()
+                        // .padding()
                     }
                 case Gender.mixed:
                     HStack {
@@ -62,7 +64,7 @@ struct DescriptionView: View {
                             .resizable()
                             .scaledToFit()
                             .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                            //.padding()
+                            // .padding()
                         Image("md-female")
                             .resizable()
                             .scaledToFit()
@@ -72,46 +74,85 @@ struct DescriptionView: View {
                 case .undefined:
                     EmptyView()
                         .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                //.padding()
+                // .padding()
                 }
-                
+
                 Spacer()
                 Text("Origins: \(prenom.origins ?? "")")
                     .font(.title2)
                     .lineLimit(1)
                     .padding(.horizontal)
             }.frame(alignment: .center)
-            
+
             if !isLiked {
                 Button(action: {
                     self.isLiked.toggle()
+
                 }) {
                     LottieView(name: "heart_like", fromMarker: "touchDownStart", toMarker: "touchUpEnd")
                         .padding(.all, -40)
-                        .frame(width: 40 * CGFloat(sizeMultiplier()), height: 40 * CGFloat(sizeMultiplier())
-                               , alignment: .center)
+                        .frame(width: 40 * CGFloat(sizeMultiplier()), height: 40 * CGFloat(sizeMultiplier()), alignment: .center)
                 }
-                
+
             } else {
                 Button(action: {
                     self.isLiked.toggle()
-                    
+                    complexSuccess()
                 }) {
                     LottieView(name: "heart_like", fromMarker: "touchDownStart1", toMarker: "touchUpEnd1")
                         .padding(.all, -40)
-                        .frame(width: 40 * CGFloat(sizeMultiplier()), height: 40 * CGFloat(sizeMultiplier())
-                               , alignment: .center)
+                        .frame(width: 40 * CGFloat(sizeMultiplier()), height: 40 * CGFloat(sizeMultiplier()), alignment: .center)
                 }
             }
             Spacer()
         }
+        .onAppear(perform: prepareHaptics)
+
     }
-    
+
     func sizeMultiplier() -> Int {
         if vSizeClass == .regular && hSizeClass == .regular {
             return 2
         } else {
             return 1
+        }
+    }
+
+    // MARK: Haptics functions
+    func prepareHaptics() {
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+
+        do {
+            self.engine = try CHHapticEngine()
+            try engine?.start()
+        } catch {
+            print("There was an error creating the engine: \(error.localizedDescription)")
+        }
+    }
+
+    func complexSuccess() {
+        print("haptic")
+        // make sure that the device supports haptics
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+        var events = [CHHapticEvent]()
+
+        // Double tap
+        let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: 1)
+        let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: 1)
+        let event = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity, sharpness], relativeTime: 0)
+        let intensity1 = CHHapticEventParameter(parameterID: .hapticIntensity, value: 1)
+        let sharpness1 = CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.5)
+        let event1 = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity1, sharpness1], relativeTime: 0.1)
+        events.append(event)
+        events.append(event1)
+
+        // convert those events into a pattern and play it immediately
+        do {
+            let pattern = try CHHapticPattern(events: events, parameters: [])
+            let player = try engine?.makePlayer(with: pattern)
+            try player?.start(atTime: 0)
+        } catch {
+            print("Failed to play pattern: \(error.localizedDescription).")
         }
     }
 }
@@ -124,16 +165,16 @@ struct DescriptionView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
             Group {
-                DescriptionView(prenom: PrenomAF())
+                DescriptionView(prenom: FirstnameDataModel())
                     .previewDevice("iPad Pro (12.9-inch) (4th generation)")
                     .previewDisplayName("iPad Pro 12")
                     .landscape()
-                
-                DescriptionView(prenom: PrenomAF())
+
+                DescriptionView(prenom: FirstnameDataModel())
                     .previewDevice("iPhone 12 Pro Max")
                     .previewDisplayName("iPhone 12 Pro Max")
             }.preferredColorScheme($0)
         }
-        
+
     }
 }

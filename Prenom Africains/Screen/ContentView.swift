@@ -10,24 +10,25 @@ import Alamofire
 
 struct ContentView: View {
     @StateObject var firstNameViewModel = FirstNameViewModel()
+    @StateObject var searchScreenViewModel = SearchScreenViewModel()
     @State var selectedTab = 0
-    
+
     let tabHome = 0
     let tabSearch = 1
     let tabMyList = 2
     let tabShare = 3
     let tabParams = 4
-    
+
     var body: some View {
         ZStack {
             Color.offWhite
         VStack {
             switch selectedTab {
-                case 0:
+            case 0:
                 MainScreen(firstNameViewModel: firstNameViewModel)
-                case 1:
-                    SearchScreen()
-                default :
+            case 1:
+                    SearchScreen(searchScreenViewModel: searchScreenViewModel)
+            default :
                     MainScreen(firstNameViewModel: firstNameViewModel)
             }
             MenuView(selectedTab: $selectedTab)
@@ -44,12 +45,12 @@ struct ContentView_Previews: PreviewProvider {
        ContentView()
                     .previewDevice("iPhone 12")
                     .previewDisplayName("iPhone 12")
-                
+
                 ContentView()
                     .previewDevice("iPhone 8")
                     .previewDisplayName("iPhone 8")
             }.preferredColorScheme($0)
         }
-        
+
     }
 }

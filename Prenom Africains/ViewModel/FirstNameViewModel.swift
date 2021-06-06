@@ -10,32 +10,36 @@ import Alamofire
 import Combine
 
 class FirstNameViewModel: ObservableObject {
-    @Published var firstnames = [PrenomAF]()
+    @Published var firstnames = [FirstnameDataModel]()
     @Published var loaded = false
-    
+    @Published var isLoading: Bool = false
+
     var tokens: Set<AnyCancellable> = []
-    
-    private let apiEndpoint = Bundle.main.infoDictionary!["API_ENDPOINT"] as! String
-    private var url = "https://99804b6711fe.ngrok.io/api/v1/firstnames/random"
+
+    private let apiEndpoint = Bundle.main.infoDictionary!["API_ENDPOINT"] as? String
+
     private var task: AnyCancellable?
-    
+
+    let username = "user"
+    let password = "Manjack76"
+
     init() {
-        //url = "\(apiEndpoint)/api/v1/firstnames/random"
         fetchFirstnames()
     }
-    
+
     func fetchFirstnames() {
-        
+
         loaded = true
-        
-        let username = "user"
-        let password = "Manjack76"
-        
+
+        if let apiEndpoint = apiEndpoint {
+
+        let url = "\(apiEndpoint)/api/v1/firstnames/random"
+
         let headers: HTTPHeaders = [.authorization(username: username, password: password)]
-        
+
         AF.request(url, headers: headers)
             .validate()
-            .publishDecodable(type: [PrenomAF].self)
+            .publishDecodable(type: [FirstnameDataModel].self)
             .sink(receiveCompletion: { (completion) in
                 switch completion {
                 case .finished:
@@ -53,15 +57,16 @@ class FirstNameViewModel: ObservableObject {
                     print(error.localizedDescription)
                 }
             }).store(in: &tokens)
+        } else {
+            return
+        }
     }
-    
-    
+
 }
 
-
-//var samplefirstnames: [PrenomAF] = load("MOCK_DATA.json")
+// var samplefirstnames: [PrenomAF] = load("MOCK_DATA.json")
 //
-//func load<T: Decodable>(_ filename: String) -> T {
+// func load<T: Decodable>(_ filename: String) -> T {
 //    let data: Data
 //        
 //    guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
@@ -81,6 +86,6 @@ class FirstNameViewModel: ObservableObject {
 //    } catch {
 //        fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
 //    }
-//}
+// }
 //
 //

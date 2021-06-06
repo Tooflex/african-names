@@ -10,11 +10,11 @@ import SwiftUI
 struct AdaptiveView<Content: View>: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     var content: Content
-    
+
     public init(@ViewBuilder content: () -> Content) {
         self.content = content()
     }
-    
+
     var body: some View {
         if horizontalSizeClass == .regular {
             HStack {
