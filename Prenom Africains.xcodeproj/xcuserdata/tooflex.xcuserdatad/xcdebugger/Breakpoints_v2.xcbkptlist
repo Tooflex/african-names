@@ -77,8 +77,8 @@
             filePath = "Prenom Africains/ViewModel/SearchScreenViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "getOrigins()"
             landmarkType = "7">
          </BreakpointContent>

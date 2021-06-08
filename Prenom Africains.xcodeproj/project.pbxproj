@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		151AB5E72636D45800585BFC /* LottieUnlikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151AB5E62636D45800585BFC /* LottieUnlikeButtonView.swift */; };
+		152CDB60266FEB1F003B65C4 /* LegacyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152CDB5F266FEB1F003B65C4 /* LegacyTextField.swift */; };
 		152E826B2635CA46002950E6 /* heart_like.json in Resources */ = {isa = PBXBuildFile; fileRef = 152E826A2635CA46002950E6 /* heart_like.json */; };
 		152E82712635CB01002950E6 /* LottieLikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152E82702635CB01002950E6 /* LottieLikeButtonView.swift */; };
 		152F3C492649B53F000D564B /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 152F3C482649B53F000D564B /* SlideOverCard */; };
 		152F3C4B264C6F71000D564B /* SearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F3C4A264C6F71000D564B /* SearchBarButton.swift */; };
-		152F3C4E264C7B3B000D564B /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 152F3C4D264C7B3B000D564B /* SwiftUIX */; };
 		15300A88266C1F47000AAAF6 /* SearchCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15300A87266C1F47000AAAF6 /* SearchCriteria.swift */; };
 		1544144F264F52BD00BA6887 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1544144E264F52BD00BA6887 /* Colors.xcassets */; };
 		1547B774261B3EC6006FBF3E /* FirstnameDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1547B773261B3EC6006FBF3E /* FirstnameDataModel.swift */; };
@@ -76,6 +76,7 @@
 
 /* Begin PBXFileReference section */
 		151AB5E62636D45800585BFC /* LottieUnlikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieUnlikeButtonView.swift; sourceTree = "<group>"; };
+		152CDB5F266FEB1F003B65C4 /* LegacyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyTextField.swift; sourceTree = "<group>"; };
 		152E826A2635CA46002950E6 /* heart_like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart_like.json; sourceTree = "<group>"; };
 		152E82702635CB01002950E6 /* LottieLikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieLikeButtonView.swift; sourceTree = "<group>"; };
 		152F3C4A264C6F71000D564B /* SearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarButton.swift; sourceTree = "<group>"; };
@@ -130,7 +131,6 @@
 				156F0B1A26081CA60076AB4B /* Lottie in Frameworks */,
 				152F3C492649B53F000D564B /* SlideOverCard in Frameworks */,
 				15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */,
-				152F3C4E264C7B3B000D564B /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +241,7 @@
 				15FC2A4A2648A10B0025BCF3 /* SlidingOverCard.swift */,
 				15FC2A4C2648A12F0025BCF3 /* Handle.swift */,
 				15E8DE462663093B0036A99F /* ChipsView.swift */,
+				152CDB5F266FEB1F003B65C4 /* LegacyTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -326,7 +327,6 @@
 				156F0B1926081CA60076AB4B /* Lottie */,
 				15BE326D2624D0E700D8DC8D /* Alamofire */,
 				152F3C482649B53F000D564B /* SlideOverCard */,
-				152F3C4D264C7B3B000D564B /* SwiftUIX */,
 			);
 			productName = "Prenom Africains";
 			productReference = 156F0ADE2608172F0076AB4B /* Prenom Africains.app */;
@@ -428,7 +428,6 @@
 				156F0B1826081CA60076AB4B /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				15BE326C2624D0E700D8DC8D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				152F3C472649B53F000D564B /* XCRemoteSwiftPackageReference "SlideOverCard" */,
-				152F3C4C264C7B3B000D564B /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 156F0ADF2608172F0076AB4B /* Products */;
 			projectDirPath = "";
@@ -523,6 +522,7 @@
 				15CAC5232646E837007E838C /* SearchScreen.swift in Sources */,
 				15E8DE45266308DE0036A99F /* ChipsDataModel.swift in Sources */,
 				15EA7DF026094112006BC8F2 /* FirstNameViewModel.swift in Sources */,
+				152CDB60266FEB1F003B65C4 /* LegacyTextField.swift in Sources */,
 				156F0B32260825910076AB4B /* MainScreen.swift in Sources */,
 				156F0B11260817690076AB4B /* CircleFirstName.swift in Sources */,
 				156F0AE42608172F0076AB4B /* ContentView.swift in Sources */,
@@ -931,14 +931,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		152F3C4C264C7B3B000D564B /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.6;
-			};
-		};
 		156F0B1826081CA60076AB4B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -962,11 +954,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 152F3C472649B53F000D564B /* XCRemoteSwiftPackageReference "SlideOverCard" */;
 			productName = SlideOverCard;
-		};
-		152F3C4D264C7B3B000D564B /* SwiftUIX */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 152F3C4C264C7B3B000D564B /* XCRemoteSwiftPackageReference "SwiftUIX" */;
-			productName = SwiftUIX;
 		};
 		156F0B1926081CA60076AB4B /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;

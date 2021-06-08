@@ -27,7 +27,11 @@ struct SlidingOverCard<Content: View>: View {
         .cornerRadius(10.0)
         .shadow(color: Color(.sRGBLinear, white: 0, opacity: 0.13), radius: 10.0)
         .offset(y: self.position.rawValue + self.dragState.translation.height)
-        .animation(self.dragState.isDragging ? nil : .interpolatingSpring(stiffness: 300.0, damping: 30.0, initialVelocity: 10.0))
+        .animation(self.dragState.isDragging ? nil : .interpolatingSpring(
+            stiffness: 300.0,
+            damping: 30.0,
+            initialVelocity: 10.0)
+        )
         .gesture(drag)
     }
 
@@ -74,19 +78,19 @@ enum DragState {
 
     var translation: CGSize {
         switch self {
-            case .inactive:
-                return .zero
-            case .dragging(let translation):
-                return translation
+        case .inactive:
+            return .zero
+        case .dragging(let translation):
+            return translation
         }
     }
 
     var isDragging: Bool {
         switch self {
-            case .inactive:
-                return false
-            case .dragging:
-                return true
+        case .inactive:
+            return false
+        case .dragging:
+            return true
         }
     }
 }

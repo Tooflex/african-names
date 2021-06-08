@@ -121,7 +121,10 @@ struct MenuView: View {
                     Image(systemName: "square.and.arrow.up")
                         .font(iconFont)
                         .foregroundColor(selectedTab == MenuItemEnum.share.rawValue ? Color.blue : Color.black)
-                    Text("Share").font(textFont).foregroundColor(selectedTab == MenuItemEnum.share.rawValue ? Color.blue : Color.black)
+                    Text("Share")
+                        .font(textFont)
+                        .foregroundColor(
+                            selectedTab == MenuItemEnum.share.rawValue ? Color.blue : Color.black)
                 }
             })
         }
@@ -142,7 +145,10 @@ struct MenuView: View {
                     Image(systemName: "gearshape")
                         .font(iconFont)
                         .foregroundColor(selectedTab == MenuItemEnum.params.rawValue ? Color.blue : Color.black)
-                    Text("Params").font(textFont).foregroundColor(selectedTab == MenuItemEnum.params.rawValue ? Color.blue : Color.black)
+                    Text("Params")
+                        .font(textFont)
+                        .foregroundColor(
+                            selectedTab == MenuItemEnum.params.rawValue ? Color.blue : Color.black)
                 }
             })
         }

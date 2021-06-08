@@ -31,7 +31,7 @@ struct LottieUnlikeButtonView: UIViewRepresentable {
         animationView.translatesAutoresizingMaskIntoConstraints = false
         animationView.clipsToBounds = false
 
-        /// Set animation play ranges for touch states
+        // Set animation play ranges for touch states
         animationView.setPlayRange(fromMarker: "touchDownStart1", toMarker: "touchDownEnd1", event: .touchUpInside)
         animationView.setPlayRange(fromMarker: "touchDownEnd1", toMarker: "touchUpCancel1", event: .touchUpOutside)
         animationView.setPlayRange(fromMarker: "touchDownEnd1", toMarker: "touchUpEnd1", event: .touchUpInside)

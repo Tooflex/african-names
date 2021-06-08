@@ -7,7 +7,6 @@
 
 import SwiftUI
 import SlideOverCard
-import SwiftUIX
 
 struct SearchBarView: View {
     @ObservedObject var searchScreenViewModel: SearchScreenViewModel
@@ -18,25 +17,31 @@ struct SearchBarView: View {
     @State private var isEditing = false
     @State private var showCancelButton: Bool = false
     @Binding var showingSheet: Bool
+    @State var isFirstResponder = true
 
     var body: some View {
         ZStack {
             HStack(alignment: .center, spacing: 30) {
                 Image("feather-search").foregroundColor(.black)
-                CocoaTextField("Search a firstname", text: $searchText, onEditingChanged: { _ in
-                    self.showCancelButton = true
-                }).isFirstResponder(true)
-                .onChange(of: searchText) {
-                    searchScreenViewModel.searchFirstnames(searchString: $0)
-                }
-                .textFieldStyle(DefaultTextFieldStyle())
-                .id(true) // Force TextField to accept editable
+                    // Fallback on earlier versions
+                LegacyTextField(text: $searchText, isFirstResponder: $isFirstResponder)
+                    .onChange(of: searchText) { newValue in
+                        searchScreenViewModel.searchFirstnames(searchString: newValue)
+                    }
+                    .onAppear(perform: {
+                        self.showCancelButton = true
+                    })
+                    .textFieldStyle(DefaultTextFieldStyle())
+
+                    .frame(maxWidth: .infinity, maxHeight: 30)
+                    .id(true)
+                 // Force TextField to accept editable
                 if showCancelButton {
                     Button("Cancel") {
                         showingSheet = false
-                        UIApplication.shared.endEditing(true)
-                        self.searchText = ""
-                        self.showCancelButton = false
+                        // UIApplication.shared.endEditing(true)
+                        // self.searchText = ""
+                        // self.showCancelButton = false
                     }
                     .foregroundColor(Color(.systemBlue))
                 }
@@ -66,7 +71,11 @@ struct SearchBarView: View {
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
         let searchScreenViewModel = SearchScreenViewModel()
-        SearchBarView(searchScreenViewModel: searchScreenViewModel, searchText: .constant(""), resultArray: .constant([]), showingSheet: .constant(true))
+        SearchBarView(searchScreenViewModel:
+                        searchScreenViewModel,
+                      searchText: .constant(""),
+                      resultArray: .constant([]),
+                      showingSheet: .constant(true))
     }
 }
 

@@ -6,17 +6,17 @@
         "repositoryURL": "https://github.com/Alamofire/Alamofire",
         "state": {
           "branch": null,
-          "revision": "4d19ad82f80cc71ff829b941ded114c56f4f604c",
-          "version": "5.4.2"
+          "revision": "f96b619bcb2383b43d898402283924b80e2c4bae",
+          "version": "5.4.3"
         }
       },
       {
-        "package": "Lottie",
+        "package": "lottie-ios",
         "repositoryURL": "https://github.com/airbnb/lottie-ios",
         "state": {
           "branch": null,
-          "revision": "b3c60ba1716baab6faeeb217d8ce1da336f92718",
-          "version": "3.2.1"
+          "revision": "79a0b70547f7c40ea54c67487f935fa2f2eaaadc",
+          "version": "3.2.3"
         }
       },
       {
@@ -26,15 +26,6 @@
           "branch": null,
           "revision": "ddafedae02dc5423aa872b274d9011412dc4837f",
           "version": "2.0.0"
-        }
-      },
-      {
-        "package": "SwiftUIX",
-        "repositoryURL": "https://github.com/SwiftUIX/SwiftUIX",
-        "state": {
-          "branch": null,
-          "revision": "e0fd9ff48354a447d5dccdb4b485a69b63688e48",
-          "version": "0.0.6"
         }
       }
     ]

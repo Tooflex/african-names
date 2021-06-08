@@ -38,8 +38,12 @@ struct SearchScreen: View {
                     HStack {
                         Toggle("Only show favorites", isOn: $isShowFavorite).padding()
                     }
-                    ChipsOptionView(searchScreenViewModel: searchScreenViewModel, title: "Area", data: searchScreenViewModel.areas)
-                    ChipsOptionView(searchScreenViewModel: searchScreenViewModel, title: "Origins", data: searchScreenViewModel.origins)
+                    ChipsOptionView(searchScreenViewModel: searchScreenViewModel,
+                                    title: "Area",
+                                    data: searchScreenViewModel.areas)
+                    ChipsOptionView(searchScreenViewModel: searchScreenViewModel,
+                                    title: "Origins",
+                                    data: searchScreenViewModel.origins)
                     Text("Gender")
                         .font(.title2)
                         .bold()
@@ -52,7 +56,10 @@ struct SearchScreen: View {
                         Image("md-male").resizable()
                             .frame(width: 30, height: 30, alignment: .center)
                     }
-                    ChipsOptionView(searchScreenViewModel: searchScreenViewModel, title: "Size", data: searchScreenViewModel.sizes)
+                    ChipsOptionView(
+                        searchScreenViewModel: searchScreenViewModel,
+                        title: "Size",
+                        data: searchScreenViewModel.sizes)
                 }
                 // MARK: Filter Submit Button
                 Group {
@@ -82,12 +89,14 @@ struct SearchScreen: View {
                 // MARK: SlideOver Content
                 Group {
                 VStack {
-                    SearchBarView(searchScreenViewModel: searchScreenViewModel, searchText: $searchText, resultArray: $resultArray, showingSheet: $isShowingResults)
+                    SearchBarView(
+                        searchScreenViewModel: searchScreenViewModel,
+                        searchText: $searchText,
+                        resultArray: $resultArray,
+                        showingSheet: $isShowingResults)
                     List {
                         // Filtered list of names
-                        ForEach(resultArray, id: \.self) {
-                            prenom in
-                            // TODO: Replace for search item
+                        ForEach(resultArray, id: \.self) { prenom in
                             Text(prenom.firstname ?? "")
                         }
                     }.id(UUID())

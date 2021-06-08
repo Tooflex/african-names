@@ -27,7 +27,10 @@ class SearchScreenViewModel: ObservableObject {
 
     var listOfCriterias: [SearchCriteria] = []
 
-    private let apiEndpoint = Bundle.main.infoDictionary!["API_ENDPOINT"] as? String
+    private let apiDomain = Bundle.main.infoDictionary!["API_ENDPOINT"] as? String
+
+    private let searchEndpoint = "/api/v1/firstnames/search/?search="
+    private let orUrlSeparator = "*%20OR%20"
 
     let username = "user"
     let password = "Manjack76"
@@ -53,8 +56,17 @@ class SearchScreenViewModel: ObservableObject {
     func searchFirstnames(searchString: String) {
         print("Calling searchFirstnames")
 
-        if let apiEndpoint = apiEndpoint {
-            let url = "\(apiEndpoint)/api/v1/firstnames/search/?search=firstname:\(searchString)*%20OR%20origins:\(searchString)*"
+        if let apiEndpoint = apiDomain {
+            let url =
+            """
+            \(apiEndpoint)
+            \(searchEndpoint)
+            firstname:
+            \(searchString)
+            \(orUrlSeparator)
+            origins:
+            \(searchString)*
+            """
             print(url)
 
         let headers: HTTPHeaders = [.authorization(username: username, password: password)]
@@ -87,32 +99,39 @@ class SearchScreenViewModel: ObservableObject {
     func filterFirstnames() {
         print("Calling filterFirstnames")
         formatFilterString(currentFilterChain)
-        if let apiEndpoint = apiEndpoint {
-        let url = "\(apiEndpoint)/api/v1/firstnames/search/?search=\(currentFilterChain)"
-        print("URL called: \(url)")
+        if let apiEndpoint = apiDomain {
 
-        let headers: HTTPHeaders = [.authorization(username: username, password: password)]
+            let url =
+            """
+            \(apiEndpoint)
+            \(searchEndpoint)
+            \(currentFilterChain)
+            """
 
-        AF.request(url, headers: headers)
-            .validate()
-            .publishDecodable(type: [FirstnameDataModel].self)
-            .sink(receiveCompletion: { (completion) in
-                switch completion {
-                case .finished:
-                        ()
-                case .failure(let error):
-                        print(error.localizedDescription)
-                }
-            }, receiveValue: { (response) in
-                switch response.result {
-                case .success(let model):
-                        self.searchResults = model
-                        self.loading = false
+            print("URL called: \(url)")
 
-                case .failure(let error):
-                        print(error.localizedDescription)
-                }
-            }).store(in: &tokens)
+            let headers: HTTPHeaders = [.authorization(username: username, password: password)]
+
+            AF.request(url, headers: headers)
+                .validate()
+                .publishDecodable(type: [FirstnameDataModel].self)
+                .sink(receiveCompletion: { (completion) in
+                    switch completion {
+                    case .finished:
+                            ()
+                    case .failure(let error):
+                            print(error.localizedDescription)
+                    }
+                }, receiveValue: { (response) in
+                    switch response.result {
+                    case .success(let model):
+                            self.searchResults = model
+                            self.loading = false
+
+                    case .failure(let error):
+                            print(error.localizedDescription)
+                    }
+                }).store(in: &tokens)
         }
     }
 
@@ -127,7 +146,7 @@ class SearchScreenViewModel: ObservableObject {
     func getOrigins() {
         print("Calling get origins")
 
-        if let apiEndpoint = apiEndpoint {
+        if let apiEndpoint = apiDomain {
 
             let url = "\(apiEndpoint)/api/v1/origins"
 

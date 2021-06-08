@@ -8,7 +8,7 @@
 import SwiftUI
 
 class ChipsDataModel: Identifiable, ObservableObject {
-    let id = UUID()
+    let chipDataId = UUID()
     @Published var isSelected: Bool = false
     var systemImage: String?
     var titleKey: String = ""

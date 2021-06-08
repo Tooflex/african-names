@@ -23,7 +23,9 @@ struct CircleFirstName: View {
                 ZStack {
                     Circle()
                         .fill(color)
-                        .frame(width: geometry.size.width * 0.8 * sizeMultiplier(), height: geometry.size.width * 0.8 * sizeMultiplier())
+                        .frame(
+                            width: geometry.size.width * 0.8 * sizeMultiplier(),
+                            height: geometry.size.width * 0.8 * sizeMultiplier())
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
                         .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
                     VStack {

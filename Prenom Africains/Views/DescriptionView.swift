@@ -27,13 +27,19 @@ struct DescriptionView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 25, style: .continuous)
                         .fill(Color.offWhite.opacity(0.71))
-                        .frame(width: UIScreen.main.bounds.width - 50, height: 165 * CGFloat(sizeMultiplier()), alignment: .center)
+                        .frame(
+                            width: UIScreen.main.bounds.width - 50,
+                            height: 165 * CGFloat(sizeMultiplier()),
+                            alignment: .center)
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
                         .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
                     Text(prenom.meaning ?? "")
                         .font(.title2)
                         .multilineTextAlignment(.center)
-                        .frame(width: UIScreen.main.bounds.width * 0.8, height: 100 * CGFloat(sizeMultiplier()), alignment: .center)
+                        .frame(
+                            width: UIScreen.main.bounds.width * 0.8,
+                            height: 100 * CGFloat(sizeMultiplier()),
+                            alignment: .center)
                 }
                     Spacer()
                 }
@@ -47,34 +53,44 @@ struct DescriptionView: View {
                     HStack {
                         Image("md-male")
                             .resizable()
-                            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                        // .padding()
+                            .frame(
+                                width: 30 * CGFloat(sizeMultiplier()),
+                                height: 30 * CGFloat(sizeMultiplier()),
+                                alignment: .center)
                     }
 
                 case Gender.female:
                     HStack {
                         Image("md-female")
                             .resizable()
-                            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                        // .padding()
+                            .frame(
+                                width: 30 * CGFloat(sizeMultiplier()),
+                                height: 30 * CGFloat(sizeMultiplier()),
+                                alignment: .center)
                     }
                 case Gender.mixed:
                     HStack {
                         Image("md-male")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                            // .padding()
+                            .frame(
+                                width: 30 * CGFloat(sizeMultiplier()),
+                                height: 30 * CGFloat(sizeMultiplier()),
+                                alignment: .center)
                         Image("md-female")
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                           // .padding()
+                            .frame(
+                                width: 30 * CGFloat(sizeMultiplier()),
+                                height: 30 * CGFloat(sizeMultiplier()),
+                                alignment: .center)
                     }
                 case .undefined:
                     EmptyView()
-                        .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()), alignment: .center)
-                // .padding()
+                            .frame(
+                                width: 30 * CGFloat(sizeMultiplier()),
+                                height: 30 * CGFloat(sizeMultiplier()),
+                                alignment: .center)
                 }
 
                 Spacer()
@@ -91,7 +107,10 @@ struct DescriptionView: View {
                 }) {
                     LottieView(name: "heart_like", fromMarker: "touchDownStart", toMarker: "touchUpEnd")
                         .padding(.all, -40)
-                        .frame(width: 40 * CGFloat(sizeMultiplier()), height: 40 * CGFloat(sizeMultiplier()), alignment: .center)
+                        .frame(
+                            width: 40 * CGFloat(sizeMultiplier()),
+                            height: 40 * CGFloat(sizeMultiplier()),
+                            alignment: .center)
                 }
 
             } else {
@@ -101,7 +120,10 @@ struct DescriptionView: View {
                 }) {
                     LottieView(name: "heart_like", fromMarker: "touchDownStart1", toMarker: "touchUpEnd1")
                         .padding(.all, -40)
-                        .frame(width: 40 * CGFloat(sizeMultiplier()), height: 40 * CGFloat(sizeMultiplier()), alignment: .center)
+                        .frame(
+                            width: 40 * CGFloat(sizeMultiplier()),
+                            height: 40 * CGFloat(sizeMultiplier()),
+                            alignment: .center)
                 }
             }
             Spacer()

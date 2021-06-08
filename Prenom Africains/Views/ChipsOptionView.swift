@@ -31,15 +31,15 @@ struct ChipsContent: View {
             searchScreenViewModel.addToFilterChainString(newFilter: title, newFilterValue: chipsData.titleKey)
         } else {
             print("unselected")
-            searchScreenViewModel.removeFromFilterChainString(filterToRemove: title, filterValueToRemove: chipsData.titleKey)
+            searchScreenViewModel.removeFromFilterChainString(
+                filterToRemove: title,
+                filterValueToRemove: chipsData.titleKey)
         }
 
         print(searchScreenViewModel.currentFilterChain)
     }
 
     var body: some View {
-        var width = CGFloat.zero
-        var height = CGFloat.zero
         return GeometryReader { _ in
             Text(title)
                 .font(.title2)
