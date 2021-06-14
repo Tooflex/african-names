@@ -10,7 +10,7 @@ import SlideOverCard
 
 struct SearchScreen: View {
     @State private var isShowFavorite = false
-    @StateObject var searchScreenViewModel: SearchScreenViewModel
+    @EnvironmentObject var searchScreenViewModel: SearchScreenViewModel
 
     @State private var resultArray: [FirstnameDataModel] = []
 
@@ -38,10 +38,10 @@ struct SearchScreen: View {
                     HStack {
                         Toggle("Only show favorites", isOn: $isShowFavorite).padding()
                     }
-                    ChipsOptionView(searchScreenViewModel: searchScreenViewModel,
+                    ChipsOptionView(
                                     title: "Area",
                                     data: searchScreenViewModel.areas)
-                    ChipsOptionView(searchScreenViewModel: searchScreenViewModel,
+                    ChipsOptionView(
                                     title: "Origins",
                                     data: searchScreenViewModel.origins)
                     Text("Gender")
@@ -57,7 +57,6 @@ struct SearchScreen: View {
                             .frame(width: 30, height: 30, alignment: .center)
                     }
                     ChipsOptionView(
-                        searchScreenViewModel: searchScreenViewModel,
                         title: "Size",
                         data: searchScreenViewModel.sizes)
                 }
@@ -90,16 +89,20 @@ struct SearchScreen: View {
                 Group {
                 VStack {
                     SearchBarView(
-                        searchScreenViewModel: searchScreenViewModel,
                         searchText: $searchText,
                         resultArray: $resultArray,
                         showingSheet: $isShowingResults)
                     List {
                         // Filtered list of names
                         ForEach(resultArray, id: \.self) { prenom in
-                            Text(prenom.firstname ?? "")
+                            NavigationLink(destination: Text(prenom.firstname ?? "")) {
+                                Text(prenom.firstname ?? "")
+                            }
                         }
-                    }.id(UUID())
+                    }
+                    .searchable(text: $searchText)
+                    .navigationTitle("Firstnames")
+                    // .id(UUID())
                     .resignKeyboardOnDragGesture()
                 }.frame(alignment: .center)
                 }
@@ -117,7 +120,6 @@ struct SearchScreen: View {
 
 struct SearchScreen_Previews: PreviewProvider {
     static var previews: some View {
-        let searchScreenViewModel = SearchScreenViewModel()
-        SearchScreen(searchScreenViewModel: searchScreenViewModel)
+        SearchScreen()
     }
 }

@@ -9,8 +9,8 @@ import SwiftUI
 import Alamofire
 
 struct ContentView: View {
-    @StateObject var firstNameViewModel = FirstNameViewModel()
-    @StateObject var searchScreenViewModel = SearchScreenViewModel()
+    @EnvironmentObject var firstNameViewModel: FirstNameViewModel
+    @EnvironmentObject var searchScreenViewModel: SearchScreenViewModel
     @State var selectedTab = 0
 
     let tabHome = 0
@@ -25,11 +25,11 @@ struct ContentView: View {
         VStack {
             switch selectedTab {
             case 0:
-                MainScreen(firstNameViewModel: firstNameViewModel)
+                MainScreen()
             case 1:
-                    SearchScreen(searchScreenViewModel: searchScreenViewModel)
+                    SearchScreen()
             default :
-                    MainScreen(firstNameViewModel: firstNameViewModel)
+                    MainScreen()
             }
             MenuView(selectedTab: $selectedTab)
             Spacer()

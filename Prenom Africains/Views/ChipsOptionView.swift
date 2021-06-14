@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChipsOptionView: View {
 
-    @StateObject var searchScreenViewModel: SearchScreenViewModel
+    @EnvironmentObject var searchScreenViewModel: SearchScreenViewModel
     @State var title: String
     @State var data: [ChipsDataModel]
     var body: some View {
@@ -68,7 +68,6 @@ struct ChipsContent: View {
  struct ChipsOptionView_Previews: PreviewProvider {
     static var previews: some View {
         ChipsOptionView(
-            searchScreenViewModel: SearchScreenViewModel(),
             title: "Test",
             data: [
                 ChipsDataModel(isSelected: false, titleKey: "Wesh"),

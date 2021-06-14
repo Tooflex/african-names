@@ -9,7 +9,7 @@ import SwiftUI
 import SlideOverCard
 
 struct SearchBarView: View {
-    @ObservedObject var searchScreenViewModel: SearchScreenViewModel
+    @EnvironmentObject var searchScreenViewModel: SearchScreenViewModel
 
     @Binding var searchText: String
 
@@ -70,9 +70,7 @@ struct SearchBarView: View {
 
 struct SearchBarView_Previews: PreviewProvider {
     static var previews: some View {
-        let searchScreenViewModel = SearchScreenViewModel()
-        SearchBarView(searchScreenViewModel:
-                        searchScreenViewModel,
+        SearchBarView(
                       searchText: .constant(""),
                       resultArray: .constant([]),
                       showingSheet: .constant(true))
@@ -81,9 +79,9 @@ struct SearchBarView_Previews: PreviewProvider {
 
 extension UIApplication {
     func endEditing(_ force: Bool) {
-        self.windows
-            .filter {$0.isKeyWindow}
-            .first?
+        self.inputView?.window?.windowScene?.keyWindow?
+            // .filter {$0.isKeyWindow}
+            // .first?
             .endEditing(force)
     }
 }

@@ -8,11 +8,17 @@
 import Foundation
 import Alamofire
 import Combine
+import RealmSwift
 
-class FirstNameViewModel: ObservableObject {
+final class FirstNameViewModel: ObservableObject {
+
+    private var favoritedFirstnamesResults: Results<FirstnameDB>
+    private var firstnamesResults: Results<FirstnameDB>
+
     @Published var firstnames = [FirstnameDataModel]()
+    @Published var favoritedFirstnames = [FirstnameDataModel]()
     @Published var loaded = false
-    @Published var isLoading: Bool = false
+    @Published var isLoading = false
 
     var tokens: Set<AnyCancellable> = []
 
@@ -23,7 +29,10 @@ class FirstNameViewModel: ObservableObject {
     let username = "user"
     let password = "Manjack76"
 
-    init() {
+    init(realm: Realm) {
+        favoritedFirstnamesResults = realm.objects(FirstnameDB.self)
+            .filter("isFavorite = true")
+        firstnamesResults = realm.objects(FirstnameDB.self)
         fetchFirstnames()
     }
 
@@ -50,7 +59,8 @@ class FirstNameViewModel: ObservableObject {
             }, receiveValue: { (response) in
                 switch response.result {
                 case .success(let model):
-                    self.firstnames = model
+                    self.addAll(firstnamesToAdd: model)
+                        self.firstnames = self.firstnamesResults.map(FirstnameDataModel.init)
                     self.loaded = false
 
                 case .failure(let error):
@@ -62,30 +72,57 @@ class FirstNameViewModel: ObservableObject {
         }
     }
 
-}
+    // MARK: CRUD Actions
+    func add(id: Int, firstname: String, gender: String, meaning: String, origins: String) {
+        objectWillChange.send()
 
-// var samplefirstnames: [PrenomAF] = load("MOCK_DATA.json")
-//
-// func load<T: Decodable>(_ filename: String) -> T {
-//    let data: Data
-//        
-//    guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
-//    else {
-//        fatalError("Couldn't find \(filename) in main bundle.")
-//    }
-//    
-//    do {
-//        data = try Data(contentsOf: file)
-//    } catch {
-//        fatalError("Couldn't load \(filename) from main bundle:\n\(error)")
-//    }
-//    
-//    do {
-//        let decoder = JSONDecoder()
-//        return try decoder.decode(T.self, from: data)
-//    } catch {
-//        fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
-//    }
-// }
-//
-//
+        do {
+            let realm = try Realm()
+
+            let firstnameDB = FirstnameDB()
+            firstnameDB.id = UUID().hashValue
+            firstnameDB.firstname = firstname
+            firstnameDB.gender = gender
+            firstnameDB.meaning = meaning
+            firstnameDB.origins = origins
+
+            try realm.write {
+                realm.add(firstnameDB)
+            }
+        } catch let error {
+            // Handle error
+            print(error.localizedDescription)
+        }
+    }
+
+    func addAll(firstnamesToAdd: [FirstnameDataModel]) {
+        for firstname in firstnamesToAdd {
+            add(id: firstname.id ?? 0,
+                firstname: firstname.firstname ?? "",
+                gender: firstname.gender.rawValue,
+                meaning: firstname.meaning ?? "",
+                origins: firstname.meaning ?? "")
+        }
+    }
+
+    func toggleFavorited(firstnameObj: FirstnameDataModel) {
+        objectWillChange.send()
+        do {
+            if let favorite = firstnameObj.isFavorite,
+               let firstnameId = firstnameObj.id {
+                let realm = try Realm()
+                try realm.write {
+                    realm.create(
+                        FirstnameDB.self,
+                        value: ["id": firstnameId, "isFavorite": !(favorite)],
+                        update: .modified)
+                }
+            }
+
+        } catch let error {
+            // Handle error
+            print(error.localizedDescription)
+        }
+    }
+
+}

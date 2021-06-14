@@ -9,9 +9,9 @@ import Foundation
 
 struct FirstnameDataModel: Identifiable, Codable, Hashable {
 
+    var id: Int?
     var firstname: String?
     var gender: Gender
-    var id: Float?
     var isFavorite: Bool?
     var meaning: String?
     var origins: String?
@@ -96,5 +96,18 @@ struct FirstnameDataModel: Identifiable, Codable, Hashable {
 
         let genderString = try container.decode(String.self, forKey: .gender)
         gender = Gender(rawValue: genderString.lowercased()) ?? Gender.undefined
+    }
+}
+
+// MARK: Convenience init
+extension FirstnameDataModel {
+    init(firstnameDB: FirstnameDB) {
+        id = firstnameDB.id
+        firstname = firstnameDB.firstname
+        gender = Gender(rawValue: firstnameDB.gender) ?? Gender.undefined
+        isFavorite = firstnameDB.isFavorite
+        meaning = firstnameDB.meaning
+        origins = firstnameDB.origins
+        soundURL = firstnameDB.soundURL
     }
 }

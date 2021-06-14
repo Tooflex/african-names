@@ -20,7 +20,7 @@ struct MainScreen: View {
 
     @State private var currentIndex = 0
 
-    @ObservedObject var firstNameViewModel: FirstNameViewModel
+    @EnvironmentObject var firstNameViewModel: FirstNameViewModel
 
     fileprivate func leftButton() -> some View {
         return Triangle()
@@ -148,18 +148,18 @@ struct MainScreen: View {
 
 struct MainScreen_Previews: PreviewProvider {
     static var previews: some View {
-        let firstNameViewModel = FirstNameViewModel()
+
         ForEach(ColorScheme.allCases, id: \.self) {
         Group {
-            MainScreen(firstNameViewModel: firstNameViewModel)
+            MainScreen()
                 .previewDevice("iPhone 12")
                 .previewDisplayName("iPhone 12")
 
-            MainScreen(firstNameViewModel: firstNameViewModel)
+            MainScreen()
                 .previewDevice("iPhone 8 Plus")
                 .previewDisplayName("iPhone 8 Plus")
 
-            MainScreen(firstNameViewModel: firstNameViewModel)
+            MainScreen()
                 .previewDevice("iPhone 8")
                 .previewDisplayName("iPhone 8")
         }.preferredColorScheme($0)

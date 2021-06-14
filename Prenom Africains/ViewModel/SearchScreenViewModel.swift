@@ -10,8 +10,9 @@ import Alamofire
 import Combine
 import SwiftUI
 
-class SearchScreenViewModel: ObservableObject {
+final class SearchScreenViewModel: ObservableObject {
 
+    /// Contains array of firstname objects by filter
     @Published var searchResults = [FirstnameDataModel]()
     @Published var loading = false
 
@@ -19,7 +20,7 @@ class SearchScreenViewModel: ObservableObject {
     @Published var areas: [ChipsDataModel] = []
     @Published var origins: [ChipsDataModel] = []
 
-    /// The filter string to add to the searh URL
+    /// The filter string to add to the search URL
     @Published var currentFilterChain = ""
 
     var tokens: Set<AnyCancellable> = []
@@ -35,6 +36,7 @@ class SearchScreenViewModel: ObservableObject {
     let username = "user"
     let password = "Manjack76"
 
+    /// OR separator to add between filters in filter firstname URLs
     let orStatement = " OR "
     let space = " "
 
@@ -56,44 +58,43 @@ class SearchScreenViewModel: ObservableObject {
     func searchFirstnames(searchString: String) {
         print("Calling searchFirstnames")
 
-        if let apiEndpoint = apiDomain {
-            let url =
+        if !searchString.isEmpty {
+            if let apiEndpoint = apiDomain {
+                let url =
             """
-            \(apiEndpoint)
-            \(searchEndpoint)
-            firstname:
-            \(searchString)
-            \(orUrlSeparator)
-            origins:
-            \(searchString)*
+            \(apiEndpoint)\(searchEndpoint)firstname:\(searchString)\(orUrlSeparator)origins:\(searchString)*
             """
-            print(url)
+                print(url)
 
-        let headers: HTTPHeaders = [.authorization(username: username, password: password)]
+                let headers: HTTPHeaders = [.authorization(username: username, password: password)]
 
-        AF.request(url, headers: headers)
-            .validate()
-            .publishDecodable(type: [FirstnameDataModel].self)
-            .sink(receiveCompletion: { (completion) in
-                switch completion {
-                case .finished:
-                        ()
-                case .failure(let error):
-                        print(error.localizedDescription)
-                }
-            }, receiveValue: { (response) in
-                switch response.result {
-                case .success(let model):
-                        self.searchResults = model
-                        self.loading = false
+                AF.request(url, headers: headers)
+                    .validate()
+                    .publishDecodable(type: [FirstnameDataModel].self)
+                    .sink(receiveCompletion: { (completion) in
+                        switch completion {
+                        case .finished:
+                                ()
+                        case .failure(let error):
+                                print(error.localizedDescription)
+                        }
+                    }, receiveValue: { (response) in
+                        switch response.result {
+                        case .success(let model):
+                                self.searchResults = model
+                                self.loading = false
 
-                case .failure(let error):
-                        print(error.localizedDescription)
-                }
-            }).store(in: &tokens)
+                        case .failure(let error):
+                                print(error.localizedDescription)
+                        }
+                    }).store(in: &tokens)
+            } else {
+                return
+            }
         } else {
-            return
+            // TODO: Return all firstnames
         }
+
     }
 
     func filterFirstnames() {
@@ -103,9 +104,7 @@ class SearchScreenViewModel: ObservableObject {
 
             let url =
             """
-            \(apiEndpoint)
-            \(searchEndpoint)
-            \(currentFilterChain)
+            \(apiEndpoint)\(searchEndpoint)\(currentFilterChain)
             """
 
             print("URL called: \(url)")
@@ -127,6 +126,7 @@ class SearchScreenViewModel: ObservableObject {
                     case .success(let model):
                             self.searchResults = model
                             self.loading = false
+                            print(model.count)
 
                     case .failure(let error):
                             print(error.localizedDescription)

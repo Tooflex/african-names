@@ -16,6 +16,11 @@
 		15300A88266C1F47000AAAF6 /* SearchCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15300A87266C1F47000AAAF6 /* SearchCriteria.swift */; };
 		1544144F264F52BD00BA6887 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1544144E264F52BD00BA6887 /* Colors.xcassets */; };
 		1547B774261B3EC6006FBF3E /* FirstnameDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1547B773261B3EC6006FBF3E /* FirstnameDataModel.swift */; };
+		15515FC52677D04B009C2BDF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 15515FC42677D04B009C2BDF /* Realm */; };
+		15515FC72677D04B009C2BDF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 15515FC62677D04B009C2BDF /* RealmSwift */; };
+		15515FC92677D423009C2BDF /* FirstnameDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15515FC82677D423009C2BDF /* FirstnameDB.swift */; };
+		15515FCC2677E35F009C2BDF /* MOCK_DATA.json in Resources */ = {isa = PBXBuildFile; fileRef = 15515FCB2677E35F009C2BDF /* MOCK_DATA.json */; };
+		15515FCE2677E39A009C2BDF /* FirstnamesMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15515FCD2677E39A009C2BDF /* FirstnamesMock.swift */; };
 		15640716266836830084908F /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15640715266836830084908F /* Vibration.swift */; };
 		15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15645E85263B54E20017E8B7 /* AdaptiveView.swift */; };
 		15645E88263B5B8B0017E8B7 /* LandscapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */; };
@@ -44,7 +49,6 @@
 		15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DDF260921A0006BC8F2 /* MenuView.swift */; };
 		15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DE5260933C8006BC8F2 /* Gender.swift */; };
 		15EA7DF026094112006BC8F2 /* FirstNameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */; };
-		15EA7DF826094817006BC8F2 /* MOCK_DATA.json in Resources */ = {isa = PBXBuildFile; fileRef = 15EA7DF726094817006BC8F2 /* MOCK_DATA.json */; };
 		15FC2A4726483CF40025BCF3 /* MenuItemEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC2A4626483CF40025BCF3 /* MenuItemEnum.swift */; };
 		15FC2A4B2648A10B0025BCF3 /* SlidingOverCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC2A4A2648A10B0025BCF3 /* SlidingOverCard.swift */; };
 		15FC2A4D2648A12F0025BCF3 /* Handle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FC2A4C2648A12F0025BCF3 /* Handle.swift */; };
@@ -83,6 +87,9 @@
 		15300A87266C1F47000AAAF6 /* SearchCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCriteria.swift; sourceTree = "<group>"; };
 		1544144E264F52BD00BA6887 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		1547B773261B3EC6006FBF3E /* FirstnameDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnameDataModel.swift; sourceTree = "<group>"; };
+		15515FC82677D423009C2BDF /* FirstnameDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnameDB.swift; sourceTree = "<group>"; };
+		15515FCB2677E35F009C2BDF /* MOCK_DATA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MOCK_DATA.json; sourceTree = "<group>"; };
+		15515FCD2677E39A009C2BDF /* FirstnamesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnamesMock.swift; sourceTree = "<group>"; };
 		15640715266836830084908F /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		15645E85263B54E20017E8B7 /* AdaptiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveView.swift; sourceTree = "<group>"; };
 		15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeModifier.swift; sourceTree = "<group>"; };
@@ -117,7 +124,6 @@
 		15EA7DDF260921A0006BC8F2 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		15EA7DE5260933C8006BC8F2 /* Gender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNameViewModel.swift; sourceTree = "<group>"; };
-		15EA7DF726094817006BC8F2 /* MOCK_DATA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MOCK_DATA.json; sourceTree = "<group>"; };
 		15FC2A4626483CF40025BCF3 /* MenuItemEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemEnum.swift; sourceTree = "<group>"; };
 		15FC2A4A2648A10B0025BCF3 /* SlidingOverCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingOverCard.swift; sourceTree = "<group>"; };
 		15FC2A4C2648A12F0025BCF3 /* Handle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Handle.swift; sourceTree = "<group>"; };
@@ -130,6 +136,8 @@
 			files = (
 				156F0B1A26081CA60076AB4B /* Lottie in Frameworks */,
 				152F3C492649B53F000D564B /* SlideOverCard in Frameworks */,
+				15515FC52677D04B009C2BDF /* Realm in Frameworks */,
+				15515FC72677D04B009C2BDF /* RealmSwift in Frameworks */,
 				15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -158,6 +166,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15515FCA2677E34E009C2BDF /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				15515FCB2677E35F009C2BDF /* MOCK_DATA.json */,
+				15515FCD2677E39A009C2BDF /* FirstnamesMock.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 		156F0AD52608172F0076AB4B = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +300,7 @@
 				1547B773261B3EC6006FBF3E /* FirstnameDataModel.swift */,
 				15E8DE44266308DE0036A99F /* ChipsDataModel.swift */,
 				15300A87266C1F47000AAAF6 /* SearchCriteria.swift */,
+				15515FC82677D423009C2BDF /* FirstnameDB.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,7 +317,7 @@
 		15FC2A49264855760025BCF3 /* Misc */ = {
 			isa = PBXGroup;
 			children = (
-				15EA7DF726094817006BC8F2 /* MOCK_DATA.json */,
+				15515FCA2677E34E009C2BDF /* Mock */,
 				156F0B2126081D6C0076AB4B /* sound.json */,
 				152E826A2635CA46002950E6 /* heart_like.json */,
 			);
@@ -327,6 +345,8 @@
 				156F0B1926081CA60076AB4B /* Lottie */,
 				15BE326D2624D0E700D8DC8D /* Alamofire */,
 				152F3C482649B53F000D564B /* SlideOverCard */,
+				15515FC42677D04B009C2BDF /* Realm */,
+				15515FC62677D04B009C2BDF /* RealmSwift */,
 			);
 			productName = "Prenom Africains";
 			productReference = 156F0ADE2608172F0076AB4B /* Prenom Africains.app */;
@@ -428,6 +448,7 @@
 				156F0B1826081CA60076AB4B /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				15BE326C2624D0E700D8DC8D /* XCRemoteSwiftPackageReference "Alamofire" */,
 				152F3C472649B53F000D564B /* XCRemoteSwiftPackageReference "SlideOverCard" */,
+				15515FC32677D04B009C2BDF /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 156F0ADF2608172F0076AB4B /* Products */;
 			projectDirPath = "";
@@ -450,8 +471,8 @@
 				156F0AE9260817300076AB4B /* Preview Assets.xcassets in Resources */,
 				152E826B2635CA46002950E6 /* heart_like.json in Resources */,
 				15E8DE432662E0050036A99F /* Localizable.strings in Resources */,
+				15515FCC2677E35F009C2BDF /* MOCK_DATA.json in Resources */,
 				1544144F264F52BD00BA6887 /* Colors.xcassets in Resources */,
-				15EA7DF826094817006BC8F2 /* MOCK_DATA.json in Resources */,
 				156F0AE6260817300076AB4B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -504,6 +525,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15515FC92677D423009C2BDF /* FirstnameDB.swift in Sources */,
 				15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */,
 				15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */,
 				152E82712635CB01002950E6 /* LottieLikeButtonView.swift in Sources */,
@@ -516,6 +538,7 @@
 				15FC2A4726483CF40025BCF3 /* MenuItemEnum.swift in Sources */,
 				15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */,
 				15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */,
+				15515FCE2677E39A009C2BDF /* FirstnamesMock.swift in Sources */,
 				151AB5E72636D45800585BFC /* LottieUnlikeButtonView.swift in Sources */,
 				1547B774261B3EC6006FBF3E /* FirstnameDataModel.swift in Sources */,
 				15E8DE472663093B0036A99F /* ChipsView.swift in Sources */,
@@ -703,7 +726,7 @@
 		156F0B04260817300076AB4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://3cc7169d08ed.ngrok.io";
+				API_ENDPOINT = "https://d7d2f4043315.ngrok.io";
 				APP_DISPLAY_NAME = "DEV Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -712,7 +735,7 @@
 				DEVELOPMENT_TEAM = 6NTQ2Y43QX;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Prenom Africains/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -727,7 +750,7 @@
 		156F0B05260817300076AB4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "";
+				API_ENDPOINT = "https://d7d2f4043315.ngrok.io";
 				APP_DISPLAY_NAME = "Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -736,7 +759,7 @@
 				DEVELOPMENT_TEAM = 6NTQ2Y43QX;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Prenom Africains/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -931,6 +954,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		15515FC32677D04B009C2BDF /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		156F0B1826081CA60076AB4B /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -954,6 +985,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 152F3C472649B53F000D564B /* XCRemoteSwiftPackageReference "SlideOverCard" */;
 			productName = SlideOverCard;
+		};
+		15515FC42677D04B009C2BDF /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15515FC32677D04B009C2BDF /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		15515FC62677D04B009C2BDF /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15515FC32677D04B009C2BDF /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
 		};
 		156F0B1926081CA60076AB4B /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
