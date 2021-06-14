@@ -101,7 +101,7 @@ final class FirstNameViewModel: ObservableObject {
                 firstname: firstname.firstname ?? "",
                 gender: firstname.gender.rawValue,
                 meaning: firstname.meaning ?? "",
-                origins: firstname.meaning ?? "")
+                origins: firstname.origins ?? "")
         }
     }
 
@@ -119,6 +119,53 @@ final class FirstNameViewModel: ObservableObject {
                 }
             }
 
+        } catch let error {
+            // Handle error
+            print(error.localizedDescription)
+        }
+    }
+    
+    func update(
+        firstnameID: Int,
+        firstname: String,
+        gender: String,
+        meaning: String,
+        origins: String
+    ) {
+        objectWillChange.send()
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.create(
+                    FirstnameDB.self,
+                    value: [
+                        "id": firstnameID,
+                        "firstname": firstname,
+                        "gender": gender,
+                        "meaning": meaning,
+                        "origins": origins
+                    ],
+                    update: .modified)
+            }
+        } catch let error {
+            // Handle error
+            print(error.localizedDescription)
+        }
+    }
+    
+    func delete(firstnameID: Int) {
+        // 1
+        objectWillChange.send()
+        // 2
+        guard let firstnameDB = firstnamesResults.first(
+            where: { $0.id == firstnameID })
+        else { return }
+        
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.delete(firstnameDB)
+            }
         } catch let error {
             // Handle error
             print(error.localizedDescription)
