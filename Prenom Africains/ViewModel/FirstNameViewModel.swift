@@ -8,17 +8,19 @@
 import Foundation
 import Alamofire
 import Combine
+import SwiftUI
 import RealmSwift
 
 final class FirstNameViewModel: ObservableObject {
 
-    private var favoritedFirstnamesResults: Results<FirstnameDB>
-    private var firstnamesResults: Results<FirstnameDB>
+    let realm = DataRepository.sharedInstance
 
-    @Published var firstnames = [FirstnameDataModel]()
-    @Published var favoritedFirstnames = [FirstnameDataModel]()
+    @Published var favoritedFirstnamesResults: Results<FirstnameDB>?
+    @Published var firstnamesResults: Results<FirstnameDB>?
+    var firstnamesToken: NotificationToken?
     @Published var loaded = false
     @Published var isLoading = false
+    @Published var currentFirstname: FirstnameDB = FirstnameDB()
 
     var tokens: Set<AnyCancellable> = []
 
@@ -29,11 +31,16 @@ final class FirstNameViewModel: ObservableObject {
     let username = "user"
     let password = "Manjack76"
 
-    init(realm: Realm) {
-        favoritedFirstnamesResults = realm.objects(FirstnameDB.self)
-            .filter("isFavorite = true")
-        firstnamesResults = realm.objects(FirstnameDB.self)
+    init() {
+        self.favoritedFirstnamesResults = realm.fetchData(type: FirstnameDB.self, filter: "isFavorite = true")
+        self.firstnamesResults = realm.fetchData(type: FirstnameDB.self)
+        // self.firstnames = self.firstnamesResults.map(FirstnameDataModel.init)
+        self.currentFirstname = self.firstnamesResults?.first ?? FirstnameDB()
         fetchFirstnames()
+    }
+
+    deinit {
+        self.firstnamesToken?.invalidate()
     }
 
     func fetchFirstnames() {
@@ -59,10 +66,10 @@ final class FirstNameViewModel: ObservableObject {
             }, receiveValue: { (response) in
                 switch response.result {
                 case .success(let model):
-                    self.addAll(firstnamesToAdd: model)
-                        self.firstnames = self.firstnamesResults.map(FirstnameDataModel.init)
+                        self.realm.addAll(firstnamesToAdd: model)
+                        self.currentFirstname = self.firstnamesResults?.shuffled().first ?? FirstnameDB()
+                    self.activateFirstnamesToken()
                     self.loaded = false
-
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
@@ -72,44 +79,11 @@ final class FirstNameViewModel: ObservableObject {
         }
     }
 
-    // MARK: CRUD Actions
-    func add(id: Int, firstname: String, gender: String, meaning: String, origins: String) {
-        objectWillChange.send()
-
-        do {
-            let realm = try Realm()
-
-            let firstnameDB = FirstnameDB()
-            firstnameDB.id = UUID().hashValue
-            firstnameDB.firstname = firstname
-            firstnameDB.gender = gender
-            firstnameDB.meaning = meaning
-            firstnameDB.origins = origins
-
-            try realm.write {
-                realm.add(firstnameDB)
-            }
-        } catch let error {
-            // Handle error
-            print(error.localizedDescription)
-        }
-    }
-
-    func addAll(firstnamesToAdd: [FirstnameDataModel]) {
-        for firstname in firstnamesToAdd {
-            add(id: firstname.id ?? 0,
-                firstname: firstname.firstname ?? "",
-                gender: firstname.gender.rawValue,
-                meaning: firstname.meaning ?? "",
-                origins: firstname.origins ?? "")
-        }
-    }
-
     func toggleFavorited(firstnameObj: FirstnameDataModel) {
         objectWillChange.send()
         do {
-            if let favorite = firstnameObj.isFavorite,
-               let firstnameId = firstnameObj.id {
+            let favorite = firstnameObj.isFavorite
+            if let firstnameId = firstnameObj.id {
                 let realm = try Realm()
                 try realm.write {
                     realm.create(
@@ -118,13 +92,31 @@ final class FirstNameViewModel: ObservableObject {
                         update: .modified)
                 }
             }
+        } catch let error {
+            // Handle error
+            print(error.localizedDescription)
+        }
+    }
+
+    func toggleFavorited(firstnameObj: FirstnameDB) {
+        objectWillChange.send()
+        do {
+            let favorite = firstnameObj.isFavorite
+
+                let realm = try Realm()
+                try realm.write {
+                    realm.create(
+                        FirstnameDB.self,
+                        value: ["id": firstnameObj.id, "isFavorite": !(favorite)],
+                        update: .modified)
+                }
 
         } catch let error {
             // Handle error
             print(error.localizedDescription)
         }
     }
-    
+
     func update(
         firstnameID: Int,
         firstname: String,
@@ -152,19 +144,13 @@ final class FirstNameViewModel: ObservableObject {
             print(error.localizedDescription)
         }
     }
-    
-    func delete(firstnameID: Int) {
-        // 1
-        objectWillChange.send()
-        // 2
-        guard let firstnameDB = firstnamesResults.first(
-            where: { $0.id == firstnameID })
-        else { return }
-        
+
+    private func activateFirstnamesToken() {
         do {
-            let realm = try Realm()
-            try realm.write {
-                realm.delete(firstnameDB)
+            let firstnames = self.realm.fetchData(type: FirstnameDB.self)
+            self.firstnamesToken = firstnames.observe { _ in
+                // When there is a change, replace the old firstnames array with a new one.
+                self.firstnamesResults = self.realm.fetchData(type: FirstnameDB.self)
             }
         } catch let error {
             // Handle error

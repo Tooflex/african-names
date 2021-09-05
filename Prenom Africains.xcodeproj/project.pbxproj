@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		151A063926E27F9800F8760D /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151A063826E27F9800F8760D /* DataRepository.swift */; };
 		151AB5E72636D45800585BFC /* LottieUnlikeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151AB5E62636D45800585BFC /* LottieUnlikeButtonView.swift */; };
 		152CDB60266FEB1F003B65C4 /* LegacyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152CDB5F266FEB1F003B65C4 /* LegacyTextField.swift */; };
 		152E826B2635CA46002950E6 /* heart_like.json in Resources */ = {isa = PBXBuildFile; fileRef = 152E826A2635CA46002950E6 /* heart_like.json */; };
@@ -14,8 +15,8 @@
 		152F3C492649B53F000D564B /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 152F3C482649B53F000D564B /* SlideOverCard */; };
 		152F3C4B264C6F71000D564B /* SearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F3C4A264C6F71000D564B /* SearchBarButton.swift */; };
 		15300A88266C1F47000AAAF6 /* SearchCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15300A87266C1F47000AAAF6 /* SearchCriteria.swift */; };
+		1539F18026E4ED67009889B5 /* FirstnameDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1539F17F26E4ED67009889B5 /* FirstnameDataModel.swift */; };
 		1544144F264F52BD00BA6887 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1544144E264F52BD00BA6887 /* Colors.xcassets */; };
-		1547B774261B3EC6006FBF3E /* FirstnameDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1547B773261B3EC6006FBF3E /* FirstnameDataModel.swift */; };
 		15515FC52677D04B009C2BDF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 15515FC42677D04B009C2BDF /* Realm */; };
 		15515FC72677D04B009C2BDF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 15515FC62677D04B009C2BDF /* RealmSwift */; };
 		15515FC92677D423009C2BDF /* FirstnameDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15515FC82677D423009C2BDF /* FirstnameDB.swift */; };
@@ -79,14 +80,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		151A063826E27F9800F8760D /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
 		151AB5E62636D45800585BFC /* LottieUnlikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieUnlikeButtonView.swift; sourceTree = "<group>"; };
 		152CDB5F266FEB1F003B65C4 /* LegacyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyTextField.swift; sourceTree = "<group>"; };
 		152E826A2635CA46002950E6 /* heart_like.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = heart_like.json; sourceTree = "<group>"; };
 		152E82702635CB01002950E6 /* LottieLikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieLikeButtonView.swift; sourceTree = "<group>"; };
 		152F3C4A264C6F71000D564B /* SearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarButton.swift; sourceTree = "<group>"; };
 		15300A87266C1F47000AAAF6 /* SearchCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCriteria.swift; sourceTree = "<group>"; };
+		1539F17F26E4ED67009889B5 /* FirstnameDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstnameDataModel.swift; sourceTree = "<group>"; };
 		1544144E264F52BD00BA6887 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		1547B773261B3EC6006FBF3E /* FirstnameDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnameDataModel.swift; sourceTree = "<group>"; };
 		15515FC82677D423009C2BDF /* FirstnameDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnameDB.swift; sourceTree = "<group>"; };
 		15515FCB2677E35F009C2BDF /* MOCK_DATA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MOCK_DATA.json; sourceTree = "<group>"; };
 		15515FCD2677E39A009C2BDF /* FirstnamesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnamesMock.swift; sourceTree = "<group>"; };
@@ -166,6 +168,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		151A063726E27F7700F8760D /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				151A063826E27F9800F8760D /* DataRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
 		15515FCA2677E34E009C2BDF /* Mock */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +210,7 @@
 		156F0AE02608172F0076AB4B /* Prenom Africains */ = {
 			isa = PBXGroup;
 			children = (
+				151A063726E27F7700F8760D /* Repository */,
 				15FC2A49264855760025BCF3 /* Misc */,
 				15CFF01A261396A100B06E32 /* Util */,
 				156F0B30260825750076AB4B /* Screen */,
@@ -296,8 +307,8 @@
 		15EA7DE4260933A3006BC8F2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1539F17F26E4ED67009889B5 /* FirstnameDataModel.swift */,
 				15EA7DE5260933C8006BC8F2 /* Gender.swift */,
-				1547B773261B3EC6006FBF3E /* FirstnameDataModel.swift */,
 				15E8DE44266308DE0036A99F /* ChipsDataModel.swift */,
 				15300A87266C1F47000AAAF6 /* SearchCriteria.swift */,
 				15515FC82677D423009C2BDF /* FirstnameDB.swift */,
@@ -533,6 +544,7 @@
 				15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */,
 				15FC2A4B2648A10B0025BCF3 /* SlidingOverCard.swift in Sources */,
 				152F3C4B264C6F71000D564B /* SearchBarButton.swift in Sources */,
+				151A063926E27F9800F8760D /* DataRepository.swift in Sources */,
 				15300A88266C1F47000AAAF6 /* SearchCriteria.swift in Sources */,
 				15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */,
 				15FC2A4726483CF40025BCF3 /* MenuItemEnum.swift in Sources */,
@@ -540,7 +552,6 @@
 				15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */,
 				15515FCE2677E39A009C2BDF /* FirstnamesMock.swift in Sources */,
 				151AB5E72636D45800585BFC /* LottieUnlikeButtonView.swift in Sources */,
-				1547B774261B3EC6006FBF3E /* FirstnameDataModel.swift in Sources */,
 				15E8DE472663093B0036A99F /* ChipsView.swift in Sources */,
 				15CAC5232646E837007E838C /* SearchScreen.swift in Sources */,
 				15E8DE45266308DE0036A99F /* ChipsDataModel.swift in Sources */,
@@ -555,6 +566,7 @@
 				156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */,
 				15640716266836830084908F /* Vibration.swift in Sources */,
 				15645E88263B5B8B0017E8B7 /* LandscapeModifier.swift in Sources */,
+				1539F18026E4ED67009889B5 /* FirstnameDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,7 +738,7 @@
 		156F0B04260817300076AB4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://d7d2f4043315.ngrok.io";
+				API_ENDPOINT = "https://27a1c58840e6.ngrok.io";
 				APP_DISPLAY_NAME = "DEV Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -750,7 +762,7 @@
 		156F0B05260817300076AB4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://d7d2f4043315.ngrok.io";
+				API_ENDPOINT = "https://27a1c58840e6.ngrok.io";
 				APP_DISPLAY_NAME = "Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

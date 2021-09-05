@@ -9,12 +9,18 @@ import Foundation
 import Alamofire
 import Combine
 import SwiftUI
+import RealmSwift
 
 final class SearchScreenViewModel: ObservableObject {
 
+    let realm = DataRepository.sharedInstance
+
     /// Contains array of firstname objects by filter
-    @Published var searchResults = [FirstnameDataModel]()
+    @Published var searchResults = [FirstnameDB]()
     @Published var loading = false
+
+    @Published var firstnames = [FirstnameDB]()
+    @Published var favoritedFirstnames = [FirstnameDB]()
 
     @Published var sizes: [ChipsDataModel] = []
     @Published var areas: [ChipsDataModel] = []
@@ -52,7 +58,6 @@ final class SearchScreenViewModel: ObservableObject {
         for area in getAreas() {
             areas.append(ChipsDataModel(isSelected: false, titleKey: area))
         }
-
     }
 
     func searchFirstnames(searchString: String) {
@@ -81,7 +86,7 @@ final class SearchScreenViewModel: ObservableObject {
                     }, receiveValue: { (response) in
                         switch response.result {
                         case .success(let model):
-                                self.searchResults = model
+                                // self.searchResults = model
                                 self.loading = false
 
                         case .failure(let error):
@@ -93,10 +98,12 @@ final class SearchScreenViewModel: ObservableObject {
             }
         } else {
             // TODO: Return all firstnames
+            // Firstname maybe should be env object
         }
 
     }
 
+    /// Filter firstnames in remote
     func filterFirstnames() {
         print("Calling filterFirstnames")
         formatFilterString(currentFilterChain)
@@ -124,15 +131,21 @@ final class SearchScreenViewModel: ObservableObject {
                 }, receiveValue: { (response) in
                     switch response.result {
                     case .success(let model):
-                            self.searchResults = model
+                            // self.searchResults = model
                             self.loading = false
                             print(model.count)
 
                     case .failure(let error):
                             print(error.localizedDescription)
+                            print("Called failed look into local")
+                            self.filterFirstnamesInLocal()
                     }
                 }).store(in: &tokens)
         }
+    }
+
+    func filterFirstnamesInLocal() {
+        // print(firstnames.firstnames.count)
     }
 
     func getSizes() -> [String] {

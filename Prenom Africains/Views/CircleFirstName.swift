@@ -14,7 +14,7 @@ struct CircleFirstName: View {
 
     @Environment(\.horizontalSizeClass) var hSizeClass
 
-    var prenom: FirstnameDataModel
+    var prenom: FirstnameDB
     var color: Color = .blue
 
     var body: some View {
@@ -29,7 +29,7 @@ struct CircleFirstName: View {
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
                         .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
                     VStack {
-                        Text(prenom.firstname ?? "")
+                        Text(prenom.firstname)
                             .foregroundColor(.white)
                             .font(.system(size: 60 * CGFloat(sizeMultiplier())))
                             .minimumScaleFactor(0.2)
@@ -39,7 +39,7 @@ struct CircleFirstName: View {
                             .shadow(color: Color.black.opacity(16.0), radius: 6, x: 5, y: 3)
 
                         Button(action: {
-                            speakFirstname(firsnameStr: prenom.firstname ?? "")
+                            speakFirstname(firsnameStr: prenom.firstname)
                         }) {
                             LottieView(name: "sound", loopMode: .loop)
                                 .frame(width: 54 * sizeMultiplier(), height: 54 * sizeMultiplier())
@@ -64,7 +64,7 @@ struct CircleFirstName: View {
         let utterance = AVSpeechUtterance(string: firsnameStr)
 
         switch prenom.gender {
-        case Gender.male:
+            case Gender.male.rawValue:
             utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_fr-FR_compact")
         default:
             utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_fr-FR_compact")
@@ -91,11 +91,11 @@ struct Triangle: Shape {
 struct CircleFirstName_Previews: PreviewProvider {
 
     static var previews: some View {
-        CircleFirstName(prenom: FirstnameDataModel())
+        CircleFirstName(prenom: FirstnameDB())
             .previewDevice("iPhone 12 Pro Max")
             .previewDisplayName("iPhone 12 Pro Max")
 
-        CircleFirstName(prenom: FirstnameDataModel())
+        CircleFirstName(prenom: FirstnameDB())
             .previewDevice("iPad Pro (12.9-inch) (4th generation)")
             .previewDisplayName("iPad Pro 12")
     }

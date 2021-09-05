@@ -14,8 +14,6 @@ struct MainScreen: View {
 
     @Environment(\.horizontalSizeClass) var hSizeClass
 
-    @State private var currentPrenom: FirstnameDataModel = FirstnameDataModel()
-
     @State private var currentColor = Color.gray
 
     @State private var currentIndex = 0
@@ -58,14 +56,14 @@ struct MainScreen: View {
                     if vSizeClass == .regular && hSizeClass == .regular {
                         VStack {
                             Spacer()
-                            CircleFirstName(prenom: currentPrenom, color: setColor())
+                            CircleFirstName(prenom: firstNameViewModel.currentFirstname, color: setColor())
                                 .padding(.bottom)
                                 .frame(width: 600, height: 600)
                             Spacer()
                         }
 
                     } else {
-                        CircleFirstName(prenom: currentPrenom, color: setColor())
+                        CircleFirstName(prenom: firstNameViewModel.currentFirstname, color: setColor())
                             .padding(.bottom)
                     }
 
@@ -75,7 +73,7 @@ struct MainScreen: View {
                         Spacer().frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
                     }
                 }
-                DescriptionView(prenom: currentPrenom)
+                DescriptionView()
             }
             .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
                         .onEnded { value in
@@ -87,9 +85,11 @@ struct MainScreen: View {
                             }
                         })
             .padding(.vertical)
-        .onReceive(firstNameViewModel.$firstnames) { firstnames in
-            if !firstnames.isEmpty {
-                currentPrenom = firstnames[currentIndex]
+        .onReceive(firstNameViewModel.$firstnamesResults) { firstnames in
+            if let firstnames = firstnames {
+                if !firstnames.isEmpty {
+                    firstNameViewModel.currentFirstname = firstnames[currentIndex]
+                }
             }
         }
     }
@@ -111,26 +111,35 @@ struct MainScreen: View {
     }
 
     func setColor() -> Color {
-        switch currentPrenom.gender {
-        case Gender.male:
-                return Color.blue
-        case Gender.female:
-                return Color.pink
-        case Gender.mixed:
-                return Color.purple
-        case .undefined:
+        switch firstNameViewModel.currentFirstname.gender {
+        case Gender.male.rawValue:
+            return Color.blue
+        case Gender.female.rawValue:
+            return Color.pink
+        case Gender.mixed.rawValue:
+            return Color.purple
+        case Gender.undefined.rawValue:
             return Color.black
+            default:
+                return Color.black
         }
     }
 
     fileprivate func isNextFirstname() -> Bool {
-        return self.currentIndex < firstNameViewModel.firstnames.count-1
+        if let firstnames = firstNameViewModel.firstnamesResults {
+            return self.currentIndex < firstnames.count-1
+        } else {
+            return false
+        }
+
     }
 
     func nextFirstname() {
         if isNextFirstname() {
+            if let firstnames = firstNameViewModel.firstnamesResults {
             self.currentIndex = currentIndex + 1
-            currentPrenom = firstNameViewModel.firstnames[currentIndex]
+            firstNameViewModel.currentFirstname = firstnames[currentIndex]
+            }
         }
     }
 
@@ -140,8 +149,10 @@ struct MainScreen: View {
 
     func previousFirstname() {
         if isPreviousFirstname() {
+            if let firstnames = firstNameViewModel.firstnamesResults {
             self.currentIndex = currentIndex - 1
-            currentPrenom = firstNameViewModel.firstnames[currentIndex]
+            firstNameViewModel.currentFirstname = firstnames[currentIndex]
+            }
         }
     }
 }

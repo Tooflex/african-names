@@ -12,7 +12,7 @@ struct SearchScreen: View {
     @State private var isShowFavorite = false
     @EnvironmentObject var searchScreenViewModel: SearchScreenViewModel
 
-    @State private var resultArray: [FirstnameDataModel] = []
+    @State private var resultArray: [FirstnameDB] = []
 
     @State private var isResults = false
     @State private var isShowingResults = false

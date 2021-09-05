@@ -13,8 +13,7 @@ struct DescriptionView: View {
 
     @Environment(\.horizontalSizeClass) var hSizeClass
 
-    var prenom: FirstnameDataModel
-    @State private var isLiked = false
+    @EnvironmentObject var firstNameViewModel: FirstNameViewModel
 
     @State private var engine: CHHapticEngine?
 
@@ -33,7 +32,7 @@ struct DescriptionView: View {
                             alignment: .center)
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
                         .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
-                    Text(prenom.meaning ?? "")
+                    Text(firstNameViewModel.currentFirstname.meaning ?? "")
                         .font(.title2)
                         .multilineTextAlignment(.center)
                         .frame(
@@ -48,8 +47,8 @@ struct DescriptionView: View {
             }
 
             HStack {
-                switch prenom.gender {
-                case Gender.male:
+                switch firstNameViewModel.currentFirstname.gender {
+                    case Gender.male.rawValue:
                     HStack {
                         Image("md-male")
                             .resizable()
@@ -59,7 +58,7 @@ struct DescriptionView: View {
                                 alignment: .center)
                     }
 
-                case Gender.female:
+                    case Gender.female.rawValue:
                     HStack {
                         Image("md-female")
                             .resizable()
@@ -68,7 +67,7 @@ struct DescriptionView: View {
                                 height: 30 * CGFloat(sizeMultiplier()),
                                 alignment: .center)
                     }
-                case Gender.mixed:
+                    case Gender.mixed.rawValue:
                     HStack {
                         Image("md-male")
                             .resizable()
@@ -85,8 +84,14 @@ struct DescriptionView: View {
                                 height: 30 * CGFloat(sizeMultiplier()),
                                 alignment: .center)
                     }
-                case .undefined:
+                    case Gender.undefined.rawValue:
                     EmptyView()
+                            .frame(
+                                width: 30 * CGFloat(sizeMultiplier()),
+                                height: 30 * CGFloat(sizeMultiplier()),
+                                alignment: .center)
+                    default:
+                        EmptyView()
                             .frame(
                                 width: 30 * CGFloat(sizeMultiplier()),
                                 height: 30 * CGFloat(sizeMultiplier()),
@@ -94,16 +99,15 @@ struct DescriptionView: View {
                 }
 
                 Spacer()
-                Text("Origins: \(prenom.origins ?? "")")
+                Text("Origins: \(firstNameViewModel.currentFirstname.origins)")
                     .font(.title2)
                     .lineLimit(1)
                     .padding(.horizontal)
             }.frame(alignment: .center)
 
-            if !isLiked {
+            if firstNameViewModel.currentFirstname.isFavorite {
                 Button(action: {
-                    self.isLiked.toggle()
-
+                    firstNameViewModel.toggleFavorited(firstnameObj: firstNameViewModel.currentFirstname)
                 }) {
                     LottieView(name: "heart_like", fromMarker: "touchDownStart", toMarker: "touchUpEnd")
                         .padding(.all, -40)
@@ -112,10 +116,9 @@ struct DescriptionView: View {
                             height: 40 * CGFloat(sizeMultiplier()),
                             alignment: .center)
                 }
-
             } else {
                 Button(action: {
-                    self.isLiked.toggle()
+                    firstNameViewModel.toggleFavorited(firstnameObj: firstNameViewModel.currentFirstname)
                     complexSuccess()
                 }) {
                     LottieView(name: "heart_like", fromMarker: "touchDownStart1", toMarker: "touchUpEnd1")
@@ -187,12 +190,12 @@ struct DescriptionView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
             Group {
-                DescriptionView(prenom: FirstnameDataModel())
+                DescriptionView()
                     .previewDevice("iPad Pro (12.9-inch) (4th generation)")
                     .previewDisplayName("iPad Pro 12")
                     .landscape()
 
-                DescriptionView(prenom: FirstnameDataModel())
+                DescriptionView()
                     .previewDevice("iPhone 12 Pro Max")
                     .previewDisplayName("iPhone 12 Pro Max")
             }.preferredColorScheme($0)

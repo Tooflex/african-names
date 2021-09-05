@@ -6,19 +6,20 @@
 //
 
 import Foundation
+import RealmSwift
 
 struct FirstnameDataModel: Identifiable, Codable, Hashable {
 
     var id: Int?
     var firstname: String?
     var gender: Gender
-    var isFavorite: Bool?
+    var isFavorite: Bool
     var meaning: String?
     var origins: String?
     var soundURL: String?
 
     init() {
-        self.firstname = "Firstname Test"
+        self.firstname = "No Firstname"
         self.meaning = """
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             Morbi quam arcu, fermentum sed blandit ac, ultrices et turpis.
@@ -73,7 +74,7 @@ struct FirstnameDataModel: Identifiable, Codable, Hashable {
             Cras vel nisl dui.
             Nunc pretium enim leo, vitae tempus nunc elementum eget. Maecenas in dui vitae ex molestie condimentum.
             """
-        self.origins = "manjack, bantoue, arab, fon, yoruba, test"
+        self.origins = ""
         self.soundURL = ""
         self.gender = Gender.mixed
         self.isFavorite = false
@@ -86,6 +87,8 @@ struct FirstnameDataModel: Identifiable, Codable, Hashable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        id = try container.decodeIfPresent(Int.self, forKey: .id)
+
         firstname = try container.decodeIfPresent(String.self, forKey: .firstname)
 
         meaning = try container.decodeIfPresent(String.self, forKey: .meaning)
@@ -95,7 +98,10 @@ struct FirstnameDataModel: Identifiable, Codable, Hashable {
         soundURL = try container.decodeIfPresent(String.self, forKey: .soundURL)
 
         let genderString = try container.decode(String.self, forKey: .gender)
+
         gender = Gender(rawValue: genderString.lowercased()) ?? Gender.undefined
+
+        isFavorite = false
     }
 }
 

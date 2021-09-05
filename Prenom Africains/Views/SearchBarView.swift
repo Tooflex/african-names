@@ -13,7 +13,7 @@ struct SearchBarView: View {
 
     @Binding var searchText: String
 
-    @Binding var resultArray: [FirstnameDataModel]
+    @Binding var resultArray: [FirstnameDB]
     @State private var isEditing = false
     @State private var showCancelButton: Bool = false
     @Binding var showingSheet: Bool

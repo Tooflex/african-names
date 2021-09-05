@@ -11,7 +11,7 @@
         }
       },
       {
-        "package": "lottie-ios",
+        "package": "Lottie",
         "repositoryURL": "https://github.com/airbnb/lottie-ios",
         "state": {
           "branch": null,
@@ -20,7 +20,7 @@
         }
       },
       {
-        "package": "realm-cocoa",
+        "package": "Realm",
         "repositoryURL": "https://github.com/realm/realm-cocoa.git",
         "state": {
           "branch": null,
@@ -29,7 +29,7 @@
         }
       },
       {
-        "package": "realm-core",
+        "package": "RealmCore",
         "repositoryURL": "https://github.com/realm/realm-core",
         "state": {
           "branch": null,
