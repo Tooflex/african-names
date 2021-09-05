@@ -16,7 +16,7 @@ final class SearchScreenViewModel: ObservableObject {
     let realm = DataRepository.sharedInstance
 
     /// Contains array of firstname objects by filter
-    @Published var searchResults = [FirstnameDB]()
+    @Published var searchResults: Results<FirstnameDB>?
     @Published var loading = false
 
     @Published var firstnames = [FirstnameDB]()
@@ -60,7 +60,7 @@ final class SearchScreenViewModel: ObservableObject {
         }
     }
 
-    func searchFirstnames(searchString: String) {
+    func searchFirstnamesRemote(searchString: String) {
         print("Calling searchFirstnames")
 
         if !searchString.isEmpty {
@@ -103,8 +103,19 @@ final class SearchScreenViewModel: ObservableObject {
 
     }
 
+    /// Search names in local storage
+    func searchFirstnamesLocal(searchString: String) {
+        print("Searching firstnames in local")
+
+        if !searchString.isEmpty {
+            let predicate = NSPredicate(format: "firstname CONTAINS[d] %@", searchString)
+            self.searchResults = realm.fetchData(type: FirstnameDB.self, filter: predicate)
+            print(searchString.propertyList())
+        }
+    }
+
     /// Filter firstnames in remote
-    func filterFirstnames() {
+    func filterFirstnamesRemote() {
         print("Calling filterFirstnames")
         formatFilterString(currentFilterChain)
         if let apiEndpoint = apiDomain {
@@ -138,13 +149,13 @@ final class SearchScreenViewModel: ObservableObject {
                     case .failure(let error):
                             print(error.localizedDescription)
                             print("Called failed look into local")
-                            self.filterFirstnamesInLocal()
+                            self.filterFirstnamesLocal()
                     }
                 }).store(in: &tokens)
         }
     }
 
-    func filterFirstnamesInLocal() {
+    func filterFirstnamesLocal() {
         // print(firstnames.firstnames.count)
     }
 

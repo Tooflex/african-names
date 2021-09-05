@@ -94,4 +94,13 @@ final class DataRepository: ObservableObject {
         return results
     }
 
+    /// TODO: Catch 'Invalid property name' exception
+    func fetchData<T: Object>(type: T.Type, filter: NSPredicate) -> Results<T> {
+        let results: Results<T>
+
+        results = realm.objects(type).filter(filter)
+
+        return results
+    }
+
 }

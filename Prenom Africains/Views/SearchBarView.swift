@@ -26,7 +26,7 @@ struct SearchBarView: View {
                     // Fallback on earlier versions
                 LegacyTextField(text: $searchText, isFirstResponder: $isFirstResponder)
                     .onChange(of: searchText) { newValue in
-                        searchScreenViewModel.searchFirstnames(searchString: newValue)
+                        searchScreenViewModel.searchFirstnamesLocal(searchString: newValue)
                     }
                     .onAppear(perform: {
                         self.showCancelButton = true
@@ -52,11 +52,14 @@ struct SearchBarView: View {
             .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
             .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
             .onReceive(searchScreenViewModel.$searchResults) { firstnames in
-                if !firstnames.isEmpty {
-                    resultArray = firstnames
-                } else {
-                    resultArray = []
+                if let firstnames = firstnames {
+                    if !firstnames.isEmpty {
+                        resultArray = Array(firstnames)
+                    } else {
+                        resultArray = []
+                    }
                 }
+
                 if searchText.isEmpty {
                     showCancelButton = false
                     UIApplication.shared.endEditing(true)

@@ -64,7 +64,7 @@ struct SearchScreen: View {
                 Group {
                 Button(action: {
                     print("Filter tapped!")
-                    searchScreenViewModel.filterFirstnames()
+                    searchScreenViewModel.filterFirstnamesLocal()
                 }) {
                     HStack {
                         Text("Filter")
@@ -95,8 +95,8 @@ struct SearchScreen: View {
                     List {
                         // Filtered list of names
                         ForEach(resultArray, id: \.self) { prenom in
-                            NavigationLink(destination: Text(prenom.firstname ?? "")) {
-                                Text(prenom.firstname ?? "")
+                            NavigationLink(destination: Text(prenom.firstname)) {
+                                Text(prenom.firstname)
                             }
                         }
                     }
@@ -109,10 +109,12 @@ struct SearchScreen: View {
             }
         }
         .onReceive(searchScreenViewModel.$searchResults) { firstnames in
-            if !firstnames.isEmpty {
-                isResults = true
-            } else {
-                isResults = false
+            if let firstnames = firstnames {
+                if !firstnames.isEmpty {
+                    isResults = true
+                } else {
+                    isResults = false
+                }
             }
         }
     }
