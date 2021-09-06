@@ -29,6 +29,13 @@ final class SearchScreenViewModel: ObservableObject {
     /// The filter string to add to the search URL
     @Published var currentFilterChain = ""
 
+    /// The locals filters
+    @Published var filterIsFavorite = false
+    @Published var filterGender = ""
+    @Published var filterOrigins = ""
+    @Published var filterSize = ""
+    @Published var filterArea = ""
+
     var tokens: Set<AnyCancellable> = []
     private var originsStr: [String] = []
 
@@ -155,8 +162,35 @@ final class SearchScreenViewModel: ObservableObject {
         }
     }
 
+    // Filter technique, filtre a partir de la liste et au changement supp
+    // Tester Property 'area' not found in object of type 'FirstnameDB
+    // Tester IN avec liste
+    // Tester Predicate with IN operator must compare a Key2Path with an aggregate
     func filterFirstnamesLocal() {
-        // print(firstnames.firstnames.count)
+
+        let compoundPredicate = NSCompoundPredicate(
+            type: .and,
+            subpredicates: [
+                NSPredicate(format: "isFavorite == %d", filterIsFavorite)
+            ]
+        )
+
+//        let compoundPredicate = NSCompoundPredicate(
+//            type: .and,
+//            subpredicates: [
+//                NSPredicate(format: "isFavorite == %d", true),
+//                NSPredicate(format: "origins IN %@", []),
+//               // NSPredicate(format: "area IN %@", [ "west africa", "Melissa", "Nick" ]),
+//                // NSPredicate(format: "size IN %@", [ "Ben", "Melissa", "Nick" ]),
+//                NSPredicate(format: "gender IN %@", [ "male", "undefined", "Nick" ])
+//
+//            ]
+//        )
+
+        self.searchResults = realm.fetchData(type: FirstnameDB.self, filter: compoundPredicate)
+
+        print(self.searchResults)
+
     }
 
     func getSizes() -> [String] {

@@ -64,6 +64,10 @@ struct SearchScreen: View {
                 Group {
                 Button(action: {
                     print("Filter tapped!")
+
+                    // Update favorite filter
+                    searchScreenViewModel.filterIsFavorite = isShowFavorite
+
                     searchScreenViewModel.filterFirstnamesLocal()
                 }) {
                     HStack {
