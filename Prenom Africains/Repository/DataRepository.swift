@@ -52,33 +52,18 @@ final class DataRepository: ObservableObject {
         }
     }
 
-//    func delete(firstnameID: Int) {
-//        // 1
-//        objectWillChange.send()
-//        // 2
-//        guard let firstnameDB = firstnamesResults?.first(
-//            where: { $0.id == firstnameID })
-//        else { return }
-//
-//        do {
-//            let realm = try Realm()
-//            try realm.write {
-//                realm.delete(firstnameDB)
-//            }
-//        } catch let error {
-//            // Handle error
-//            print(error.localizedDescription)
-//        }
-//    }
-//
-//    func deleteAll(firstnamesToDelete: [FirstnameDataModel]) {
-//        for firstname in firstnames {
-//            if let idToDelete = firstname.id {
-//                delete(firstnameID: idToDelete)
-//            }
-//        }
-//
-//    }
+    func deleteAll() {
+
+        do {
+            try realm.write {
+                realm.deleteAll()
+            }
+        } catch {
+            // handle error
+            print(error)
+        }
+
+    }
 
     func fetchData<T: Object>(type: T.Type, filter: String? = "") -> Results<T> {
         let results: Results<T>
@@ -95,7 +80,7 @@ final class DataRepository: ObservableObject {
     }
 
     /// TODO: Catch 'Invalid property name' exception
-    func fetchData<T: Object>(type: T.Type, filter: NSPredicate) -> Results<T> {
+    func fetchData<T: Object>(type: T.Type, filter: NSPredicate) throws -> Results<T> {
         let results: Results<T>
 
         results = realm.objects(type).filter(filter)

@@ -29,6 +29,10 @@ struct ChipsContent: View {
         if isSelected {
             print("selected")
             searchScreenViewModel.addToFilterChainString(newFilter: title, newFilterValue: chipsData.titleKey)
+            if title == "area" {
+                print("Areaaaaaaa")
+                searchScreenViewModel.filterArea.append(chipsData.titleKey)
+            }
         } else {
             print("unselected")
             searchScreenViewModel.removeFromFilterChainString(

@@ -18,7 +18,11 @@ struct MainScreen: View {
 
     @State private var currentIndex = 0
 
+    @Binding var searchString: NSCompoundPredicate
+
     @EnvironmentObject var firstNameViewModel: FirstNameViewModel
+
+    @State private var listOfFirstnamesToDisplay: [FirstnameDB] = []
 
     fileprivate func leftButton() -> some View {
         return Triangle()
@@ -43,7 +47,6 @@ struct MainScreen: View {
     }
 
     var body: some View {
-
             VStack {
                Spacer()
                 HStack {
@@ -85,6 +88,9 @@ struct MainScreen: View {
                             }
                         })
             .padding(.vertical)
+            .onAppear(perform: {
+                firstNameViewModel.getFirstnames()
+            })
         .onReceive(firstNameViewModel.$firstnamesResults) { firstnames in
             if let firstnames = firstnames {
                 if !firstnames.isEmpty {
@@ -157,24 +163,24 @@ struct MainScreen: View {
     }
 }
 
-struct MainScreen_Previews: PreviewProvider {
-    static var previews: some View {
-
-        ForEach(ColorScheme.allCases, id: \.self) {
-        Group {
-            MainScreen()
-                .previewDevice("iPhone 12")
-                .previewDisplayName("iPhone 12")
-
-            MainScreen()
-                .previewDevice("iPhone 8 Plus")
-                .previewDisplayName("iPhone 8 Plus")
-
-            MainScreen()
-                .previewDevice("iPhone 8")
-                .previewDisplayName("iPhone 8")
-        }.preferredColorScheme($0)
-        }
-
-    }
-}
+// struct MainScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//
+//        ForEach(ColorScheme.allCases, id: \.self) {
+//        Group {
+//            MainScreen()
+//                .previewDevice("iPhone 12")
+//                .previewDisplayName("iPhone 12")
+//
+//            MainScreen()
+//                .previewDevice("iPhone 8 Plus")
+//                .previewDisplayName("iPhone 8 Plus")
+//
+//            MainScreen()
+//                .previewDevice("iPhone 8")
+//                .previewDisplayName("iPhone 8")
+//        }.preferredColorScheme($0)
+//        }
+//
+//    }
+// }

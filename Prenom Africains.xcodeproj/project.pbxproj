@@ -25,6 +25,7 @@
 		15640716266836830084908F /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15640715266836830084908F /* Vibration.swift */; };
 		15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15645E85263B54E20017E8B7 /* AdaptiveView.swift */; };
 		15645E88263B5B8B0017E8B7 /* LandscapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */; };
+		156587EC272206D0008F90C1 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156587EB272206D0008F90C1 /* Area.swift */; };
 		156F0AE22608172F0076AB4B /* PrenomAfricainsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AE12608172F0076AB4B /* PrenomAfricainsApp.swift */; };
 		156F0AE42608172F0076AB4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AE32608172F0076AB4B /* ContentView.swift */; };
 		156F0AE6260817300076AB4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156F0AE5260817300076AB4B /* Assets.xcassets */; };
@@ -95,6 +96,7 @@
 		15640715266836830084908F /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		15645E85263B54E20017E8B7 /* AdaptiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveView.swift; sourceTree = "<group>"; };
 		15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeModifier.swift; sourceTree = "<group>"; };
+		156587EB272206D0008F90C1 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		156F0ADE2608172F0076AB4B /* Prenom Africains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prenom Africains.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		156F0AE12608172F0076AB4B /* PrenomAfricainsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAfricainsApp.swift; sourceTree = "<group>"; };
 		156F0AE32608172F0076AB4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				15E8DE44266308DE0036A99F /* ChipsDataModel.swift */,
 				15300A87266C1F47000AAAF6 /* SearchCriteria.swift */,
 				15515FC82677D423009C2BDF /* FirstnameDB.swift */,
+				156587EB272206D0008F90C1 /* Area.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */,
 				15640716266836830084908F /* Vibration.swift in Sources */,
 				15645E88263B5B8B0017E8B7 /* LandscapeModifier.swift in Sources */,
+				156587EC272206D0008F90C1 /* Area.swift in Sources */,
 				1539F18026E4ED67009889B5 /* FirstnameDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -668,7 +672,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -725,7 +729,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -738,7 +742,7 @@
 		156F0B04260817300076AB4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://27a1c58840e6.ngrok.io";
+				API_ENDPOINT = "https://c50c-93-16-212-39.ngrok.io";
 				APP_DISPLAY_NAME = "DEV Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -762,7 +766,7 @@
 		156F0B05260817300076AB4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://27a1c58840e6.ngrok.io";
+				API_ENDPOINT = "https://c50c-93-16-212-39.ngrok.io";
 				APP_DISPLAY_NAME = "Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -791,7 +795,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6NTQ2Y43QX;
 				INFOPLIST_FILE = "Prenom AfricainsTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -813,7 +817,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6NTQ2Y43QX;
 				INFOPLIST_FILE = "Prenom AfricainsTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

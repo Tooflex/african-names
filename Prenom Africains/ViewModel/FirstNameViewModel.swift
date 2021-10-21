@@ -17,6 +17,7 @@ final class FirstNameViewModel: ObservableObject {
 
     @Published var favoritedFirstnamesResults: Results<FirstnameDB>?
     @Published var firstnamesResults: Results<FirstnameDB>?
+
     var firstnamesToken: NotificationToken?
     @Published var loaded = false
     @Published var isLoading = false
@@ -32,15 +33,35 @@ final class FirstNameViewModel: ObservableObject {
     let password = "Manjack76"
 
     init() {
-        self.favoritedFirstnamesResults = realm.fetchData(type: FirstnameDB.self, filter: "isFavorite = true")
-        self.firstnamesResults = realm.fetchData(type: FirstnameDB.self)
-        // self.firstnames = self.firstnamesResults.map(FirstnameDataModel.init)
-        self.currentFirstname = self.firstnamesResults?.first ?? FirstnameDB()
+        getFirstnames()
         fetchFirstnames()
     }
 
     deinit {
         self.firstnamesToken?.invalidate()
+    }
+
+    func getFirstnames() {
+        let defaults = UserDefaults.standard
+        let filters = defaults.object(forKey: "Filters") as? [String: Any] ?? [String: Any]()
+
+        self.favoritedFirstnamesResults = realm.fetchData(type: FirstnameDB.self, filter: "isFavorite = true")
+        self.firstnamesResults = realm.fetchData(type: FirstnameDB.self)
+
+        if filters.isEmpty {
+            self.firstnamesResults = realm.fetchData(type: FirstnameDB.self)
+        } else {
+            let compoundFilter = self.createFilterCompound(filterArray: filters)
+            do {
+                try self.firstnamesResults = realm.fetchData(type: FirstnameDB.self, filter: compoundFilter)
+            } catch {
+                self.firstnamesResults = realm.fetchData(type: FirstnameDB.self)
+                print("Errors in filtering")
+            }
+
+        }
+        // self.firstnames = self.firstnamesResults.map(FirstnameDataModel.init)
+        self.currentFirstname = self.firstnamesResults?.first ?? FirstnameDB()
     }
 
     func fetchFirstnames() {
@@ -66,6 +87,7 @@ final class FirstNameViewModel: ObservableObject {
             }, receiveValue: { (response) in
                 switch response.result {
                 case .success(let model):
+                        self.realm.deleteAll()
                         self.realm.addAll(firstnamesToAdd: model)
                         self.currentFirstname = self.firstnamesResults?.shuffled().first ?? FirstnameDB()
                     self.activateFirstnamesToken()
@@ -146,16 +168,30 @@ final class FirstNameViewModel: ObservableObject {
     }
 
     private func activateFirstnamesToken() {
-        do {
-            let firstnames = self.realm.fetchData(type: FirstnameDB.self)
-            self.firstnamesToken = firstnames.observe { _ in
-                // When there is a change, replace the old firstnames array with a new one.
-                self.firstnamesResults = self.realm.fetchData(type: FirstnameDB.self)
-            }
-        } catch let error {
-            // Handle error
-            print(error.localizedDescription)
+        let firstnames = self.realm.fetchData(type: FirstnameDB.self)
+        self.firstnamesToken = firstnames.observe { _ in
+            // When there is a change, replace the old firstnames array with a new one.
+            self.firstnamesResults = self.realm.fetchData(type: FirstnameDB.self)
         }
+    }
+
+    private func createFilterCompound(filterArray: [String: Any]) -> NSCompoundPredicate {
+
+        let filterIsFavorite = filterArray["isFavorite"] as? Bool ?? false
+        let filterArea = filterArray["area"] as? [String] ?? []
+
+        var subPredicates = [NSPredicate]()
+        let favoritePredicate = NSPredicate(format: "isFavorite == %d", filterIsFavorite)
+        subPredicates.append(favoritePredicate)
+
+        if !filterArea.isEmpty {
+            let areaPredicate = NSPredicate(format: "area IN %@", filterArea)
+            subPredicates.append(areaPredicate)
+        }
+
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
+
+        return compoundPredicate
     }
 
 }

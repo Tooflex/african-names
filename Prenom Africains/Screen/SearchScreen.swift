@@ -9,6 +9,9 @@ import SwiftUI
 import SlideOverCard
 
 struct SearchScreen: View {
+    @Binding var selectedTab: Int
+    @Binding var searchString: NSCompoundPredicate
+
     @State private var isShowFavorite = false
     @EnvironmentObject var searchScreenViewModel: SearchScreenViewModel
 
@@ -67,8 +70,10 @@ struct SearchScreen: View {
 
                     // Update favorite filter
                     searchScreenViewModel.filterIsFavorite = isShowFavorite
-
-                    searchScreenViewModel.filterFirstnamesLocal()
+                    // searchScreenViewModel.filterArea = searchScreenViewModel.areas.filter { $0.isSelected }
+                    // print(searchScreenViewModel.filterArea)
+                    searchScreenViewModel.saveFilters()
+                    self.selectedTab = 0 // Go back to Home screen
                 }) {
                     HStack {
                         Text("Filter")
@@ -124,8 +129,8 @@ struct SearchScreen: View {
     }
 }
 
-struct SearchScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchScreen()
-    }
-}
+// struct SearchScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchScreen(selectedTab: .constant(0))
+//    }
+// }
