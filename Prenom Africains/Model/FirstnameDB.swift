@@ -16,6 +16,7 @@ class FirstnameDB: Object {
     @objc dynamic var meaning = ""
     @objc dynamic var origins = ""
     @objc dynamic var soundURL = ""
+    @objc dynamic var regions = ""
 
     override static func primaryKey() -> String? {
         "id"

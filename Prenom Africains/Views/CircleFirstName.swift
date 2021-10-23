@@ -64,7 +64,7 @@ struct CircleFirstName: View {
         let utterance = AVSpeechUtterance(string: firsnameStr)
 
         switch prenom.gender {
-            case Gender.male.rawValue:
+        case Gender.male.rawValue:
             utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_fr-FR_compact")
         default:
             utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_fr-FR_compact")

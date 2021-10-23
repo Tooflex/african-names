@@ -26,7 +26,7 @@ struct LottieView: UIViewRepresentable {
         if let fromMarker = fromMarker {
             if let toMarker = toMarker {
                 animationView.play(fromMarker: fromMarker, toMarker: toMarker, loopMode: loopMode) { _ in
-                    print("Animation ended")
+
                 }
             }
         } else {

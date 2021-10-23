@@ -48,54 +48,54 @@ struct DescriptionView: View {
 
             HStack {
                 switch firstNameViewModel.currentFirstname.gender {
-                    case Gender.male.rawValue:
-                    HStack {
-                        Image("md-male")
-                            .resizable()
-                            .frame(
-                                width: 30 * CGFloat(sizeMultiplier()),
-                                height: 30 * CGFloat(sizeMultiplier()),
-                                alignment: .center)
-                    }
+                case Gender.male.rawValue:
+                HStack {
+                    Image("md-male")
+                        .resizable()
+                        .frame(
+                            width: 30 * CGFloat(sizeMultiplier()),
+                            height: 30 * CGFloat(sizeMultiplier()),
+                            alignment: .center)
+                }
 
-                    case Gender.female.rawValue:
-                    HStack {
-                        Image("md-female")
-                            .resizable()
-                            .frame(
-                                width: 30 * CGFloat(sizeMultiplier()),
-                                height: 30 * CGFloat(sizeMultiplier()),
-                                alignment: .center)
-                    }
-                    case Gender.mixed.rawValue:
-                    HStack {
-                        Image("md-male")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(
-                                width: 30 * CGFloat(sizeMultiplier()),
-                                height: 30 * CGFloat(sizeMultiplier()),
-                                alignment: .center)
-                        Image("md-female")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(
-                                width: 30 * CGFloat(sizeMultiplier()),
-                                height: 30 * CGFloat(sizeMultiplier()),
-                                alignment: .center)
-                    }
-                    case Gender.undefined.rawValue:
+                case Gender.female.rawValue:
+                HStack {
+                    Image("md-female")
+                        .resizable()
+                        .frame(
+                            width: 30 * CGFloat(sizeMultiplier()),
+                            height: 30 * CGFloat(sizeMultiplier()),
+                            alignment: .center)
+                }
+                case Gender.mixed.rawValue:
+                HStack {
+                    Image("md-male")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(
+                            width: 30 * CGFloat(sizeMultiplier()),
+                            height: 30 * CGFloat(sizeMultiplier()),
+                            alignment: .center)
+                    Image("md-female")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(
+                            width: 30 * CGFloat(sizeMultiplier()),
+                            height: 30 * CGFloat(sizeMultiplier()),
+                            alignment: .center)
+                }
+                case Gender.undefined.rawValue:
+                EmptyView()
+                        .frame(
+                            width: 30 * CGFloat(sizeMultiplier()),
+                            height: 30 * CGFloat(sizeMultiplier()),
+                            alignment: .center)
+                default:
                     EmptyView()
-                            .frame(
-                                width: 30 * CGFloat(sizeMultiplier()),
-                                height: 30 * CGFloat(sizeMultiplier()),
-                                alignment: .center)
-                    default:
-                        EmptyView()
-                            .frame(
-                                width: 30 * CGFloat(sizeMultiplier()),
-                                height: 30 * CGFloat(sizeMultiplier()),
-                                alignment: .center)
+                        .frame(
+                            width: 30 * CGFloat(sizeMultiplier()),
+                            height: 30 * CGFloat(sizeMultiplier()),
+                            alignment: .center)
                 }
 
                 Spacer()

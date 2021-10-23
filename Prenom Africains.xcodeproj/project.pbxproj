@@ -25,7 +25,6 @@
 		15640716266836830084908F /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15640715266836830084908F /* Vibration.swift */; };
 		15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15645E85263B54E20017E8B7 /* AdaptiveView.swift */; };
 		15645E88263B5B8B0017E8B7 /* LandscapeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */; };
-		156587EC272206D0008F90C1 /* Area.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156587EB272206D0008F90C1 /* Area.swift */; };
 		156F0AE22608172F0076AB4B /* PrenomAfricainsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AE12608172F0076AB4B /* PrenomAfricainsApp.swift */; };
 		156F0AE42608172F0076AB4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AE32608172F0076AB4B /* ContentView.swift */; };
 		156F0AE6260817300076AB4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156F0AE5260817300076AB4B /* Assets.xcassets */; };
@@ -38,12 +37,14 @@
 		156F0B2726081DA40076AB4B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B2626081DA40076AB4B /* LottieView.swift */; };
 		156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B2B260821470076AB4B /* DescriptionView.swift */; };
 		156F0B32260825910076AB4B /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B31260825910076AB4B /* MainScreen.swift */; };
+		15A134BC272476EB0019AE90 /* md-male-select.json in Resources */ = {isa = PBXBuildFile; fileRef = 15A134BB272476EB0019AE90 /* md-male-select.json */; };
 		15ABCB3C262A564B00036B3E /* PrenomAfricainsSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB3B262A564B00036B3E /* PrenomAfricainsSlowTests.swift */; };
 		15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB47262A59B600036B3E /* NetworkMonitor.swift */; };
 		15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 15BE326D2624D0E700D8DC8D /* Alamofire */; };
 		15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5202646D7F7007E838C /* SearchBarView.swift */; };
 		15CAC5232646E837007E838C /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5222646E837007E838C /* SearchScreen.swift */; };
 		15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5242646ECF1007E838C /* ChipsOptionView.swift */; };
+		15D4A12E2723752000D8BCA4 /* md-female-select.json in Resources */ = {isa = PBXBuildFile; fileRef = 15D4A12D2723752000D8BCA4 /* md-female-select.json */; };
 		15E8DE432662E0050036A99F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 15E8DE422662E0050036A99F /* Localizable.strings */; };
 		15E8DE45266308DE0036A99F /* ChipsDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8DE44266308DE0036A99F /* ChipsDataModel.swift */; };
 		15E8DE472663093B0036A99F /* ChipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E8DE462663093B0036A99F /* ChipsView.swift */; };
@@ -96,7 +97,6 @@
 		15640715266836830084908F /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		15645E85263B54E20017E8B7 /* AdaptiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveView.swift; sourceTree = "<group>"; };
 		15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeModifier.swift; sourceTree = "<group>"; };
-		156587EB272206D0008F90C1 /* Area.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Area.swift; sourceTree = "<group>"; };
 		156F0ADE2608172F0076AB4B /* Prenom Africains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Prenom Africains.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		156F0AE12608172F0076AB4B /* PrenomAfricainsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAfricainsApp.swift; sourceTree = "<group>"; };
 		156F0AE32608172F0076AB4B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -114,6 +114,7 @@
 		156F0B2626081DA40076AB4B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		156F0B2B260821470076AB4B /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		156F0B31260825910076AB4B /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		15A134BB272476EB0019AE90 /* md-male-select.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "md-male-select.json"; sourceTree = "<group>"; };
 		15ABCB39262A564B00036B3E /* Prenom AfricainsSlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prenom AfricainsSlowTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15ABCB3B262A564B00036B3E /* PrenomAfricainsSlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAfricainsSlowTests.swift; sourceTree = "<group>"; };
 		15ABCB3D262A564B00036B3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 		15CAC5202646D7F7007E838C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		15CAC5222646E837007E838C /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		15CAC5242646ECF1007E838C /* ChipsOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsOptionView.swift; sourceTree = "<group>"; };
+		15D4A12D2723752000D8BCA4 /* md-female-select.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "md-female-select.json"; sourceTree = "<group>"; };
 		15E8DE422662E0050036A99F /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		15E8DE44266308DE0036A99F /* ChipsDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsDataModel.swift; sourceTree = "<group>"; };
 		15E8DE462663093B0036A99F /* ChipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsView.swift; sourceTree = "<group>"; };
@@ -314,7 +316,6 @@
 				15E8DE44266308DE0036A99F /* ChipsDataModel.swift */,
 				15300A87266C1F47000AAAF6 /* SearchCriteria.swift */,
 				15515FC82677D423009C2BDF /* FirstnameDB.swift */,
-				156587EB272206D0008F90C1 /* Area.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -334,6 +335,8 @@
 				15515FCA2677E34E009C2BDF /* Mock */,
 				156F0B2126081D6C0076AB4B /* sound.json */,
 				152E826A2635CA46002950E6 /* heart_like.json */,
+				15D4A12D2723752000D8BCA4 /* md-female-select.json */,
+				15A134BB272476EB0019AE90 /* md-male-select.json */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -481,8 +484,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15A134BC272476EB0019AE90 /* md-male-select.json in Resources */,
 				156F0B2226081D6C0076AB4B /* sound.json in Resources */,
 				156F0AE9260817300076AB4B /* Preview Assets.xcassets in Resources */,
+				15D4A12E2723752000D8BCA4 /* md-female-select.json in Resources */,
 				152E826B2635CA46002950E6 /* heart_like.json in Resources */,
 				15E8DE432662E0050036A99F /* Localizable.strings in Resources */,
 				15515FCC2677E35F009C2BDF /* MOCK_DATA.json in Resources */,
@@ -569,7 +574,6 @@
 				156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */,
 				15640716266836830084908F /* Vibration.swift in Sources */,
 				15645E88263B5B8B0017E8B7 /* LandscapeModifier.swift in Sources */,
-				156587EC272206D0008F90C1 /* Area.swift in Sources */,
 				1539F18026E4ED67009889B5 /* FirstnameDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -742,7 +746,7 @@
 		156F0B04260817300076AB4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://c50c-93-16-212-39.ngrok.io";
+				API_ENDPOINT = "https://57b1-93-16-212-39.ngrok.io";
 				APP_DISPLAY_NAME = "DEV Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -766,7 +770,7 @@
 		156F0B05260817300076AB4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://c50c-93-16-212-39.ngrok.io";
+				API_ENDPOINT = "https://57b1-93-16-212-39.ngrok.io";
 				APP_DISPLAY_NAME = "Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

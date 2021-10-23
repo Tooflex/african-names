@@ -35,6 +35,8 @@ final class SearchScreenViewModel: ObservableObject {
     @Published var filterOrigins = []
     @Published var filterSize = []
     @Published var filterArea = []
+    @Published var filterFemale = false
+    @Published var filterMale = false
 
     var tokens: Set<AnyCancellable> = []
     private var originsStr: [String] = []
@@ -103,11 +105,7 @@ final class SearchScreenViewModel: ObservableObject {
             } else {
                 return
             }
-        } else {
-            // TODO: Return all firstnames
-            // Firstname maybe should be env object
         }
-
     }
 
     /// Search names in local storage
@@ -167,7 +165,6 @@ final class SearchScreenViewModel: ObservableObject {
         }
     }
 
-    // Tester Property 'area' not found in object of type 'FirstnameDB
     // Tester IN avec liste
     // Tester Predicate with IN operator must compare a Key2Path with an aggregate
     func filterFirstnamesLocal() -> NSCompoundPredicate {
@@ -177,21 +174,20 @@ final class SearchScreenViewModel: ObservableObject {
         subPredicates.append(favoritePredicate)
 
         if !filterArea.isEmpty {
-            let areaPredicate = NSPredicate(format: "area IN %@", filterArea)
+            let areaPredicate = NSPredicate(format: "regions IN %@", filterArea)
             subPredicates.append(areaPredicate)
         }
 
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
 
         return compoundPredicate
-
-        // self.searchResults = realm.fetchData(type: FirstnameDB.self, filter: compoundPredicate)
-
-        // print(self.searchResults)
     }
 
     func saveFilters() {
-        let filters = ["isFavorite": filterIsFavorite, "area": filterArea] as [String: Any]
+        let filters = ["isFavorite": filterIsFavorite,
+                       "regions": filterArea,
+                       "origins": filterOrigins,
+                       "gender": filterGender] as [String: Any]
         print("My filters")
         print(filters)
         UserDefaults.standard.set(filters, forKey: "Filters")

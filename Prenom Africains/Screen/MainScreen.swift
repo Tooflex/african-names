@@ -126,8 +126,8 @@ struct MainScreen: View {
             return Color.purple
         case Gender.undefined.rawValue:
             return Color.black
-            default:
-                return Color.black
+        default:
+            return Color.black
         }
     }
 

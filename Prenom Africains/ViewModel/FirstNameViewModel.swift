@@ -60,7 +60,6 @@ final class FirstNameViewModel: ObservableObject {
             }
 
         }
-        // self.firstnames = self.firstnamesResults.map(FirstnameDataModel.init)
         self.currentFirstname = self.firstnamesResults?.first ?? FirstnameDB()
     }
 
@@ -178,15 +177,27 @@ final class FirstNameViewModel: ObservableObject {
     private func createFilterCompound(filterArray: [String: Any]) -> NSCompoundPredicate {
 
         let filterIsFavorite = filterArray["isFavorite"] as? Bool ?? false
-        let filterArea = filterArray["area"] as? [String] ?? []
+        let filterArea = filterArray["regions"] as? [String] ?? []
+        let filterOrigins = filterArray["origins"] as? [String] ?? []
+        let filterGender = filterArray["gender"] as? [String] ?? []
 
         var subPredicates = [NSPredicate]()
         let favoritePredicate = NSPredicate(format: "isFavorite == %d", filterIsFavorite)
         subPredicates.append(favoritePredicate)
 
         if !filterArea.isEmpty {
-            let areaPredicate = NSPredicate(format: "area IN %@", filterArea)
+            let areaPredicate = NSPredicate(format: "regions IN %@", filterArea)
             subPredicates.append(areaPredicate)
+        }
+
+        if !filterOrigins.isEmpty {
+            let originsPredicate = NSPredicate(format: "origins IN %@", filterOrigins)
+            subPredicates.append(originsPredicate)
+        }
+
+        if !filterGender.isEmpty {
+            let genderPredicate = NSPredicate(format: "gender IN %@", filterGender)
+            subPredicates.append(genderPredicate)
         }
 
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)

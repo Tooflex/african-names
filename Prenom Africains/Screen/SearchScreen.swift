@@ -36,6 +36,7 @@ struct SearchScreen: View {
                     SearchBarButton(showingSheet: $isShowingResults)
                         .padding(.horizontal)
                 }
+                Divider().padding(.top, 10)
                 // MARK: - Filters Options
                 Group {
                     HStack {
@@ -53,11 +54,45 @@ struct SearchScreen: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.horizontal, 10)
                     HStack {
-                        Image("md-female")
-                            .resizable()
-                            .frame(width: 30, height: 30, alignment: .center)
-                        Image("md-male").resizable()
-                            .frame(width: 30, height: 30, alignment: .center)
+                        if searchScreenViewModel.filterFemale {
+                            Button(action: {
+                                print("Female selected to unselected")
+                                searchScreenViewModel.filterFemale = !searchScreenViewModel.filterFemale
+                            }) {
+                                LottieView(name: "md-female-select", fromMarker: "touchDownStart", toMarker: "touchUpEnd" )
+                                    .padding(.all, -30)
+                                    .frame(width: 30, height: 30, alignment: .center)
+                            }
+                        } else {
+                            Button(action: {
+                                print("Female unselected to selected")
+                                searchScreenViewModel.filterFemale = !searchScreenViewModel.filterFemale
+                            }) {
+                                LottieView(name: "md-female-select", fromMarker: "touchDownStart1", toMarker: "touchUpEnd1" )
+                                    .padding(.all, -30)
+                                    .frame(width: 30, height: 30, alignment: .center)
+                            }
+                        }
+
+                        if searchScreenViewModel.filterMale {
+                        Button(action: {
+                            print("Male selected to unselected")
+                            searchScreenViewModel.filterMale = !searchScreenViewModel.filterMale
+                        }) {
+                            LottieView(name: "md-male-select", fromMarker: "touchDownStart", toMarker: "touchUpEnd" )
+                                .padding(.all, -30)
+                                .frame(width: 30, height: 30, alignment: .center)
+                        }
+                    } else {
+                        Button(action: {
+                            print("Male unselected to selected")
+                            searchScreenViewModel.filterMale = !searchScreenViewModel.filterMale
+                        }) {
+                            LottieView(name: "md-male-select", fromMarker: "touchDownStart1", toMarker: "touchUpEnd1" )
+                                .padding(.all, -30)
+                                .frame(width: 30, height: 30, alignment: .center)
+                        }
+                    }
                     }
                     ChipsOptionView(
                         title: "Size",
@@ -66,12 +101,19 @@ struct SearchScreen: View {
                 // MARK: Filter Submit Button
                 Group {
                 Button(action: {
-                    print("Filter tapped!")
-
-                    // Update favorite filter
+                    // Update filters
                     searchScreenViewModel.filterIsFavorite = isShowFavorite
-                    // searchScreenViewModel.filterArea = searchScreenViewModel.areas.filter { $0.isSelected }
-                    // print(searchScreenViewModel.filterArea)
+                    searchScreenViewModel.filterArea = searchScreenViewModel.areas.filter {
+                        $0.isSelected }.map { $0.titleKey.capitalized }
+                    searchScreenViewModel.filterOrigins = searchScreenViewModel.origins.filter {
+                        $0.isSelected }.map { $0.titleKey.capitalized }
+                    searchScreenViewModel.filterGender = []
+                    if searchScreenViewModel.filterMale {
+                        searchScreenViewModel.filterGender.append("male")
+                    }
+                    if searchScreenViewModel.filterFemale {
+                        searchScreenViewModel.filterGender.append("female")
+                    }
                     searchScreenViewModel.saveFilters()
                     self.selectedTab = 0 // Go back to Home screen
                 }) {

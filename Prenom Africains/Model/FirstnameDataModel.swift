@@ -17,6 +17,7 @@ struct FirstnameDataModel: Identifiable, Codable, Hashable {
     var meaning: String?
     var origins: String?
     var soundURL: String?
+    var regions: String?
 
     init() {
         self.firstname = "No Firstname"
@@ -76,12 +77,13 @@ struct FirstnameDataModel: Identifiable, Codable, Hashable {
             """
         self.origins = ""
         self.soundURL = ""
+        self.regions = ""
         self.gender = Gender.mixed
         self.isFavorite = false
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, firstname, gender, meaning, origins, soundURL
+        case id, firstname, gender, meaning, origins, soundURL, regions
     }
 
     init(from decoder: Decoder) throws {
@@ -96,6 +98,8 @@ struct FirstnameDataModel: Identifiable, Codable, Hashable {
         origins = try container.decodeIfPresent(String.self, forKey: .origins)
 
         soundURL = try container.decodeIfPresent(String.self, forKey: .soundURL)
+
+        regions = try container.decodeIfPresent(String.self, forKey: .regions)
 
         let genderString = try container.decode(String.self, forKey: .gender)
 
@@ -115,5 +119,6 @@ extension FirstnameDataModel {
         meaning = firstnameDB.meaning
         origins = firstnameDB.origins
         soundURL = firstnameDB.soundURL
+        regions = firstnameDB.regions
     }
 }
