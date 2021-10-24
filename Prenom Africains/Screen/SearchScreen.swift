@@ -45,9 +45,6 @@ struct SearchScreen: View {
                     ChipsOptionView(
                                     title: "Area",
                                     data: searchScreenViewModel.areas)
-                    ChipsOptionView(
-                                    title: "Origins",
-                                    data: searchScreenViewModel.origins)
                     Text("Gender")
                         .font(.title2)
                         .bold()
@@ -104,8 +101,6 @@ struct SearchScreen: View {
                     // Update filters
                     searchScreenViewModel.filterIsFavorite = isShowFavorite
                     searchScreenViewModel.filterArea = searchScreenViewModel.areas.filter {
-                        $0.isSelected }.map { $0.titleKey.capitalized }
-                    searchScreenViewModel.filterOrigins = searchScreenViewModel.origins.filter {
                         $0.isSelected }.map { $0.titleKey.capitalized }
                     searchScreenViewModel.filterGender = []
                     if searchScreenViewModel.filterMale {

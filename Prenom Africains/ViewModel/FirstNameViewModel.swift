@@ -13,7 +13,7 @@ import RealmSwift
 
 final class FirstNameViewModel: ObservableObject {
 
-    let realm = DataRepository.sharedInstance
+    let dataRepository = DataRepository.sharedInstance
 
     @Published var favoritedFirstnamesResults: Results<FirstnameDB>?
     @Published var firstnamesResults: Results<FirstnameDB>?
@@ -33,29 +33,35 @@ final class FirstNameViewModel: ObservableObject {
     let password = "Manjack76"
 
     init() {
-        getFirstnames()
-        fetchFirstnames()
+        loaded = true
+        dataRepository.fetchFirstnames { _ in
+            self.getFirstnames()
+        }
     }
 
     deinit {
         self.firstnamesToken?.invalidate()
     }
 
+    func onAppear() {
+       getFirstnames()
+    }
+
     func getFirstnames() {
         let defaults = UserDefaults.standard
         let filters = defaults.object(forKey: "Filters") as? [String: Any] ?? [String: Any]()
 
-        self.favoritedFirstnamesResults = realm.fetchData(type: FirstnameDB.self, filter: "isFavorite = true")
-        self.firstnamesResults = realm.fetchData(type: FirstnameDB.self)
+        self.favoritedFirstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "isFavorite = true")
+        self.firstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self)
 
         if filters.isEmpty {
-            self.firstnamesResults = realm.fetchData(type: FirstnameDB.self)
+            self.firstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self)
         } else {
             let compoundFilter = self.createFilterCompound(filterArray: filters)
             do {
-                try self.firstnamesResults = realm.fetchData(type: FirstnameDB.self, filter: compoundFilter)
+                try self.firstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self, filter: compoundFilter)
             } catch {
-                self.firstnamesResults = realm.fetchData(type: FirstnameDB.self)
+                self.firstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self)
                 print("Errors in filtering")
             }
 
@@ -63,42 +69,42 @@ final class FirstNameViewModel: ObservableObject {
         self.currentFirstname = self.firstnamesResults?.first ?? FirstnameDB()
     }
 
-    func fetchFirstnames() {
-
-        loaded = true
-
-        if let apiEndpoint = apiEndpoint {
-
-        let url = "\(apiEndpoint)/api/v1/firstnames/random"
-
-        let headers: HTTPHeaders = [.authorization(username: username, password: password)]
-
-        AF.request(url, headers: headers)
-            .validate()
-            .publishDecodable(type: [FirstnameDataModel].self)
-            .sink(receiveCompletion: { (completion) in
-                switch completion {
-                case .finished:
-                    ()
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }, receiveValue: { (response) in
-                switch response.result {
-                case .success(let model):
-                        self.realm.deleteAll()
-                        self.realm.addAll(firstnamesToAdd: model)
-                        self.currentFirstname = self.firstnamesResults?.shuffled().first ?? FirstnameDB()
-                    self.activateFirstnamesToken()
-                    self.loaded = false
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }).store(in: &tokens)
-        } else {
-            return
-        }
-    }
+//    func fetchFirstnames() {
+//
+//        loaded = true
+//
+//        if let apiEndpoint = apiEndpoint {
+//
+//        let url = "\(apiEndpoint)/api/v1/firstnames/random"
+//
+//        let headers: HTTPHeaders = [.authorization(username: username, password: password)]
+//
+//        AF.request(url, headers: headers)
+//            .validate()
+//            .publishDecodable(type: [FirstnameDataModel].self)
+//            .sink(receiveCompletion: { (completion) in
+//                switch completion {
+//                case .finished:
+//                    ()
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }, receiveValue: { (response) in
+//                switch response.result {
+//                case .success(let model):
+//                        self.dataRepository.deleteAll()
+//                        self.dataRepository.addAll(firstnamesToAdd: model)
+//                        self.currentFirstname = self.firstnamesResults?.shuffled().first ?? FirstnameDB()
+//                    self.activateFirstnamesToken()
+//                    self.loaded = false
+//                case .failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            }).store(in: &tokens)
+//        } else {
+//            return
+//        }
+//    }
 
     func toggleFavorited(firstnameObj: FirstnameDataModel) {
         objectWillChange.send()
@@ -167,10 +173,10 @@ final class FirstNameViewModel: ObservableObject {
     }
 
     private func activateFirstnamesToken() {
-        let firstnames = self.realm.fetchData(type: FirstnameDB.self)
+        let firstnames = self.dataRepository.fetchLocalData(type: FirstnameDB.self)
         self.firstnamesToken = firstnames.observe { _ in
             // When there is a change, replace the old firstnames array with a new one.
-            self.firstnamesResults = self.realm.fetchData(type: FirstnameDB.self)
+            self.firstnamesResults = self.dataRepository.fetchLocalData(type: FirstnameDB.self)
         }
     }
 

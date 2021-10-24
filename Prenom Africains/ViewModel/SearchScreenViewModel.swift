@@ -116,7 +116,7 @@ final class SearchScreenViewModel: ObservableObject {
             let predicate = NSPredicate(format: "firstname CONTAINS[d] %@", searchString)
             do {
                 try
-            self.searchResults = realm.fetchData(type: FirstnameDB.self, filter: predicate)
+            self.searchResults = realm.fetchLocalData(type: FirstnameDB.self, filter: predicate)
             } catch {
                 print("Error")
             }

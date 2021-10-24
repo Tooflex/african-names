@@ -38,6 +38,7 @@
 		156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B2B260821470076AB4B /* DescriptionView.swift */; };
 		156F0B32260825910076AB4B /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B31260825910076AB4B /* MainScreen.swift */; };
 		15A134BC272476EB0019AE90 /* md-male-select.json in Resources */ = {isa = PBXBuildFile; fileRef = 15A134BB272476EB0019AE90 /* md-male-select.json */; };
+		15A134BF272572D80019AE90 /* FirstNameApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A134BE272572D80019AE90 /* FirstNameApiService.swift */; };
 		15ABCB3C262A564B00036B3E /* PrenomAfricainsSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB3B262A564B00036B3E /* PrenomAfricainsSlowTests.swift */; };
 		15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB47262A59B600036B3E /* NetworkMonitor.swift */; };
 		15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 15BE326D2624D0E700D8DC8D /* Alamofire */; };
@@ -115,6 +116,7 @@
 		156F0B2B260821470076AB4B /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		156F0B31260825910076AB4B /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
 		15A134BB272476EB0019AE90 /* md-male-select.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "md-male-select.json"; sourceTree = "<group>"; };
+		15A134BE272572D80019AE90 /* FirstNameApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNameApiService.swift; sourceTree = "<group>"; };
 		15ABCB39262A564B00036B3E /* Prenom AfricainsSlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prenom AfricainsSlowTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15ABCB3B262A564B00036B3E /* PrenomAfricainsSlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAfricainsSlowTests.swift; sourceTree = "<group>"; };
 		15ABCB3D262A564B00036B3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 		156F0AE02608172F0076AB4B /* Prenom Africains */ = {
 			isa = PBXGroup;
 			children = (
+				15A134BD272572A70019AE90 /* Service */,
 				151A063726E27F7700F8760D /* Repository */,
 				15FC2A49264855760025BCF3 /* Misc */,
 				15CFF01A261396A100B06E32 /* Util */,
@@ -286,6 +289,14 @@
 				15CAC5222646E837007E838C /* SearchScreen.swift */,
 			);
 			path = Screen;
+			sourceTree = "<group>";
+		};
+		15A134BD272572A70019AE90 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				15A134BE272572D80019AE90 /* FirstNameApiService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		15ABCB3A262A564B00036B3E /* Prenom AfricainsSlowTests */ = {
@@ -555,6 +566,7 @@
 				151A063926E27F9800F8760D /* DataRepository.swift in Sources */,
 				15300A88266C1F47000AAAF6 /* SearchCriteria.swift in Sources */,
 				15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */,
+				15A134BF272572D80019AE90 /* FirstNameApiService.swift in Sources */,
 				15FC2A4726483CF40025BCF3 /* MenuItemEnum.swift in Sources */,
 				15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */,
 				15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */,
@@ -746,7 +758,7 @@
 		156F0B04260817300076AB4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://57b1-93-16-212-39.ngrok.io";
+				API_ENDPOINT = "https://b2f7-93-16-212-39.ngrok.io";
 				APP_DISPLAY_NAME = "DEV Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -770,7 +782,7 @@
 		156F0B05260817300076AB4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://57b1-93-16-212-39.ngrok.io";
+				API_ENDPOINT = "https://b2f7-93-16-212-39.ngrok.io";
 				APP_DISPLAY_NAME = "Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

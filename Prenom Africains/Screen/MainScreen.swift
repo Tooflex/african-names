@@ -89,7 +89,7 @@ struct MainScreen: View {
                         })
             .padding(.vertical)
             .onAppear(perform: {
-                firstNameViewModel.getFirstnames()
+                firstNameViewModel.onAppear()
             })
         .onReceive(firstNameViewModel.$firstnamesResults) { firstnames in
             if let firstnames = firstnames {

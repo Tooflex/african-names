@@ -8,15 +8,22 @@
 import Foundation
 import RealmSwift
 
-final class DataRepository: ObservableObject {
+protocol DataRepositoryProtocol {
+    func fetchFirstnames(completion: @escaping ([FirstnameDataModel]) -> Void)
+}
+
+final class DataRepository: ObservableObject, DataRepositoryProtocol {
 
     private let realm: Realm
 
+    private let apiService: FirstNameApiServiceProtocol
+
     public static let sharedInstance = DataRepository()
 
-    init() {
+    init(apiService: FirstNameApiServiceProtocol = FirstNameApiService()) {
         // swiftlint:disable force_try
         realm = try! Realm()
+        self.apiService = apiService
     }
 
     // MARK: CRUD Actions
@@ -65,7 +72,7 @@ final class DataRepository: ObservableObject {
 
     }
 
-    func fetchData<T: Object>(type: T.Type, filter: String? = "") -> Results<T> {
+    func fetchLocalData<T: Object>(type: T.Type, filter: String? = "") -> Results<T> {
         let results: Results<T>
         if let filter = filter {
             if !filter.isEmpty {
@@ -80,7 +87,7 @@ final class DataRepository: ObservableObject {
     }
 
     /// TODO: Catch 'Invalid property name' exception
-    func fetchData<T: Object>(type: T.Type, filter: NSPredicate) throws -> Results<T> {
+    func fetchLocalData<T: Object>(type: T.Type, filter: NSPredicate) throws -> Results<T> {
         let results: Results<T>
 
         results = realm.objects(type).filter(filter)
@@ -88,4 +95,12 @@ final class DataRepository: ObservableObject {
         return results
     }
 
+    func fetchFirstnames(completion: @escaping ([FirstnameDataModel]) -> Void) {
+        apiService.fetchFirstnames { firstnames in
+
+            self.deleteAll()
+            self.addAll(firstnamesToAdd: firstnames)
+            completion(firstnames)
+        }
+    }
 }
