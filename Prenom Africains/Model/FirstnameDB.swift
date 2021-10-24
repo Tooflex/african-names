@@ -9,6 +9,7 @@ import Foundation
 import RealmSwift
 
 class FirstnameDB: Object {
+    @objc dynamic var localId = 0
     @objc dynamic var id = 0
     @objc dynamic var firstname = ""
     @objc dynamic var gender = ""
@@ -17,9 +18,10 @@ class FirstnameDB: Object {
     @objc dynamic var origins = ""
     @objc dynamic var soundURL = ""
     @objc dynamic var regions = ""
+    @objc dynamic var firstnameSize = ""
 
     override static func primaryKey() -> String? {
-        "id"
+        "localId"
     }
 
 }

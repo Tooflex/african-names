@@ -38,14 +38,14 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
                 case .finished:
                         ()
                 case .failure(let error):
-                        print(error.localizedDescription)
+                        print(error)
                 }
             }, receiveValue: { (response) in
                 switch response.result {
                 case .success(let model):
                         completion(model)
                 case .failure(let error):
-                        print(error.localizedDescription)
+                        print(error)
                 }
             }).store(in: &tokens)
     }

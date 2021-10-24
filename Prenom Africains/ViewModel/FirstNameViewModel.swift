@@ -23,8 +23,6 @@ final class FirstNameViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var currentFirstname: FirstnameDB = FirstnameDB()
 
-    var tokens: Set<AnyCancellable> = []
-
     private let apiEndpoint = Bundle.main.infoDictionary!["API_ENDPOINT"] as? String
 
     private var task: AnyCancellable?
@@ -69,107 +67,9 @@ final class FirstNameViewModel: ObservableObject {
         self.currentFirstname = self.firstnamesResults?.first ?? FirstnameDB()
     }
 
-//    func fetchFirstnames() {
-//
-//        loaded = true
-//
-//        if let apiEndpoint = apiEndpoint {
-//
-//        let url = "\(apiEndpoint)/api/v1/firstnames/random"
-//
-//        let headers: HTTPHeaders = [.authorization(username: username, password: password)]
-//
-//        AF.request(url, headers: headers)
-//            .validate()
-//            .publishDecodable(type: [FirstnameDataModel].self)
-//            .sink(receiveCompletion: { (completion) in
-//                switch completion {
-//                case .finished:
-//                    ()
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            }, receiveValue: { (response) in
-//                switch response.result {
-//                case .success(let model):
-//                        self.dataRepository.deleteAll()
-//                        self.dataRepository.addAll(firstnamesToAdd: model)
-//                        self.currentFirstname = self.firstnamesResults?.shuffled().first ?? FirstnameDB()
-//                    self.activateFirstnamesToken()
-//                    self.loaded = false
-//                case .failure(let error):
-//                    print(error.localizedDescription)
-//                }
-//            }).store(in: &tokens)
-//        } else {
-//            return
-//        }
-//    }
-
-    func toggleFavorited(firstnameObj: FirstnameDataModel) {
-        objectWillChange.send()
-        do {
-            let favorite = firstnameObj.isFavorite
-            if let firstnameId = firstnameObj.id {
-                let realm = try Realm()
-                try realm.write {
-                    realm.create(
-                        FirstnameDB.self,
-                        value: ["id": firstnameId, "isFavorite": !(favorite)],
-                        update: .modified)
-                }
-            }
-        } catch let error {
-            // Handle error
-            print(error.localizedDescription)
-        }
-    }
-
     func toggleFavorited(firstnameObj: FirstnameDB) {
         objectWillChange.send()
-        do {
-            let favorite = firstnameObj.isFavorite
-
-                let realm = try Realm()
-                try realm.write {
-                    realm.create(
-                        FirstnameDB.self,
-                        value: ["id": firstnameObj.id, "isFavorite": !(favorite)],
-                        update: .modified)
-                }
-
-        } catch let error {
-            // Handle error
-            print(error.localizedDescription)
-        }
-    }
-
-    func update(
-        firstnameID: Int,
-        firstname: String,
-        gender: String,
-        meaning: String,
-        origins: String
-    ) {
-        objectWillChange.send()
-        do {
-            let realm = try Realm()
-            try realm.write {
-                realm.create(
-                    FirstnameDB.self,
-                    value: [
-                        "id": firstnameID,
-                        "firstname": firstname,
-                        "gender": gender,
-                        "meaning": meaning,
-                        "origins": origins
-                    ],
-                    update: .modified)
-            }
-        } catch let error {
-            // Handle error
-            print(error.localizedDescription)
-        }
+        dataRepository.toggleFavorited(firstnameObj: firstnameObj)
     }
 
     private func activateFirstnamesToken() {
@@ -186,6 +86,7 @@ final class FirstNameViewModel: ObservableObject {
         let filterArea = filterArray["regions"] as? [String] ?? []
         let filterOrigins = filterArray["origins"] as? [String] ?? []
         let filterGender = filterArray["gender"] as? [String] ?? []
+        let filterSize = filterArray["size"] as? [String] ?? []
 
         var subPredicates = [NSPredicate]()
         let favoritePredicate = NSPredicate(format: "isFavorite == %d", filterIsFavorite)
@@ -203,7 +104,14 @@ final class FirstNameViewModel: ObservableObject {
 
         if !filterGender.isEmpty {
             let genderPredicate = NSPredicate(format: "gender IN %@", filterGender)
+            print(genderPredicate)
             subPredicates.append(genderPredicate)
+        }
+
+        if !filterSize.isEmpty {
+            let sizePredicate = NSPredicate(format: "firstnameSize IN %@", filterSize)
+            print(sizePredicate)
+            subPredicates.append(sizePredicate)
         }
 
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)

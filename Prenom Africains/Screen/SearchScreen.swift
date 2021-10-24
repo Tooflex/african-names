@@ -109,6 +109,8 @@ struct SearchScreen: View {
                     if searchScreenViewModel.filterFemale {
                         searchScreenViewModel.filterGender.append("female")
                     }
+                    searchScreenViewModel.filterSize = searchScreenViewModel.sizes.filter {
+                        $0.isSelected }.map { $0.titleKey.lowercased() }
                     searchScreenViewModel.saveFilters()
                     self.selectedTab = 0 // Go back to Home screen
                 }) {

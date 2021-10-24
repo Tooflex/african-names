@@ -151,12 +151,11 @@ struct DescriptionView: View {
             self.engine = try CHHapticEngine()
             try engine?.start()
         } catch {
-            print("There was an error creating the engine: \(error.localizedDescription)")
+            print("There was an error creating the engine: \(error)")
         }
     }
 
     func complexSuccess() {
-        print("haptic")
         // make sure that the device supports haptics
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
         var events = [CHHapticEvent]()
@@ -177,7 +176,7 @@ struct DescriptionView: View {
             let player = try engine?.makePlayer(with: pattern)
             try player?.start(atTime: 0)
         } catch {
-            print("Failed to play pattern: \(error.localizedDescription).")
+            print("Failed to play pattern: \(error).")
         }
     }
 }

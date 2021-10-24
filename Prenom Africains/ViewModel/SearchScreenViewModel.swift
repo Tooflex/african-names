@@ -90,7 +90,7 @@ final class SearchScreenViewModel: ObservableObject {
                         case .finished:
                                 ()
                         case .failure(let error):
-                                print(error.localizedDescription)
+                                print(error)
                         }
                     }, receiveValue: { (response) in
                         switch response.result {
@@ -99,7 +99,7 @@ final class SearchScreenViewModel: ObservableObject {
                                 self.loading = false
 
                         case .failure(let error):
-                                print(error.localizedDescription)
+                                print(error)
                         }
                     }).store(in: &tokens)
             } else {
@@ -147,7 +147,7 @@ final class SearchScreenViewModel: ObservableObject {
                     case .finished:
                             ()
                     case .failure(let error):
-                            print(error.localizedDescription)
+                            print(error)
                     }
                 }, receiveValue: { (response) in
                     switch response.result {
@@ -157,7 +157,7 @@ final class SearchScreenViewModel: ObservableObject {
                             print(model.count)
 
                     case .failure(let error):
-                            print(error.localizedDescription)
+                            print(error)
                             print("Called failed look into local")
                             self.filterFirstnamesLocal()
                     }
@@ -187,7 +187,8 @@ final class SearchScreenViewModel: ObservableObject {
         let filters = ["isFavorite": filterIsFavorite,
                        "regions": filterArea,
                        "origins": filterOrigins,
-                       "gender": filterGender] as [String: Any]
+                       "gender": filterGender,
+                       "size": filterSize] as [String: Any]
         print("My filters")
         print(filters)
         UserDefaults.standard.set(filters, forKey: "Filters")
@@ -218,7 +219,7 @@ final class SearchScreenViewModel: ObservableObject {
                 case .finished:
                         ()
                 case .failure(let error):
-                        print(error.localizedDescription)
+                        print(error)
                 }
             }, receiveValue: { [self] (response) in
                 switch response.result {
@@ -231,7 +232,7 @@ final class SearchScreenViewModel: ObservableObject {
                     }
 
                 case .failure(let error):
-                        print(error.localizedDescription)
+                        print(error)
                 }
             }).store(in: &tokens)
         }
