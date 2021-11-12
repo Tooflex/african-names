@@ -35,7 +35,7 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
 
         let headers: HTTPHeaders = [.authorization(username: username, password: password)]
 
-        manager.request(url, headers: headers)
+        manager.request(url, headers: headers) { $0.timeoutInterval = 5 }
             .validate()
             .publishDecodable(type: [FirstnameDataModel].self)
             .sink(receiveCompletion: { (completion) in

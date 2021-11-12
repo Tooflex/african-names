@@ -23,6 +23,8 @@ struct MainScreen: View {
 
     @State private var listOfFirstnamesToDisplay: [FirstnameDB] = []
 
+    @State private var count = 0
+
     let timer = Timer.publish(every: 0.01, on: .current, in: .common).autoconnect()
     @State var phaseCst: Double = 0
 
@@ -51,6 +53,14 @@ struct MainScreen: View {
     }
 
     var body: some View {
+
+        if self.firstNameViewModel.isLoading {
+            Spacer()
+            LottieView(name: "loading-rainbow", loopMode: .loop)
+                .frame(width: 300 * CGFloat(sizeMultiplier()), height: 300 * CGFloat(sizeMultiplier()))
+            Text("Loading...")
+            Spacer()
+        } else {
             GeometryReader { geo in
             ZStack {
                 ZStack {
@@ -61,6 +71,10 @@ struct MainScreen: View {
                     .foregroundColor(setColor())
                         .onReceive(self.timer) { _ in
                             phaseCst += 0.2
+                            count += 1
+                            if count > 5000 {
+                                self.timer.upstream.connect().cancel()
+                            }
                     }
                 }.frame(height: 70, alignment: .center)
 
@@ -131,7 +145,7 @@ struct MainScreen: View {
                 }
             }
         }
-
+        }
     }
 
     func sizeMultiplier() -> Int {
