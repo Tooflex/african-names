@@ -37,6 +37,7 @@ struct CircleFirstName: View {
                             .frame(width: 250 * sizeMultiplier(), height: 140 * sizeMultiplier())
                             .offset(y: 40)
                             .shadow(color: Color.black.opacity(16.0), radius: 6, x: 5, y: 3)
+                            .accessibility(label: Text("current firstname"))
 
                         Button(action: {
                             speakFirstname(firsnameStr: prenom.firstname)

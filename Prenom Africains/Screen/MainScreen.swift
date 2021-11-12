@@ -32,6 +32,7 @@ struct MainScreen: View {
             .onTapGesture {
                 previousFirstname()
             }
+            .accessibility(label: Text("left button"))
     }
 
     fileprivate func rightButton() -> some View {
@@ -43,6 +44,7 @@ struct MainScreen: View {
             .onTapGesture {
                 nextFirstname()
             }
+            .accessibility(label: Text("right button"))
     }
 
     var body: some View {
@@ -118,7 +120,7 @@ struct MainScreen: View {
     func setColor() -> Color {
         switch firstNameViewModel.currentFirstname.gender {
         case Gender.male.rawValue:
-            return Color.blue
+            return Color.appBlue
         case Gender.female.rawValue:
             return Color.pink
         case Gender.mixed.rawValue:

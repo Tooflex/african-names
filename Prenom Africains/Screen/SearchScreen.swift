@@ -128,7 +128,7 @@ struct SearchScreen: View {
                     .padding(.horizontal, 30)
                     .padding(.vertical, 8)
                     .foregroundColor(.white)
-                    .background(Color.blue)
+                    .background(Color.appBlue)
                     .cornerRadius(10)
                 }.padding()
                 Spacer()

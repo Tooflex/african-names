@@ -54,4 +54,8 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
                 }
             }).store(in: &tokens)
     }
+
+    func fetchFirstnamesMock(completion: @escaping ([FirstnameDataModel]) -> Void) {
+
+    }
 }

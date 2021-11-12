@@ -11,13 +11,15 @@ import XCTest
 
 class FirstnameApiServiceTests: XCTestCase {
 
+    var manager: Session!
     private var firstnameApiService: FirstNameApiService!
+    private let apiEndpoint = Bundle.main.infoDictionary!["API_ENDPOINT"] as? String
 
     override func setUpWithError() throws {
-        let manager: Session = {
+        manager = {
             let configuration: URLSessionConfiguration = {
-                let configuration = URLSessionConfiguration.default
-                configuration.protocolClasses = [MockURLProtocol.self]
+                let configuration = URLSessionConfiguration.af.default
+                configuration.protocolClasses = [MockingURLProtocol.self] + (configuration.protocolClasses ?? [])
                 return configuration
             }()
 
@@ -32,15 +34,26 @@ class FirstnameApiServiceTests: XCTestCase {
 
     func testFetchFirstnames() throws {
         // given
-        MockURLProtocol.responseWithStatusCode(code: 200)
-
+        let expectedFirstname = FirstnameDataModel()
         let expectation = XCTestExpectation(description: "Performs a request")
 
         // when
-        firstnameApiService.fetchFirstnames { firstnames in
-            XCTAssert(firstnames.count > 0)
-            expectation.fulfill()
+        guard let url = URL(string: "\(apiEndpoint ?? "")/api/v1/firstnames/random" ) else {
+            print("Error: cannot create URL")
+            return
         }
+
+        let headers: HTTPHeaders = [.authorization(username: "user", password: "mdp")]
+        // swiftlint:disable force_try
+        let mockedData = try! JSONEncoder().encode(expectedFirstname)
+        let mock = Mock(url: url, dataType: .json, statusCode: 200, data: [.get: mockedData])
+        mock.register()
+        manager.request(url, headers: headers)
+            .responseDecodable(of: FirstnameDataModel.self) { (response) in
+                XCTAssertNil(response.error)
+                XCTAssertEqual(response.value, expectedFirstname)
+                expectation.fulfill()
+            }
 
         // then
         wait(for: [expectation], timeout: 3)

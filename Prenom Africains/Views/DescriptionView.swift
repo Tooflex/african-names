@@ -183,6 +183,7 @@ struct DescriptionView: View {
 
 extension Color {
     static let offWhite = Color(red: 225 / 255, green: 225 / 255, blue: 235 / 255)
+    static let appBlue = Color(red: 5/255, green: 59/255, blue: 151/255)
 }
 
 struct DescriptionView_Previews: PreviewProvider {

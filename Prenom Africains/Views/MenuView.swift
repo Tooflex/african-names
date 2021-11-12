@@ -61,9 +61,10 @@ struct MenuView: View {
                 VStack(alignment: .center, spacing: 3) {
                     Image(systemName: "house")
                         .font(iconFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.home.rawValue ? Color.blue : Color.black)
+                        .foregroundColor(selectedTab == MenuItemEnum.home.rawValue ? Color.appBlue : Color.black)
+                        .accessibilityLabel(Text("Home"))
                     Text("Home").font(textFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.home.rawValue ? Color.blue : Color.black)
+                        .foregroundColor(selectedTab == MenuItemEnum.home.rawValue ? Color.appBlue : Color.black)
                 }
             }
         }
@@ -82,9 +83,10 @@ struct MenuView: View {
                 VStack(alignment: .center, spacing: 3) {
                     Image(systemName: "magnifyingglass")
                         .font(iconFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.search.rawValue ? Color.blue : Color.black)
+                        .foregroundColor(selectedTab == MenuItemEnum.search.rawValue ? Color.appBlue : Color.black)
+                        .accessibilityLabel(Text("Search"))
                     Text("Search").font(textFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.search.rawValue ? Color.blue : Color.black)
+                        .foregroundColor(selectedTab == MenuItemEnum.search.rawValue ? Color.appBlue : Color.black)
                 }
             }
         }
@@ -104,9 +106,12 @@ struct MenuView: View {
                 VStack(alignment: .center, spacing: 3) {
                     Image(systemName: "bookmark")
                         .font(iconFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.myList.rawValue ? Color.blue : Color.black)
+                        .foregroundColor(selectedTab == MenuItemEnum.myList.rawValue ? Color.appBlue : Color.black)
+                        .accessibilityLabel(Text("My list"))
                     Text("My List").font(textFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.myList.rawValue ? Color.blue : Color.black)
+                        .foregroundColor(selectedTab == MenuItemEnum.myList.rawValue ? Color.appBlue : Color.black)
+                        .accessibilityLabel(Text("My list"))
+
                 }
             })
         }
@@ -129,11 +134,12 @@ struct MenuView: View {
                 VStack(alignment: .center, spacing: 3) {
                     Image(systemName: "square.and.arrow.up")
                         .font(iconFont)
-                        .foregroundColor(self.showShareSheet ? Color.blue : Color.black)
+                        .foregroundColor(self.showShareSheet ? Color.appBlue : Color.black)
+                        .accessibilityLabel(Text("Share"))
                     Text("Share")
                         .font(textFont)
                         .foregroundColor(
-                            self.showShareSheet ? Color.blue : Color.black)
+                            self.showShareSheet ? Color.appBlue : Color.black)
                 }
             }).sheet(isPresented: $showShareSheet, content: {
                 ActivityViewController(activityItems: self.$shareSheetItems, excludedActivityTypes: excludedActivityTypes)
@@ -155,11 +161,12 @@ struct MenuView: View {
                 VStack(alignment: .center, spacing: 3) {
                     Image(systemName: "gearshape")
                         .font(iconFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.params.rawValue ? Color.blue : Color.black)
+                        .foregroundColor(selectedTab == MenuItemEnum.params.rawValue ? Color.appBlue : Color.black)
+                        .accessibilityLabel(Text("Params"))
                     Text("Params")
                         .font(textFont)
                         .foregroundColor(
-                            selectedTab == MenuItemEnum.params.rawValue ? Color.blue : Color.black)
+                            selectedTab == MenuItemEnum.params.rawValue ? Color.appBlue : Color.black)
                 }
             })
         }

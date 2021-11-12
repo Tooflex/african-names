@@ -17,11 +17,11 @@ struct ChipsView: View {
             Text(chip.titleKey).font(.title3).lineLimit(1)
         }.padding(.all, 10)
         .foregroundColor(chip.isSelected ? .white : .blue)
-        .background(chip.isSelected ? Color.blue : Color.white)
+        .background(chip.isSelected ? Color.appBlue : Color.white)
         .cornerRadius(40)
         .overlay(
             RoundedRectangle(cornerRadius: 40)
-                .stroke(Color.blue, lineWidth: 1.5)
+                .stroke(Color.appBlue, lineWidth: 1.5)
         )
     }
 }
