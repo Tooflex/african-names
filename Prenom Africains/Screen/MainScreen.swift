@@ -23,6 +23,9 @@ struct MainScreen: View {
 
     @State private var listOfFirstnamesToDisplay: [FirstnameDB] = []
 
+    let timer = Timer.publish(every: 0.01, on: .current, in: .common).autoconnect()
+    @State var phaseCst: Double = 0
+
     fileprivate func leftButton() -> some View {
         return Triangle()
             .fill(setColor())
@@ -48,57 +51,87 @@ struct MainScreen: View {
     }
 
     var body: some View {
-            VStack {
-               Spacer()
-                HStack {
-                    if isPreviousFirstname() {
-                        leftButton()
-                    } else {
-                        Spacer().frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
+            GeometryReader { geo in
+            ZStack {
+                ZStack {
+                    Wave(waveHeight: 30, phase: Angle(degrees: (Double(geo.frame(in: .global).minY) + phaseCst) * -1 * 0.7))
+                    .foregroundColor(setColorAlt())
+                    .opacity(0.5)
+                Wave(waveHeight: 30, phase: Angle(degrees: (Double(geo.frame(in: .global).minY) + phaseCst) * 0.7))
+                    .foregroundColor(setColor())
+                        .onReceive(self.timer) { _ in
+                            phaseCst += 0.2
                     }
-                    // iPad Full or 1/2
-                    if vSizeClass == .regular && hSizeClass == .regular {
-                        VStack {
-                            Spacer()
+                }.frame(height: 70, alignment: .center)
+
+                VStack {
+                    Spacer()
+                    HStack {
+                        if isPreviousFirstname() {
+                            leftButton()
+                        } else {
+                            Spacer().frame(
+                                width: 30 * CGFloat(sizeMultiplier()),
+                                height: 30 * CGFloat(sizeMultiplier())
+                            )
+                        }
+                        // iPad Full or 1/2
+                        if vSizeClass == .regular && hSizeClass == .regular {
+                            VStack {
+                                Spacer()
+                                CircleFirstName(prenom: firstNameViewModel.currentFirstname, color: setColor())
+                                    .padding(.bottom)
+                                    .frame(width: 600, height: 600)
+                                Spacer()
+                            }
+
+                        } else {
                             CircleFirstName(prenom: firstNameViewModel.currentFirstname, color: setColor())
                                 .padding(.bottom)
-                                .frame(width: 600, height: 600)
-                            Spacer()
                         }
 
-                    } else {
-                        CircleFirstName(prenom: firstNameViewModel.currentFirstname, color: setColor())
-                            .padding(.bottom)
+                        if isNextFirstname() {
+                            rightButton()
+                        } else {
+                            Spacer().frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
+                        }
+                    }
+                    if self.firstNameViewModel.isFiltered {
+                        HStack {
+                            Spacer()
+                            FilterChip(text: "filters on", color: .white, action: {
+                                self.firstNameViewModel.clearFilters()
+                                self.firstNameViewModel.getFirstnames()
+                            })
+                                .padding(.horizontal)
+                        }
                     }
 
-                    if isNextFirstname() {
-                        rightButton()
-                    } else {
-                        Spacer().frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
-                    }
+                    DescriptionView()
                 }
-                DescriptionView()
-            }
-            .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
-                        .onEnded { value in
-                            let horizontalAmount = value.translation.width as CGFloat
-                            let verticalAmount = value.translation.height as CGFloat
+                .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
+                            .onEnded { value in
+                    let horizontalAmount = value.translation.width as CGFloat
+                    let verticalAmount = value.translation.height as CGFloat
 
-                            if abs(horizontalAmount) > abs(verticalAmount) {
-                                print(horizontalAmount < 0 ? nextFirstname() : previousFirstname())
-                            }
-                        })
-            .padding(.vertical)
-            .onAppear(perform: {
-                firstNameViewModel.onAppear()
-            })
-        .onReceive(firstNameViewModel.$firstnamesResults) { firstnames in
-            if let firstnames = firstnames {
-                if !firstnames.isEmpty {
-                    firstNameViewModel.currentFirstname = firstnames[currentIndex]
+                    if abs(horizontalAmount) > abs(verticalAmount) {
+                        print(horizontalAmount < 0 ? nextFirstname() : previousFirstname())
+                    }
+                })
+                .padding(.vertical)
+                .onAppear(perform: {
+                    firstNameViewModel.onAppear()
+                })
+                .onReceive(firstNameViewModel.$firstnamesResults) { firstnames in
+                    if let firstnames = firstnames {
+                        if !firstnames.isEmpty {
+                            firstNameViewModel.currentFirstname = firstnames[currentIndex]
+                        }
+                    }
                 }
             }
         }
+
     }
 
     func sizeMultiplier() -> Int {
@@ -129,6 +162,21 @@ struct MainScreen: View {
             return Color.black
         default:
             return Color.black
+        }
+    }
+
+    func setColorAlt() -> Color {
+        switch firstNameViewModel.currentFirstname.gender {
+        case Gender.male.rawValue:
+                return Color.blue
+        case Gender.female.rawValue:
+            return Color.lightPink
+        case Gender.mixed.rawValue:
+            return Color.lightPurple
+        case Gender.undefined.rawValue:
+            return Color.gray
+        default:
+            return Color.gray
         }
     }
 

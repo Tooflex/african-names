@@ -13,7 +13,10 @@ struct FavoriteListScreen: View {
 
     @Environment(\.horizontalSizeClass) var hSizeClass
 
+    @Binding var selectedTab: Int
+
     @StateObject fileprivate var viewModel = FavoriteListViewModel()
+
     var body: some View {
         VStack {
             if let favorites = viewModel.favoritedFirstnamesResults {
@@ -25,8 +28,22 @@ struct FavoriteListScreen: View {
                     Spacer()
                 } else {
                     List(favorites) { firstname in
-                        Text("\(firstname.firstname)")
-                    }.foregroundColor(.offWhite)        .listRowBackground(Color.primary.colorInvert())
+                        Button(action: {
+                            viewModel.selectedFirstname = firstname
+                            viewModel.saveFilters()
+                            self.selectedTab = 0 // Go back to Home screen
+                        }, label: {
+                            if firstname.gender == Gender.male.rawValue {
+                                Text("\(firstname.firstname)").foregroundColor(Color.appBlue)
+                            } else if firstname.gender == Gender.female.rawValue {
+                                Text("\(firstname.firstname)").foregroundColor(Color.pink)
+                            } else if firstname.gender == Gender.mixed.rawValue {
+                                Text("\(firstname.firstname)").foregroundColor(Color.purple)
+                            } else {
+                                Text("\(firstname.firstname)").foregroundColor(Color.black)
+                            }
+                        })
+                    }
                 }
             }
         }

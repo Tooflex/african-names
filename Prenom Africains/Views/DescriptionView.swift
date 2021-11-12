@@ -109,7 +109,9 @@ struct DescriptionView: View {
                 Button(action: {
                     firstNameViewModel.toggleFavorited(firstnameObj: firstNameViewModel.currentFirstname)
                 }) {
-                    LottieView(name: "heart_like", fromMarker: "touchDownStart", toMarker: "touchUpEnd")
+                    LottieView(name: getRightHeartLikeStyle(gender: Gender(rawValue: firstNameViewModel.currentFirstname.gender) ?? Gender.undefined),
+                               fromMarker: "touchDownStart",
+                               toMarker: "touchUpEnd")
                         .padding(.all, -40)
                         .frame(
                             width: 40 * CGFloat(sizeMultiplier()),
@@ -121,7 +123,9 @@ struct DescriptionView: View {
                     firstNameViewModel.toggleFavorited(firstnameObj: firstNameViewModel.currentFirstname)
                     complexSuccess()
                 }) {
-                    LottieView(name: "heart_like", fromMarker: "touchDownStart1", toMarker: "touchUpEnd1")
+                    LottieView(name: getRightHeartLikeStyle(gender: Gender(rawValue: firstNameViewModel.currentFirstname.gender) ?? Gender.undefined),
+                               fromMarker: "touchDownStart1",
+                               toMarker: "touchUpEnd1")
                         .padding(.all, -40)
                         .frame(
                             width: 40 * CGFloat(sizeMultiplier()),
@@ -132,6 +136,16 @@ struct DescriptionView: View {
             Spacer()
         }
         .onAppear(perform: prepareHaptics)
+
+    }
+
+    func getRightHeartLikeStyle(gender: Gender) -> String {
+        switch gender {
+        case Gender.female:
+               return "heart_like_white"
+        default:
+              return "heart_like"
+        }
 
     }
 
@@ -184,6 +198,8 @@ struct DescriptionView: View {
 extension Color {
     static let offWhite = Color(red: 225 / 255, green: 225 / 255, blue: 235 / 255)
     static let appBlue = Color(red: 5/255, green: 59/255, blue: 151/255)
+    static let lightPink = Color(red: 150/255, green: 71/255, blue: 76/255)
+    static let lightPurple = Color(red: 255/255, green: 182/255, blue: 193/255)
 }
 
 struct DescriptionView_Previews: PreviewProvider {

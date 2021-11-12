@@ -19,9 +19,10 @@ final class FirstNameViewModel: ObservableObject {
     @Published var firstnamesResults: Results<FirstnameDB>?
 
     var firstnamesToken: NotificationToken?
-    @Published var loaded = false
     @Published var isLoading = false
+    @Published var isFiltered = false
     @Published var currentFirstname: FirstnameDB = FirstnameDB()
+    var firstnameOnTop: FirstnameDB = FirstnameDB()
 
     private let apiEndpoint = Bundle.main.infoDictionary!["API_ENDPOINT"] as? String
 
@@ -31,9 +32,10 @@ final class FirstNameViewModel: ObservableObject {
     let password = "Manjack76"
 
     init() {
-        loaded = true
+        isLoading = true
         dataRepository.fetchFirstnames { _ in
             self.getFirstnames()
+            self.isLoading = false
         }
     }
 
@@ -43,6 +45,14 @@ final class FirstNameViewModel: ObservableObject {
 
     func onAppear() {
        getFirstnames()
+    }
+
+    func clearFilters() {
+        let filters = [String: Any]()
+        print("My filters")
+        print(filters)
+        UserDefaults.standard.set(filters, forKey: "Filters")
+        self.isFiltered = false
     }
 
     func getFirstnames() {
@@ -55,8 +65,15 @@ final class FirstNameViewModel: ObservableObject {
         self.firstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self)
 
         if filters.isEmpty {
+            self.isFiltered = false
             self.firstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self)
         } else {
+            self.isFiltered = true
+            let filterOnTop = filters["onTop"] as? Int ?? -1
+            if filterOnTop != -1 {
+                firstnameOnTop = dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "localId = \(filterOnTop)").first ?? FirstnameDB()
+            }
+
             let compoundFilter = self.createFilterCompound(filterArray: filters)
             do {
                 try self.firstnamesResults = dataRepository.fetchLocalData(
@@ -67,6 +84,9 @@ final class FirstNameViewModel: ObservableObject {
                 print("Errors in filtering")
             }
 
+        }
+        if firstnameOnTop.localId != 0 {
+            // TODO: Put Selected firstname on top of list
         }
         self.currentFirstname = self.firstnamesResults?.first ?? FirstnameDB()
     }
