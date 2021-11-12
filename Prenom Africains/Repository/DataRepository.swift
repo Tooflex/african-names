@@ -38,6 +38,9 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
             firstnameDB.meaning = firstname.meaning ?? ""
             firstnameDB.origins = firstname.origins ?? ""
             firstnameDB.firstnameSize = firstname.size?.rawValue ?? ""
+            firstnameDB.regions = firstname.regions ?? ""
+            firstnameDB.soundURL = firstname.soundURL ?? ""
+            firstnameDB.isFavorite = firstname.isFavorite
 
             try realm.write {
                 realm.add(firstnameDB)
@@ -54,19 +57,23 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
         }
     }
 
-    func update(firstname: FirstnameDataModel) {
+    func update(firstname: FirstnameDB) {
         objectWillChange.send()
         do {
             try realm.write {
                 realm.create(
                     FirstnameDB.self,
                     value: [
-                        "id": firstname.id ?? "",
-                        "firstname": firstname.firstname ?? "",
+                        "localId": firstname.localId,
+                        "firstname": firstname.firstname ,
                         "gender": firstname.gender,
-                        "meaning": firstname.meaning ?? "",
-                        "origins": firstname.origins ?? "",
-                        "size": firstname.size ?? ""
+                        "meaning": firstname.meaning ,
+                        "origins": firstname.origins ,
+                        "size": firstname.firstnameSize,
+                        "soundURL": firstname.soundURL,
+                        "isFavorite":
+                            firstname.isFavorite,
+                        "regions": firstname.regions
                     ],
                     update: .modified)
             }
@@ -103,7 +110,6 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
         return results
     }
 
-    /// TODO: Catch 'Invalid property name' exception
     func fetchLocalData<T: Object>(type: T.Type, filter: NSPredicate) throws -> Results<T> {
         let results: Results<T>
 

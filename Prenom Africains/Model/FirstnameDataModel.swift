@@ -21,9 +21,10 @@ struct FirstnameDataModel: Identifiable, Codable, Hashable {
     var size: Size?
 
     init() {
+        self.id = 0
         self.firstname = "No Firstname"
         self.meaning = "No meaning"
-        self.origins = ""
+        self.origins = "No origins"
         self.soundURL = ""
         self.regions = ""
         self.gender = Gender.undefined
@@ -74,5 +75,19 @@ extension FirstnameDataModel {
         soundURL = firstnameDB.soundURL
         regions = firstnameDB.regions
         size = Size(rawValue: firstnameDB.firstnameSize) ?? Size.undefined
+    }
+}
+
+extension FirstnameDataModel: Equatable {
+    static func == (lhs: FirstnameDataModel, rhs: FirstnameDataModel) -> Bool {
+        return
+        lhs.id == rhs.id &&
+        lhs.firstname == rhs.firstname &&
+        lhs.meaning == rhs.meaning &&
+        lhs.origins == rhs.origins &&
+        lhs.soundURL == rhs.soundURL &&
+        lhs.isFavorite == rhs.isFavorite &&
+        lhs.regions == rhs.regions &&
+        lhs.size == rhs.size
     }
 }

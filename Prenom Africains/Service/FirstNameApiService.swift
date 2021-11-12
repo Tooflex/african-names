@@ -15,6 +15,11 @@ protocol FirstNameApiServiceProtocol {
 
 final class FirstNameApiService: FirstNameApiServiceProtocol {
 
+    private let manager: Session
+    init(manager: Session = Session.default) {
+        self.manager = manager
+    }
+
     private let apiEndpoint = Bundle.main.infoDictionary!["API_ENDPOINT"] as? String
 
     let username = "user"
@@ -30,7 +35,7 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
 
         let headers: HTTPHeaders = [.authorization(username: username, password: password)]
 
-        AF.request(url, headers: headers)
+        manager.request(url, headers: headers)
             .validate()
             .publishDecodable(type: [FirstnameDataModel].self)
             .sink(receiveCompletion: { (completion) in

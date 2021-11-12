@@ -16,6 +16,9 @@
 		152F3C492649B53F000D564B /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 152F3C482649B53F000D564B /* SlideOverCard */; };
 		152F3C4B264C6F71000D564B /* SearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F3C4A264C6F71000D564B /* SearchBarButton.swift */; };
 		15300A88266C1F47000AAAF6 /* SearchCriteria.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15300A87266C1F47000AAAF6 /* SearchCriteria.swift */; };
+		1535635C2739BABC007B1959 /* FavoriteListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1535635B2739BABC007B1959 /* FavoriteListScreen.swift */; };
+		1535635E2739BDCD007B1959 /* FavoriteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1535635D2739BDCD007B1959 /* FavoriteListViewModel.swift */; };
+		153563602739DFB9007B1959 /* searching-for-name.json in Resources */ = {isa = PBXBuildFile; fileRef = 1535635F2739DFB9007B1959 /* searching-for-name.json */; };
 		1539F18026E4ED67009889B5 /* FirstnameDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1539F17F26E4ED67009889B5 /* FirstnameDataModel.swift */; };
 		1544144F264F52BD00BA6887 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1544144E264F52BD00BA6887 /* Colors.xcassets */; };
 		15515FC52677D04B009C2BDF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 15515FC42677D04B009C2BDF /* Realm */; };
@@ -30,7 +33,6 @@
 		156F0AE42608172F0076AB4B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AE32608172F0076AB4B /* ContentView.swift */; };
 		156F0AE6260817300076AB4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156F0AE5260817300076AB4B /* Assets.xcassets */; };
 		156F0AE9260817300076AB4B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156F0AE8260817300076AB4B /* Preview Assets.xcassets */; };
-		156F0AF4260817300076AB4B /* PrenomAfricainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AF3260817300076AB4B /* PrenomAfricainsTests.swift */; };
 		156F0AFF260817300076AB4B /* PrenomAfricainsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0AFE260817300076AB4B /* PrenomAfricainsUITests.swift */; };
 		156F0B11260817690076AB4B /* CircleFirstName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B10260817690076AB4B /* CircleFirstName.swift */; };
 		156F0B1A26081CA60076AB4B /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 156F0B1926081CA60076AB4B /* Lottie */; };
@@ -38,6 +40,10 @@
 		156F0B2726081DA40076AB4B /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B2626081DA40076AB4B /* LottieView.swift */; };
 		156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B2B260821470076AB4B /* DescriptionView.swift */; };
 		156F0B32260825910076AB4B /* MainScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156F0B31260825910076AB4B /* MainScreen.swift */; };
+		1588BCDB273D512000F91E42 /* FirstNameViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588BCDA273D512000F91E42 /* FirstNameViewModelTests.swift */; };
+		1588BCDD273D571400F91E42 /* DataRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588BCDC273D571400F91E42 /* DataRepositoryTest.swift */; };
+		1588BCDF273DFE1900F91E42 /* FirstnameApiServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588BCDE273DFE1900F91E42 /* FirstnameApiServiceTests.swift */; };
+		1588BCE3273E00CC00F91E42 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588BCE2273E00CC00F91E42 /* MockURLProtocol.swift */; };
 		15A134BC272476EB0019AE90 /* md-male-select.json in Resources */ = {isa = PBXBuildFile; fileRef = 15A134BB272476EB0019AE90 /* md-male-select.json */; };
 		15A134BF272572D80019AE90 /* FirstNameApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A134BE272572D80019AE90 /* FirstNameApiService.swift */; };
 		15ABCB3C262A564B00036B3E /* PrenomAfricainsSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB3B262A564B00036B3E /* PrenomAfricainsSlowTests.swift */; };
@@ -92,6 +98,9 @@
 		152E82702635CB01002950E6 /* LottieLikeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieLikeButtonView.swift; sourceTree = "<group>"; };
 		152F3C4A264C6F71000D564B /* SearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarButton.swift; sourceTree = "<group>"; };
 		15300A87266C1F47000AAAF6 /* SearchCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCriteria.swift; sourceTree = "<group>"; };
+		1535635B2739BABC007B1959 /* FavoriteListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListScreen.swift; sourceTree = "<group>"; };
+		1535635D2739BDCD007B1959 /* FavoriteListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewModel.swift; sourceTree = "<group>"; };
+		1535635F2739DFB9007B1959 /* searching-for-name.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "searching-for-name.json"; sourceTree = "<group>"; };
 		1539F17F26E4ED67009889B5 /* FirstnameDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstnameDataModel.swift; sourceTree = "<group>"; };
 		1544144E264F52BD00BA6887 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		15515FC82677D423009C2BDF /* FirstnameDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnameDB.swift; sourceTree = "<group>"; };
@@ -107,7 +116,6 @@
 		156F0AE8260817300076AB4B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		156F0AEA260817300076AB4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		156F0AEF260817300076AB4B /* Prenom AfricainsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prenom AfricainsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		156F0AF3260817300076AB4B /* PrenomAfricainsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAfricainsTests.swift; sourceTree = "<group>"; };
 		156F0AF5260817300076AB4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		156F0AFA260817300076AB4B /* Prenom AfricainsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prenom AfricainsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		156F0AFE260817300076AB4B /* PrenomAfricainsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAfricainsUITests.swift; sourceTree = "<group>"; };
@@ -117,6 +125,10 @@
 		156F0B2626081DA40076AB4B /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		156F0B2B260821470076AB4B /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		156F0B31260825910076AB4B /* MainScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreen.swift; sourceTree = "<group>"; };
+		1588BCDA273D512000F91E42 /* FirstNameViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNameViewModelTests.swift; sourceTree = "<group>"; };
+		1588BCDC273D571400F91E42 /* DataRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryTest.swift; sourceTree = "<group>"; };
+		1588BCDE273DFE1900F91E42 /* FirstnameApiServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnameApiServiceTests.swift; sourceTree = "<group>"; };
+		1588BCE2273E00CC00F91E42 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		15A134BB272476EB0019AE90 /* md-male-select.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "md-male-select.json"; sourceTree = "<group>"; };
 		15A134BE272572D80019AE90 /* FirstNameApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNameApiService.swift; sourceTree = "<group>"; };
 		15ABCB39262A564B00036B3E /* Prenom AfricainsSlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Prenom AfricainsSlowTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -247,7 +259,10 @@
 		156F0AF2260817300076AB4B /* Prenom AfricainsTests */ = {
 			isa = PBXGroup;
 			children = (
-				156F0AF3260817300076AB4B /* PrenomAfricainsTests.swift */,
+				1588BCDC273D571400F91E42 /* DataRepositoryTest.swift */,
+				1588BCDE273DFE1900F91E42 /* FirstnameApiServiceTests.swift */,
+				1588BCDA273D512000F91E42 /* FirstNameViewModelTests.swift */,
+				1588BCE2273E00CC00F91E42 /* MockURLProtocol.swift */,
 				156F0AF5260817300076AB4B /* Info.plist */,
 			);
 			path = "Prenom AfricainsTests";
@@ -265,20 +280,20 @@
 		156F0B0F2608173E0076AB4B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				15645E85263B54E20017E8B7 /* AdaptiveView.swift */,
 				156F0B10260817690076AB4B /* CircleFirstName.swift */,
-				156F0B2626081DA40076AB4B /* LottieView.swift */,
+				15CAC5242646ECF1007E838C /* ChipsOptionView.swift */,
+				15E8DE462663093B0036A99F /* ChipsView.swift */,
 				156F0B2B260821470076AB4B /* DescriptionView.swift */,
-				15EA7DDF260921A0006BC8F2 /* MenuView.swift */,
+				15FC2A4C2648A12F0025BCF3 /* Handle.swift */,
+				152CDB5F266FEB1F003B65C4 /* LegacyTextField.swift */,
+				156F0B2626081DA40076AB4B /* LottieView.swift */,
 				152E82702635CB01002950E6 /* LottieLikeButtonView.swift */,
 				151AB5E62636D45800585BFC /* LottieUnlikeButtonView.swift */,
-				15645E85263B54E20017E8B7 /* AdaptiveView.swift */,
+				15EA7DDF260921A0006BC8F2 /* MenuView.swift */,
 				15CAC5202646D7F7007E838C /* SearchBarView.swift */,
 				152F3C4A264C6F71000D564B /* SearchBarButton.swift */,
-				15CAC5242646ECF1007E838C /* ChipsOptionView.swift */,
 				15FC2A4A2648A10B0025BCF3 /* SlidingOverCard.swift */,
-				15FC2A4C2648A12F0025BCF3 /* Handle.swift */,
-				15E8DE462663093B0036A99F /* ChipsView.swift */,
-				152CDB5F266FEB1F003B65C4 /* LegacyTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -287,6 +302,7 @@
 			isa = PBXGroup;
 			children = (
 				156F0AE32608172F0076AB4B /* ContentView.swift */,
+				1535635B2739BABC007B1959 /* FavoriteListScreen.swift */,
 				156F0B31260825910076AB4B /* MainScreen.swift */,
 				15CAC5222646E837007E838C /* SearchScreen.swift */,
 			);
@@ -313,9 +329,9 @@
 		15CFF01A261396A100B06E32 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				15ABCB47262A59B600036B3E /* NetworkMonitor.swift */,
 				15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */,
 				15FC2A4626483CF40025BCF3 /* MenuItemEnum.swift */,
+				15ABCB47262A59B600036B3E /* NetworkMonitor.swift */,
 				15640715266836830084908F /* Vibration.swift */,
 			);
 			path = Util;
@@ -324,11 +340,11 @@
 		15EA7DE4260933A3006BC8F2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1539F17F26E4ED67009889B5 /* FirstnameDataModel.swift */,
-				15EA7DE5260933C8006BC8F2 /* Gender.swift */,
 				15E8DE44266308DE0036A99F /* ChipsDataModel.swift */,
-				15300A87266C1F47000AAAF6 /* SearchCriteria.swift */,
+				1539F17F26E4ED67009889B5 /* FirstnameDataModel.swift */,
 				15515FC82677D423009C2BDF /* FirstnameDB.swift */,
+				15EA7DE5260933C8006BC8F2 /* Gender.swift */,
+				15300A87266C1F47000AAAF6 /* SearchCriteria.swift */,
 				15061FE42725E1B80022CBBB /* Size.swift */,
 			);
 			path = Model;
@@ -337,6 +353,7 @@
 		15FC2A48264854F60025BCF3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				1535635D2739BDCD007B1959 /* FavoriteListViewModel.swift */,
 				15EA7DEF26094112006BC8F2 /* FirstNameViewModel.swift */,
 				15E8DE48266366390036A99F /* SearchScreenViewModel.swift */,
 			);
@@ -351,6 +368,7 @@
 				152E826A2635CA46002950E6 /* heart_like.json */,
 				15D4A12D2723752000D8BCA4 /* md-female-select.json */,
 				15A134BB272476EB0019AE90 /* md-male-select.json */,
+				1535635F2739DFB9007B1959 /* searching-for-name.json */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -499,6 +517,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15A134BC272476EB0019AE90 /* md-male-select.json in Resources */,
+				153563602739DFB9007B1959 /* searching-for-name.json in Resources */,
 				156F0B2226081D6C0076AB4B /* sound.json in Resources */,
 				156F0AE9260817300076AB4B /* Preview Assets.xcassets in Resources */,
 				15D4A12E2723752000D8BCA4 /* md-female-select.json in Resources */,
@@ -560,9 +579,11 @@
 			files = (
 				15515FC92677D423009C2BDF /* FirstnameDB.swift in Sources */,
 				15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */,
+				1535635E2739BDCD007B1959 /* FavoriteListViewModel.swift in Sources */,
 				15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */,
 				152E82712635CB01002950E6 /* LottieLikeButtonView.swift in Sources */,
 				15E8DE49266366390036A99F /* SearchScreenViewModel.swift in Sources */,
+				1535635C2739BABC007B1959 /* FavoriteListScreen.swift in Sources */,
 				15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */,
 				15FC2A4B2648A10B0025BCF3 /* SlidingOverCard.swift in Sources */,
 				152F3C4B264C6F71000D564B /* SearchBarButton.swift in Sources */,
@@ -598,7 +619,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				156F0AF4260817300076AB4B /* PrenomAfricainsTests.swift in Sources */,
+				1588BCDB273D512000F91E42 /* FirstNameViewModelTests.swift in Sources */,
+				1588BCDD273D571400F91E42 /* DataRepositoryTest.swift in Sources */,
+				1588BCDF273DFE1900F91E42 /* FirstnameApiServiceTests.swift in Sources */,
+				1588BCE3273E00CC00F91E42 /* MockURLProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,7 +786,7 @@
 		156F0B04260817300076AB4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://8fe2-93-16-212-39.ngrok.io";
+				API_ENDPOINT = "https://24c5-93-16-212-39.ngrok.io";
 				APP_DISPLAY_NAME = "DEV Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -786,7 +810,7 @@
 		156F0B05260817300076AB4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://8fe2-93-16-212-39.ngrok.io";
+				API_ENDPOINT = "https://24c5-93-16-212-39.ngrok.io";
 				APP_DISPLAY_NAME = "Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

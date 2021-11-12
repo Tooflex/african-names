@@ -49,7 +49,9 @@ final class FirstNameViewModel: ObservableObject {
         let defaults = UserDefaults.standard
         let filters = defaults.object(forKey: "Filters") as? [String: Any] ?? [String: Any]()
 
-        self.favoritedFirstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "isFavorite = true")
+        self.favoritedFirstnamesResults = dataRepository.fetchLocalData(
+            type: FirstnameDB.self,
+            filter: "isFavorite = true")
         self.firstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self)
 
         if filters.isEmpty {
@@ -57,7 +59,9 @@ final class FirstNameViewModel: ObservableObject {
         } else {
             let compoundFilter = self.createFilterCompound(filterArray: filters)
             do {
-                try self.firstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self, filter: compoundFilter)
+                try self.firstnamesResults = dataRepository.fetchLocalData(
+                    type: FirstnameDB.self,
+                    filter: compoundFilter)
             } catch {
                 self.firstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self)
                 print("Errors in filtering")

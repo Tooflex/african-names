@@ -15,6 +15,12 @@ struct MenuView: View {
 
     @Binding var selectedTab: Int
 
+    @State private var showShareSheet: Bool = false
+
+    @State var shareSheetItems: [Any] = []
+
+    var excludedActivityTypes: [UIActivity.ActivityType]?
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0)
@@ -34,7 +40,7 @@ struct MenuView: View {
                 MyListButton(selectedTab: $selectedTab)
 
                 // MARK: Share Button
-                ShareButton(selectedTab: $selectedTab)
+                ShareButton()
 
                 // MARK: Parameter Button
                 ParameterButton(selectedTab: $selectedTab)
@@ -108,24 +114,29 @@ struct MenuView: View {
 
     struct ShareButton: View {
 
-        @Binding var selectedTab: Int
+        @State private var showShareSheet: Bool = false
+        @State var shareSheetItems: [Any] = []
+        var excludedActivityTypes: [UIActivity.ActivityType]?
 
         let iconFont = Font.system(size: 27).bold()
         let textFont = Font.system(size: 12)
 
         var body: some View {
             Button(action: {
-                self.selectedTab = MenuItemEnum.share.rawValue
+                self.showShareSheet.toggle()
+                shareSheetItems.append("Hello")
             }, label: {
                 VStack(alignment: .center, spacing: 3) {
                     Image(systemName: "square.and.arrow.up")
                         .font(iconFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.share.rawValue ? Color.blue : Color.black)
+                        .foregroundColor(self.showShareSheet ? Color.blue : Color.black)
                     Text("Share")
                         .font(textFont)
                         .foregroundColor(
-                            selectedTab == MenuItemEnum.share.rawValue ? Color.blue : Color.black)
+                            self.showShareSheet ? Color.blue : Color.black)
                 }
+            }).sheet(isPresented: $showShareSheet, content: {
+                ActivityViewController(activityItems: self.$shareSheetItems, excludedActivityTypes: excludedActivityTypes)
             })
         }
     }
@@ -162,6 +173,21 @@ struct MenuView: View {
             return 1
         }
     }
+}
+
+struct ActivityViewController: UIViewControllerRepresentable {
+    @Binding var activityItems: [Any]
+    var excludedActivityTypes: [UIActivity.ActivityType]?
+
+    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
+        let controller = UIActivityViewController(activityItems: activityItems,
+                                                  applicationActivities: nil)
+
+        controller.excludedActivityTypes = excludedActivityTypes
+
+        return controller
+    }
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) {}
 }
 
 struct MenuView_Previews: PreviewProvider {

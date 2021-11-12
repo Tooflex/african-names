@@ -56,7 +56,10 @@ struct SearchScreen: View {
                                 print("Female selected to unselected")
                                 searchScreenViewModel.filterFemale = !searchScreenViewModel.filterFemale
                             }) {
-                                LottieView(name: "md-female-select", fromMarker: "touchDownStart", toMarker: "touchUpEnd" )
+                                LottieView(
+                                    name: "md-female-select",
+                                    fromMarker: "touchDownStart",
+                                    toMarker: "touchUpEnd" )
                                     .padding(.all, -30)
                                     .frame(width: 30, height: 30, alignment: .center)
                             }
@@ -65,7 +68,10 @@ struct SearchScreen: View {
                                 print("Female unselected to selected")
                                 searchScreenViewModel.filterFemale = !searchScreenViewModel.filterFemale
                             }) {
-                                LottieView(name: "md-female-select", fromMarker: "touchDownStart1", toMarker: "touchUpEnd1" )
+                                LottieView(
+                                    name: "md-female-select",
+                                    fromMarker: "touchDownStart1",
+                                    toMarker: "touchUpEnd1")
                                     .padding(.all, -30)
                                     .frame(width: 30, height: 30, alignment: .center)
                             }

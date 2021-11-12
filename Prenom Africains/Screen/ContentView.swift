@@ -27,6 +27,8 @@ struct ContentView: View {
                     MainScreen(searchString: $searchString)
             case 1:
                     SearchScreen(selectedTab: $selectedTab, searchString: $searchString)
+            case 2:
+                    FavoriteListScreen()
             default :
                     MainScreen(searchString: $searchString)
             }

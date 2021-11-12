@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class FirstnameDB: Object {
+class FirstnameDB: Object, Identifiable {
     @objc dynamic var localId = 0
     @objc dynamic var id = 0
     @objc dynamic var firstname = ""
