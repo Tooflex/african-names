@@ -24,7 +24,7 @@ final class FavoriteListViewModel: ObservableObject {
     func saveFilters() {
         let filters = [
             "isFavorite": true,
-            "onTop": selectedFirstname.localId
+            "onTop": selectedFirstname.id
         ] as [String: Any]
         UserDefaults.standard.set(filters, forKey: "Filters")
     }

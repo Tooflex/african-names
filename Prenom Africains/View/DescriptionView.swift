@@ -109,9 +109,14 @@ struct DescriptionView: View {
                 Button(action: {
                     firstNameViewModel.toggleFavorited(firstnameObj: firstNameViewModel.currentFirstname)
                 }) {
-                    LottieView(name: getRightHeartLikeStyle(gender: Gender(rawValue: firstNameViewModel.currentFirstname.gender) ?? Gender.undefined),
-                               fromMarker: "touchDownStart",
-                               toMarker: "touchUpEnd")
+                    LottieView(
+                        name:
+                            getRightHeartLikeStyle(
+                                gender:
+                                    Gender(rawValue:
+                                            firstNameViewModel.currentFirstname.gender) ?? Gender.undefined),
+                        fromMarker: "touchDownStart",
+                        toMarker: "touchUpEnd")
                         .padding(.all, -40)
                         .frame(
                             width: 40 * CGFloat(sizeMultiplier()),
@@ -123,7 +128,11 @@ struct DescriptionView: View {
                     firstNameViewModel.toggleFavorited(firstnameObj: firstNameViewModel.currentFirstname)
                     complexSuccess()
                 }) {
-                    LottieView(name: getRightHeartLikeStyle(gender: Gender(rawValue: firstNameViewModel.currentFirstname.gender) ?? Gender.undefined),
+                    LottieView(
+                        name:
+                            getRightHeartLikeStyle(
+                                gender: Gender(rawValue:
+                                                firstNameViewModel.currentFirstname.gender) ?? Gender.undefined),
                                fromMarker: "touchDownStart1",
                                toMarker: "touchUpEnd1")
                         .padding(.all, -40)

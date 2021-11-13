@@ -142,7 +142,10 @@ struct MenuView: View {
                             self.showShareSheet ? Color.appBlue : Color.black)
                 }
             }).sheet(isPresented: $showShareSheet, content: {
-                ActivityViewController(activityItems: self.$shareSheetItems, excludedActivityTypes: excludedActivityTypes)
+                ActivityViewController(
+                    activityItems: self.$shareSheetItems,
+                    excludedActivityTypes: excludedActivityTypes
+                )
             })
         }
     }
@@ -186,7 +189,8 @@ struct ActivityViewController: UIViewControllerRepresentable {
     @Binding var activityItems: [Any]
     var excludedActivityTypes: [UIActivity.ActivityType]?
 
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
+    func makeUIViewController(
+        context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
         let controller = UIActivityViewController(activityItems: activityItems,
                                                   applicationActivities: nil)
 
@@ -194,7 +198,9 @@ struct ActivityViewController: UIViewControllerRepresentable {
 
         return controller
     }
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: UIViewControllerRepresentableContext<ActivityViewController>) {}
+    func updateUIViewController(
+        _ uiViewController: UIActivityViewController,
+        context: UIViewControllerRepresentableContext<ActivityViewController>) {}
 }
 
 struct MenuView_Previews: PreviewProvider {

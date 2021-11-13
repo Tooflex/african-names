@@ -1,12 +1,11 @@
 //
-//  ContrastRatioUtils.swift.swift
+//  UIColorExtension.swift
 //  Prenom Africains
 //
-//  Created by Otourou Da Costa on 12/11/2021.
+//  Created by Otourou Da Costa on 13/11/2021.
 //
 
-import Foundation
-import UIKit
+import SwiftUI
 
 extension UIColor {
 
@@ -35,6 +34,8 @@ extension UIColor {
             return (colorComponent < 0.04045) ? (colorComponent / 12.92) : pow((colorComponent + 0.055) / 1.055, 2.4)
         }
 
-        return 0.2126 * adjust(colorComponent: ciColor.red) + 0.7152 * adjust(colorComponent: ciColor.green) + 0.0722 * adjust(colorComponent: ciColor.blue)
+        return 0.2126 * adjust(colorComponent: ciColor.red)
+        + 0.7152 * adjust(colorComponent: ciColor.green)
+        + 0.0722 * adjust(colorComponent: ciColor.blue)
     }
 }

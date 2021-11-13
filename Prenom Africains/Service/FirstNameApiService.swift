@@ -10,7 +10,7 @@ import Alamofire
 import Combine
 
 protocol FirstNameApiServiceProtocol {
-    func fetchFirstnames(completion: @escaping ([FirstnameDataModel]) -> Void)
+    func fetchFirstnames(completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void)
 }
 
 final class FirstNameApiService: FirstNameApiServiceProtocol {
@@ -18,6 +18,8 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
     private let manager: Session
     init(manager: Session = Session.default) {
         self.manager = manager
+        manager.sessionConfiguration.timeoutIntervalForRequest = 30
+        manager.sessionConfiguration.timeoutIntervalForResource = 30
     }
 
     private let apiEndpoint = Bundle.main.infoDictionary!["API_ENDPOINT"] as? String
@@ -27,7 +29,7 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
 
     var tokens: Set<AnyCancellable> = []
 
-    func fetchFirstnames(completion: @escaping ([FirstnameDataModel]) -> Void) {
+    func fetchFirstnames(completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void) {
         guard let url = URL(string: "\(apiEndpoint ?? "")/api/v1/firstnames/random" ) else {
             print("Error: cannot create URL")
             return
@@ -35,7 +37,7 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
 
         let headers: HTTPHeaders = [.authorization(username: username, password: password)]
 
-        manager.request(url, headers: headers) { $0.timeoutInterval = 5 }
+        manager.request(url, headers: headers)
             .validate()
             .publishDecodable(type: [FirstnameDataModel].self)
             .sink(receiveCompletion: { (completion) in
@@ -46,16 +48,8 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
                         print(error)
                 }
             }, receiveValue: { (response) in
-                switch response.result {
-                case .success(let model):
-                        completion(model)
-                case .failure(let error):
-                        print(error)
-                }
+                completion(response)
             }).store(in: &tokens)
     }
 
-    func fetchFirstnamesMock(completion: @escaping ([FirstnameDataModel]) -> Void) {
-
-    }
 }

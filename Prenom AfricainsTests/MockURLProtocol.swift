@@ -244,17 +244,18 @@ public struct Mocker {
     /// - Returns: `true` if it should be mocked, `false` if the URL is registered as ignored.
     public static func shouldHandle(_ request: URLRequest) -> Bool {
         switch mode {
-            case .optout:
-                guard let url = request.url else { return false }
-                return shared.queue.sync {
-                    !shared.ignoredRules.contains(where: { $0.shouldIgnore(url) })
-                }
-            case .optin:
-                return mock(for: request) != nil
+        case .optout:
+            guard let url = request.url else { return false }
+            return shared.queue.sync {
+                !shared.ignoredRules.contains(where: { $0.shouldIgnore(url) })
+            }
+        case .optin:
+            return mock(for: request) != nil
         }
     }
 
-    /// Removes all registered mocks. Use this method in your tearDown function to make sure a Mock is not used in any other test.
+    /// Removes all registered mocks.
+    /// Use this method in your tearDown function to make sure a Mock is not used in any other test.
     public static func removeAll() {
         shared.queue.sync(flags: .barrier) {
             shared.mocks.removeAll()
@@ -288,7 +289,6 @@ public struct Mocker {
 //  Mocker is only used for tests. In tests we don't even check on this SwiftLint warning, but Mocker is available through Rabbit for usage out of Rabbit. Disable for this case.
 //  swiftlint:disable force_unwrapping
 
-import Foundation
 import XCTest
 
 /// A Mock which can be used for mocking data requests with the `Mocker` by calling `Mocker.register(...)`.
@@ -320,18 +320,18 @@ public struct Mock: Equatable {
 
         var headerValue: String {
             switch self {
-                case .json:
-                    return "application/json; charset=utf-8"
-                case .html:
-                    return "text/html; charset=utf-8"
-                case .imagePNG:
-                    return "image/png"
-                case .pdf:
-                    return "application/pdf"
-                case .mp4:
-                    return "video/mp4"
-                case .zip:
-                    return "application/zip"
+            case .json:
+                return "application/json; charset=utf-8"
+            case .html:
+                return "text/html; charset=utf-8"
+            case .imagePNG:
+                return "image/png"
+            case .pdf:
+                return "application/pdf"
+            case .mp4:
+                return "video/mp4"
+            case .zip:
+                return "application/zip"
             }
         }
     }
@@ -350,7 +350,8 @@ public struct Mock: Equatable {
     /// The HTTP status code to return with the response.
     public let statusCode: Int
 
-    /// The URL value generated based on the Mock data. Force unwrapped on purpose. If you access this URL while it's not set, this is a programming error.
+    /// The URL value generated based on the Mock data. Force unwrapped on purpose.
+    /// If you access this URL while it's not set, this is a programming error.
     public var url: URL {
         if urlToMock == nil && !data.keys.contains(.get) {
             assertionFailure("For non GET mocks you should use the `request` property so the HTTP method is set.")
@@ -477,7 +478,8 @@ public struct Mock: Equatable {
     /// Returns `Data` based on the HTTP Method of the passed request.
     ///
     /// - Parameter request: The request to match data for.
-    /// - Returns: The `Data` which matches the request. Will be `nil` if no data is registered for the request `HTTPMethod`.
+    /// - Returns: The `Data` which matches the request.
+    ///     Will be `nil` if no data is registered for the request `HTTPMethod`.
     func data(for request: URLRequest) -> Data? {
         guard let requestHTTPMethod = Mock.HTTPMethod(rawValue: request.httpMethod ?? "") else { return nil }
         return data[requestHTTPMethod]

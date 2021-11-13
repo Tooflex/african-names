@@ -21,6 +21,8 @@ final class FirstNameViewModel: ObservableObject {
     var firstnamesToken: NotificationToken?
     @Published var isLoading = false
     @Published var isFiltered = false
+    @Published var noResults = false
+
     @Published var currentFirstname: FirstnameDB = FirstnameDB()
     var firstnameOnTop: FirstnameDB = FirstnameDB()
 
@@ -28,15 +30,9 @@ final class FirstNameViewModel: ObservableObject {
 
     private var task: AnyCancellable?
 
-    let username = "user"
-    let password = "Manjack76"
-
     init() {
-        isLoading = true
-        dataRepository.fetchFirstnames { _ in
-            self.getFirstnames()
-            self.isLoading = false
-        }
+        getFirstnames()
+        fetchOnline()
     }
 
     deinit {
@@ -71,7 +67,9 @@ final class FirstNameViewModel: ObservableObject {
             self.isFiltered = true
             let filterOnTop = filters["onTop"] as? Int ?? -1
             if filterOnTop != -1 {
-                firstnameOnTop = dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "localId = \(filterOnTop)").first ?? FirstnameDB()
+                firstnameOnTop = dataRepository.fetchLocalData(
+                    type: FirstnameDB.self,
+                    filter: "id = \(filterOnTop)").first ?? FirstnameDB()
             }
 
             let compoundFilter = self.createFilterCompound(filterArray: filters)
@@ -85,15 +83,41 @@ final class FirstNameViewModel: ObservableObject {
             }
 
         }
-        if firstnameOnTop.localId != 0 {
+        if firstnameOnTop.id != 0 {
             // TODO: Put Selected firstname on top of list
         }
-        self.currentFirstname = self.firstnamesResults?.first ?? FirstnameDB()
+
+        if let firstFirstname = self.firstnamesResults?.first {
+            self.currentFirstname = firstFirstname
+            self.noResults = false
+        } else {
+            self.noResults = true
+        }
     }
 
     func toggleFavorited(firstnameObj: FirstnameDB) {
         objectWillChange.send()
         dataRepository.toggleFavorited(firstnameObj: firstnameObj)
+    }
+
+    func fetchOnline() {
+        if noResults {
+            isLoading = true
+        }
+        dataRepository.fetchFirstnames { response in
+
+            switch response.result {
+            case .success(_):
+                if self.noResults {
+                    self.getFirstnames()
+                } else {
+                    print("Firstnames updated silently")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            self.isLoading = false
+        }
     }
 
     private func activateFirstnamesToken() {

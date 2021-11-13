@@ -10,6 +10,7 @@ import RealmSwift
 
 struct FirstnameDataModel: Identifiable, Codable, Hashable {
 
+    // swiftlint:disable identifier_name
     var id: Int?
     var firstname: String?
     var gender: Gender
@@ -80,8 +81,7 @@ extension FirstnameDataModel {
 
 extension FirstnameDataModel: Equatable {
     static func == (lhs: FirstnameDataModel, rhs: FirstnameDataModel) -> Bool {
-        return
-        lhs.id == rhs.id &&
+        return lhs.id == rhs.id &&
         lhs.firstname == rhs.firstname &&
         lhs.meaning == rhs.meaning &&
         lhs.origins == rhs.origins &&

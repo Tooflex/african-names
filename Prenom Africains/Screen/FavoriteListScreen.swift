@@ -23,7 +23,9 @@ struct FavoriteListScreen: View {
                 if favorites.isEmpty {
                     Spacer()
                     LottieView(name: "noresults", loopMode: .playOnce)
-                        .frame(width: 54 * sizeMultiplier(), height: 54 * sizeMultiplier())
+                        .frame(
+                            width: 54 * sizeMultiplier(vSizeClass, hSizeClass),
+                            height: 54 * sizeMultiplier(vSizeClass, hSizeClass))
                     Text("No favorite firstname")
                     Spacer()
                 } else {
@@ -46,14 +48,6 @@ struct FavoriteListScreen: View {
                     }
                 }
             }
-        }
-    }
-
-    func sizeMultiplier() -> CGFloat {
-        if vSizeClass == .regular && hSizeClass == .regular { // Compact width, regular height
-            return 2
-        } else {
-            return 1
         }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class FirstnameDB: Object, Identifiable {
-    @objc dynamic var localId = 0
+    // swiftlint:disable identifier_name
     @objc dynamic var id = 0
     @objc dynamic var firstname = ""
     @objc dynamic var gender = ""
@@ -21,7 +21,7 @@ class FirstnameDB: Object, Identifiable {
     @objc dynamic var firstnameSize = ""
 
     override static func primaryKey() -> String? {
-        "localId"
+        "id"
     }
 
 }

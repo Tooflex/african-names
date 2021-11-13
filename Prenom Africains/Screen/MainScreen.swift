@@ -13,61 +13,63 @@ struct MainScreen: View {
 
     @Environment(\.horizontalSizeClass) var hSizeClass
 
+    @EnvironmentObject var firstNameViewModel: FirstNameViewModel
+
+    @Binding var searchString: NSCompoundPredicate
+
     @State private var currentColor = Color.gray
 
     @State private var currentIndex = 0
 
-    @Binding var searchString: NSCompoundPredicate
-
-    @EnvironmentObject var firstNameViewModel: FirstNameViewModel
-
-    @State private var listOfFirstnamesToDisplay: [FirstnameDB] = []
-
     @State private var count = 0
 
-    let timer = Timer.publish(every: 0.01, on: .current, in: .common).autoconnect()
     @State var phaseCst: Double = 0
 
-    fileprivate func leftButton() -> some View {
-        return Triangle()
-            .fill(setColor())
-            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
-            .padding(.bottom, 1 * CGFloat(paddingMultiplier()))
-            .rotationEffect(.degrees(-90))
-            .onTapGesture {
-                previousFirstname()
-            }
-            .accessibility(label: Text("left button"))
-    }
-
-    fileprivate func rightButton() -> some View {
-        return Triangle()
-            .fill(setColor())
-            .frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
-            .padding(.bottom, 1 * CGFloat(paddingMultiplier()))
-            .rotationEffect(.degrees(90))
-            .onTapGesture {
-                nextFirstname()
-            }
-            .accessibility(label: Text("right button"))
-    }
+    let timer = Timer.publish(every: 0.01, on: .current, in: .common).autoconnect()
 
     var body: some View {
 
         if self.firstNameViewModel.isLoading {
-            Spacer()
-            LottieView(name: "loading-rainbow", loopMode: .loop)
-                .frame(width: 300 * CGFloat(sizeMultiplier()), height: 300 * CGFloat(sizeMultiplier()))
-            Text("Loading...")
-            Spacer()
+            VStack {
+                Spacer()
+                LottieView(name: "loading-rainbow", loopMode: .loop)
+                    .frame(
+                        width: 300 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)),
+                        height: 300 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)))
+                Text("Loading...")
+                Spacer()
+            }
+        } else if self.firstNameViewModel.noResults {
+            VStack {
+                Spacer()
+                Button {
+                    self.firstNameViewModel.fetchOnline()
+                } label: {
+                    Image(systemName: "goforward")
+                    Text("Tap to refresh")
+                }.frame(
+                    width: 200 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0),
+                    height: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
+                LottieView(name: "noresults", loopMode: .playOnce)
+                    .frame(
+                        width: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0),
+                        height: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
+                Text("No firstnames")
+
+                Spacer()
+            }
         } else {
             GeometryReader { geo in
             ZStack {
                 ZStack {
-                    Wave(waveHeight: 30, phase: Angle(degrees: (Double(geo.frame(in: .global).minY) + phaseCst) * -1 * 0.7))
+                    Wave(
+                        waveHeight: 30,
+                        phase: Angle(degrees: (Double(geo.frame(in: .global).minY) + phaseCst) * -1 * 0.7))
                     .foregroundColor(setColorAlt())
                     .opacity(0.5)
-                Wave(waveHeight: 30, phase: Angle(degrees: (Double(geo.frame(in: .global).minY) + phaseCst) * 0.7))
+                Wave(
+                    waveHeight: 30,
+                    phase: Angle(degrees: (Double(geo.frame(in: .global).minY) + phaseCst) * 0.7))
                     .foregroundColor(setColor())
                         .onReceive(self.timer) { _ in
                             phaseCst += 0.2
@@ -85,8 +87,8 @@ struct MainScreen: View {
                             leftButton()
                         } else {
                             Spacer().frame(
-                                width: 30 * CGFloat(sizeMultiplier()),
-                                height: 30 * CGFloat(sizeMultiplier())
+                                width: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)),
+                                height: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
                             )
                         }
                         // iPad Full or 1/2
@@ -107,7 +109,10 @@ struct MainScreen: View {
                         if isNextFirstname() {
                             rightButton()
                         } else {
-                            Spacer().frame(width: 30 * CGFloat(sizeMultiplier()), height: 30 * CGFloat(sizeMultiplier()))
+                            Spacer().frame(
+                                width: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)),
+                                height: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
+                            )
                         }
                     }
                     if self.firstNameViewModel.isFiltered {
@@ -120,8 +125,7 @@ struct MainScreen: View {
                                 .padding(.horizontal)
                         }
                     }
-
-                    DescriptionView()
+                        DescriptionView()
                 }
                 .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
                             .onEnded { value in
@@ -148,14 +152,67 @@ struct MainScreen: View {
         }
     }
 
-    func sizeMultiplier() -> Int {
-        if vSizeClass == .regular && hSizeClass == .regular {
-            return 4
+    // MARK: Previous & Next Buttons
+    fileprivate func leftButton() -> some View {
+        return Triangle()
+            .fill(setColor())
+            .frame(
+                width: 30 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0),
+                height: 30 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
+            .padding(.bottom, 1 * CGFloat(paddingMultiplier()))
+            .rotationEffect(.degrees(-90))
+            .onTapGesture {
+                previousFirstname()
+            }
+            .accessibility(label: Text("left button"))
+    }
+
+    fileprivate func rightButton() -> some View {
+        return Triangle()
+            .fill(setColor())
+            .frame(
+                width: 30 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0),
+                height: 30 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
+            .padding(.bottom, 1 * CGFloat(paddingMultiplier()))
+            .rotationEffect(.degrees(90))
+            .onTapGesture {
+                nextFirstname()
+            }
+            .accessibility(label: Text("right button"))
+    }
+
+    fileprivate func isNextFirstname() -> Bool {
+        if let firstnames = firstNameViewModel.firstnamesResults {
+            return self.currentIndex < firstnames.count-1
         } else {
-            return 1
+            return false
+        }
+
+    }
+
+    fileprivate func nextFirstname() {
+        if isNextFirstname() {
+            if let firstnames = firstNameViewModel.firstnamesResults {
+            self.currentIndex = currentIndex + 1
+            firstNameViewModel.currentFirstname = firstnames[currentIndex]
+            }
         }
     }
 
+    fileprivate func isPreviousFirstname() -> Bool {
+        return self.currentIndex > 0
+    }
+
+    fileprivate func previousFirstname() {
+        if isPreviousFirstname() {
+            if let firstnames = firstNameViewModel.firstnamesResults {
+            self.currentIndex = currentIndex - 1
+            firstNameViewModel.currentFirstname = firstnames[currentIndex]
+            }
+        }
+    }
+
+    // MARK: Helpers
     func paddingMultiplier() -> Int {
         if vSizeClass == .regular && hSizeClass == .regular {
             return 70
@@ -182,7 +239,7 @@ struct MainScreen: View {
     func setColorAlt() -> Color {
         switch firstNameViewModel.currentFirstname.gender {
         case Gender.male.rawValue:
-                return Color.blue
+            return Color.blue
         case Gender.female.rawValue:
             return Color.lightPink
         case Gender.mixed.rawValue:
@@ -194,56 +251,28 @@ struct MainScreen: View {
         }
     }
 
-    fileprivate func isNextFirstname() -> Bool {
-        if let firstnames = firstNameViewModel.firstnamesResults {
-            return self.currentIndex < firstnames.count-1
-        } else {
-            return false
-        }
-
-    }
-
-    func nextFirstname() {
-        if isNextFirstname() {
-            if let firstnames = firstNameViewModel.firstnamesResults {
-            self.currentIndex = currentIndex + 1
-            firstNameViewModel.currentFirstname = firstnames[currentIndex]
-            }
-        }
-    }
-
-    fileprivate func isPreviousFirstname() -> Bool {
-        return self.currentIndex > 0
-    }
-
-    func previousFirstname() {
-        if isPreviousFirstname() {
-            if let firstnames = firstNameViewModel.firstnamesResults {
-            self.currentIndex = currentIndex - 1
-            firstNameViewModel.currentFirstname = firstnames[currentIndex]
-            }
-        }
-    }
 }
 
-// struct MainScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//
-//        ForEach(ColorScheme.allCases, id: \.self) {
-//        Group {
-//            MainScreen()
-//                .previewDevice("iPhone 12")
-//                .previewDisplayName("iPhone 12")
-//
-//            MainScreen()
-//                .previewDevice("iPhone 8 Plus")
-//                .previewDisplayName("iPhone 8 Plus")
-//
-//            MainScreen()
-//                .previewDevice("iPhone 8")
-//                .previewDisplayName("iPhone 8")
-//        }.preferredColorScheme($0)
-//        }
-//
-//    }
-// }
+ struct MainScreen_Previews: PreviewProvider {
+
+    @State static var searchString = NSCompoundPredicate()
+
+    static var previews: some View {
+
+        ForEach(ColorScheme.allCases, id: \.self) {
+        Group {
+            MainScreen( searchString: $searchString)
+                .previewDevice("iPhone 12")
+                .previewDisplayName("iPhone 12")
+
+            MainScreen(searchString: $searchString)
+                .previewDevice("iPhone 8 Plus")
+                .previewDisplayName("iPhone 8 Plus")
+
+            MainScreen(searchString: $searchString)
+                .previewDevice("iPhone 8")
+                .previewDisplayName("iPhone 8")
+        }.preferredColorScheme($0)
+        }
+    }
+ }

@@ -7,9 +7,10 @@
 
 import Foundation
 import RealmSwift
+import Alamofire
 
 protocol DataRepositoryProtocol {
-    func fetchFirstnames(completion: @escaping ([FirstnameDataModel]) -> Void)
+    func fetchFirstnames(completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void)
 }
 
 final class DataRepository: ObservableObject, DataRepositoryProtocol {
@@ -27,23 +28,28 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
     }
 
     // MARK: CRUD Actions
+    fileprivate func convertFirstnameDataModelToFirstnameDB(_ firstname: FirstnameDataModel) -> FirstnameDB {
+        let firstnameDB = FirstnameDB()
+        firstnameDB.id = firstname.id ?? 0
+        firstnameDB.firstname = firstname.firstname ?? ""
+        firstnameDB.gender = firstname.gender.rawValue
+        firstnameDB.meaning = firstname.meaning ?? ""
+        firstnameDB.origins = firstname.origins ?? ""
+        firstnameDB.firstnameSize = firstname.size?.rawValue ?? ""
+        firstnameDB.regions = firstname.regions ?? ""
+        firstnameDB.soundURL = firstname.soundURL ?? ""
+        firstnameDB.isFavorite = firstname.isFavorite
+
+        return firstnameDB
+    }
+
     func add(firstname: FirstnameDataModel) {
         objectWillChange.send()
         do {
-            let firstnameDB = FirstnameDB()
-            firstnameDB.localId = UUID().hashValue
-            firstnameDB.id = firstname.id ?? 0
-            firstnameDB.firstname = firstname.firstname ?? ""
-            firstnameDB.gender = firstname.gender.rawValue
-            firstnameDB.meaning = firstname.meaning ?? ""
-            firstnameDB.origins = firstname.origins ?? ""
-            firstnameDB.firstnameSize = firstname.size?.rawValue ?? ""
-            firstnameDB.regions = firstname.regions ?? ""
-            firstnameDB.soundURL = firstname.soundURL ?? ""
-            firstnameDB.isFavorite = firstname.isFavorite
+            let firstnameDB = convertFirstnameDataModelToFirstnameDB(firstname)
 
             try realm.write {
-                realm.add(firstnameDB)
+                realm.add(firstnameDB, update: Realm.UpdatePolicy.modified)
             }
         } catch let error {
             // Handle error
@@ -57,24 +63,29 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
         }
     }
 
+    func update(firstname: FirstnameDataModel) {
+        objectWillChange.send()
+        do {
+            let firstnameDB = convertFirstnameDataModelToFirstnameDB(firstname)
+            try realm.write {
+                realm.create(
+                    FirstnameDB.self,
+                    value: firstnameDB,
+                    update: .modified)
+            }
+        } catch let error {
+            // Handle error
+            print(error)
+        }
+    }
+
     func update(firstname: FirstnameDB) {
         objectWillChange.send()
         do {
             try realm.write {
                 realm.create(
                     FirstnameDB.self,
-                    value: [
-                        "localId": firstname.localId,
-                        "firstname": firstname.firstname ,
-                        "gender": firstname.gender,
-                        "meaning": firstname.meaning ,
-                        "origins": firstname.origins ,
-                        "size": firstname.firstnameSize,
-                        "soundURL": firstname.soundURL,
-                        "isFavorite":
-                            firstname.isFavorite,
-                        "regions": firstname.regions
-                    ],
+                    value: firstname,
                     update: .modified)
             }
         } catch let error {
@@ -94,6 +105,12 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
             print(error)
         }
 
+    }
+
+    func updateAll(firstnamesToUpdate: [FirstnameDataModel]) {
+        for firstname in firstnamesToUpdate {
+            self.update(firstname: firstname)
+        }
     }
 
     func fetchLocalData<T: Object>(type: T.Type, filter: String? = "") -> Results<T> {
@@ -118,12 +135,14 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
         return results
     }
 
-    func fetchFirstnames(completion: @escaping ([FirstnameDataModel]) -> Void) {
-        apiService.fetchFirstnames { firstnames in
+    func fetchFirstnames(completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void) {
+        apiService.fetchFirstnames { result in
 
-            self.deleteAll() // TODO: Update instead of delete in order to keep favorites
-            self.addAll(firstnamesToAdd: firstnames)
-            completion(firstnames)
+            if let firstnames = result.value {
+                self.addAll(firstnamesToAdd: firstnames)
+            }
+
+            completion(result)
         }
     }
 
@@ -153,7 +172,7 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
             try realm.write {
                 realm.create(
                     FirstnameDB.self,
-                    value: ["localId": firstnameObj.localId, "isFavorite": !(favorite)],
+                    value: ["id": firstnameObj.id, "isFavorite": !(favorite)],
                     update: .modified)
             }
 

@@ -26,9 +26,3 @@ struct LandscapeModifier: ViewModifier {
             .environment(\.verticalSizeClass, isPad ? .regular: .compact) // 6
     }
 }
-
-extension View {
-    func landscape() -> some View {
-        self.modifier(LandscapeModifier())
-    }
-}
