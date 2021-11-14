@@ -52,13 +52,11 @@ struct SearchBarView: View {
             .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
             .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
             .onReceive(searchScreenViewModel.$searchResults) { firstnames in
-                if let firstnames = firstnames {
                     if !firstnames.isEmpty {
                         resultArray = Array(firstnames)
                     } else {
                         resultArray = []
                     }
-                }
 
                 if searchText.isEmpty {
                     showCancelButton = false

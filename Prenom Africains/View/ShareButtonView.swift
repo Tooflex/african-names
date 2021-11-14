@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ShareButton: View {
 
+    @State var viewmodel: FirstNameViewModel
     @State private var showShareSheet: Bool = false
     @State var shareSheetItems: [Any] = []
     var excludedActivityTypes: [UIActivity.ActivityType]?
@@ -19,7 +20,8 @@ struct ShareButton: View {
     var body: some View {
         Button(action: {
             self.showShareSheet.toggle()
-            shareSheetItems.append("Hello")
+            shareSheetItems = []
+            shareSheetItems.append(buildShareContent(firstname: self.viewmodel.currentFirstname))
         }, label: {
             VStack(alignment: .center, spacing: 3) {
                 Image(systemName: "square.and.arrow.up")
@@ -37,6 +39,14 @@ struct ShareButton: View {
             )
         })
     }
+
+    func buildShareContent(firstname: FirstnameDB) -> String {
+        return """
+"The name \(firstname.firstname) means \(firstname.meaning.prefix(30))"
+"Discover more on this link"
+"""
+    }
+
     }
 
 struct ActivityViewController: UIViewControllerRepresentable {

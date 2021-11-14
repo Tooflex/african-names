@@ -6,17 +6,15 @@
 //
 
 import Foundation
-import Alamofire
 import Combine
 import SwiftUI
-import RealmSwift
 
 final class SearchScreenViewModel: ObservableObject {
 
-    let realm = DataRepository.sharedInstance
+    let dataRepository = DataRepository.sharedInstance
 
     /// Contains array of firstname objects by filter
-    @Published var searchResults: Results<FirstnameDB>?
+    @Published var searchResults: [FirstnameDB] = []
     @Published var loading = false
 
     @Published var firstnames = [FirstnameDB]()
@@ -56,55 +54,25 @@ final class SearchScreenViewModel: ObservableObject {
     let space = " "
 
     init() {
-        self.getOrigins()
+        self.fetchOrigins()
 
         // Fill Size Options
-        for size in getSizes() {
+        for size in fetchSizes() {
             sizes.append(ChipsDataModel(isSelected: false, titleKey: size))
         }
 
         // Fill Area Options
-        for area in getAreas() {
+        for area in fetchAreas() {
             areas.append(ChipsDataModel(isSelected: false, titleKey: area))
         }
     }
 
+    /// Search firstname in remote storage
     func searchFirstnamesRemote(searchString: String) {
         print("Calling searchFirstnames")
-
-        if !searchString.isEmpty {
-            if let apiEndpoint = apiDomain {
-                let url =
-            """
-            \(apiEndpoint)\(searchEndpoint)firstname:\(searchString)\(orUrlSeparator)origins:\(searchString)*
-            """
-                print(url)
-
-                let headers: HTTPHeaders = [.authorization(username: username, password: password)]
-
-                AF.request(url, headers: headers)
-                    .validate()
-                    .publishDecodable(type: [FirstnameDataModel].self)
-                    .sink(receiveCompletion: { (completion) in
-                        switch completion {
-                        case .finished:
-                                ()
-                        case .failure(let error):
-                                print(error)
-                        }
-                    }, receiveValue: { (response) in
-                        switch response.result {
-                        case .success(let model):
-                                // self.searchResults = model
-                                self.loading = false
-
-                        case .failure(let error):
-                                print(error)
-                        }
-                    }).store(in: &tokens)
-            } else {
-                return
-            }
+        dataRepository.searchFirstname(searchString: searchString) { _ in
+            // TODO:
+            self.loading = false
         }
     }
 
@@ -116,7 +84,7 @@ final class SearchScreenViewModel: ObservableObject {
             let predicate = NSPredicate(format: "firstname CONTAINS[d] %@", searchString)
             do {
                 try
-            self.searchResults = realm.fetchLocalData(type: FirstnameDB.self, filter: predicate)
+                self.searchResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self, filter: predicate))
             } catch {
                 print("Error")
             }
@@ -128,40 +96,17 @@ final class SearchScreenViewModel: ObservableObject {
     func filterFirstnamesRemote() {
         print("Calling filterFirstnames")
         formatFilterString(currentFilterChain)
-        if let apiEndpoint = apiDomain {
 
-            let url =
-            """
-            \(apiEndpoint)\(searchEndpoint)\(currentFilterChain)
-            """
+        dataRepository.filterFirstnamesRemote(filterChain: currentFilterChain) { response in
+            switch response.result {
+                case .success(let model):
+                    self.loading = false
+                    print(model.count)
 
-            print("URL called: \(url)")
-
-            let headers: HTTPHeaders = [.authorization(username: username, password: password)]
-
-            AF.request(url, headers: headers)
-                .validate()
-                .publishDecodable(type: [FirstnameDataModel].self)
-                .sink(receiveCompletion: { (completion) in
-                    switch completion {
-                    case .finished:
-                            ()
-                    case .failure(let error):
-                            print(error)
-                    }
-                }, receiveValue: { (response) in
-                    switch response.result {
-                    case .success(let model):
-                            // self.searchResults = model
-                            self.loading = false
-                            print(model.count)
-
-                    case .failure(let error):
-                            print(error)
-                            print("Called failed look into local")
-                            self.filterFirstnamesLocal()
-                    }
-                }).store(in: &tokens)
+                case .failure(let error):
+                    print(error)
+                    print("Called failed look into local")
+            }
         }
     }
 
@@ -194,47 +139,29 @@ final class SearchScreenViewModel: ObservableObject {
         UserDefaults.standard.set(filters, forKey: "Filters")
     }
 
-    func getSizes() -> [String] {
+    func fetchSizes() -> [String] {
         return ["short", "medium", "long"]
     }
 
-    func getAreas() -> [String] {
+    func fetchAreas() -> [String] {
         return ["north africa", "east africa", "west africa", "south africa"]
     }
 
-    func getOrigins() {
+    func fetchOrigins() {
         print("Calling get origins")
 
-        if let apiEndpoint = apiDomain {
-
-            let url = "\(apiEndpoint)/api/v1/origins"
-
-        let headers: HTTPHeaders = [.authorization(username: username, password: password)]
-
-        AF.request(url, headers: headers)
-            .validate()
-            .publishDecodable(type: [String].self)
-            .sink(receiveCompletion: { (completion) in
-                switch completion {
-                case .finished:
-                        ()
-                case .failure(let error):
-                        print(error)
+        dataRepository.fetchOrigins { response in
+            switch response.result {
+            case .success(let model):
+                self.originsStr = model
+                self.loading = false
+                // Fill Origins Options
+                for origin in self.originsStr {
+                    self.origins.append(ChipsDataModel(isSelected: false, titleKey: origin))
                 }
-            }, receiveValue: { [self] (response) in
-                switch response.result {
-                case .success(let model):
-                    originsStr = model
-                    loading = false
-                    // Fill Origins Options
-                    for origin in originsStr {
-                        origins.append(ChipsDataModel(isSelected: false, titleKey: origin))
-                    }
-
-                case .failure(let error):
-                        print(error)
-                }
-            }).store(in: &tokens)
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 

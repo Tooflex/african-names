@@ -1,0 +1,30 @@
+/* 
+  Localizable.strings
+  Prenom Africains
+
+  Created by Otourou Da Costa on 29/05/2021.
+  
+*/
+"hello-title" = "Hello, World!";
+"short" = "Short";
+"medium" = "Medium";
+"long" = "Long";
+"Choose your language" = "Choose your language";
+"Home" = "Home";
+"Search" = "Search";
+"My List" = "My List";
+"Params" = "Params";
+"Share" = "Share";
+"Origins: %@" = "Origins: %@";
+"Search a firstname" = "Search a firstname";
+"Only show favorites" = "Only show favorites";
+"Area" = "Area";
+"Gender" = "Gender";
+"Size" = "Size";
+"Filter" = "Filter";
+"north africa" = "north africa";
+"east africa" = "east africa";
+"west africa" = "west africa";
+"south africa" = "south africa";
+"No favorite firstname" = "No favorite firstname";
+

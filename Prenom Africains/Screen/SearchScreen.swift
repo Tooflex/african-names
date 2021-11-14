@@ -163,13 +163,11 @@ struct SearchScreen: View {
             }
         }
         .onReceive(searchScreenViewModel.$searchResults) { firstnames in
-            if let firstnames = firstnames {
                 if !firstnames.isEmpty {
                     isResults = true
                 } else {
                     isResults = false
                 }
-            }
         }
     }
 }

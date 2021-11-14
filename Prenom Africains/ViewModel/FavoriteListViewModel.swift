@@ -6,18 +6,17 @@
 //
 
 import Foundation
-import RealmSwift
 
 final class FavoriteListViewModel: ObservableObject {
 
     @Published var selectedFirstname: FirstnameDB
 
     let dataRepository = DataRepository.sharedInstance
-    @Published var favoritedFirstnamesResults: Results<FirstnameDB>?
+    @Published var favoritedFirstnamesResults: [FirstnameDB]?
 
     init() {
         self.favoritedFirstnamesResults =
-        dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "isFavorite = true")
+        dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "isFavorite = true").shuffled()
         selectedFirstname = FirstnameDB()
     }
 

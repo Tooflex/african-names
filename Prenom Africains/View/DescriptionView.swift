@@ -150,7 +150,7 @@ struct DescriptionView: View {
             Spacer()
             HStack(alignment: .center) {
                 // MARK: Share Button
-                ShareButton().opacity(0.8)
+                ShareButton(viewmodel: firstNameViewModel).opacity(0.8)
             }
         }
         .onAppear(perform: prepareHaptics)

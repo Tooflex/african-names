@@ -160,11 +160,9 @@ struct MainScreen: View {
             firstNameViewModel.onAppear()
         })
         .onReceive(firstNameViewModel.$firstnamesResults) { firstnames in
-            if let firstnames = firstnames {
                 if !firstnames.isEmpty {
                     firstNameViewModel.currentFirstname = firstnames[currentIndex]
                 }
-            }
         }
 
     }
@@ -199,20 +197,14 @@ struct MainScreen: View {
     }
 
     fileprivate func isNextFirstname() -> Bool {
-        if let firstnames = firstNameViewModel.firstnamesResults {
-            return self.currentIndex < firstnames.count-1
-        } else {
-            return false
-        }
 
+            return self.currentIndex < firstNameViewModel.firstnamesResults.count-1
     }
 
     fileprivate func nextFirstname() {
         if isNextFirstname() {
-            if let firstnames = firstNameViewModel.firstnamesResults {
             self.currentIndex = currentIndex + 1
-            firstNameViewModel.currentFirstname = firstnames[currentIndex]
-            }
+            firstNameViewModel.currentFirstname = firstNameViewModel.firstnamesResults[currentIndex]
         }
     }
 
@@ -222,10 +214,8 @@ struct MainScreen: View {
 
     fileprivate func previousFirstname() {
         if isPreviousFirstname() {
-            if let firstnames = firstNameViewModel.firstnamesResults {
             self.currentIndex = currentIndex - 1
-            firstNameViewModel.currentFirstname = firstnames[currentIndex]
-            }
+            firstNameViewModel.currentFirstname = firstNameViewModel.firstnamesResults[currentIndex]
         }
     }
 

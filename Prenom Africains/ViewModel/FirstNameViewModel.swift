@@ -6,19 +6,15 @@
 //
 
 import Foundation
-import Alamofire
 import Combine
-import SwiftUI
-import RealmSwift
 
 final class FirstNameViewModel: ObservableObject {
 
     let dataRepository = DataRepository.sharedInstance
 
-    @Published var favoritedFirstnamesResults: Results<FirstnameDB>?
-    @Published var firstnamesResults: Results<FirstnameDB>?
+    @Published var favoritedFirstnamesResults: [FirstnameDB] = []
+    @Published var firstnamesResults: [FirstnameDB] = []
 
-    var firstnamesToken: NotificationToken?
     @Published var isLoading = false
     @Published var isFiltered = false
     @Published var noResults = false // No filter results
@@ -34,10 +30,6 @@ final class FirstNameViewModel: ObservableObject {
     init() {
         getFirstnames()
         fetchOnline()
-    }
-
-    deinit {
-        self.firstnamesToken?.invalidate()
     }
 
     func onAppear() {
@@ -56,14 +48,14 @@ final class FirstNameViewModel: ObservableObject {
         let defaults = UserDefaults.standard
         let filters = defaults.object(forKey: "Filters") as? [String: Any] ?? [String: Any]()
 
-        self.favoritedFirstnamesResults = dataRepository.fetchLocalData(
+        self.favoritedFirstnamesResults = Array(dataRepository.fetchLocalData(
             type: FirstnameDB.self,
-            filter: "isFavorite = true")
-        self.firstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self)
+            filter: "isFavorite = true"))
+        self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self))
 
         if filters.isEmpty {
             self.isFiltered = false
-            self.firstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self)
+            self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self))
         } else {
             self.isFiltered = true
             let filterOnTop = filters["onTop"] as? Int ?? -1
@@ -75,11 +67,11 @@ final class FirstNameViewModel: ObservableObject {
 
             let compoundFilter = self.createFilterCompound(filterArray: filters)
             do {
-                try self.firstnamesResults = dataRepository.fetchLocalData(
+                try self.firstnamesResults = Array(dataRepository.fetchLocalData(
                     type: FirstnameDB.self,
-                    filter: compoundFilter)
+                    filter: compoundFilter))
             } catch {
-                self.firstnamesResults = dataRepository.fetchLocalData(type: FirstnameDB.self)
+                self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self))
                 print("Errors in filtering")
             }
 
@@ -88,7 +80,7 @@ final class FirstNameViewModel: ObservableObject {
             // TODO: Put Selected firstname on top of list
         }
 
-        if let firstFirstname = self.firstnamesResults?.first {
+        if let firstFirstname = self.firstnamesResults.first {
             self.currentFirstname = firstFirstname
             self.noResults = false
         } else {
@@ -118,14 +110,6 @@ final class FirstNameViewModel: ObservableObject {
                 print(error.localizedDescription)
             }
             self.isLoading = false
-        }
-    }
-
-    private func activateFirstnamesToken() {
-        let firstnames = self.dataRepository.fetchLocalData(type: FirstnameDB.self)
-        self.firstnamesToken = firstnames.observe { _ in
-            // When there is a change, replace the old firstnames array with a new one.
-            self.firstnamesResults = self.dataRepository.fetchLocalData(type: FirstnameDB.self)
         }
     }
 

@@ -282,12 +282,12 @@
 		156F0AF2260817300076AB4B /* Prenom AfricainsTests */ = {
 			isa = PBXGroup;
 			children = (
+				15F8801527404DC600766E30 /* CountryLibraryTest.swift */,
 				1588BCDC273D571400F91E42 /* DataRepositoryTest.swift */,
 				1588BCDE273DFE1900F91E42 /* FirstnameApiServiceTests.swift */,
 				1588BCDA273D512000F91E42 /* FirstNameViewModelTests.swift */,
 				1588BCE2273E00CC00F91E42 /* MockURLProtocol.swift */,
 				156F0AF5260817300076AB4B /* Info.plist */,
-				15F8801527404DC600766E30 /* CountryLibraryTest.swift */,
 			);
 			path = "Prenom AfricainsTests";
 			sourceTree = "<group>";
@@ -309,16 +309,16 @@
 				15CAC5242646ECF1007E838C /* ChipsOptionView.swift */,
 				15E8DE462663093B0036A99F /* ChipsView.swift */,
 				156F0B2B260821470076AB4B /* DescriptionView.swift */,
+				157FFA54273ED3540037E32A /* FilterChip.swift */,
 				15FC2A4C2648A12F0025BCF3 /* Handle.swift */,
 				152CDB5F266FEB1F003B65C4 /* LegacyTextField.swift */,
 				156F0B2626081DA40076AB4B /* LottieView.swift */,
 				15EA7DDF260921A0006BC8F2 /* MenuView.swift */,
 				15CAC5202646D7F7007E838C /* SearchBarView.swift */,
 				152F3C4A264C6F71000D564B /* SearchBarButton.swift */,
-				15FC2A4A2648A10B0025BCF3 /* SlidingOverCard.swift */,
-				157FFA54273ED3540037E32A /* FilterChip.swift */,
-				157FFA56273EF2BF0037E32A /* WaveShape.swift */,
 				15F8800F2740285500766E30 /* ShareButtonView.swift */,
+				15FC2A4A2648A10B0025BCF3 /* SlidingOverCard.swift */,
+				157FFA56273EF2BF0037E32A /* WaveShape.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -338,8 +338,9 @@
 		1587CC2D273FEED90007B89A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				1587CC2E273FEF220007B89A /* ViewExtension.swift */,
+				157FFA52273EC50E0037E32A /* ArrayExtension.swift */,
 				1587CC30273FF0DB0007B89A /* UIColorExtension.swift */,
+				1587CC2E273FEF220007B89A /* ViewExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -364,12 +365,11 @@
 		15CFF01A261396A100B06E32 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				15F8801327404D8200766E30 /* CountryLibrary.swift */,
 				15645E87263B5B8B0017E8B7 /* LandscapeModifier.swift */,
 				15FC2A4626483CF40025BCF3 /* MenuItemEnum.swift */,
 				15ABCB47262A59B600036B3E /* NetworkMonitor.swift */,
 				15640715266836830084908F /* Vibration.swift */,
-				157FFA52273EC50E0037E32A /* ArrayExtension.swift */,
-				15F8801327404D8200766E30 /* CountryLibrary.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -400,13 +400,13 @@
 		15FC2A49264855760025BCF3 /* Lottie File */ = {
 			isa = PBXGroup;
 			children = (
-				157FFA5C273F252B0037E32A /* loading-rainbow.json */,
-				157FFA5A273F15D40037E32A /* heart_like_white.json */,
 				157FFA58273F14410037E32A /* heart_like.json */,
-				156F0B2126081D6C0076AB4B /* sound.json */,
+				157FFA5A273F15D40037E32A /* heart_like_white.json */,
+				157FFA5C273F252B0037E32A /* loading-rainbow.json */,
 				15D4A12D2723752000D8BCA4 /* md-female-select.json */,
 				15A134BB272476EB0019AE90 /* md-male-select.json */,
 				157FFA50273EB9300037E32A /* noresults.json */,
+				156F0B2126081D6C0076AB4B /* sound.json */,
 			);
 			path = "Lottie File";
 			sourceTree = "<group>";
@@ -847,7 +847,7 @@
 		156F0B04260817300076AB4B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://ddda-2a02-8428-8093-3801-cd45-b846-8d04-a69a.ngrok.io";
+				API_ENDPOINT = "https://6ab7-2a02-8428-8093-3801-a564-91f4-6d29-c94e.ngrok.io";
 				APP_DISPLAY_NAME = "DEV Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -872,7 +872,7 @@
 		156F0B05260817300076AB4B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				API_ENDPOINT = "https://ddda-2a02-8428-8093-3801-cd45-b846-8d04-a69a.ngrok.io";
+				API_ENDPOINT = "https://6ab7-2a02-8428-8093-3801-a564-91f4-6d29-c94e.ngrok.io";
 				APP_DISPLAY_NAME = "Prénoms Africains";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

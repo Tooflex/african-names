@@ -146,6 +146,22 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
         }
     }
 
+    func searchFirstname(
+        searchString: String,
+        completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void) {
+        apiService.searchFirstnamesRemote(searchString: searchString, completion: completion)
+    }
+
+    func filterFirstnamesRemote(
+        filterChain: String,
+        completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void) {
+            apiService.filterFirstnamesRemote(filterChain: filterChain, completion: completion)
+        }
+
+    func fetchOrigins(completion: @escaping (DataResponse<[String], AFError>) -> Void) {
+        apiService.fetchOrigins(completion: completion)
+    }
+
     func toggleFavorited(firstnameObj: FirstnameDataModel) {
         objectWillChange.send()
         do {
