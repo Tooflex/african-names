@@ -47,6 +47,7 @@ struct DescriptionView: View {
             }
 
             HStack {
+                // MARK: Gender Icons
                 switch firstNameViewModel.currentFirstname.gender {
                 case Gender.male.rawValue:
                 HStack {
@@ -99,53 +100,60 @@ struct DescriptionView: View {
                 }
 
                 Spacer()
+                // MARK: Origin Text
                 Text("Origins: \(firstNameViewModel.currentFirstname.origins)")
                     .font(.title2)
                     .lineLimit(1)
                     .padding(.horizontal)
             }.frame(alignment: .center)
 
-            if firstNameViewModel.currentFirstname.isFavorite {
-                Button(action: {
-                    firstNameViewModel.toggleFavorited(firstnameObj: firstNameViewModel.currentFirstname)
-                }) {
-                    LottieView(
-                        name:
-                            getRightHeartLikeStyle(
-                                gender:
-                                    Gender(rawValue:
-                                            firstNameViewModel.currentFirstname.gender) ?? Gender.undefined),
-                        fromMarker: "touchDownStart",
-                        toMarker: "touchUpEnd")
-                        .padding(.all, -40)
-                        .frame(
-                            width: 40 * CGFloat(sizeMultiplier()),
-                            height: 40 * CGFloat(sizeMultiplier()),
-                            alignment: .center)
-                }
-            } else {
-                Button(action: {
-                    firstNameViewModel.toggleFavorited(firstnameObj: firstNameViewModel.currentFirstname)
-                    complexSuccess()
-                }) {
-                    LottieView(
-                        name:
-                            getRightHeartLikeStyle(
-                                gender: Gender(rawValue:
-                                                firstNameViewModel.currentFirstname.gender) ?? Gender.undefined),
-                               fromMarker: "touchDownStart1",
-                               toMarker: "touchUpEnd1")
-                        .padding(.all, -40)
-                        .frame(
-                            width: 40 * CGFloat(sizeMultiplier()),
-                            height: 40 * CGFloat(sizeMultiplier()),
-                            alignment: .center)
-                }
-            }
+            HStack(alignment: .center) {
+                    // MARK: Favorite Button
+                    if firstNameViewModel.currentFirstname.isFavorite {
+                        Button(action: {
+                            firstNameViewModel.toggleFavorited(firstnameObj: firstNameViewModel.currentFirstname)
+                        }) {
+                            LottieView(
+                                name:
+                                    getRightHeartLikeStyle(
+                                        gender:
+                                            Gender(rawValue:
+                                                    firstNameViewModel.currentFirstname.gender) ?? Gender.undefined),
+                                fromMarker: "touchDownStart",
+                                toMarker: "touchUpEnd")
+                                .padding(.all, -40)
+                                .frame(
+                                    width: 40 * CGFloat(sizeMultiplier()),
+                                    height: 40 * CGFloat(sizeMultiplier()),
+                                    alignment: .center)
+                        }
+                    } else {
+                        Button(action: {
+                            firstNameViewModel.toggleFavorited(firstnameObj: firstNameViewModel.currentFirstname)
+                            complexSuccess()
+                        }) {
+                            LottieView(
+                                name:
+                                    getRightHeartLikeStyle(
+                                        gender: Gender(rawValue:
+                                                        firstNameViewModel.currentFirstname.gender) ?? Gender.undefined),
+                                fromMarker: "touchDownStart1",
+                                toMarker: "touchUpEnd1")
+                                .padding(.all, -40)
+                                .frame(
+                                    width: 40 * CGFloat(sizeMultiplier()),
+                                    height: 40 * CGFloat(sizeMultiplier()),
+                                    alignment: .center)
+                        }
+                    }
+                }.frame(alignment: .center)
             Spacer()
+            HStack(alignment: .center) {
+                // MARK: Share Button
+                ShareButton().opacity(0.8)
+            }
         }
         .onAppear(perform: prepareHaptics)
-
     }
 
     func getRightHeartLikeStyle(gender: Gender) -> String {
@@ -155,7 +163,6 @@ struct DescriptionView: View {
         default:
               return "heart_like"
         }
-
     }
 
     func sizeMultiplier() -> Int {
@@ -202,6 +209,7 @@ struct DescriptionView: View {
             print("Failed to play pattern: \(error).")
         }
     }
+
 }
 
 extension Color {

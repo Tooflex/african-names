@@ -39,6 +39,8 @@ class FirstNameViewModelTests: XCTestCase {
 
     }
 
+    // func test
+
     func testPerformanceExample() throws {
 
         self.measure {

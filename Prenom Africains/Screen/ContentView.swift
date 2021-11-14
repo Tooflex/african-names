@@ -15,8 +15,7 @@ struct ContentView: View {
     let tabHome = 0
     let tabSearch = 1
     let tabMyList = 2
-    let tabShare = 3
-    let tabParams = 4
+    let tabParams = 3
 
     var body: some View {
         ZStack {
@@ -29,6 +28,8 @@ struct ContentView: View {
                     SearchScreen(selectedTab: $selectedTab, searchString: $searchString)
             case 2:
                     FavoriteListScreen(selectedTab: $selectedTab)
+            case 3:
+                    ParamScreen(selectedTab: $selectedTab)
             default :
                     MainScreen(searchString: $searchString)
             }

@@ -29,92 +29,31 @@ struct MainScreen: View {
 
     var body: some View {
 
-        if self.firstNameViewModel.isLoading {
-            VStack {
-                Spacer()
-                LottieView(name: "loading-rainbow", loopMode: .loop)
-                    .frame(
-                        width: 300 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)),
-                        height: 300 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)))
-                Text("Loading...")
-                Spacer()
-            }
-        } else if self.firstNameViewModel.noResults {
-            VStack {
-                Spacer()
-                Button {
-                    self.firstNameViewModel.fetchOnline()
-                } label: {
-                    Image(systemName: "goforward")
-                    Text("Tap to refresh")
-                }.frame(
-                    width: 200 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0),
-                    height: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
-                LottieView(name: "noresults", loopMode: .playOnce)
-                    .frame(
-                        width: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0),
-                        height: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
-                Text("No firstnames")
-
-                Spacer()
-            }
-        } else {
-            GeometryReader { geo in
-            ZStack {
-                ZStack {
-                    Wave(
-                        waveHeight: 30,
-                        phase: Angle(degrees: (Double(geo.frame(in: .global).minY) + phaseCst) * -1 * 0.7))
-                    .foregroundColor(setColorAlt())
-                    .opacity(0.5)
-                Wave(
-                    waveHeight: 30,
-                    phase: Angle(degrees: (Double(geo.frame(in: .global).minY) + phaseCst) * 0.7))
-                    .foregroundColor(setColor())
-                        .onReceive(self.timer) { _ in
-                            phaseCst += 0.2
-                            count += 1
-                            if count > 5000 {
-                                self.timer.upstream.connect().cancel()
-                            }
-                    }
-                }.frame(height: 70, alignment: .center)
-
+        VStack {
+            if self.firstNameViewModel.isLoading {
                 VStack {
                     Spacer()
-                    HStack {
-                        if isPreviousFirstname() {
-                            leftButton()
-                        } else {
-                            Spacer().frame(
-                                width: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)),
-                                height: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
-                            )
-                        }
-                        // iPad Full or 1/2
-                        if vSizeClass == .regular && hSizeClass == .regular {
-                            VStack {
-                                Spacer()
-                                CircleFirstName(prenom: firstNameViewModel.currentFirstname, color: setColor())
-                                    .padding(.bottom)
-                                    .frame(width: 600, height: 600)
-                                Spacer()
-                            }
-
-                        } else {
-                            CircleFirstName(prenom: firstNameViewModel.currentFirstname, color: setColor())
-                                .padding(.bottom)
-                        }
-
-                        if isNextFirstname() {
-                            rightButton()
-                        } else {
-                            Spacer().frame(
-                                width: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)),
-                                height: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
-                            )
-                        }
+                    LottieView(name: "loading-rainbow", loopMode: .loop)
+                        .frame(
+                            width: 300 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)),
+                            height: 300 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)))
+                    Text("Loading...")
+                    Spacer()
+                }
+            } else if self.firstNameViewModel.noResults {
+                VStack {
+                    Spacer()
+                    if self.firstNameViewModel.noData {
+                        Button {
+                            self.firstNameViewModel.fetchOnline()
+                        } label: {
+                            Image(systemName: "goforward")
+                            Text("Tap to refresh")
+                        }.frame(
+                            width: 200 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0),
+                            height: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
                     }
+
                     if self.firstNameViewModel.isFiltered {
                         HStack {
                             Spacer()
@@ -125,31 +64,109 @@ struct MainScreen: View {
                                 .padding(.horizontal)
                         }
                     }
-                        DescriptionView()
-                }
-                .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
-                            .onEnded { value in
-                    let horizontalAmount = value.translation.width as CGFloat
-                    let verticalAmount = value.translation.height as CGFloat
 
-                    if abs(horizontalAmount) > abs(verticalAmount) {
-                        print(horizontalAmount < 0 ? nextFirstname() : previousFirstname())
-                    }
-                })
-                .padding(.vertical)
-                .onAppear(perform: {
-                    firstNameViewModel.onAppear()
-                })
-                .onReceive(firstNameViewModel.$firstnamesResults) { firstnames in
-                    if let firstnames = firstnames {
-                        if !firstnames.isEmpty {
-                            firstNameViewModel.currentFirstname = firstnames[currentIndex]
+                    LottieView(name: "noresults", loopMode: .playOnce)
+                        .frame(
+                            width: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0),
+                            height: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
+                    Text("No firstnames")
+
+                    Spacer()
+                }
+            } else {
+                GeometryReader { geo in
+                    ZStack {
+                        ZStack {
+                            Wave(
+                                waveHeight: 30,
+                                phase: Angle(degrees: (Double(geo.frame(in: .global).minY) + phaseCst) * -1 * 0.7))
+                                .foregroundColor(setColorAlt())
+                                .opacity(0.5)
+                            Wave(
+                                waveHeight: 30,
+                                phase: Angle(degrees: (Double(geo.frame(in: .global).minY) + phaseCst) * 0.7))
+                                .foregroundColor(setColor())
+                                .onReceive(self.timer) { _ in
+                                    phaseCst += 0.2
+                                    count += 1
+                                    if count > 5000 {
+                                        self.timer.upstream.connect().cancel()
+                                    }
+                                }
+                        }.frame(height: 70, alignment: .center)
+
+                        VStack {
+                            Spacer()
+                            HStack {
+                                if isPreviousFirstname() {
+                                    leftButton()
+                                } else {
+                                    Spacer().frame(
+                                        width: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)),
+                                        height: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
+                                    )
+                                }
+                                // iPad Full or 1/2
+                                if vSizeClass == .regular && hSizeClass == .regular {
+                                    VStack {
+                                        Spacer()
+                                        CircleFirstName(prenom: firstNameViewModel.currentFirstname, color: setColor())
+                                            .padding(.bottom)
+                                            .frame(width: 600, height: 600)
+                                        Spacer()
+                                    }
+
+                                } else {
+                                    CircleFirstName(prenom: firstNameViewModel.currentFirstname, color: setColor())
+                                        .padding(.bottom)
+                                }
+
+                                if isNextFirstname() {
+                                    rightButton()
+                                } else {
+                                    Spacer().frame(
+                                        width: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)),
+                                        height: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
+                                    )
+                                }
+                            }
+                            if self.firstNameViewModel.isFiltered {
+                                HStack {
+                                    Spacer()
+                                    FilterChip(text: "filters on", color: .white, action: {
+                                        self.firstNameViewModel.clearFilters()
+                                        self.firstNameViewModel.getFirstnames()
+                                    })
+                                        .padding(.horizontal)
+                                }
+                            }
+                            DescriptionView()
                         }
+                        .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
+                                    .onEnded { value in
+                            let horizontalAmount = value.translation.width as CGFloat
+                            let verticalAmount = value.translation.height as CGFloat
+
+                            if abs(horizontalAmount) > abs(verticalAmount) {
+                                print(horizontalAmount < 0 ? nextFirstname() : previousFirstname())
+                            }
+                        })
+                        .padding(.vertical)
                     }
                 }
             }
         }
+        .onAppear(perform: {
+            firstNameViewModel.onAppear()
+        })
+        .onReceive(firstNameViewModel.$firstnamesResults) { firstnames in
+            if let firstnames = firstnames {
+                if !firstnames.isEmpty {
+                    firstNameViewModel.currentFirstname = firstnames[currentIndex]
+                }
+            }
         }
+
     }
 
     // MARK: Previous & Next Buttons

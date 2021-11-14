@@ -21,7 +21,8 @@ final class FirstNameViewModel: ObservableObject {
     var firstnamesToken: NotificationToken?
     @Published var isLoading = false
     @Published var isFiltered = false
-    @Published var noResults = false
+    @Published var noResults = false // No filter results
+    @Published var noData = false // No firstnames in DB
 
     @Published var currentFirstname: FirstnameDB = FirstnameDB()
     var firstnameOnTop: FirstnameDB = FirstnameDB()
@@ -139,6 +140,10 @@ final class FirstNameViewModel: ObservableObject {
         var subPredicates = [NSPredicate]()
         let favoritePredicate = NSPredicate(format: "isFavorite == %d", filterIsFavorite)
         subPredicates.append(favoritePredicate)
+
+        if filterArea.isEmpty && filterOrigins.isEmpty && filterGender.isEmpty && filterSize.isEmpty {
+            self.clearFilters()
+        }
 
         if !filterArea.isEmpty {
             let areaPredicate = NSPredicate(format: "regions IN %@", filterArea)

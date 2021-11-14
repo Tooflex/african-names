@@ -8,5 +8,5 @@
 import Foundation
 
 enum MenuItemEnum: Int {
-    case home = 0, search = 1, myList = 2, share = 3, params = 4
+    case home = 0, search = 1, myList = 2, params = 3
 }

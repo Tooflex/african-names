@@ -15,12 +15,6 @@ struct MenuView: View {
 
     @Binding var selectedTab: Int
 
-    @State private var showShareSheet: Bool = false
-
-    @State var shareSheetItems: [Any] = []
-
-    var excludedActivityTypes: [UIActivity.ActivityType]?
-
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25.0)
@@ -38,9 +32,6 @@ struct MenuView: View {
 
                 // MARK: List Button
                 MyListButton(selectedTab: $selectedTab)
-
-                // MARK: Share Button
-                ShareButton()
 
                 // MARK: Parameter Button
                 ParameterButton(selectedTab: $selectedTab)
@@ -117,39 +108,6 @@ struct MenuView: View {
         }
     }
 
-    struct ShareButton: View {
-
-        @State private var showShareSheet: Bool = false
-        @State var shareSheetItems: [Any] = []
-        var excludedActivityTypes: [UIActivity.ActivityType]?
-
-        let iconFont = Font.system(size: 27).bold()
-        let textFont = Font.system(size: 12)
-
-        var body: some View {
-            Button(action: {
-                self.showShareSheet.toggle()
-                shareSheetItems.append("Hello")
-            }, label: {
-                VStack(alignment: .center, spacing: 3) {
-                    Image(systemName: "square.and.arrow.up")
-                        .font(iconFont)
-                        .foregroundColor(self.showShareSheet ? Color.appBlue : Color.black)
-                        .accessibilityLabel(Text("Share"))
-                    Text("Share")
-                        .font(textFont)
-                        .foregroundColor(
-                            self.showShareSheet ? Color.appBlue : Color.black)
-                }
-            }).sheet(isPresented: $showShareSheet, content: {
-                ActivityViewController(
-                    activityItems: self.$shareSheetItems,
-                    excludedActivityTypes: excludedActivityTypes
-                )
-            })
-        }
-    }
-
     struct ParameterButton: View {
 
         @Binding var selectedTab: Int
@@ -183,24 +141,6 @@ struct MenuView: View {
             return 1
         }
     }
-}
-
-struct ActivityViewController: UIViewControllerRepresentable {
-    @Binding var activityItems: [Any]
-    var excludedActivityTypes: [UIActivity.ActivityType]?
-
-    func makeUIViewController(
-        context: UIViewControllerRepresentableContext<ActivityViewController>) -> UIActivityViewController {
-        let controller = UIActivityViewController(activityItems: activityItems,
-                                                  applicationActivities: nil)
-
-        controller.excludedActivityTypes = excludedActivityTypes
-
-        return controller
-    }
-    func updateUIViewController(
-        _ uiViewController: UIActivityViewController,
-        context: UIViewControllerRepresentableContext<ActivityViewController>) {}
 }
 
 struct MenuView_Previews: PreviewProvider {
