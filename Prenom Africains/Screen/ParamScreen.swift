@@ -21,7 +21,6 @@ struct ParamScreen: View {
                     HStack {
                         Text(country.code + " - " + country.flagAndName)
                     }
-
                 }
             }
             Spacer()
