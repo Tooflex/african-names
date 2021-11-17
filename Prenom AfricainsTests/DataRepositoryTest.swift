@@ -120,23 +120,26 @@ class DataRepositoryTest: XCTestCase {
     func testUpdateFirstnames() {
 
         // Step 1: Create a firstname & add it to the database
-        firstameToTest.firstname = "Toto not updated"
-        dataRepository.add(firstname: firstameToTest)
+        var firstameToUpdate = FirstnameDataModel()
+        firstameToUpdate.firstname = "Toto not updated"
+        dataRepository.add(firstname: firstameToUpdate)
 
         // Step 2: Fetch the added firstname
         let retrievedFirstname = dataRepository.fetchLocalData(type: FirstnameDB.self).first!
         XCTAssert(retrievedFirstname.firstname == "Toto not updated")
 
+        var retrievedFirstnameDM = FirstnameDataModel(firstnameDB: retrievedFirstname)
         // Step 3: Modify the firstname
-        retrievedFirstname.firstname = "Toto updated"
-        retrievedFirstname.gender = Gender.male.rawValue
-        retrievedFirstname.meaning = "meaning updated"
-        retrievedFirstname.origins = "origin updated"
-        retrievedFirstname.firstnameSize = Size.long.rawValue
-        retrievedFirstname.soundURL = "soundurl updated"
-        retrievedFirstname.regions = "region updated"
 
-        dataRepository.update(firstname: retrievedFirstname)
+        retrievedFirstnameDM.firstname = "Toto updated"
+        retrievedFirstnameDM.gender = Gender.male
+        retrievedFirstnameDM.meaning = "meaning updated"
+        retrievedFirstnameDM.origins = "origin updated"
+        retrievedFirstnameDM.size = Size.long
+        retrievedFirstnameDM.soundURL = "soundurl updated"
+        retrievedFirstnameDM.regions = "region updated"
+
+        dataRepository.update(firstname: retrievedFirstnameDM)
 
         let retrievedFirstnameAfterUpdated = FirstnameDataModel(
             firstnameDB: dataRepository.fetchLocalData(type: FirstnameDB.self).first!
@@ -146,17 +149,22 @@ class DataRepositoryTest: XCTestCase {
         XCTAssert(retrievedFirstnameAfterUpdated.gender == Gender.male)
         XCTAssert(retrievedFirstnameAfterUpdated.meaning == "meaning updated")
         XCTAssert(retrievedFirstnameAfterUpdated.origins == "origin updated")
-        XCTAssert(retrievedFirstnameAfterUpdated.size == Size.undefined)
+        XCTAssert(retrievedFirstnameAfterUpdated.size == Size.long)
         XCTAssert(retrievedFirstnameAfterUpdated.soundURL == "soundurl updated")
         XCTAssert(retrievedFirstnameAfterUpdated.regions == "region updated")
 
     }
 
     func testDeleteAllFirstnames() {
-        let firstname1 = FirstnameDataModel()
-        let firstname2 = FirstnameDataModel()
-        let firstname3 = FirstnameDataModel()
-        let firstname4 = FirstnameDataModel()
+        var firstname1 = FirstnameDataModel()
+        var firstname2 = FirstnameDataModel()
+        var firstname3 = FirstnameDataModel()
+        var firstname4 = FirstnameDataModel()
+
+        firstname1.id = 0
+        firstname2.id = 1
+        firstname3.id = 2
+        firstname4.id = 4
 
         dataRepository.addAll(firstnamesToAdd: [firstname1, firstname2, firstname3, firstname4])
 
@@ -172,10 +180,17 @@ class DataRepositoryTest: XCTestCase {
 
     func testFetchLocalDataWithStringPredicates() {
         var firstname1 = FirstnameDataModel()
-        let firstname2 = FirstnameDataModel()
+        var firstname2 = FirstnameDataModel()
         var firstname3 = FirstnameDataModel()
-        let firstname4 = FirstnameDataModel()
+        var firstname4 = FirstnameDataModel()
 
+        // Set different ids
+        firstname1.id = 0
+        firstname2.id = 1
+        firstname3.id = 2
+        firstname4.id = 4
+
+        // Set favorite for 2 firstnames
         firstname1.isFavorite = true
         firstname3.isFavorite = true
 
@@ -189,9 +204,15 @@ class DataRepositoryTest: XCTestCase {
 
     func testFetchLocalDataWithPredicates() {
         var firstname1 = FirstnameDataModel()
-        let firstname2 = FirstnameDataModel()
+        var firstname2 = FirstnameDataModel()
         var firstname3 = FirstnameDataModel()
-        let firstname4 = FirstnameDataModel()
+        var firstname4 = FirstnameDataModel()
+
+        // Set different ids
+        firstname1.id = 0
+        firstname2.id = 1
+        firstname3.id = 2
+        firstname4.id = 4
 
         firstname1.isFavorite = true
         firstname3.isFavorite = true
@@ -210,19 +231,26 @@ class DataRepositoryTest: XCTestCase {
         }
     }
 
-    func testFetchFirstnames() {
-        // TODO
-    }
-
     func testToggleFavorite() {
-        // TODO
+        let firstname1 = FirstnameDataModel()
+        dataRepository.add(firstname: firstname1)
+
+        let filteredFirstname = dataRepository.fetchLocalData(type: FirstnameDB.self).first!
+
+        XCTAssert(!filteredFirstname.isFavorite)
+
+        dataRepository.toggleFavorited(firstnameObj: filteredFirstname)
+
+        let filteredFirstnameAfterToggle = dataRepository.fetchLocalData(type: FirstnameDB.self).first!
+
+        XCTAssert(filteredFirstnameAfterToggle.isFavorite)
     }
 
-    func testPerformanceExample() throws {
-
-        self.measure {
-            // TODO
-        }
-    }
+//    func testPerformanceExample() throws {
+//
+//        self.measure {
+//            // TODO
+//        }
+//    }
 
 }

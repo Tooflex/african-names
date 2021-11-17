@@ -102,70 +102,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A5809DFC-7207-4DF4-93FF-50C687573DA1"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Prenom AfricainsTests/DataRepositoryTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "testFetchLocalDataWithStringPredicates()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A5809DFC-7207-4DF4-93FF-50C687573DA1 - 2a2f2a67a7bf9255"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Prenom_AfricainsTests.DataRepositoryTest.testFetchLocalDataWithStringPredicates() -&gt; ()"
-                  moduleName = "Prenom AfricainsTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tooflex/Development/Projets/African%20Names/Prenoms%20Africains%20iOS/Prenom%20AfricainsTests/DataRepositoryTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "173"
-                  endingLineNumber = "173"
-                  offsetFromSymbolStart = "2165">
-               </Location>
-               <Location
-                  uuid = "A5809DFC-7207-4DF4-93FF-50C687573DA1 - 2a2f2a67a7bf9274"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Prenom_AfricainsTests.DataRepositoryTest.testFetchLocalDataWithStringPredicates() -&gt; ()"
-                  moduleName = "Prenom AfricainsTests"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/tooflex/Development/Projets/African%20Names/Prenoms%20Africains%20iOS/Prenom%20AfricainsTests/DataRepositoryTest.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "172"
-                  endingLineNumber = "172"
-                  offsetFromSymbolStart = "2165">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5D2F112D-428F-4F04-AA22-30A5D206C981"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Prenom AfricainsTests/DataRepositoryTest.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "testFetchLocalDataWithStringPredicates()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "1ABF9956-E14D-4000-A43D-80B83AD23DDC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -246,17 +182,128 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "60C7E4E9-0EB9-4689-8FF3-CA3B53BDA738"
+            uuid = "1EEC810E-28C6-4AF7-BA6D-A2ACD624E800"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Prenom Africains/View/DescriptionView.swift"
+            filePath = "Prenom AfricainsTests/DataRepositoryTest.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "body"
-            landmarkType = "24">
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "testFetchLocalDataWithPredicates()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1EEC810E-28C6-4AF7-BA6D-A2ACD624E800 - 4d7f1da0c14a4aea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Prenom_AfricainsTests.DataRepositoryTest.testFetchLocalDataWithPredicates() -&gt; ()"
+                  moduleName = "Prenom AfricainsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tooflex/Development/Projets/African%20Names/Prenoms%20Africains%20iOS/Prenom%20AfricainsTests/DataRepositoryTest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "211"
+                  endingLineNumber = "211"
+                  offsetFromSymbolStart = "2552">
+               </Location>
+               <Location
+                  uuid = "1EEC810E-28C6-4AF7-BA6D-A2ACD624E800 - 4d7f1da0c14a4b45"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Prenom_AfricainsTests.DataRepositoryTest.testFetchLocalDataWithPredicates() -&gt; ()"
+                  moduleName = "Prenom AfricainsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tooflex/Development/Projets/African%20Names/Prenoms%20Africains%20iOS/Prenom%20AfricainsTests/DataRepositoryTest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "216"
+                  endingLineNumber = "216"
+                  offsetFromSymbolStart = "2552">
+               </Location>
+               <Location
+                  uuid = "1EEC810E-28C6-4AF7-BA6D-A2ACD624E800 - 4d7f1da0c14a485e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Prenom_AfricainsTests.DataRepositoryTest.testFetchLocalDataWithPredicates() -&gt; ()"
+                  moduleName = "Prenom AfricainsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tooflex/Development/Projets/African%20Names/Prenoms%20Africains%20iOS/Prenom%20AfricainsTests/DataRepositoryTest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "223"
+                  endingLineNumber = "223"
+                  offsetFromSymbolStart = "2552">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A35535B-B949-4B7A-90DC-4A6AEE98020E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Prenom AfricainsTests/DataRepositoryTest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "testUpdateFirstnames()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F9045B68-97BE-4D6C-8FD7-7B7820BD51A5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Prenom AfricainsTests/DataRepositoryTest.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "testDeleteAllFirstnames()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F9045B68-97BE-4D6C-8FD7-7B7820BD51A5 - 267165d95999805"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Prenom_AfricainsTests.DataRepositoryTest.testDeleteAllFirstnames() -&gt; ()"
+                  moduleName = "Prenom AfricainsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tooflex/Development/Projets/African%20Names/Prenoms%20Africains%20iOS/Prenom%20AfricainsTests/DataRepositoryTest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "168"
+                  endingLineNumber = "168"
+                  offsetFromSymbolStart = "885">
+               </Location>
+               <Location
+                  uuid = "F9045B68-97BE-4D6C-8FD7-7B7820BD51A5 - 267165d959998a0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Prenom_AfricainsTests.DataRepositoryTest.testDeleteAllFirstnames() -&gt; ()"
+                  moduleName = "Prenom AfricainsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/tooflex/Development/Projets/African%20Names/Prenoms%20Africains%20iOS/Prenom%20AfricainsTests/DataRepositoryTest.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "173"
+                  endingLineNumber = "173"
+                  offsetFromSymbolStart = "3458">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
