@@ -33,19 +33,19 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
         manager.sessionConfiguration.timeoutIntervalForResource = 30
     }
 
-    private let apiEndpoint = Bundle.main.infoDictionary!["API_ENDPOINT"] as? String
+    private let apiEndpoint = API.baseURL
 
     private let searchEndpoint = "/api/v1/firstnames/search/?search="
     private let originsEndpoint = "/api/v1/origins"
     private let orUrlSeparator = "*%20OR%20"
 
-    let username = "user"
-    let password = "Manjack76"
+    private let username = Bundle.main.infoDictionary!["API_USER"] as? String ?? ""
+    private let password = Bundle.main.infoDictionary!["API_PASSWORD"] as? String ?? ""
 
     var tokens: Set<AnyCancellable> = []
 
     func fetchFirstnames(completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void) {
-        guard let url = URL(string: "\(apiEndpoint ?? "")/api/v1/firstnames/random" ) else {
+        guard let url = URL(string: "api/v1/firstnames/random", relativeTo: API.baseURL) else {
             print("Error: cannot create URL")
             return
         }
@@ -73,11 +73,14 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
         print("Calling searchFirstnames")
 
         if !searchString.isEmpty {
-            if let apiEndpoint = apiEndpoint {
-                let url =
-            """
-            \(apiEndpoint)\(searchEndpoint)firstname:\(searchString)\(orUrlSeparator)origins:\(searchString)*
-            """
+            guard let url = URL(
+                string: "\(searchEndpoint)firstname:\(searchString)\(orUrlSeparator)origins:\(searchString)*",
+                relativeTo: API.baseURL)
+            else {
+                print("Error: cannot create URL")
+                return
+            }
+
                 print(url)
 
                 let headers: HTTPHeaders = [.authorization(username: username, password: password)]
@@ -95,9 +98,7 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
                     }, receiveValue: { (response) in
                         completion(response)
                     }).store(in: &tokens)
-            } else {
-                return
-            }
+
         }
     }
 
@@ -106,12 +107,16 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
         completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void) {
         print("Calling filterFirstnames")
 
-        if let apiEndpoint = apiEndpoint {
-
-            let url =
+            guard let url = URL(
+                string:
             """
             \(apiEndpoint)\(searchEndpoint)\(filterChain)
-            """
+            """,
+                relativeTo: API.baseURL)
+            else {
+                print("Error: cannot create URL")
+                return
+            }
 
             print("URL called: \(url)")
 
@@ -130,15 +135,16 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
                 }, receiveValue: { (response) in
                     completion(response)
                 }).store(in: &tokens)
-        }
+
     }
 
     func fetchOrigins(completion: @escaping (DataResponse<[String], AFError>) -> Void) {
         print("Calling get origins")
 
-        if let apiEndpoint = apiEndpoint {
-
-            let url = "\(apiEndpoint)\(originsEndpoint)"
+        guard let url = URL(string: originsEndpoint, relativeTo: API.baseURL) else {
+            print("Error: cannot create URL")
+            return
+        }
 
             let headers: HTTPHeaders = [.authorization(username: username, password: password)]
 
@@ -156,6 +162,5 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
                     completion(response)
                 }).store(in: &tokens)
         }
-    }
 
 }

@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import Prenom_Africains
+@testable import Alamofire
 
 class FirstNameViewModelTests: XCTestCase {
 
@@ -15,6 +16,10 @@ class FirstNameViewModelTests: XCTestCase {
     var prenom: FirstnameDataModel!
 
     var firstNameViewModel: FirstNameViewModel!
+
+    var manager: Session!
+    private var firstnameApiService: FirstNameApiService!
+    private let apiEndpoint = API.baseURL
 
     override func setUpWithError() throws {
         repository = DataRepository()
@@ -59,10 +64,6 @@ class FirstNameViewModelTests: XCTestCase {
 
     }
 
-    func testCreateFilterCompound() {
-        //TODO:
-    }
-
     func testToggleFavorite() throws {
         let firstnameToTest = FirstnameDB()
         XCTAssertFalse(firstnameToTest.isFavorite)
@@ -71,14 +72,5 @@ class FirstNameViewModelTests: XCTestCase {
         XCTAssertTrue(firstnameFromDB.isFavorite)
 
     }
-
-    // func test
-
-//    func testPerformanceExample() throws {
-//
-//        self.measure {
-//
-//        }
-//    }
 
 }

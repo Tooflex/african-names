@@ -32,7 +32,6 @@ class PrenomAfricainsUITests: XCTestCase {
         XCTAssert(app.buttons["Home"].exists)
         XCTAssert(app.buttons["Search"].exists)
         XCTAssert(app.buttons["My List"].exists)
-        XCTAssert(app.buttons["Share"].exists)
         XCTAssert(app.buttons["Params"].exists)
 
     }

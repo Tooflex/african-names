@@ -10,7 +10,7 @@ import Combine
 
 final class FirstNameViewModel: ObservableObject {
 
-    let dataRepository = DataRepository.sharedInstance
+    private let dataRepository = DataRepository.sharedInstance
 
     @Published var favoritedFirstnamesResults: [FirstnameDB] = []
     @Published var firstnamesResults: [FirstnameDB] = []
@@ -23,8 +23,6 @@ final class FirstNameViewModel: ObservableObject {
     @Published var currentFirstname: FirstnameDB = FirstnameDB()
     var firstnameOnTop: FirstnameDB = FirstnameDB()
 
-    private let apiEndpoint = Bundle.main.infoDictionary!["API_ENDPOINT"] as? String
-
     private var task: AnyCancellable?
 
     init() {
@@ -36,6 +34,7 @@ final class FirstNameViewModel: ObservableObject {
        getFirstnames()
     }
 
+    /// Clear filters from UserDefaults
     func clearFilters() {
         let filters = [String: Any]()
         print("My filters")

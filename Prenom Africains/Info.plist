@@ -4,10 +4,14 @@
 <dict>
 	<key>API_ENDPOINT</key>
 	<string>$(API_ENDPOINT)</string>
-	<key>CFBundleDisplayName</key>
-	<string>$(APP_DISPLAY_NAME)</string>
+	<key>API_PASSWORD</key>
+	<string>$(API_PASSWORD)</string>
+	<key>API_USER</key>
+	<string>$(API_USER)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>$(APP_DISPLAY_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

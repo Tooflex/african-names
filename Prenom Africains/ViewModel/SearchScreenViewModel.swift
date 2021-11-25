@@ -41,8 +41,6 @@ final class SearchScreenViewModel: ObservableObject {
 
     var listOfCriterias: [SearchCriteria] = []
 
-    private let apiDomain = Bundle.main.infoDictionary!["API_ENDPOINT"] as? String
-
     private let searchEndpoint = "/api/v1/firstnames/search/?search="
     private let orUrlSeparator = "*%20OR%20"
 

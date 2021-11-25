@@ -13,7 +13,7 @@ class FirstnameApiServiceTests: XCTestCase {
 
     var manager: Session!
     private var firstnameApiService: FirstNameApiService!
-    private let apiEndpoint = Bundle.main.infoDictionary!["API_ENDPOINT"] as? String
+    private let apiEndpoint = API.baseURL
 
     override func setUpWithError() throws {
         manager = {
@@ -38,7 +38,7 @@ class FirstnameApiServiceTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Performs a request")
 
         // when
-        guard let url = URL(string: "\(apiEndpoint ?? "")/api/v1/firstnames/random" ) else {
+        guard let url = URL(string: "\(apiEndpoint)/api/v1/firstnames/random" ) else {
             print("Error: cannot create URL")
             return
         }
