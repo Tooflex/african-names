@@ -48,6 +48,11 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
         do {
             let firstnameDB = convertFirstnameDataModelToFirstnameDB(firstname)
 
+            if let firstnameAlreadyExisting = realm.object(ofType: FirstnameDB.self, forPrimaryKey: firstname.id) {
+                // update - keep favorite state
+                firstnameDB.isFavorite = firstnameAlreadyExisting.isFavorite
+            }
+
             try realm.write {
                 realm.add(firstnameDB, update: Realm.UpdatePolicy.modified)
             }

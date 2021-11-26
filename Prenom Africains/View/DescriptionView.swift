@@ -17,7 +17,8 @@ struct DescriptionView: View {
 
     @State private var engine: CHHapticEngine?
 
-    @State var isShowPopover: Bool = false
+    @State var isShowPopoverOrigins: Bool = false
+    @State var isShowPopoverMeaning: Bool = false
 
     var body: some View {
         VStack {
@@ -34,6 +35,12 @@ struct DescriptionView: View {
                             alignment: .center)
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
                         .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
+                    // MARK: Meaning text
+                    if firstNameViewModel.currentFirstname.meaning.count > 65 {
+                    Button {
+                        print("Tapped")
+                        isShowPopoverMeaning.toggle()
+                    } label: {
                     Text(firstNameViewModel.currentFirstname.meaning)
                         .font(.title2)
                         .multilineTextAlignment(.center)
@@ -41,6 +48,23 @@ struct DescriptionView: View {
                             width: UIScreen.main.bounds.width * 0.8,
                             height: 100 * CGFloat(sizeMultiplier()),
                             alignment: .center)
+                        .foregroundColor(.white)
+                    }
+                    .popover(isPresented: $isShowPopoverMeaning) {
+                        PopoverView(
+                            text: LocalizedStringKey("Meaning"),
+                            textMore: "\(firstNameViewModel.currentFirstname.meaning)")
+                    }
+                    } else {
+                        Text(firstNameViewModel.currentFirstname.meaning)
+                            .font(.title2)
+                            .multilineTextAlignment(.center)
+                            .frame(
+                                width: UIScreen.main.bounds.width * 0.8,
+                                height: 100 * CGFloat(sizeMultiplier()),
+                                alignment: .center)
+                            .foregroundColor(.white)
+                    }
                 }
                     Spacer()
                 }
@@ -103,22 +127,32 @@ struct DescriptionView: View {
 
                 Spacer()
                 // MARK: Origin Text
-                Button {
-                    print("Tapped")
-                    isShowPopover.toggle()
-                } label: {
+                if firstNameViewModel.currentFirstname.origins.count < 12 {
                     Text("Origins: \(firstNameViewModel.currentFirstname.origins)")
                         .frame(width: 250, alignment: .trailing)
                         .truncationMode(.tail)
                         .font(.title2)
                         .lineLimit(1)
                         .padding(.horizontal)
-                }
-                .foregroundColor(.white)
-                .popover(isPresented: $isShowPopover) {
-                    PopoverView(
-                        text: LocalizedStringKey("Origins"),
-                        textMore: "\(firstNameViewModel.currentFirstname.origins)")
+                        .foregroundColor(.white)
+                } else {
+                    Button {
+                        print("Tapped")
+                        isShowPopoverOrigins.toggle()
+                    } label: {
+                        Text("Origins: \(firstNameViewModel.currentFirstname.origins)")
+                            .frame(width: 250, alignment: .trailing)
+                            .truncationMode(.tail)
+                            .font(.title2)
+                            .lineLimit(1)
+                            .padding(.horizontal)
+                    }
+                    .foregroundColor(.white)
+                    .popover(isPresented: $isShowPopoverOrigins) {
+                        PopoverView(
+                            text: LocalizedStringKey("Origins"),
+                            textMore: "\(firstNameViewModel.currentFirstname.origins)")
+                    }
                 }
 
             }.frame(alignment: .center)
