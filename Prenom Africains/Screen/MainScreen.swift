@@ -280,6 +280,8 @@ struct MainScreen: View {
                 .previewDevice("iPhone 8")
                 .previewDisplayName("iPhone 8")
         }.preferredColorScheme($0)
+                .environmentObject(FirstNameViewModel())
         }
     }
+
  }
