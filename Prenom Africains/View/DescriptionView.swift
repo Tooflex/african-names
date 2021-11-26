@@ -17,6 +17,8 @@ struct DescriptionView: View {
 
     @State private var engine: CHHapticEngine?
 
+    @State var isShowPopover: Bool = false
+
     var body: some View {
         VStack {
             Spacer()
@@ -101,10 +103,24 @@ struct DescriptionView: View {
 
                 Spacer()
                 // MARK: Origin Text
-                Text("Origins: \(firstNameViewModel.currentFirstname.origins)")
-                    .font(.title2)
-                    .lineLimit(1)
-                    .padding(.horizontal)
+                Button {
+                    print("Tapped")
+                    isShowPopover.toggle()
+                } label: {
+                    Text("Origins: \(firstNameViewModel.currentFirstname.origins)")
+                        .frame(width: 250, alignment: .trailing)
+                        .truncationMode(.tail)
+                        .font(.title2)
+                        .lineLimit(1)
+                        .padding(.horizontal)
+                }
+                .foregroundColor(.white)
+                .popover(isPresented: $isShowPopover) {
+                    PopoverView(
+                        text: LocalizedStringKey("Origins"),
+                        textMore: "\(firstNameViewModel.currentFirstname.origins)")
+                }
+
             }.frame(alignment: .center)
 
             HStack(alignment: .center) {
@@ -212,6 +228,27 @@ struct DescriptionView: View {
 
 }
 
+struct FrameAdjustingContainer<Content: View>: View {
+    @Binding var frameWidth: CGFloat
+    @Binding var frameHeight: CGFloat
+    let content: () -> Content
+
+    var body: some View {
+        ZStack {
+            content()
+                .frame(width: frameWidth, height: frameHeight)
+                .border(Color.red, width: 1)
+
+            VStack {
+                Spacer()
+                Slider(value: $frameWidth, in: 50...300)
+                Slider(value: $frameHeight, in: 50...600)
+            }
+            .padding()
+        }
+    }
+}
+
 extension Color {
     static let offWhite = Color(red: 225 / 255, green: 225 / 255, blue: 235 / 255)
     static let appBlue = Color(red: 5/255, green: 59/255, blue: 151/255)
@@ -231,7 +268,7 @@ struct DescriptionView_Previews: PreviewProvider {
                 DescriptionView()
                     .previewDevice("iPhone 12 Pro Max")
                     .previewDisplayName("iPhone 12 Pro Max")
-            }.preferredColorScheme($0)
+            }.preferredColorScheme($0).environmentObject(FirstNameViewModel())
         }
 
     }
