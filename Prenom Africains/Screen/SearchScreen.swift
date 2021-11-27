@@ -12,7 +12,6 @@ struct SearchScreen: View {
     @Binding var selectedTab: Int
     @Binding var searchString: NSCompoundPredicate
 
-    @State private var isShowFavorite = false
     @EnvironmentObject var searchScreenViewModel: SearchScreenViewModel
 
     @State private var resultArray: [FirstnameDB] = []
@@ -40,7 +39,7 @@ struct SearchScreen: View {
                 // MARK: - Filters Options
                 Group {
                     HStack {
-                        Toggle("Only show favorites", isOn: $isShowFavorite).padding()
+                        Toggle("Only show favorites", isOn: $searchScreenViewModel.filterIsFavorite).padding()
                     }
                     ChipsOptionView(
                                     title: "Area",
@@ -105,7 +104,7 @@ struct SearchScreen: View {
                 Group {
                 Button(action: {
                     // Update filters
-                    searchScreenViewModel.filterIsFavorite = isShowFavorite
+                    searchScreenViewModel.filterIsFavorite = searchScreenViewModel.filterIsFavorite
                     searchScreenViewModel.filterArea = searchScreenViewModel.areas.filter {
                         $0.isSelected }.map { $0.titleKey.capitalized }
                     searchScreenViewModel.filterGender = []
@@ -168,6 +167,9 @@ struct SearchScreen: View {
                 } else {
                     isResults = false
                 }
+        }
+        .onAppear {
+            searchScreenViewModel.initFilters()
         }
     }
 }

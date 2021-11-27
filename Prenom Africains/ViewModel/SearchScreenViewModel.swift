@@ -29,10 +29,10 @@ final class SearchScreenViewModel: ObservableObject {
 
     /// The locals filters
     @Published var filterIsFavorite = false
-    @Published var filterGender = []
-    @Published var filterOrigins = []
-    @Published var filterSize = []
-    @Published var filterArea = []
+    @Published var filterGender = [String]()
+    @Published var filterOrigins = [String]()
+    @Published var filterSize = [String]()
+    @Published var filterArea = [String]()
     @Published var filterFemale = false
     @Published var filterMale = false
 
@@ -126,17 +126,6 @@ final class SearchScreenViewModel: ObservableObject {
         return compoundPredicate
     }
 
-    func saveFilters() {
-        let filters = ["isFavorite": filterIsFavorite,
-                       "regions": filterArea,
-                       "origins": filterOrigins,
-                       "gender": filterGender,
-                       "size": filterSize] as [String: Any]
-        print("My filters")
-        print(filters)
-        UserDefaults.standard.set(filters, forKey: "Filters")
-    }
-
     func fetchSizes() -> [String] {
         return ["short", "medium", "long"]
     }
@@ -161,6 +150,98 @@ final class SearchScreenViewModel: ObservableObject {
                 print(error)
             }
         }
+    }
+
+    // MARK: Filter related
+
+    func initFilters() {
+        let defaults = UserDefaults.standard
+        let filters = defaults.object(forKey: "Filters") as? [String: Any] ?? [String: Any]()
+
+        if let isFavorite = filters["isFavorite"] as? Bool {
+            self.filterIsFavorite = isFavorite
+        } else {
+            self.filterIsFavorite = false
+        }
+
+        if let regions = filters["regions"] as? [String] {
+            self.filterArea = regions
+
+            for itemArea in self.areas {
+                if self.filterArea.contains(itemArea.titleKey.capitalized) {
+                    itemArea.isSelected = true
+                }
+            }
+
+        } else {
+            self.filterArea = []
+            self.areas.forEach { chip in
+                chip.isSelected = false
+            }
+        }
+
+        if let origins = filters["origins"] as? [String] {
+            self.filterOrigins = origins
+
+            for itemOrigins in self.origins {
+                if self.filterOrigins.contains(itemOrigins.titleKey.capitalized) {
+                    itemOrigins.isSelected = true
+                }
+            }
+
+        } else {
+            self.filterOrigins = []
+            self.origins.forEach { chip in
+                chip.isSelected = false
+            }
+        }
+
+        if let gender = filters["gender"] as? [String] {
+            self.filterGender = gender
+            print(filters["gender"].debugDescription)
+            if gender.contains("male") {
+                self.filterMale = true
+            }
+            if gender.contains("female") {
+                self.filterFemale = true
+            }
+
+        } else {
+            self.filterGender = []
+            self.filterMale = false
+            self.filterFemale = false
+        }
+
+        if let size = filters["size"] as? [String] {
+            self.filterSize = size
+
+            for itemSizes in self.sizes {
+                if self.filterOrigins.contains(itemSizes.titleKey.capitalized) {
+                    itemSizes.isSelected = true
+                }
+            }
+
+        } else {
+            self.filterSize = []
+            self.sizes.forEach { chip in
+                chip.isSelected = false
+            }
+        }
+
+    }
+
+    /**
+     Save the filters in UserDefaults
+     */
+    func saveFilters() {
+        let filters = ["isFavorite": filterIsFavorite,
+                       "regions": filterArea,
+                       "origins": filterOrigins,
+                       "gender": filterGender,
+                       "size": filterSize] as [String: Any]
+        print("My filters")
+        print(filters)
+        UserDefaults.standard.set(filters, forKey: "Filters")
     }
 
     /**
