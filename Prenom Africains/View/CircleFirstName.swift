@@ -54,8 +54,15 @@ struct CircleFirstName: View {
     }
 
     func sizeMultiplier() -> CGFloat {
+
+        print(UIScreen.main.bounds.width)
+        print(UIScreen.main.bounds.height)
+
         // Check for a specific model
-        if UIScreen.current == .iPhone5_8 || UIScreen.current == .iPhone5_5 {
+        if UIScreen.current == .iPhone5_8
+            || UIScreen.current == .iPhone5_5
+            || UIScreen.current == .iPhone6_1
+            || UIScreen.current == .iPhone6_5 {
             return 1
         }
 

@@ -82,6 +82,8 @@ extension UIScreen {
                 return .iPhone5_5
             case 812:
                 return .iPhone5_8
+            case 844:
+                return .iPhone6_1
             case 896:
                 return main.scale == 3 ? .iPhone6_5 : .iPhone6_1
             case 1024:

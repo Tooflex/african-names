@@ -114,17 +114,17 @@ final class FirstNameViewModel: ObservableObject {
 
     private func createFilterCompound(filterArray: [String: Any]) -> NSCompoundPredicate {
 
-        let filterIsFavorite = filterArray["isFavorite"] as? Bool ?? false
+        let filterIsFavorite = filterArray["isFavorite"] as? Bool
         let filterArea = filterArray["regions"] as? [String] ?? []
         let filterOrigins = filterArray["origins"] as? [String] ?? []
         let filterGender = filterArray["gender"] as? [String] ?? []
         let filterSize = filterArray["size"] as? [String] ?? []
 
         var subPredicates = [NSPredicate]()
-        let favoritePredicate = NSPredicate(format: "isFavorite == %d", filterIsFavorite)
+        let favoritePredicate = NSPredicate(format: "isFavorite == %d", filterIsFavorite ?? false)
         subPredicates.append(favoritePredicate)
 
-        if filterArea.isEmpty && filterOrigins.isEmpty && filterGender.isEmpty && filterSize.isEmpty {
+        if filterArea.isEmpty && filterOrigins.isEmpty && filterGender.isEmpty && filterSize.isEmpty && (filterIsFavorite == nil || !filterIsFavorite!) {
             self.clearFilters()
         }
 
