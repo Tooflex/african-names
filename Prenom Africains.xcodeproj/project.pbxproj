@@ -58,6 +58,7 @@
 		15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5202646D7F7007E838C /* SearchBarView.swift */; };
 		15CAC5232646E837007E838C /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5222646E837007E838C /* SearchScreen.swift */; };
 		15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5242646ECF1007E838C /* ChipsOptionView.swift */; };
+		15D167222751CB7A00992D7C /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D167212751CB7A00992D7C /* UIDevice.swift */; };
 		15D4A12E2723752000D8BCA4 /* md-female-select.json in Resources */ = {isa = PBXBuildFile; fileRef = 15D4A12D2723752000D8BCA4 /* md-female-select.json */; };
 		15E052C7275046BD00C38715 /* FavoriteListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052C6275046BD00C38715 /* FavoriteListViewModelTest.swift */; };
 		15E052C9275046E300C38715 /* SearchScreenViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052C8275046E300C38715 /* SearchScreenViewModelTest.swift */; };
@@ -158,6 +159,7 @@
 		15CAC5202646D7F7007E838C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		15CAC5222646E837007E838C /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		15CAC5242646ECF1007E838C /* ChipsOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsOptionView.swift; sourceTree = "<group>"; };
+		15D167212751CB7A00992D7C /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		15D4A12D2723752000D8BCA4 /* md-female-select.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "md-female-select.json"; sourceTree = "<group>"; };
 		15E052C6275046BD00C38715 /* FavoriteListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewModelTest.swift; sourceTree = "<group>"; };
 		15E052C8275046E300C38715 /* SearchScreenViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenViewModelTest.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				157FFA52273EC50E0037E32A /* ArrayExtension.swift */,
 				1587CC30273FF0DB0007B89A /* UIColorExtension.swift */,
 				1587CC2E273FEF220007B89A /* ViewExtension.swift */,
+				15D167212751CB7A00992D7C /* UIDevice.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -646,6 +649,7 @@
 				15FC2A4B2648A10B0025BCF3 /* SlidingOverCard.swift in Sources */,
 				152F3C4B264C6F71000D564B /* SearchBarButton.swift in Sources */,
 				15E052CD275047C800C38715 /* Configuration.swift in Sources */,
+				15D167222751CB7A00992D7C /* UIDevice.swift in Sources */,
 				151A063926E27F9800F8760D /* DataRepository.swift in Sources */,
 				15300A88266C1F47000AAAF6 /* SearchCriteria.swift in Sources */,
 				15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */,

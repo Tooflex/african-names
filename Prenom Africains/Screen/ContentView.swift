@@ -42,16 +42,21 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self) {
+//        ForEach(ColorScheme.allCases, id: \.self) {
             Group {
        ContentView()
                     .previewDevice("iPhone 12")
-                    .previewDisplayName("iPhone 12")
+                    .previewDisplayName("iPhone 12").environmentObject(FirstNameViewModel())
+
+                ContentView()
+                    .previewDevice("iPad Air (4th generation)")
+                    .previewDisplayName("iPad Air 4").environmentObject(FirstNameViewModel())
 
                 ContentView()
                     .previewDevice("iPhone 8")
                     .previewDisplayName("iPhone 8")
-            }.preferredColorScheme($0)
+                    .environmentObject(FirstNameViewModel())
+//            }.preferredColorScheme($0)
         }
 
     }
