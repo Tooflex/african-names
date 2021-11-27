@@ -85,7 +85,7 @@ struct CircleFirstName: View {
             return 0.8
         }
 
-        return 1
+        return 0.8
     }
 
     func speakFirstname(firsnameStr: String) {
