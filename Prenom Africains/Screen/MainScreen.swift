@@ -102,31 +102,20 @@ struct MainScreen: View {
                                     leftButton()
                                 } else {
                                     Spacer().frame(
-                                        width: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)),
-                                        height: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
+                                        width: 30 * sizeMultiplierSpacer(),
+                                        height: 30 * sizeMultiplierSpacer()
                                     )
                                 }
-                                // iPad Full or 1/2
-                                if vSizeClass == .regular && hSizeClass == .regular {
-                                    VStack {
-                                        Spacer()
-                                        CircleFirstName(prenom: firstNameViewModel.currentFirstname, color: setColor())
-                                            .padding(.bottom)
-                                            .frame(width: 600, height: 600)
-                                        Spacer()
-                                    }
 
-                                } else {
-                                    CircleFirstName(prenom: firstNameViewModel.currentFirstname, color: setColor())
-                                        .padding(.bottom)
-                                }
+                                CircleFirstName(prenom: firstNameViewModel.currentFirstname, color: setColor())
+                                    .padding(.bottom)
 
                                 if isNextFirstname() {
                                     rightButton()
                                 } else {
                                     Spacer().frame(
-                                        width: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0)),
-                                        height: 30 * CGFloat(sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
+                                        width: 30 * sizeMultiplierSpacer(),
+                                        height: 30 * sizeMultiplierSpacer()
                                     )
                                 }
                             }
@@ -142,20 +131,21 @@ struct MainScreen: View {
                             }
                             DescriptionView()
                         }
-                        .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
-                                    .onEnded { value in
-                            let horizontalAmount = value.translation.width as CGFloat
-                            let verticalAmount = value.translation.height as CGFloat
-
-                            if abs(horizontalAmount) > abs(verticalAmount) {
-                                print(horizontalAmount < 0 ? nextFirstname() : previousFirstname())
-                            }
-                        })
                         .padding(.vertical)
                     }
                 }
             }
         }
+        .contentShape(Rectangle())
+        .gesture(DragGesture(minimumDistance: 20, coordinateSpace: .global)
+                    .onEnded { value in
+            let horizontalAmount = value.translation.width as CGFloat
+            let verticalAmount = value.translation.height as CGFloat
+
+            if abs(horizontalAmount) > abs(verticalAmount) {
+                print(horizontalAmount < 0 ? nextFirstname() : previousFirstname())
+            }
+        })
         .onAppear(perform: {
             firstNameViewModel.onAppear()
         })
@@ -172,8 +162,8 @@ struct MainScreen: View {
         return Triangle()
             .fill(setColor())
             .frame(
-                width: 30 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0),
-                height: 30 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
+                width: 30 * sizeMultiplierTriangle(),
+                height: 30 * sizeMultiplierTriangle())
             .padding(.bottom, 1 * CGFloat(paddingMultiplier()))
             .rotationEffect(.degrees(-90))
             .onTapGesture {
@@ -186,8 +176,8 @@ struct MainScreen: View {
         return Triangle()
             .fill(setColor())
             .frame(
-                width: 30 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0),
-                height: 30 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
+                width: 30 * sizeMultiplierTriangle(),
+                height: 30 * sizeMultiplierTriangle())
             .padding(.bottom, 1 * CGFloat(paddingMultiplier()))
             .rotationEffect(.degrees(90))
             .onTapGesture {
@@ -228,6 +218,76 @@ struct MainScreen: View {
         }
     }
 
+    func sizeMultiplierTriangle() -> CGFloat {
+        // Check for a specific model
+        if UIScreen.current == .iPhone5_8 || UIScreen.current == .iPhone5_5 {
+            return 1
+        }
+
+        // Check for multiple models
+        if UIScreen.current == .iPhone4_7 {
+            return 0.8
+        }
+
+        // Find all models larger than or equal to a certain screen size
+        if UIScreen.current == .iPad10_5 {
+            if UIDevice.current.orientation.isLandscape {
+                return 0.5
+            } else {
+                return 1
+            }
+        }
+
+        if UIScreen.current == .iPad10_9 {
+            if UIDevice.current.orientation.isLandscape {
+                return 0.5
+            } else {
+                return 0.5
+            }
+        }
+
+        if UIScreen.current == .iPad12_9 {
+            return 1
+        }
+
+        return 1
+    }
+
+    func sizeMultiplierSpacer() -> CGFloat {
+        // Check for a specific model
+        if UIScreen.current == .iPhone5_8 || UIScreen.current == .iPhone5_5 {
+            return 1
+        }
+
+        // Check for multiple models
+        if UIScreen.current == .iPhone4_7 {
+            return 0.8
+        }
+
+        // Find all models larger than or equal to a certain screen size
+        if UIScreen.current == .iPad10_5 {
+            if UIDevice.current.orientation.isLandscape {
+                return 0.5
+            } else {
+                return 1
+            }
+        }
+
+        if UIScreen.current == .iPad10_9 {
+            if UIDevice.current.orientation.isLandscape {
+                return 0.5
+            } else {
+                return 0.1
+            }
+        }
+
+        if UIScreen.current == .iPad12_9 {
+            return 1
+        }
+
+        return 1
+    }
+
     func setColor() -> Color {
         switch firstNameViewModel.currentFirstname.gender {
         case Gender.male.rawValue:
@@ -260,28 +320,28 @@ struct MainScreen: View {
 
 }
 
- struct MainScreen_Previews: PreviewProvider {
-
-    @State static var searchString = NSCompoundPredicate()
-
-    static var previews: some View {
-
-        ForEach(ColorScheme.allCases, id: \.self) {
-        Group {
-            MainScreen( searchString: $searchString)
-                .previewDevice("iPhone 12")
-                .previewDisplayName("iPhone 12")
-
-            MainScreen(searchString: $searchString)
-                .previewDevice("iPhone 8 Plus")
-                .previewDisplayName("iPhone 8 Plus")
-
-            MainScreen(searchString: $searchString)
-                .previewDevice("iPhone 8")
-                .previewDisplayName("iPhone 8")
-        }.preferredColorScheme($0)
-                .environmentObject(FirstNameViewModel())
-        }
-    }
-
- }
+// struct MainScreen_Previews: PreviewProvider {
+//
+//    @State static var searchString = NSCompoundPredicate()
+//
+//    static var previews: some View {
+//
+//        ForEach(ColorScheme.allCases, id: \.self) {
+//        Group {
+//            MainScreen( searchString: $searchString)
+//                .previewDevice("iPhone 12")
+//                .previewDisplayName("iPhone 12")
+//
+////            MainScreen(searchString: $searchString)
+////                .previewDevice("iPhone 8 Plus")
+////                .previewDisplayName("iPhone 8 Plus")
+//
+//            MainScreen(searchString: $searchString)
+//                .previewDevice("iPhone 8")
+//                .previewDisplayName("iPhone 8")
+//        }.preferredColorScheme($0)
+//                .environmentObject(FirstNameViewModel())
+//        }
+//    }
+//
+// }

@@ -54,11 +54,38 @@ struct CircleFirstName: View {
     }
 
     func sizeMultiplier() -> CGFloat {
-        if vSizeClass == .regular && hSizeClass == .regular { // Compact width, regular height
-            return 2
-        } else {
+        // Check for a specific model
+        if UIScreen.current == .iPhone5_8 || UIScreen.current == .iPhone5_5 {
             return 1
         }
+
+        // Check for multiple models
+        if UIScreen.current == .iPhone4_7 {
+            return 1
+        }
+
+        // Find all models larger than or equal to a certain screen size
+        if UIScreen.current == .iPad10_5 {
+            if UIDevice.current.orientation.isLandscape {
+                return 0.5
+            } else {
+                return 0.8
+            }
+        }
+
+        if UIScreen.current == .iPad10_9 {
+            if UIDevice.current.orientation.isLandscape {
+                return 0.5
+            } else {
+                return 0.8
+            }
+        }
+
+        if UIScreen.current == .iPad12_9 {
+            return 0.8
+        }
+
+        return 0.8
     }
 
     func speakFirstname(firsnameStr: String) {
@@ -89,15 +116,15 @@ struct Triangle: Shape {
     }
 }
 
-struct CircleFirstName_Previews: PreviewProvider {
-
-    static var previews: some View {
-        CircleFirstName(prenom: FirstnameDB())
-            .previewDevice("iPhone 12 Pro Max")
-            .previewDisplayName("iPhone 12 Pro Max")
-
-        CircleFirstName(prenom: FirstnameDB())
-            .previewDevice("iPad Pro (12.9-inch) (4th generation)")
-            .previewDisplayName("iPad Pro 12")
-    }
-}
+// struct CircleFirstName_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        CircleFirstName(prenom: FirstnameDB())
+//            .previewDevice("iPhone 12 Pro Max")
+//            .previewDisplayName("iPhone 12 Pro Max")
+//
+//        CircleFirstName(prenom: FirstnameDB())
+//            .previewDevice("iPad Pro (12.9-inch) (4th generation)")
+//            .previewDisplayName("iPad Pro 12")
+//    }
+// }

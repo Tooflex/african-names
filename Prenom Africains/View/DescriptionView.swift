@@ -31,7 +31,7 @@ struct DescriptionView: View {
                         .fill(Color.offWhite.opacity(0.71))
                         .frame(
                             width: UIScreen.main.bounds.width - 50,
-                            height: 165 * CGFloat(sizeMultiplier()),
+                            height: 165 * sizeMultiplierMeaningRectangle(),
                             alignment: .center)
                         .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
                         .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
@@ -46,7 +46,7 @@ struct DescriptionView: View {
                         .multilineTextAlignment(.center)
                         .frame(
                             width: UIScreen.main.bounds.width * 0.8,
-                            height: 100 * CGFloat(sizeMultiplier()),
+                            height: 100 * sizeMultiplier(),
                             alignment: .center)
                         .foregroundColor(.white)
                     }
@@ -61,7 +61,7 @@ struct DescriptionView: View {
                             .multilineTextAlignment(.center)
                             .frame(
                                 width: UIScreen.main.bounds.width * 0.8,
-                                height: 100 * CGFloat(sizeMultiplier()),
+                                height: 100 * sizeMultiplier(),
                                 alignment: .center)
                             .foregroundColor(.white)
                     }
@@ -72,6 +72,8 @@ struct DescriptionView: View {
                 .frame(idealWidth: geometry.size.width * 0.8, maxHeight: geometry.size.height, alignment: .center)
             }
 
+            Spacer()
+
             HStack {
                 // MARK: Gender Icons
                 switch firstNameViewModel.currentFirstname.gender {
@@ -80,8 +82,8 @@ struct DescriptionView: View {
                     Image("md-male")
                         .resizable()
                         .frame(
-                            width: 30 * CGFloat(sizeMultiplier()),
-                            height: 30 * CGFloat(sizeMultiplier()),
+                            width: 30 * sizeMultiplier(),
+                            height: 30 * sizeMultiplier(),
                             alignment: .center)
                 }
 
@@ -90,8 +92,8 @@ struct DescriptionView: View {
                     Image("md-female")
                         .resizable()
                         .frame(
-                            width: 30 * CGFloat(sizeMultiplier()),
-                            height: 30 * CGFloat(sizeMultiplier()),
+                            width: 30 * sizeMultiplier(),
+                            height: 30 * sizeMultiplier(),
                             alignment: .center)
                 }
                 case Gender.mixed.rawValue:
@@ -100,28 +102,28 @@ struct DescriptionView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(
-                            width: 30 * CGFloat(sizeMultiplier()),
-                            height: 30 * CGFloat(sizeMultiplier()),
+                            width: 30 * sizeMultiplier(),
+                            height: 30 * sizeMultiplier(),
                             alignment: .center)
                     Image("md-female")
                         .resizable()
                         .scaledToFit()
                         .frame(
-                            width: 30 * CGFloat(sizeMultiplier()),
-                            height: 30 * CGFloat(sizeMultiplier()),
+                            width: 30 * sizeMultiplier(),
+                            height: 30 * sizeMultiplier(),
                             alignment: .center)
                 }
                 case Gender.undefined.rawValue:
                 EmptyView()
                         .frame(
-                            width: 30 * CGFloat(sizeMultiplier()),
-                            height: 30 * CGFloat(sizeMultiplier()),
+                            width: 30 * sizeMultiplier(),
+                            height: 30 * sizeMultiplier(),
                             alignment: .center)
                 default:
                     EmptyView()
                         .frame(
-                            width: 30 * CGFloat(sizeMultiplier()),
-                            height: 30 * CGFloat(sizeMultiplier()),
+                            width: 30 * sizeMultiplier(),
+                            height: 30 * sizeMultiplier(),
                             alignment: .center)
                 }
 
@@ -173,8 +175,8 @@ struct DescriptionView: View {
                                 toMarker: "touchUpEnd")
                                 .padding(.all, -40)
                                 .frame(
-                                    width: 40 * CGFloat(sizeMultiplier()),
-                                    height: 40 * CGFloat(sizeMultiplier()),
+                                    width: 40 * sizeMultiplier(),
+                                    height: 40 * sizeMultiplier(),
                                     alignment: .center)
                         }
                     } else {
@@ -191,8 +193,8 @@ struct DescriptionView: View {
                                 toMarker: "touchUpEnd1")
                                 .padding(.all, -40)
                                 .frame(
-                                    width: 40 * CGFloat(sizeMultiplier()),
-                                    height: 40 * CGFloat(sizeMultiplier()),
+                                    width: 40 * sizeMultiplier(),
+                                    height: 40 * sizeMultiplier(),
                                     alignment: .center)
                         }
                     }
@@ -200,7 +202,9 @@ struct DescriptionView: View {
             Spacer()
             HStack(alignment: .center) {
                 // MARK: Share Button
-                ShareButton(viewmodel: firstNameViewModel).opacity(0.8)
+                ShareButton(viewmodel: firstNameViewModel)
+                    .opacity(0.8)
+
             }
         }
         .onAppear(perform: prepareHaptics)
@@ -215,12 +219,39 @@ struct DescriptionView: View {
         }
     }
 
-    func sizeMultiplier() -> Int {
+    func sizeMultiplier() -> CGFloat {
         if vSizeClass == .regular && hSizeClass == .regular {
             return 2
         } else {
             return 1
         }
+    }
+
+    func sizeMultiplierMeaningRectangle() -> CGFloat {
+        // Check for a specific model
+        if UIScreen.current == .iPhone5_8 || UIScreen.current == .iPhone5_5 {
+            return 1
+        }
+
+        // Check for multiple models
+        if UIScreen.current == .iPhone4_7 {
+            return 0.5
+        }
+
+        // Find all models larger than or equal to a certain screen size
+        if UIScreen.current == .iPad10_5 {
+            if UIDevice.current.orientation.isLandscape {
+                return 0.5
+            } else {
+                return 1.2
+            }
+        }
+
+        if UIScreen.current == .iPad12_9 {
+            return 1
+        }
+
+        return 1
     }
 
     // MARK: Haptics functions
@@ -290,20 +321,24 @@ extension Color {
     static let lightPurple = Color(red: 255/255, green: 182/255, blue: 193/255)
 }
 
-struct DescriptionView_Previews: PreviewProvider {
-    static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self) {
-            Group {
-                DescriptionView()
-                    .previewDevice("iPad Pro (12.9-inch) (4th generation)")
-                    .previewDisplayName("iPad Pro 12")
-                    .landscape()
-
-                DescriptionView()
-                    .previewDevice("iPhone 12 Pro Max")
-                    .previewDisplayName("iPhone 12 Pro Max")
-            }.preferredColorScheme($0).environmentObject(FirstNameViewModel())
-        }
-
-    }
-}
+// struct DescriptionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ForEach(ColorScheme.allCases, id: \.self) {
+//            Group {
+////                DescriptionView()
+////                    .previewDevice("iPad Pro (12.9-inch) (4th generation)")
+////                    .previewDisplayName("iPad Pro 12")
+////                    .landscape()
+//
+//                DescriptionView()
+//                    .previewDevice("iPhone 8")
+//                    .previewDisplayName("iPhone 8")
+//
+//                DescriptionView()
+//                    .previewDevice("iPhone 12 Pro Max")
+//                    .previewDisplayName("iPhone 12 Pro Max")
+//            }.preferredColorScheme($0).environmentObject(FirstNameViewModel())
+//        }
+//
+//    }
+// }
