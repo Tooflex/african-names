@@ -80,11 +80,13 @@ struct DescriptionView: View {
                 case Gender.male.rawValue:
                 HStack {
                     Image("md-male")
+                        .renderingMode(.template)
                         .resizable()
                         .frame(
                             width: 30 * sizeMultiplier(),
                             height: 30 * sizeMultiplier(),
                             alignment: .center)
+                        .foregroundColor(Color.white)
                 }
 
                 case Gender.female.rawValue:
@@ -95,16 +97,20 @@ struct DescriptionView: View {
                             width: 30 * sizeMultiplier(),
                             height: 30 * sizeMultiplier(),
                             alignment: .center)
+                        .foregroundColor(Color.white)
                 }
                 case Gender.mixed.rawValue:
                 HStack {
                     Image("md-male")
+                        .renderingMode(.template)
                         .resizable()
                         .scaledToFit()
                         .frame(
                             width: 30 * sizeMultiplier(),
                             height: 30 * sizeMultiplier(),
                             alignment: .center)
+                        .foregroundColor(Color.white)
+
                     Image("md-female")
                         .resizable()
                         .scaledToFit()
@@ -112,6 +118,7 @@ struct DescriptionView: View {
                             width: 30 * sizeMultiplier(),
                             height: 30 * sizeMultiplier(),
                             alignment: .center)
+                        .foregroundColor(Color.white)
                 }
                 case Gender.undefined.rawValue:
                 EmptyView()
@@ -157,7 +164,8 @@ struct DescriptionView: View {
                     }
                 }
 
-            }.frame(alignment: .center)
+            }
+            .frame(alignment: .center)
 
             HStack(alignment: .center) {
                     // MARK: Favorite Button
