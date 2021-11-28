@@ -75,8 +75,11 @@ final class FirstNameViewModel: ObservableObject {
             }
 
         }
+        // Put chosen firstname from favorite list first in main screen
         if firstnameOnTop.id != 0 {
-            // TODO: Put Selected firstname on top of list
+            if let firstnameToPutOnTop = self.firstnamesResults.filter({ $0.id == firstnameOnTop.id }).first {
+                self.firstnamesResults.move(firstnameToPutOnTop, to: 0)
+            }
         }
 
         if let firstFirstname = self.firstnamesResults.first {
