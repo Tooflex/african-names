@@ -15,8 +15,7 @@ final class FavoriteListViewModel: ObservableObject {
     @Published var favoritedFirstnamesResults: [FirstnameDB]?
 
     init() {
-        self.favoritedFirstnamesResults =
-        dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "isFavorite = true").shuffled()
+        self.favoritedFirstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "isFavorite = true"))
         selectedFirstname = FirstnameDB()
     }
 
@@ -26,5 +25,12 @@ final class FavoriteListViewModel: ObservableObject {
             "onTop": selectedFirstname.id
         ] as [String: Any]
         UserDefaults.standard.set(filters, forKey: "Filters")
+    }
+
+    func removeFromList(firstname: FirstnameDB) {
+        dataRepository.toggleFavorited(firstnameObj: firstname)
+        self.favoritedFirstnamesResults = Array(dataRepository.fetchLocalData(
+            type: FirstnameDB.self,
+            filter: "isFavorite = true"))
     }
 }
