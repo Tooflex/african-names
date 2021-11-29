@@ -14,20 +14,34 @@ struct ParamScreen: View {
 
     var body: some View {
         VStack {
-            Spacer()
-            Text("Choose your language")
-            Picker("Choose your language", selection: $languageCodeSelection) {
-                ForEach(CountryLibrary.countries.filter({ country in
-                    ["fr", "us", "it", "al"].contains(country.code.lowercased())
-                })) { country in
-                    HStack {
-                        Text(country.code + " - " + country.flagAndName)
-                    }
-                }
-            }.onChange(of: languageCodeSelection) { _ in
+            Group {
+                Spacer()
+                Text("Params")
+                    .font(.largeTitle)
+                    .bold()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding()
+                Spacer()
             }
-            Spacer()
-        }
+
+            VStack {
+                Spacer()
+
+                Text("Choose your language")
+                Picker("Choose your language", selection: $languageCodeSelection) {
+                    ForEach(CountryLibrary.countries.filter({ country in
+                        ["fr", "us", "it", "de"].contains(country.code.lowercased())
+                    })) { country in
+                        HStack {
+                            Text(country.code + " - " + country.flagAndName)
+                        }
+                    }
+                }.onChange(of: languageCodeSelection) { _ in
+                }
+                Spacer()
+            }
+
+                    }
     }
 
 }
