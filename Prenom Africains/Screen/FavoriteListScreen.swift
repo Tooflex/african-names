@@ -19,7 +19,7 @@ struct FavoriteListScreen: View {
 
     var body: some View {
         VStack {
-            if let favorites = viewModel.favoritedFirstnamesResults {
+            if var favorites = viewModel.favoritedFirstnamesResults {
                 if favorites.isEmpty {
                     Spacer()
                     LottieView(name: "noresults", loopMode: .playOnce)
@@ -29,7 +29,8 @@ struct FavoriteListScreen: View {
                     Text("No favorite firstname")
                     Spacer()
                 } else {
-                    List(favorites) { firstname in
+                    List {
+                        ForEach(favorites) { firstname in
                         Button(action: {
                             viewModel.selectedFirstname = firstname
                             viewModel.saveFilters()
@@ -44,7 +45,16 @@ struct FavoriteListScreen: View {
                             } else {
                                 Text("\(firstname.firstname)").foregroundColor(Color.black)
                             }
-                        })
+                        }).swipeActions {
+                            Button {
+                                self.viewModel.removeFromList(firstname: firstname)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                            .tint(.red)
+                        }
+                        }
+
                     }
                 }
             }

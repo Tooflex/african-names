@@ -210,7 +210,7 @@ struct DescriptionView: View {
             Spacer()
             HStack(alignment: .center) {
                 // MARK: Share Button
-                ShareButton(viewmodel: firstNameViewModel)
+                ShareButton(firstname: $firstNameViewModel.currentFirstname)
                     .opacity(0.8)
 
             }

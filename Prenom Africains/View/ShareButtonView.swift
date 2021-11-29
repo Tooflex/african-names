@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ShareButton: View {
 
-    @State var viewmodel: FirstNameViewModel
+    @Binding var firstname: FirstnameDB
     @State private var showShareSheet: Bool = false
     @State var shareSheetItems: [Any] = []
     var excludedActivityTypes: [UIActivity.ActivityType]?
@@ -21,7 +21,7 @@ struct ShareButton: View {
         Button(action: {
             self.showShareSheet.toggle()
             shareSheetItems = []
-            shareSheetItems.append(buildShareContent(firstname: self.viewmodel.currentFirstname))
+            shareSheetItems.append(buildShareContent(firstname: self.firstname))
         }, label: {
             VStack(alignment: .center, spacing: 3) {
                 Image(systemName: "square.and.arrow.up")
