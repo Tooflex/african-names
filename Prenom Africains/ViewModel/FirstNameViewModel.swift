@@ -54,7 +54,7 @@ final class FirstNameViewModel: ObservableObject {
 
         if filters.isEmpty {
             self.isFiltered = false
-            self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self))
+            self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self)).shuffled()
         } else {
             self.isFiltered = true
             let filterOnTop = filters["onTop"] as? Int ?? -1
@@ -68,9 +68,9 @@ final class FirstNameViewModel: ObservableObject {
             do {
                 try self.firstnamesResults = Array(dataRepository.fetchLocalData(
                     type: FirstnameDB.self,
-                    filter: compoundFilter))
+                    filter: compoundFilter)).shuffled()
             } catch {
-                self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self))
+                self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self)).shuffled()
                 print("Errors in filtering")
             }
 
