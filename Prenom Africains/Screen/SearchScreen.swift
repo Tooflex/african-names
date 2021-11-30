@@ -40,6 +40,8 @@ struct SearchScreen: View {
                 Group {
                     HStack {
                         Toggle("Only show favorites", isOn: $searchScreenViewModel.filterIsFavorite).padding()
+                            .frame( height: 40 * sizeMultiplier(), alignment: .leading)
+
                     }
                     ChipsOptionView(
                                     title: "Area",
@@ -59,8 +61,8 @@ struct SearchScreen: View {
                                     name: "md-female-select",
                                     fromMarker: "touchDownStart",
                                     toMarker: "touchUpEnd" )
-                                    .padding(.all, -30)
-                                    .frame(width: 30, height: 30, alignment: .center)
+                                    .padding(.all, -30 * sizeMultiplier())
+                                    .frame(width: 30 * sizeMultiplier(), height: 30 * sizeMultiplier(), alignment: .center)
                             }
                         } else {
                             Button(action: {
@@ -71,8 +73,8 @@ struct SearchScreen: View {
                                     name: "md-female-select",
                                     fromMarker: "touchDownStart1",
                                     toMarker: "touchUpEnd1")
-                                    .padding(.all, -30)
-                                    .frame(width: 30, height: 30, alignment: .center)
+                                    .padding(.all, -30 * sizeMultiplier())
+                                    .frame(width: 30 * sizeMultiplier(), height: 30 * sizeMultiplier(), alignment: .center)
                             }
                         }
 
@@ -82,8 +84,8 @@ struct SearchScreen: View {
                             searchScreenViewModel.filterMale = !searchScreenViewModel.filterMale
                         }) {
                             LottieView(name: "md-male-select", fromMarker: "touchDownStart", toMarker: "touchUpEnd" )
-                                .padding(.all, -30)
-                                .frame(width: 30, height: 30, alignment: .center)
+                                .padding(.all, -30 * sizeMultiplier())
+                                .frame(width: 30 * sizeMultiplier(), height: 30 * sizeMultiplier(), alignment: .center)
                         }
                     } else {
                         Button(action: {
@@ -91,8 +93,8 @@ struct SearchScreen: View {
                             searchScreenViewModel.filterMale = !searchScreenViewModel.filterMale
                         }) {
                             LottieView(name: "md-male-select", fromMarker: "touchDownStart1", toMarker: "touchUpEnd1" )
-                                .padding(.all, -30)
-                                .frame(width: 30, height: 30, alignment: .center)
+                                .padding(.all, -30 * sizeMultiplier())
+                                .frame(width: 30 * sizeMultiplier(), height: 30 * sizeMultiplier(), alignment: .center)
                         }
                     }
                     }
@@ -172,10 +174,40 @@ struct SearchScreen: View {
             searchScreenViewModel.initFilters()
         }
     }
+
+    func sizeMultiplier() -> CGFloat {
+        // Check for a specific model
+        if UIScreen.current == .iPhone5_8 || UIScreen.current == .iPhone5_5 {
+            return 1
+        }
+
+        // Check for multiple models
+        if UIScreen.current == .iPhone4_7 {
+            return 0.5
+        }
+
+        // Find all models larger than or equal to a certain screen size
+        if UIScreen.current == .iPad10_5 {
+            if UIDevice.current.orientation.isLandscape {
+                return 0.5
+            } else {
+                return 1.2
+            }
+        }
+
+        if UIScreen.current == .iPad12_9 {
+            return 1
+        }
+
+        return 1
+    }
+
 }
 
-// struct SearchScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchScreen(selectedTab: .constant(0))
-//    }
-// }
+ struct SearchScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        SearchScreen(selectedTab: .constant(0), searchString: .constant(NSCompoundPredicate()))
+            .previewDevice("iPhone 8")
+            .environmentObject(SearchScreenViewModel())
+    }
+ }
