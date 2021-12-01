@@ -69,7 +69,6 @@ final class SearchScreenViewModel: ObservableObject {
     func searchFirstnamesRemote(searchString: String) {
         print("Calling searchFirstnames")
         dataRepository.searchFirstname(searchString: searchString) { _ in
-            // TODO:
             self.loading = false
         }
     }
