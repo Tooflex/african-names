@@ -36,6 +36,8 @@ final class SearchScreenViewModel: ObservableObject {
     @Published var filterFemale = false
     @Published var filterMale = false
 
+    @Published var selectedFirstnameInSearchResults: FirstnameDB
+
     var tokens: Set<AnyCancellable> = []
     private var originsStr: [String] = []
 
@@ -52,6 +54,8 @@ final class SearchScreenViewModel: ObservableObject {
     let space = " "
 
     init() {
+        self.selectedFirstnameInSearchResults = FirstnameDB()
+
         self.fetchOrigins()
 
         // Fill Size Options
@@ -63,6 +67,7 @@ final class SearchScreenViewModel: ObservableObject {
         for area in fetchAreas() {
             areas.append(ChipsDataModel(isSelected: false, titleKey: area))
         }
+
     }
 
     /// Search firstname in remote storage
@@ -240,6 +245,16 @@ final class SearchScreenViewModel: ObservableObject {
                        "size": filterSize] as [String: Any]
         print("My filters")
         print(filters)
+        UserDefaults.standard.set(filters, forKey: "Filters")
+    }
+
+    /*
+     Add in User Defaults the id of the chosen firstname in search results
+     */
+    func goToChosenFirstname() {
+        let filters = [
+            "onTop": selectedFirstnameInSearchResults.id
+        ] as [String: Any]
         UserDefaults.standard.set(filters, forKey: "Filters")
     }
 

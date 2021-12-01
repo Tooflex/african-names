@@ -147,9 +147,15 @@ struct SearchScreen: View {
                         showingSheet: $isShowingResults)
                     List {
                         // Filtered list of names
-                        ForEach(resultArray, id: \.self) { prenom in
-                            NavigationLink(destination: Text(prenom.firstname)) {
-                                Text(prenom.firstname)
+                        ForEach(resultArray, id: \.self) { firstname in
+                            Button {
+                                searchScreenViewModel.selectedFirstnameInSearchResults = firstname
+                                searchScreenViewModel.goToChosenFirstname()
+                                self.selectedTab = 0 // Go back to Home screen
+                            } label: {
+                                NavigationLink(destination: Text(firstname.firstname)) {
+                                    Text(firstname.firstname)
+                                }
                             }
                         }
                     }
