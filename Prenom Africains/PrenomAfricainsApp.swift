@@ -16,6 +16,7 @@ struct PrenomAfricainsApp: App {
             ContentView()
                 .environmentObject(FirstNameViewModel())
                  .environmentObject(SearchScreenViewModel())
+                 .environmentObject(ParamViewModel())
         }
     }
 }

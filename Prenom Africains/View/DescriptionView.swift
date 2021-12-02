@@ -52,7 +52,7 @@ struct DescriptionView: View {
                     }
                     .popover(isPresented: $isShowPopoverMeaning) {
                         PopoverView(
-                            text: LocalizedStringKey("Meaning"),
+                            text: LocalizedStringKey("Meaning".localized()),
                             textMore: "\(firstNameViewModel.currentFirstname.meaning)")
                     }
                     } else {
@@ -137,7 +137,7 @@ struct DescriptionView: View {
                 Spacer()
                 // MARK: Origin Text
                 if firstNameViewModel.currentFirstname.origins.count < 12 {
-                    Text("Origins: \(firstNameViewModel.currentFirstname.origins)")
+                    Text("Origins:".localized() + " \(firstNameViewModel.currentFirstname.origins)")
                         .frame(width: 250, alignment: .trailing)
                         .truncationMode(.tail)
                         .font(.title2)
@@ -149,7 +149,7 @@ struct DescriptionView: View {
                         print("Tapped")
                         isShowPopoverOrigins.toggle()
                     } label: {
-                        Text("Origins: \(firstNameViewModel.currentFirstname.origins)")
+                        Text("Origins:".localized() + " \(firstNameViewModel.currentFirstname.origins)")
                             .frame(width: 250, alignment: .trailing)
                             .truncationMode(.tail)
                             .font(.title2)

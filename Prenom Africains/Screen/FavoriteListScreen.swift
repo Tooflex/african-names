@@ -22,13 +22,13 @@ struct FavoriteListScreen: View {
         VStack {
             Group {
                 Spacer()
-                Text("My List")
+                Text("My List".localized())
                     .font(.largeTitle)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
             }
-            if var favorites = viewModel.favoritedFirstnamesResults {
+            if let favorites = viewModel.favoritedFirstnamesResults {
                 if favorites.isEmpty {
                     VStack {
                         Spacer()
@@ -37,7 +37,7 @@ struct FavoriteListScreen: View {
                             .frame(
                                 width: 54 * sizeMultiplier(vSizeClass, hSizeClass),
                                 height: 54 * sizeMultiplier(vSizeClass, hSizeClass))
-                        Text("No favorite firstname")
+                        Text("No favorite firstname".localized())
 
                         Spacer()
                     }
@@ -63,7 +63,7 @@ struct FavoriteListScreen: View {
                             Button {
                                 self.viewModel.removeFromList(firstname: firstname)
                             } label: {
-                                Label("Delete", systemImage: "trash")
+                                Label("Delete".localized(), systemImage: "trash")
                             }
                             .tint(.red)
                         }

@@ -60,12 +60,12 @@ final class SearchScreenViewModel: ObservableObject {
 
         // Fill Size Options
         for size in fetchSizes() {
-            sizes.append(ChipsDataModel(isSelected: false, titleKey: size))
+            sizes.append(ChipsDataModel(isSelected: false, titleKey: size, displayedTitle: size.localized()))
         }
 
         // Fill Area Options
         for area in fetchAreas() {
-            areas.append(ChipsDataModel(isSelected: false, titleKey: area))
+            areas.append(ChipsDataModel(isSelected: false, titleKey: area, displayedTitle: area.localized()))
         }
 
     }
@@ -148,7 +148,7 @@ final class SearchScreenViewModel: ObservableObject {
                 self.loading = false
                 // Fill Origins Options
                 for origin in self.originsStr {
-                    self.origins.append(ChipsDataModel(isSelected: false, titleKey: origin))
+                    self.origins.append(ChipsDataModel(isSelected: false, titleKey: origin, displayedTitle: origin.localized()))
                 }
             case .failure(let error):
                 print(error)

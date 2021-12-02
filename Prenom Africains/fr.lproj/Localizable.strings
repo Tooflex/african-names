@@ -6,9 +6,9 @@
   
 */
 "hello-title" = "Hello, World!";
-"short" = "Court";
-"medium" = "Moyen";
-"long" = "Long";
+"short" = "court";
+"medium" = "moyen";
+"long" = "long";
 "Choose your language" = "Choisie ta langue";
 "Home" = "Accueil";
 "Search" = "Recherche";
@@ -16,6 +16,7 @@
 "Params" = "Paramétres";
 "Share" = "Partager";
 "Origins: %@" = "Origines : %@";
+"Origins:" = "Origines :";
 "Origins" = "Origines";
 "Meaning" = "Signification";
 "Search a firstname" = "Chercher un nom";
@@ -24,10 +25,10 @@
 "Gender" = "Genre";
 "Size" = "Taille";
 "Filter" = "Filtrer";
-"north africa" = "north africa";
-"east africa" = "east africa";
-"west africa" = "west africa";
-"south africa" = "south africa";
+"north africa" = "afrique du nord";
+"east africa" = "afrique de l'est";
+"west africa" = "afrique de l'ouest";
+"south africa" = "afrique du sud";
 "No favorite firstname" = "Pas de prénom favori";
 
 

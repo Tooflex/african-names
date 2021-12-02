@@ -53,8 +53,8 @@ struct MenuView: View {
                     Image(systemName: "house")
                         .font(iconFont)
                         .foregroundColor(selectedTab == MenuItemEnum.home.rawValue ? Color.appBlue : Color.black)
-                        .accessibilityLabel(Text("Home"))
-                    Text("Home").font(textFont)
+                        .accessibilityLabel(Text("Home".localized()))
+                    Text("Home".localized()).font(textFont)
                         .foregroundColor(selectedTab == MenuItemEnum.home.rawValue ? Color.appBlue : Color.black)
                 }
             }
@@ -75,8 +75,8 @@ struct MenuView: View {
                     Image(systemName: "magnifyingglass")
                         .font(iconFont)
                         .foregroundColor(selectedTab == MenuItemEnum.search.rawValue ? Color.appBlue : Color.black)
-                        .accessibilityLabel(Text("Search"))
-                    Text("Search").font(textFont)
+                        .accessibilityLabel(Text("Search".localized()))
+                    Text("Search".localized()).font(textFont)
                         .foregroundColor(selectedTab == MenuItemEnum.search.rawValue ? Color.appBlue : Color.black)
                 }
             }
@@ -98,8 +98,8 @@ struct MenuView: View {
                     Image(systemName: "bookmark")
                         .font(iconFont)
                         .foregroundColor(selectedTab == MenuItemEnum.myList.rawValue ? Color.appBlue : Color.black)
-                        .accessibilityLabel(Text("My list"))
-                    Text("My List").font(textFont)
+                        .accessibilityLabel(Text("My list".localized()))
+                    Text("My List".localized()).font(textFont)
                         .foregroundColor(selectedTab == MenuItemEnum.myList.rawValue ? Color.appBlue : Color.black)
                         .accessibilityLabel(Text("My list"))
 
@@ -123,8 +123,8 @@ struct MenuView: View {
                     Image(systemName: "gearshape")
                         .font(iconFont)
                         .foregroundColor(selectedTab == MenuItemEnum.params.rawValue ? Color.appBlue : Color.black)
-                        .accessibilityLabel(Text("Params"))
-                    Text("Params")
+                        .accessibilityLabel(Text("Params".localized()))
+                    Text("Params".localized())
                         .font(textFont)
                         .foregroundColor(
                             selectedTab == MenuItemEnum.params.rawValue ? Color.appBlue : Color.black)

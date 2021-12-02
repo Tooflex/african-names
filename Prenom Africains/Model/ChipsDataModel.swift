@@ -12,9 +12,11 @@ class ChipsDataModel: Identifiable, ObservableObject {
     @Published var isSelected: Bool = false
     var systemImage: String?
     var titleKey: String = ""
+    var displayedTitle: String = ""
 
-    init(isSelected: Bool, titleKey: String) {
+    init(isSelected: Bool, titleKey: String, displayedTitle: String) {
         self.titleKey = titleKey
         self.isSelected = isSelected
+        self.displayedTitle = displayedTitle
     }
 }

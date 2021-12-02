@@ -71,8 +71,8 @@ struct ChipsContent: View {
         ChipsOptionView(
             title: "Test",
             data: [
-                ChipsDataModel(isSelected: false, titleKey: "Wesh"),
-                ChipsDataModel(isSelected: false, titleKey: "Yo")
+                ChipsDataModel(isSelected: false, titleKey: "Wesh", displayedTitle: "Wesh translated"),
+                ChipsDataModel(isSelected: false, titleKey: "Yo", displayedTitle: "Yo translated")
             ])
     }
  }

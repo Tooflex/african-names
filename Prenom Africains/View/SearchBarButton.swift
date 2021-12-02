@@ -16,7 +16,7 @@ struct SearchBarButton: View {
         }, label: {
             HStack(alignment: .center, spacing: 30) {
                 Image("feather-search").foregroundColor(.black)
-                Text("Search a firstname")
+                Text("Search a firstname".localized())
                     .foregroundColor(.gray)
             }
         })

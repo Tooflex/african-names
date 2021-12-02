@@ -14,7 +14,7 @@ struct ChipsView: View {
             if let systemImage = chip.systemImage {
                 Image.init(systemName: systemImage).font(.title3)
             }
-            Text(chip.titleKey).font(.title3).lineLimit(1)
+            Text(chip.displayedTitle.localized()).font(.title3).lineLimit(1)
         }.padding(.all, 10)
         .foregroundColor(chip.isSelected ? .white : .blue)
         .background(chip.isSelected ? Color.appBlue : Color.white)
@@ -28,6 +28,6 @@ struct ChipsView: View {
 
  struct ChipsView_Previews: PreviewProvider {
     static var previews: some View {
-        ChipsView(chip: ChipsDataModel(isSelected: false, titleKey: "test"))
+        ChipsView(chip: ChipsDataModel(isSelected: false, titleKey: "test", displayedTitle: "test translated"))
     }
  }
