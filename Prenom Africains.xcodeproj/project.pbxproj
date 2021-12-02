@@ -17,7 +17,6 @@
 		1535635E2739BDCD007B1959 /* FavoriteListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1535635D2739BDCD007B1959 /* FavoriteListViewModel.swift */; };
 		1539F18026E4ED67009889B5 /* FirstnameDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1539F17F26E4ED67009889B5 /* FirstnameDataModel.swift */; };
 		1544144F264F52BD00BA6887 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1544144E264F52BD00BA6887 /* Colors.xcassets */; };
-		15454CC42758346400D0B699 /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15454CC32758346400D0B699 /* BundleExtension.swift */; };
 		15454CCA27590D6A00D0B699 /* L10n-swift in Frameworks */ = {isa = PBXBuildFile; productRef = 15454CC927590D6A00D0B699 /* L10n-swift */; };
 		15515FC52677D04B009C2BDF /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 15515FC42677D04B009C2BDF /* Realm */; };
 		15515FC72677D04B009C2BDF /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 15515FC62677D04B009C2BDF /* RealmSwift */; };
@@ -116,7 +115,6 @@
 		1535635D2739BDCD007B1959 /* FavoriteListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewModel.swift; sourceTree = "<group>"; };
 		1539F17F26E4ED67009889B5 /* FirstnameDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstnameDataModel.swift; sourceTree = "<group>"; };
 		1544144E264F52BD00BA6887 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		15454CC32758346400D0B699 /* BundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		15515FC82677D423009C2BDF /* FirstnameDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnameDB.swift; sourceTree = "<group>"; };
 		15515FCB2677E35F009C2BDF /* MOCK_DATA.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MOCK_DATA.json; sourceTree = "<group>"; };
 		15515FCD2677E39A009C2BDF /* FirstnamesMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnamesMock.swift; sourceTree = "<group>"; };
@@ -365,7 +363,6 @@
 				1587CC30273FF0DB0007B89A /* UIColorExtension.swift */,
 				1587CC2E273FEF220007B89A /* ViewExtension.swift */,
 				15D167212751CB7A00992D7C /* UIDevice.swift */,
-				15454CC32758346400D0B699 /* BundleExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -673,7 +670,6 @@
 				15515FCE2677E39A009C2BDF /* FirstnamesMock.swift in Sources */,
 				15E8DE472663093B0036A99F /* ChipsView.swift in Sources */,
 				15CAC5232646E837007E838C /* SearchScreen.swift in Sources */,
-				15454CC42758346400D0B699 /* BundleExtension.swift in Sources */,
 				15E8DE45266308DE0036A99F /* ChipsDataModel.swift in Sources */,
 				15EA7DF026094112006BC8F2 /* FirstNameViewModel.swift in Sources */,
 				152CDB60266FEB1F003B65C4 /* LegacyTextField.swift in Sources */,
