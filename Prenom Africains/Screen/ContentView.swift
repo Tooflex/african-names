@@ -7,9 +7,10 @@
 
 import SwiftUI
 import Alamofire
-import Localize_Swift
 
 struct ContentView: View {
+    @Environment(\.colorScheme) var currentMode
+
     @State var selectedTab = 0
     @State var searchString = NSCompoundPredicate()
 
@@ -20,7 +21,7 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            Color.offWhite
+            currentMode == .dark ? Color.gray : Color.offWhite
         VStack {
             switch selectedTab {
             case 0:
@@ -43,21 +44,21 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-//        ForEach(ColorScheme.allCases, id: \.self) {
+        ForEach(ColorScheme.allCases, id: \.self) {
             Group {
        ContentView()
                     .previewDevice("iPhone 12")
                     .previewDisplayName("iPhone 12").environmentObject(FirstNameViewModel())
 
-                ContentView()
-                    .previewDevice("iPad Air (4th generation)")
-                    .previewDisplayName("iPad Air 4").environmentObject(FirstNameViewModel())
-
-                ContentView()
-                    .previewDevice("iPhone 8")
-                    .previewDisplayName("iPhone 8")
-                    .environmentObject(FirstNameViewModel())
-//            }.preferredColorScheme($0)
+//                ContentView()
+//                    .previewDevice("iPad Air (4th generation)")
+//                    .previewDisplayName("iPad Air 4").environmentObject(FirstNameViewModel())
+//
+//                ContentView()
+//                    .previewDevice("iPhone 8")
+//                    .previewDisplayName("iPhone 8")
+//                    .environmentObject(FirstNameViewModel())
+            }.preferredColorScheme($0)
         }
 
     }

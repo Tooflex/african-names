@@ -10,8 +10,8 @@ import CoreHaptics
 import L10n_swift
 
 struct DescriptionView: View {
+    @Environment(\.colorScheme) var currentMode
     @Environment(\.verticalSizeClass) var vSizeClass
-
     @Environment(\.horizontalSizeClass) var hSizeClass
 
     @EnvironmentObject var firstNameViewModel: FirstNameViewModel
@@ -28,14 +28,26 @@ struct DescriptionView: View {
                 HStack(alignment: .center) {
                     Spacer()
                 ZStack {
-                    RoundedRectangle(cornerRadius: 25, style: .continuous)
-                        .fill(Color.offWhite.opacity(0.71))
-                        .frame(
-                            width: UIScreen.main.bounds.width - 50,
-                            height: 165 * sizeMultiplierMeaningRectangle(),
-                            alignment: .center)
-                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
-                        .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
+                    if currentMode == .dark {
+                        RoundedRectangle(cornerRadius: 25, style: .continuous)
+                            .fill(.thickMaterial)
+                            .frame(
+                                width: UIScreen.main.bounds.width - 50,
+                                height: 165 * sizeMultiplierMeaningRectangle(),
+                                alignment: .center)
+                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                            .shadow(color: Color.black.opacity(0.7), radius: 10, x: -5, y: -5)
+                    } else {
+                        RoundedRectangle(cornerRadius: 25, style: .continuous)
+                            .fill(Color.offWhite.opacity(0.71))
+                            .frame(
+                                width: UIScreen.main.bounds.width - 50,
+                                height: 165 * sizeMultiplierMeaningRectangle(),
+                                alignment: .center)
+                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                            .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
+                    }
+
                     // MARK: Meaning text
                     if firstNameViewModel.currentFirstname.meaning.count > 65 {
                     Button {
@@ -328,16 +340,18 @@ extension Color {
     static let appBlue = Color(red: 5/255, green: 59/255, blue: 151/255)
     static let lightPink = Color(red: 150/255, green: 71/255, blue: 76/255)
     static let lightPurple = Color(red: 255/255, green: 182/255, blue: 193/255)
+    static let darkPink = Color(red: 219, green: 71, blue: 147)
+    static let darkPurple = Color(red: 133, green: 96, blue: 136)
 }
 
 // struct DescriptionView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ForEach(ColorScheme.allCases, id: \.self) {
 //            Group {
-////                DescriptionView()
-////                    .previewDevice("iPad Pro (12.9-inch) (4th generation)")
-////                    .previewDisplayName("iPad Pro 12")
-////                    .landscape()
+//                DescriptionView()
+//                    .previewDevice("iPad Pro (12.9-inch) (4th generation)")
+//                    .previewDisplayName("iPad Pro 12")
+//                    .landscape()
 //
 //                DescriptionView()
 //                    .previewDevice("iPhone 8")
