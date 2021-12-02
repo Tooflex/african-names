@@ -9,6 +9,7 @@ import SwiftUI
 import AVFoundation
 
 struct CircleFirstName: View {
+    @Environment(\.colorScheme) var currentMode
 
     @Environment(\.verticalSizeClass) var vSizeClass
 
@@ -21,13 +22,24 @@ struct CircleFirstName: View {
         GeometryReader { geometry in
         VStack {
                 ZStack {
-                    Circle()
-                        .fill(color)
-                        .frame(
-                            width: geometry.size.width * 0.8 * sizeMultiplier(),
-                            height: geometry.size.width * 0.8 * sizeMultiplier())
-                        .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
-                        .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
+                    if currentMode == .dark {
+                        Circle()
+                            .fill(color)
+                            .frame(
+                                width: geometry.size.width * 0.8 * sizeMultiplier(),
+                                height: geometry.size.width * 0.8 * sizeMultiplier())
+                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                            .shadow(color: Color.gray.opacity(0.7), radius: 10, x: -5, y: -5)
+                    } else {
+                        Circle()
+                            .fill(color)
+                            .frame(
+                                width: geometry.size.width * 0.8 * sizeMultiplier(),
+                                height: geometry.size.width * 0.8 * sizeMultiplier())
+                            .shadow(color: Color.black.opacity(0.2), radius: 10, x: 10, y: 10)
+                            .shadow(color: Color.white.opacity(0.7), radius: 10, x: -5, y: -5)
+                    }
+
                     VStack {
                         Text(prenom.firstname)
                             .foregroundColor(.white)
@@ -120,15 +132,16 @@ struct Triangle: Shape {
     }
 }
 
-// struct CircleFirstName_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-//        CircleFirstName(prenom: FirstnameDB())
-//            .previewDevice("iPhone 12 Pro Max")
-//            .previewDisplayName("iPhone 12 Pro Max")
-//
-//        CircleFirstName(prenom: FirstnameDB())
-//            .previewDevice("iPad Pro (12.9-inch) (4th generation)")
-//            .previewDisplayName("iPad Pro 12")
-//    }
-// }
+ struct CircleFirstName_Previews: PreviewProvider {
+
+     static var previews: some View {
+         ForEach(ColorScheme.allCases, id: \.self) {
+             Group {
+        CircleFirstName(prenom: FirstnameDB())
+            .previewDevice("iPhone 12 Pro Max")
+            .previewDisplayName("iPhone 12 Pro Max")
+             }.preferredColorScheme($0)
+
+    }
+ }
+ }

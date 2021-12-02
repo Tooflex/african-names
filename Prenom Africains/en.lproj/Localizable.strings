@@ -24,9 +24,12 @@
 "Gender" = "Gender";
 "Size" = "Size";
 "Filter" = "Filter";
+"filters on" = "filters on";
 "north africa" = "north africa";
 "east africa" = "east africa";
 "west africa" = "west africa";
 "south africa" = "south africa";
 "No favorite firstname" = "No favorite firstname";
+"right button" = "right button";
+"left button" = "left button";
 

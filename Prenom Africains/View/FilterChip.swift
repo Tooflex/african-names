@@ -26,7 +26,7 @@ struct FilterChip: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(color, lineWidth: 3)
-                            .frame(width: 80, height: 30)
+                            .frame(width: 100, height: 30)
                     )
             }
 

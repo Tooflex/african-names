@@ -36,7 +36,9 @@ struct SearchScreen: View {
                     SearchBarButton(showingSheet: $isShowingResults)
                         .padding(.horizontal)
                 }
-                Divider().padding(.top, 10)
+                Divider()
+                    .background(Color("gray"))
+                    .padding(.top, 10)
                 // MARK: - Filters Options
                 Group {
                     HStack {
