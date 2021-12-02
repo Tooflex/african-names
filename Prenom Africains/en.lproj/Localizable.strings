@@ -6,9 +6,9 @@
   
 */
 "hello-title" = "Hello, World!";
-"short" = "Short";
-"medium" = "Medium";
-"long" = "Long";
+"short" = "short";
+"medium" = "medium";
+"long" = "long";
 "Choose your language" = "Choose your language";
 "Home" = "Home";
 "Search" = "Search";
@@ -16,6 +16,7 @@
 "Params" = "Params";
 "Share" = "Share";
 "Origins: %@" = "Origins: %@";
+"Origins:" = "Origins:";
 "Origins" = "Origins";
 "Search a firstname" = "Search a firstname";
 "Only show favorites" = "Only show favorites";

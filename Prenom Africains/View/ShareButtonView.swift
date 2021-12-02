@@ -27,8 +27,8 @@ struct ShareButton: View {
                 Image(systemName: "square.and.arrow.up")
                     .font(iconFont)
                     .foregroundColor(Color.white)
-                    .accessibilityLabel(Text("Share"))
-                Text("Share")
+                    .accessibilityLabel(Text("Share".localized()))
+                Text("Share".localized())
                     .font(textFont)
                     .foregroundColor(Color.white)
             }

@@ -12,6 +12,10 @@ public enum CountryLibrary {
     public static let countries: [Country] = NSLocale.isoCountryCodes.map { (code: String) -> Country in
         return Country(code: code)
     }.sorted(by: {$0.name < $1.name})
+
+    public static let languages: [Language] = NSLocale.isoLanguageCodes.map { (language: String) -> Language in
+        return Language(langId: language)
+    }.sorted(by: {$0.name < $1.name})
 }
 
 /// Represent a country from the system with code, name, flag, and a convenience method flagAndName
@@ -39,9 +43,39 @@ public struct Country: Hashable {
     }
 }
 
+public struct Language: Hashable {
+
+    public var langId: String
+
+    public var name: String {
+        let idCode = NSLocale.localeIdentifier(fromComponents: [NSLocale.Key.languageCode.rawValue: langId])
+        return NSLocale(localeIdentifier: Locale.current.languageCode ?? "en_US")
+            .displayName(forKey: NSLocale.Key.identifier, value: idCode) ?? ""
+    }
+
+    public var flag: String {
+        return langId
+            .unicodeScalars
+            .map({ 127397 + $0.value })
+            .compactMap(UnicodeScalar.init)
+            .map(String.init)
+            .joined()
+    }
+
+    public var flagAndName: String {
+        return self.flag + " " + self.name
+    }
+}
+
 extension Country: Identifiable {
     public var id: String {
         return self.code
+    }
+}
+
+extension Language: Identifiable {
+    public var id: String {
+        return self.langId
     }
 }
 

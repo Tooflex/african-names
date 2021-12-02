@@ -27,7 +27,7 @@ struct SearchScreen: View {
                 // MARK: Search Bar
                 Group {
                 Spacer()
-                Text("Search")
+                Text("Search".localized())
                     .font(.largeTitle)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -39,12 +39,12 @@ struct SearchScreen: View {
                 // MARK: - Filters Options
                 Group {
                     HStack {
-                        Toggle("Only show favorites", isOn: $searchScreenViewModel.filterIsFavorite).padding()
+                        Toggle("Only show favorites".localized(), isOn: $searchScreenViewModel.filterIsFavorite).padding()
                     }
                     ChipsOptionView(
-                                    title: "Area",
+                                    title: "Area".localized(),
                                     data: searchScreenViewModel.areas)
-                    Text("Gender")
+                    Text("Gender".localized())
                         .font(.title2)
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -97,7 +97,7 @@ struct SearchScreen: View {
                     }
                     }
                     ChipsOptionView(
-                        title: "Size",
+                        title: "Size".localized(),
                         data: searchScreenViewModel.sizes)
                 }
                 // MARK: Filter Submit Button
@@ -120,7 +120,7 @@ struct SearchScreen: View {
                     self.selectedTab = 0 // Go back to Home screen
                 }) {
                     HStack {
-                        Text("Filter")
+                        Text("Filter".localized())
                             .fontWeight(.medium)
                             .font(.title2)
                     }
