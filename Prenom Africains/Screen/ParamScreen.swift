@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import L10n_swift
 
 struct ParamScreen: View {
 
@@ -17,7 +18,7 @@ struct ParamScreen: View {
         VStack {
             Group {
                 Spacer()
-                Text("Params".localized())
+                Text("Params".l10n())
                     .font(.largeTitle)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -26,8 +27,8 @@ struct ParamScreen: View {
             }
             VStack {
                 Spacer()
-                Text("Choose your language".localized())
-                Picker("Choose your language".localized(), selection: $paramViewModel.languageCodeSelection) {
+                Text("Choose your language".l10n())
+                Picker("Choose your language".l10n(), selection: $paramViewModel.languageCodeSelection) {
                     ForEach(paramViewModel.getLanguages()) { lang in
                         HStack {
                             Text(lang.name)
@@ -35,7 +36,7 @@ struct ParamScreen: View {
                     }
                 }.onChange(of: paramViewModel.languageCodeSelection) { _ in
                     print("Lang changed to: \(String(describing: paramViewModel.languageCodeSelection))")
-                    Bundle.setLanguage(lang: paramViewModel.languageCodeSelection)
+                    L10n.shared.language = paramViewModel.languageCodeSelection
                     selectedTab = 0
                 }
                 Spacer()

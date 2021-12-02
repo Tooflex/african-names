@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
+import L10n_swift
 
 final class SearchScreenViewModel: ObservableObject {
 
@@ -60,12 +61,12 @@ final class SearchScreenViewModel: ObservableObject {
 
         // Fill Size Options
         for size in fetchSizes() {
-            sizes.append(ChipsDataModel(isSelected: false, titleKey: size, displayedTitle: size.localized()))
+            sizes.append(ChipsDataModel(isSelected: false, titleKey: size, displayedTitle: size.l10n(resource: "en").l10n() ))
         }
 
         // Fill Area Options
         for area in fetchAreas() {
-            areas.append(ChipsDataModel(isSelected: false, titleKey: area, displayedTitle: area.localized()))
+            areas.append(ChipsDataModel(isSelected: false, titleKey: area, displayedTitle: area.l10n()))
         }
 
     }
@@ -148,7 +149,7 @@ final class SearchScreenViewModel: ObservableObject {
                 self.loading = false
                 // Fill Origins Options
                 for origin in self.originsStr {
-                    self.origins.append(ChipsDataModel(isSelected: false, titleKey: origin, displayedTitle: origin.localized()))
+                    self.origins.append(ChipsDataModel(isSelected: false, titleKey: origin, displayedTitle: origin.l10n()))
                 }
             case .failure(let error):
                 print(error)

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import L10n_swift
 
 struct FavoriteListScreen: View {
 
@@ -22,7 +23,7 @@ struct FavoriteListScreen: View {
         VStack {
             Group {
                 Spacer()
-                Text("My List".localized())
+                Text("My List".l10n())
                     .font(.largeTitle)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -37,7 +38,7 @@ struct FavoriteListScreen: View {
                             .frame(
                                 width: 54 * sizeMultiplier(vSizeClass, hSizeClass),
                                 height: 54 * sizeMultiplier(vSizeClass, hSizeClass))
-                        Text("No favorite firstname".localized())
+                        Text("No favorite firstname".l10n())
 
                         Spacer()
                     }
@@ -63,7 +64,7 @@ struct FavoriteListScreen: View {
                             Button {
                                 self.viewModel.removeFromList(firstname: firstname)
                             } label: {
-                                Label("Delete".localized(), systemImage: "trash")
+                                Label("Delete".l10n(), systemImage: "trash")
                             }
                             .tint(.red)
                         }

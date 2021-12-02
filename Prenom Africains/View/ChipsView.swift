@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import L10n_swift
 
 struct ChipsView: View {
     @ObservedObject var chip: ChipsDataModel
@@ -14,7 +15,7 @@ struct ChipsView: View {
             if let systemImage = chip.systemImage {
                 Image.init(systemName: systemImage).font(.title3)
             }
-            Text(chip.displayedTitle.localized()).font(.title3).lineLimit(1)
+            Text(chip.displayedTitle.l10n()).font(.title3).lineLimit(1)
         }.padding(.all, 10)
         .foregroundColor(chip.isSelected ? .white : .blue)
         .background(chip.isSelected ? Color.appBlue : Color.white)

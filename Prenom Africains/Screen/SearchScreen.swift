@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SlideOverCard
+import L10n_swift
 
 struct SearchScreen: View {
     @Binding var selectedTab: Int
@@ -27,7 +28,7 @@ struct SearchScreen: View {
                 // MARK: Search Bar
                 Group {
                 Spacer()
-                Text("Search".localized())
+                Text("Search".l10n())
                     .font(.largeTitle)
                     .bold()
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -39,12 +40,12 @@ struct SearchScreen: View {
                 // MARK: - Filters Options
                 Group {
                     HStack {
-                        Toggle("Only show favorites".localized(), isOn: $searchScreenViewModel.filterIsFavorite).padding()
+                        Toggle("Only show favorites".l10n(), isOn: $searchScreenViewModel.filterIsFavorite).padding()
                     }
                     ChipsOptionView(
-                                    title: "Area".localized(),
+                                    title: "Area".l10n(),
                                     data: searchScreenViewModel.areas)
-                    Text("Gender".localized())
+                    Text("Gender".l10n())
                         .font(.title2)
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -97,7 +98,7 @@ struct SearchScreen: View {
                     }
                     }
                     ChipsOptionView(
-                        title: "Size".localized(),
+                        title: "Size".l10n(),
                         data: searchScreenViewModel.sizes)
                 }
                 // MARK: Filter Submit Button
@@ -120,7 +121,7 @@ struct SearchScreen: View {
                     self.selectedTab = 0 // Go back to Home screen
                 }) {
                     HStack {
-                        Text("Filter".localized())
+                        Text("Filter".l10n())
                             .fontWeight(.medium)
                             .font(.title2)
                     }
