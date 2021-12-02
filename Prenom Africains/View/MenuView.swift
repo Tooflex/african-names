@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import L10n_swift
 
 struct MenuView: View {
 
@@ -53,8 +54,8 @@ struct MenuView: View {
                     Image(systemName: "house")
                         .font(iconFont)
                         .foregroundColor(selectedTab == MenuItemEnum.home.rawValue ? Color.appBlue : Color.black)
-                        .accessibilityLabel(Text("Home".localized()))
-                    Text("Home".localized()).font(textFont)
+                        .accessibilityLabel(Text("Home".l10n()))
+                    Text("Home".l10n()).font(textFont)
                         .foregroundColor(selectedTab == MenuItemEnum.home.rawValue ? Color.appBlue : Color.black)
                 }
             }
@@ -75,8 +76,8 @@ struct MenuView: View {
                     Image(systemName: "magnifyingglass")
                         .font(iconFont)
                         .foregroundColor(selectedTab == MenuItemEnum.search.rawValue ? Color.appBlue : Color.black)
-                        .accessibilityLabel(Text("Search".localized()))
-                    Text("Search".localized()).font(textFont)
+                        .accessibilityLabel(Text("Search".l10n()))
+                    Text("Search".l10n()).font(textFont)
                         .foregroundColor(selectedTab == MenuItemEnum.search.rawValue ? Color.appBlue : Color.black)
                 }
             }
@@ -98,10 +99,10 @@ struct MenuView: View {
                     Image(systemName: "bookmark")
                         .font(iconFont)
                         .foregroundColor(selectedTab == MenuItemEnum.myList.rawValue ? Color.appBlue : Color.black)
-                        .accessibilityLabel(Text("My list".localized()))
-                    Text("My List".localized()).font(textFont)
+                        .accessibilityLabel(Text("My List".l10n()))
+                    Text("My List".l10n()).font(textFont)
                         .foregroundColor(selectedTab == MenuItemEnum.myList.rawValue ? Color.appBlue : Color.black)
-                        .accessibilityLabel(Text("My list"))
+                        .accessibilityLabel(Text("My List"))
 
                 }
             })
@@ -123,8 +124,8 @@ struct MenuView: View {
                     Image(systemName: "gearshape")
                         .font(iconFont)
                         .foregroundColor(selectedTab == MenuItemEnum.params.rawValue ? Color.appBlue : Color.black)
-                        .accessibilityLabel(Text("Params".localized()))
-                    Text("Params".localized())
+                        .accessibilityLabel(Text("Params".l10n()))
+                    Text("Params".l10n())
                         .font(textFont)
                         .foregroundColor(
                             selectedTab == MenuItemEnum.params.rawValue ? Color.appBlue : Color.black)

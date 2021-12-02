@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import L10n_swift
 
 struct ShareButton: View {
 
@@ -27,8 +28,8 @@ struct ShareButton: View {
                 Image(systemName: "square.and.arrow.up")
                     .font(iconFont)
                     .foregroundColor(Color.white)
-                    .accessibilityLabel(Text("Share".localized()))
-                Text("Share".localized())
+                    .accessibilityLabel(Text("Share".l10n()))
+                Text("Share".l10n())
                     .font(textFont)
                     .foregroundColor(Color.white)
             }

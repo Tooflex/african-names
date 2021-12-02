@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreHaptics
+import L10n_swift
 
 struct DescriptionView: View {
     @Environment(\.verticalSizeClass) var vSizeClass
@@ -52,7 +53,7 @@ struct DescriptionView: View {
                     }
                     .popover(isPresented: $isShowPopoverMeaning) {
                         PopoverView(
-                            text: LocalizedStringKey("Meaning".localized()),
+                            text: LocalizedStringKey("Meaning".l10n()),
                             textMore: "\(firstNameViewModel.currentFirstname.meaning)")
                     }
                     } else {
@@ -137,7 +138,7 @@ struct DescriptionView: View {
                 Spacer()
                 // MARK: Origin Text
                 if firstNameViewModel.currentFirstname.origins.count < 12 {
-                    Text("Origins:".localized() + " \(firstNameViewModel.currentFirstname.origins)")
+                    Text("Origins:".l10n() + " \(firstNameViewModel.currentFirstname.origins)")
                         .frame(width: 250, alignment: .trailing)
                         .truncationMode(.tail)
                         .font(.title2)
@@ -149,7 +150,7 @@ struct DescriptionView: View {
                         print("Tapped")
                         isShowPopoverOrigins.toggle()
                     } label: {
-                        Text("Origins:".localized() + " \(firstNameViewModel.currentFirstname.origins)")
+                        Text("Origins:".l10n() + " \(firstNameViewModel.currentFirstname.origins)")
                             .frame(width: 250, alignment: .trailing)
                             .truncationMode(.tail)
                             .font(.title2)

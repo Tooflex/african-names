@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Alamofire
+import Localize_Swift
 
 struct ContentView: View {
     @State var selectedTab = 0

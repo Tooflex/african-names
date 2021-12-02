@@ -6,7 +6,7 @@
   
 */
 "hello-title" = "Hello, World!";
-"short" = "Short";
-"medium" = "Medium";
-"long" = "Long";
+"short" = "short";
+"medium" = "medium";
+"long" = "long";
 

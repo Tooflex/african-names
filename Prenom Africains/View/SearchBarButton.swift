@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import L10n_swift
 
 struct SearchBarButton: View {
     @Binding var showingSheet: Bool
@@ -16,7 +17,7 @@ struct SearchBarButton: View {
         }, label: {
             HStack(alignment: .center, spacing: 30) {
                 Image("feather-search").foregroundColor(.black)
-                Text("Search a firstname".localized())
+                Text("Search a firstname".l10n())
                     .foregroundColor(.gray)
             }
         })
