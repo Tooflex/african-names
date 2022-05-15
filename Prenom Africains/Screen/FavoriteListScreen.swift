@@ -10,6 +10,8 @@ import L10n_swift
 
 struct FavoriteListScreen: View {
 
+    @Environment(\.colorScheme) var currentMode
+
     @Environment(\.verticalSizeClass) var vSizeClass
 
     @Environment(\.horizontalSizeClass) var hSizeClass
@@ -44,6 +46,7 @@ struct FavoriteListScreen: View {
                     }
 
                 } else {
+                    Spacer()
                     List {
                         ForEach(favorites) { firstname in
                         Button(action: {
@@ -52,15 +55,16 @@ struct FavoriteListScreen: View {
                             self.selectedTab = 0 // Go back to Home screen
                         }, label: {
                             if firstname.gender == Gender.male.rawValue {
-                                Text("\(firstname.firstname)").foregroundColor(Color.appBlue)
+                                Text("\(firstname.firstname)").foregroundColor(Color("blue"))
                             } else if firstname.gender == Gender.female.rawValue {
-                                Text("\(firstname.firstname)").foregroundColor(Color.pink)
+                                Text("\(firstname.firstname)").foregroundColor(Color("pink"))
                             } else if firstname.gender == Gender.mixed.rawValue {
-                                Text("\(firstname.firstname)").foregroundColor(Color.purple)
+                                Text("\(firstname.firstname)").foregroundColor(Color("purple"))
                             } else {
-                                Text("\(firstname.firstname)").foregroundColor(Color.black)
+                                Text("\(firstname.firstname)").foregroundColor(Color("black"))
                             }
-                        }).swipeActions {
+                        }).padding(10)
+                                .swipeActions {
                             Button {
                                 self.viewModel.removeFromList(firstname: firstname)
                             } label: {
@@ -71,6 +75,8 @@ struct FavoriteListScreen: View {
                         }
 
                     }
+                    .background(.regularMaterial)
+                    Spacer()
                 }
             }
 

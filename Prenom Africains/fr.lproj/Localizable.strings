@@ -25,10 +25,13 @@
 "Gender" = "Genre";
 "Size" = "Taille";
 "Filter" = "Filtrer";
+"filters on" = "filtres actifs";
 "north africa" = "afrique du nord";
 "east africa" = "afrique de l'est";
 "west africa" = "afrique de l'ouest";
 "south africa" = "afrique du sud";
 "No favorite firstname" = "Pas de prénom favori";
+"right button" = "bouton droit";
+"left button" = "bouton gauche";
 
 

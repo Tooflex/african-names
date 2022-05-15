@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import L10n_swift
+import CoreHaptics
 
 struct MainScreen: View {
 
@@ -13,9 +15,13 @@ struct MainScreen: View {
 
     @Environment(\.horizontalSizeClass) var hSizeClass
 
+    @Environment(\.colorScheme) var currentMode
+
     @EnvironmentObject var firstNameViewModel: FirstNameViewModel
 
     @Binding var searchString: NSCompoundPredicate
+
+    @State private var engine: CHHapticEngine?
 
     @State private var currentColor = Color.gray
 
@@ -57,7 +63,7 @@ struct MainScreen: View {
                     if self.firstNameViewModel.isFiltered {
                         HStack {
                             Spacer()
-                            FilterChip(text: "filters on", color: .white, action: {
+                            FilterChip(text: "filters on".l10n(), color: .white, action: {
                                 self.firstNameViewModel.clearFilters()
                                 self.firstNameViewModel.getFirstnames()
                             })
@@ -65,11 +71,11 @@ struct MainScreen: View {
                         }
                     }
 
-                    LottieView(name: "noresults", loopMode: .playOnce)
+                    LottieView(name: "noresults".l10n(), loopMode: .playOnce)
                         .frame(
                             width: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0),
                             height: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
-                    Text("No firstnames")
+                    Text("No firstnames".l10n())
 
                     Spacer()
                 }
@@ -122,7 +128,7 @@ struct MainScreen: View {
                             if self.firstNameViewModel.isFiltered {
                                 HStack {
                                     Spacer()
-                                    FilterChip(text: "filters on", color: .white, action: {
+                                    FilterChip(text: "filters on".l10n(), color: .white, action: {
                                         self.firstNameViewModel.clearFilters()
                                         self.firstNameViewModel.getFirstnames()
                                     })
@@ -147,6 +153,7 @@ struct MainScreen: View {
             }
         })
         .onAppear(perform: {
+            prepareHaptics()
             firstNameViewModel.onAppear()
         })
         .onReceive(firstNameViewModel.$firstnamesResults) { firstnames in
@@ -169,7 +176,7 @@ struct MainScreen: View {
             .onTapGesture {
                 previousFirstname()
             }
-            .accessibility(label: Text("left button"))
+            .accessibility(label: Text("left button".l10n()))
     }
 
     fileprivate func rightButton() -> some View {
@@ -183,7 +190,7 @@ struct MainScreen: View {
             .onTapGesture {
                 nextFirstname()
             }
-            .accessibility(label: Text("right button"))
+            .accessibility(label: Text("right button".l10n()))
     }
 
     fileprivate func isNextFirstname() -> Bool {
@@ -195,6 +202,8 @@ struct MainScreen: View {
         if isNextFirstname() {
             self.currentIndex = currentIndex + 1
             firstNameViewModel.currentFirstname = firstNameViewModel.firstnamesResults[currentIndex]
+        } else {
+            nomNomPattern()
         }
     }
 
@@ -206,6 +215,74 @@ struct MainScreen: View {
         if isPreviousFirstname() {
             self.currentIndex = currentIndex - 1
             firstNameViewModel.currentFirstname = firstNameViewModel.firstnamesResults[currentIndex]
+        } else {
+            nomNomPattern()
+        }
+    }
+
+    // MARK: Haptics functions
+    func prepareHaptics() {
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+
+        do {
+            self.engine = try CHHapticEngine()
+            try engine?.start()
+        } catch {
+            print("There was an error creating the engine: \(error)")
+        }
+    }
+
+    func complexSuccess() {
+        // make sure that the device supports haptics
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+        var events = [CHHapticEvent]()
+
+        // Double tap
+        let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: 1)
+        let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: 1)
+        let event = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity, sharpness], relativeTime: 0)
+        let intensity1 = CHHapticEventParameter(parameterID: .hapticIntensity, value: 1)
+        let sharpness1 = CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.5)
+        let event1 = CHHapticEvent(eventType: .hapticTransient, parameters: [intensity1, sharpness1], relativeTime: 0.1)
+        events.append(event)
+        events.append(event1)
+
+        // convert those events into a pattern and play it immediately
+        do {
+            let pattern = try CHHapticPattern(events: events, parameters: [])
+            let player = try engine?.makePlayer(with: pattern)
+            try player?.start(atTime: 0)
+        } catch {
+            print("Failed to play pattern: \(error).")
+        }
+    }
+
+    private func nomNomPattern() {
+        let rumble1 = CHHapticEvent(
+            eventType: .hapticContinuous,
+            parameters: [
+                CHHapticEventParameter(parameterID: .hapticIntensity, value: 1.0),
+                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.3)
+            ],
+            relativeTime: 0,
+            duration: 0.15)
+
+        let rumble2 = CHHapticEvent(
+            eventType: .hapticContinuous,
+            parameters: [
+                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.4),
+                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.1)
+            ],
+            relativeTime: 0.3,
+            duration: 0.3)
+
+        // convert those events into a pattern and play it immediately
+        do {
+            let pattern = try CHHapticPattern(events: [rumble1, rumble2], parameters: [])
+            let player = try engine?.makePlayer(with: pattern)
+            try player?.start(atTime: 0)
+        } catch {
+            print("Failed to play pattern: \(error).")
         }
     }
 
@@ -291,11 +368,11 @@ struct MainScreen: View {
     func setColor() -> Color {
         switch firstNameViewModel.currentFirstname.gender {
         case Gender.male.rawValue:
-            return Color.appBlue
+            return Color("blue")
         case Gender.female.rawValue:
-            return Color.pink
+                return Color("pink")
         case Gender.mixed.rawValue:
-            return Color.purple
+            return Color("purple")
         case Gender.undefined.rawValue:
             return Color.black
         default:
@@ -312,36 +389,36 @@ struct MainScreen: View {
         case Gender.mixed.rawValue:
             return Color.lightPurple
         case Gender.undefined.rawValue:
-            return Color.gray
+            return Color("gray")
         default:
-            return Color.gray
+            return Color("gray")
         }
     }
 
 }
 
-// struct MainScreen_Previews: PreviewProvider {
-//
-//    @State static var searchString = NSCompoundPredicate()
-//
-//    static var previews: some View {
-//
-//        ForEach(ColorScheme.allCases, id: \.self) {
-//        Group {
-//            MainScreen( searchString: $searchString)
-//                .previewDevice("iPhone 12")
-//                .previewDisplayName("iPhone 12")
-//
-////            MainScreen(searchString: $searchString)
-////                .previewDevice("iPhone 8 Plus")
-////                .previewDisplayName("iPhone 8 Plus")
-//
+ struct MainScreen_Previews: PreviewProvider {
+
+    @State static var searchString = NSCompoundPredicate()
+
+    static var previews: some View {
+
+        ForEach(ColorScheme.allCases, id: \.self) {
+        Group {
+            MainScreen( searchString: $searchString)
+                .previewDevice("iPhone 12")
+                .previewDisplayName("iPhone 12")
+
 //            MainScreen(searchString: $searchString)
-//                .previewDevice("iPhone 8")
-//                .previewDisplayName("iPhone 8")
-//        }.preferredColorScheme($0)
-//                .environmentObject(FirstNameViewModel())
-//        }
-//    }
-//
-// }
+//                .previewDevice("iPhone 8 Plus")
+//                .previewDisplayName("iPhone 8 Plus")
+
+            MainScreen(searchString: $searchString)
+                .previewDevice("iPhone 8")
+                .previewDisplayName("iPhone 8")
+        }.preferredColorScheme($0)
+                .environmentObject(FirstNameViewModel())
+        }
+    }
+
+ }

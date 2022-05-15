@@ -15,7 +15,9 @@ final class FavoriteListViewModel: ObservableObject {
     @Published var favoritedFirstnamesResults: [FirstnameDB]?
 
     init() {
-        self.favoritedFirstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "isFavorite = true"))
+        self.favoritedFirstnamesResults = Array(dataRepository.fetchLocalData(
+            type: FirstnameDB.self,
+            filter: "isFavorite = true"))
         selectedFirstname = FirstnameDB()
     }
 
