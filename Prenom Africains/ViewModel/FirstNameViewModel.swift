@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Combine
+
 
 final class FirstNameViewModel: ObservableObject {
 
@@ -21,6 +23,8 @@ final class FirstNameViewModel: ObservableObject {
 
     @Published var currentFirstname: FirstnameDB = FirstnameDB()
     var firstnameOnTop: FirstnameDB = FirstnameDB()
+
+    private var task: AnyCancellable?
 
     init() {
         getFirstnames()
