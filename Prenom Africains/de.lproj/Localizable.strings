@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Prenom Africains
+
+  Created by Otourou Da Costa on 29/05/2021.
+  
+*/
+"hello-title" = "Hello, World!";
+"short" = "short";
+"medium" = "medium";
+"long" = "long";
+

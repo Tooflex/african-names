@@ -7,9 +7,22 @@
 
 import Foundation
 
-enum Gender: String,CaseIterable, Codable {
+enum Gender: String, CaseIterable, Codable {
     case male
     case female
     case mixed
     case undefined
+
+    var title: String {
+        switch self {
+        case .male:
+            return "male"
+        case .female:
+            return "female"
+        case .mixed:
+            return "mixed"
+        case .undefined:
+            return "undefined"
+        }
+    }
 }
