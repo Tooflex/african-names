@@ -25,9 +25,8 @@ protocol FirstNameApiServiceProtocol {
 }
 
 final class FirstNameApiService: FirstNameApiServiceProtocol {
-
-    private let manager: Session
-    init(manager: Session = Session.default) {
+	private let manager: Session
+	init(manager: Session = Session(interceptor: RequestInterceptor(storage: AuthToken()))) {
         self.manager = manager
         manager.sessionConfiguration.timeoutIntervalForRequest = 30
         manager.sessionConfiguration.timeoutIntervalForResource = 30

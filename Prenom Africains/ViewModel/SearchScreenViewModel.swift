@@ -47,9 +47,6 @@ final class SearchScreenViewModel: ObservableObject {
     private let searchEndpoint = "/api/v1/firstnames/search/?search="
     private let orUrlSeparator = "*%20OR%20"
 
-    let username = "user"
-    let password = "Manjack76"
-
     /// OR separator to add between filters in filter firstname URLs
     let orStatement = " OR "
     let space = " "

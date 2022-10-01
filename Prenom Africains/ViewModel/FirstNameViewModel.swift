@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-
 final class FirstNameViewModel: ObservableObject {
 
     private let dataRepository = DataRepository.sharedInstance
@@ -25,6 +24,8 @@ final class FirstNameViewModel: ObservableObject {
     var firstnameOnTop: FirstnameDB = FirstnameDB()
 
     private var task: AnyCancellable?
+
+	private let loginApiService = AuthentificationService()
 
     init() {
         getFirstnames()
@@ -103,7 +104,7 @@ final class FirstNameViewModel: ObservableObject {
         dataRepository.fetchFirstnames { response in
 
             switch response.result {
-            case .success(_):
+            case .success:
                 if self.noResults {
                     self.getFirstnames()
                 } else {
