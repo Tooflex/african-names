@@ -13,7 +13,7 @@ final class ParamViewModel: ObservableObject {
     private let availableTranslations = ["fr", "en", "it", "de"]
 
     init() {
-        languageCodeSelection = NSLocale.preferredLanguages.first ?? "en"
+		languageCodeSelection = String(NSLocale.preferredLanguages.first?.prefix(2) ?? "en")
         print(languageCodeSelection)
     }
 

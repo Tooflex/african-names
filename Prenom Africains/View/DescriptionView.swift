@@ -54,7 +54,7 @@ struct DescriptionView: View {
                         print("Tapped")
                         isShowPopoverMeaning.toggle()
                     } label: {
-                    Text(firstNameViewModel.currentFirstname.meaning)
+                    Text(firstNameViewModel.currentFirstname.meaning.trimmingCharacters(in: .whitespacesAndNewlines))
                         .font(.title2)
                         .multilineTextAlignment(.center)
                         .frame(
@@ -69,7 +69,7 @@ struct DescriptionView: View {
                             textMore: "\(firstNameViewModel.currentFirstname.meaning)")
                     }
                     } else {
-                        Text(firstNameViewModel.currentFirstname.meaning)
+						Text(firstNameViewModel.currentFirstname.meaning.trimmingCharacters(in: .whitespacesAndNewlines))
                             .font(.title2)
                             .multilineTextAlignment(.center)
                             .frame(
