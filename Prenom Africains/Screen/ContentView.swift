@@ -11,31 +11,25 @@ import Alamofire
 struct ContentView: View {
     @Environment(\.colorScheme) var currentMode
 
-    @State var selectedTab = 0
-    @State var searchString = NSCompoundPredicate()
+	@EnvironmentObject var contentViewModel: ContentViewModel
 
-    let tabHome = 0
-    let tabSearch = 1
-    let tabMyList = 2
-    let tabParams = 3
+    @State var searchString = NSCompoundPredicate()
 
     var body: some View {
         ZStack {
             currentMode == .dark ? Color.gray : Color.offWhite
         VStack {
-            switch selectedTab {
-            case 0:
-                    MainScreen(searchString: $searchString)
-            case 1:
-                    SearchScreen(selectedTab: $selectedTab, searchString: $searchString)
-            case 2:
-                    FavoriteListScreen(selectedTab: $selectedTab)
-            case 3:
-                    ParamScreen(selectedTab: $selectedTab)
-            default :
-                    MainScreen(searchString: $searchString)
+			switch contentViewModel.selectedTab {
+				case .home:
+                    MainScreen()
+				case .search:
+                    SearchScreen(selectedTab: $contentViewModel.selectedTab, searchString: $searchString)
+				case .list:
+                    FavoriteListScreen(selectedTab: $contentViewModel.selectedTab)
+				case .param:
+                    ParamScreen(selectedTab: $contentViewModel.selectedTab)
             }
-            MenuView(selectedTab: $selectedTab)
+            MenuView(selectedTab: $contentViewModel.selectedTab)
             Spacer()
         }.padding(.vertical)
         }.edgesIgnoringSafeArea(.all)

@@ -16,7 +16,7 @@ struct FavoriteListScreen: View {
 
     @Environment(\.horizontalSizeClass) var hSizeClass
 
-    @Binding var selectedTab: Int
+    @Binding var selectedTab: Tab
 
     @StateObject fileprivate var viewModel = FavoriteListViewModel()
 
@@ -52,7 +52,7 @@ struct FavoriteListScreen: View {
                         Button(action: {
                             viewModel.selectedFirstname = firstname
                             viewModel.saveFilters()
-                            self.selectedTab = 0 // Go back to Home screen
+							self.selectedTab = .home // Go back to Home screen
                         }, label: {
                             if firstname.gender == Gender.male.rawValue {
                                 Text("\(firstname.firstname)").foregroundColor(Color("blue"))

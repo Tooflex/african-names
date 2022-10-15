@@ -17,10 +17,6 @@ class FirstNameViewModelTests: XCTestCase {
 
     var firstNameViewModel: FirstNameViewModel!
 
-    var manager: Session!
-    private var firstnameApiService: FirstNameApiService!
-    private let apiEndpoint = API.baseURL
-
     override func setUpWithError() throws {
         repository = DataRepository()
         prenom = FirstnameDataModel()

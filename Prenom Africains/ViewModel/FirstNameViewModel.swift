@@ -29,10 +29,16 @@ final class FirstNameViewModel: ObservableObject {
 
     init() {
         getFirstnames()
-        fetchOnline()
+		if !self.isFiltered {
+			fetchOnline()
+		}
     }
 
     func onAppear() {
+		let defaults = UserDefaults.standard
+		let filters = defaults.object(forKey: "Filters") as? [String: Any] ?? [String: Any]()
+		print("Current filters:")
+		print(filters)
        getFirstnames()
     }
 
@@ -128,10 +134,6 @@ final class FirstNameViewModel: ObservableObject {
         var subPredicates = [NSPredicate]()
         let favoritePredicate = NSPredicate(format: "isFavorite == %d", filterIsFavorite ?? false)
         subPredicates.append(favoritePredicate)
-
-        if filterArea.isEmpty && filterOrigins.isEmpty && filterGender.isEmpty && filterSize.isEmpty && (filterIsFavorite == nil || !filterIsFavorite!) {
-            self.clearFilters()
-        }
 
         if !filterArea.isEmpty {
             let areaPredicate = NSPredicate(format: "regions IN %@", filterArea)

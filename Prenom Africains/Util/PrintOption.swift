@@ -8,9 +8,9 @@
 import Foundation
 
 func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
-#if DEBUG
+// #if DEBUG
 	items.forEach {
 		Swift.print($0, separator: separator, terminator: terminator)
 	}
-#endif
+// #endif
 }

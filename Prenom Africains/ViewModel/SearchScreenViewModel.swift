@@ -246,7 +246,7 @@ final class SearchScreenViewModel: ObservableObject {
         UserDefaults.standard.set(filters, forKey: "Filters")
     }
 
-    /*
+    /**
      Add in User Defaults the id of the chosen firstname in search results
      */
     func goToChosenFirstname() {

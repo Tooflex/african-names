@@ -10,7 +10,7 @@ import L10n_swift
 
 struct ParamScreen: View {
 
-    @Binding var selectedTab: Int
+    @Binding var selectedTab: Tab
 
     @EnvironmentObject var paramViewModel: ParamViewModel
 
@@ -37,7 +37,7 @@ struct ParamScreen: View {
                 }.onChange(of: paramViewModel.languageCodeSelection) { _ in
                     print("Lang changed to: \(String(describing: paramViewModel.languageCodeSelection))")
                     L10n.shared.language = paramViewModel.languageCodeSelection
-                    selectedTab = 0
+					selectedTab = .home
                 }
                 Spacer()
             }
