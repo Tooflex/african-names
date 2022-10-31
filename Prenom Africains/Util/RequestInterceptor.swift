@@ -15,6 +15,10 @@ protocol AccessTokenStorage: AnyObject {
 
  final class RequestInterceptor: Alamofire.RequestInterceptor {
 
+	let retryLimit = 3
+	let retryDelay: TimeInterval = 2
+	var isRetrying = false
+
 	private let storage: AccessTokenStorage
 	 let loginApiService = AuthentificationService()
 
@@ -26,7 +30,9 @@ protocol AccessTokenStorage: AnyObject {
 		_ urlRequest: URLRequest,
 		for session: Session,
 		completion: @escaping (Result<URLRequest, Error>) -> Void) {
-		guard urlRequest.url?.absoluteString.hasPrefix("https://africannames.app") == true else {
+			// swiftlint:disable force_try
+			var prefix = try! "https://" + Configuration.value(for: "API_ENDPOINT")
+		guard urlRequest.url?.absoluteString.hasPrefix(prefix) == true else {
 			return completion(.success(urlRequest))
 		}
 		var urlRequest = urlRequest
@@ -41,17 +47,22 @@ protocol AccessTokenStorage: AnyObject {
 		for session: Session,
 		dueTo error: Error,
 		completion: @escaping (RetryResult) -> Void) {
-			guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 else {
+			guard let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401, !isRetrying else {
 			return completion(.doNotRetryWithError(error))
 		}
 			print("Call login api")
-			loginApiService.login { result in
-				guard let token = result.value?.jwt else {
-					completion(.doNotRetryWithError(error))
-					return
+			self.isRetrying = true
+			if request.retryCount < self.retryLimit {
+				loginApiService.login { result in
+					guard let token = result.value?.jwt else {
+						completion(.doNotRetryWithError(error))
+						return
+					}
+					self.storage.accessToken = token
+					completion(.retryWithDelay(self.retryDelay))
 				}
-				self.storage.accessToken = token
-				completion(.retry)
+			} else {
+				completion(.doNotRetry)
 			}
 	}
  }

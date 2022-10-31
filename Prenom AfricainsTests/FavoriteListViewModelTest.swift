@@ -16,8 +16,11 @@ class FavoriteListViewModelTest: XCTestCase {
 	var selectedFirstname = FirstnameDB()
 
 	override func setUpWithError() throws {
+		let userDefaults = UserDefaults(suiteName: #file)!
+		userDefaults.removePersistentDomain(forName: #file)
+
 		repository = DataRepository()
-		favoriteViewModel = FavoriteListViewModel()
+		favoriteViewModel = FavoriteListViewModel(userDefaults: userDefaults)
 	}
 
 	override func tearDownWithError() throws {

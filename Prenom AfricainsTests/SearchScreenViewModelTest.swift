@@ -35,15 +35,15 @@ class SearchScreenViewModelTest: XCTestCase {
 		searchScreenViewModel.searchFirstnamesRemote(searchString: "firstname=Amadou")
 	}
 
-	func testsearchFirstnamesLocal() {
+	func testSearchFirstnamesLocal() {
 
 	}
 
-	func testfilterFirstnamesRemote() {
+	func testFilterFirstnamesRemote() {
 
 	}
 
-	func testfilterFirstnamesLocal() {
+	func testFilterFirstnamesLocal() {
 
 	}
 
@@ -59,7 +59,7 @@ class SearchScreenViewModelTest: XCTestCase {
 
 	}
 
-	func testgoToChosenFirstname() {
+	func testGoToChosenFirstname() {
 
 	}
 
@@ -72,6 +72,26 @@ class SearchScreenViewModelTest: XCTestCase {
 	}
 
 	func formatFilterString() {
+
+	}
+
+	func whenFilterAreaShoudReturnsOnlyAreaChosenResults() {
+
+	}
+
+	func whenFilterGenderShouldOnlyReturnsGenderChosenResults() {
+
+	}
+
+	func whenFilterSizeShouldOnlyReturnsSizeChosenResults() {
+
+	}
+
+	func whenFilterOnlyFavShouldOnlyReturnsOnlyFavChosenResults() {
+
+	}
+
+	func whenChosingOnlyFavShouldOnlyReturnsOnlyFavChosenResults() {
 
 	}
 

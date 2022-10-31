@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import L10n_swift
 
 final class FirstNameViewModel: ObservableObject {
 
@@ -28,9 +29,9 @@ final class FirstNameViewModel: ObservableObject {
 	private let loginApiService = AuthentificationService()
 
     init() {
-        getFirstnames()
+		getFirstnames()
 		if !self.isFiltered {
-			fetchOnline()
+			self.fetchOnline()
 		}
     }
 
@@ -104,9 +105,14 @@ final class FirstNameViewModel: ObservableObject {
     }
 
     func fetchOnline() {
-        if noResults {
-            isLoading = true
-        }
+		var lastLanguage = getLastSelectedLanguages()
+		if noResults || (lastLanguage.count > 1 && lastLanguage[0] != lastLanguage[1]) {
+			self.isLoading = true
+
+			DispatchQueue.global(qos: .userInitiated).async {
+				UserDefaults.standard.set([lastLanguage.popLast()], forKey: "LastSelectedLanguage")
+			}
+		}
         dataRepository.fetchFirstnames { response in
 
             switch response.result {
@@ -161,4 +167,9 @@ final class FirstNameViewModel: ObservableObject {
 
         return compoundPredicate
     }
+
+	private func getLastSelectedLanguages() -> [String] {
+		let defaults = UserDefaults.standard
+		return defaults.object(forKey: "LastSelectedLanguage") as? [String] ?? []
+	}
 }

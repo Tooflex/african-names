@@ -405,10 +405,6 @@ struct MainScreen: View {
                 .previewDevice("iPhone 12")
                 .previewDisplayName("iPhone 12")
 
-//            MainScreen()
-//                .previewDevice("iPhone 8 Plus")
-//                .previewDisplayName("iPhone 8 Plus")
-
             MainScreen()
                 .previewDevice("iPhone 8")
                 .previewDisplayName("iPhone 8")

@@ -31,13 +31,14 @@ struct ParamScreen: View {
                 Picker("Choose your language".l10n(), selection: $paramViewModel.languageCodeSelection) {
                     ForEach(paramViewModel.getLanguages()) { lang in
                         HStack {
-                            Text(lang.name)
+							Text(lang.name)
                         }
                     }
                 }.onChange(of: paramViewModel.languageCodeSelection) { _ in
                     print("Lang changed to: \(String(describing: paramViewModel.languageCodeSelection))")
-                    L10n.shared.language = paramViewModel.languageCodeSelection
+					L10n.shared.language = paramViewModel.languageCodeSelection
 					selectedTab = .home
+					paramViewModel.saveLastSelectedLanguage()
                 }
                 Spacer()
             }

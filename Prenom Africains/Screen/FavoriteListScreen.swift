@@ -18,7 +18,7 @@ struct FavoriteListScreen: View {
 
     @Binding var selectedTab: Tab
 
-    @StateObject fileprivate var viewModel = FavoriteListViewModel()
+	@StateObject fileprivate var viewModel = FavoriteListViewModel(userDefaults: UserDefaults.standard)
 
     var body: some View {
 

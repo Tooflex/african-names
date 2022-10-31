@@ -19,9 +19,21 @@ final class ParamViewModel: ObservableObject {
 
     func getLanguages() -> [Language] {
         let languages = CountryLibrary.languages.filter({ language in
-            availableTranslations.contains(language.langId.lowercased())
+            availableTranslations.contains(language.langId.lowercased().l10n())
         })
         return languages
     }
+
+	func saveLastSelectedLanguage() {
+		let defaults = UserDefaults.standard
+		var lastLanguages = defaults.object(forKey: "LastSelectedLanguage") as? [String] ?? []
+		print(lastLanguages)
+		lastLanguages.append(languageCodeSelection)
+		if lastLanguages.count > 2 {
+			lastLanguages = lastLanguages.suffix(2)
+			print(lastLanguages)
+		}
+		UserDefaults.standard.set(lastLanguages, forKey: "LastSelectedLanguage")
+	}
 
 }
