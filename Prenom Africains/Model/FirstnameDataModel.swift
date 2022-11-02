@@ -10,7 +10,6 @@ import RealmSwift
 
 struct FirstnameDataModel: Identifiable, Codable, Hashable {
 
-    // swiftlint:disable identifier_name
     var id: Int?
     var firstname: String?
     var gender: Gender

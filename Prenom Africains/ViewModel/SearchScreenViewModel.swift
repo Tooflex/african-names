@@ -133,7 +133,7 @@ final class SearchScreenViewModel: ObservableObject {
     }
 
     func fetchAreas() -> [String] {
-        return ["north africa", "east africa", "west africa", "south africa"]
+        return ["northern africa", "eastern africa", "western africa", "south africa"]
     }
 
     func fetchOrigins() {
@@ -246,7 +246,7 @@ final class SearchScreenViewModel: ObservableObject {
         UserDefaults.standard.set(filters, forKey: "Filters")
     }
 
-    /*
+    /**
      Add in User Defaults the id of the chosen firstname in search results
      */
     func goToChosenFirstname() {

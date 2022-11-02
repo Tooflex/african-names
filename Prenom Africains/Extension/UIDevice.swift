@@ -68,7 +68,7 @@ extension ScreenType: Comparable {
 
 extension UIScreen {
     /// Gets the iPhone / iPad screen type for the currently running device
-    // swiftlint:disable identifier_name
+
     @objc public static var current: ScreenType {
         let screenLongestSide: CGFloat = max(main.bounds.width, main.bounds.height)
         switch screenLongestSide {

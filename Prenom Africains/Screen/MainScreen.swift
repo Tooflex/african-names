@@ -19,8 +19,6 @@ struct MainScreen: View {
 
     @EnvironmentObject var firstNameViewModel: FirstNameViewModel
 
-    @Binding var searchString: NSCompoundPredicate
-
     @State private var engine: CHHapticEngine?
 
     @State private var currentColor = Color.gray
@@ -399,21 +397,15 @@ struct MainScreen: View {
 
  struct MainScreen_Previews: PreviewProvider {
 
-    @State static var searchString = NSCompoundPredicate()
-
     static var previews: some View {
 
         ForEach(ColorScheme.allCases, id: \.self) {
         Group {
-            MainScreen( searchString: $searchString)
+            MainScreen()
                 .previewDevice("iPhone 12")
                 .previewDisplayName("iPhone 12")
 
-//            MainScreen(searchString: $searchString)
-//                .previewDevice("iPhone 8 Plus")
-//                .previewDisplayName("iPhone 8 Plus")
-
-            MainScreen(searchString: $searchString)
+            MainScreen()
                 .previewDevice("iPhone 8")
                 .previewDisplayName("iPhone 8")
         }.preferredColorScheme($0)

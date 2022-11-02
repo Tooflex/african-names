@@ -16,7 +16,7 @@ struct MenuView: View {
 
     @Environment(\.horizontalSizeClass) var hSizeClass
 
-    @Binding var selectedTab: Int
+    @Binding var selectedTab: Tab
 
     var body: some View {
         ZStack {
@@ -43,44 +43,44 @@ struct MenuView: View {
     }
 
     struct HomeButton: View {
-        @Binding var selectedTab: Int
+        @Binding var selectedTab: Tab
 
         let iconFont = Font.system(size: 27).bold()
         let textFont = Font.system(size: 12)
 
         var body: some View {
             Button(action: {
-                self.selectedTab = MenuItemEnum.home.rawValue
+                self.selectedTab = .home
             }) {
                 VStack(alignment: .center, spacing: 3) {
                     Image(systemName: "house")
                         .font(iconFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.home.rawValue ? Color("blue") : Color("black"))
+                        .foregroundColor(selectedTab == .home ? Color("blue") : Color("black"))
                         .accessibilityLabel(Text("Home".l10n()))
                     Text("Home".l10n()).font(textFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.home.rawValue ? Color("blue") : Color("black"))
+                        .foregroundColor(selectedTab == .home ? Color("blue") : Color("black"))
                 }
             }
         }
     }
 
     struct SearchButton: View {
-        @Binding var selectedTab: Int
+        @Binding var selectedTab: Tab
 
         let iconFont = Font.system(size: 27).bold()
         let textFont = Font.system(size: 12)
 
         var body: some View {
             Button(action: {
-                self.selectedTab = MenuItemEnum.search.rawValue
+                self.selectedTab = .search
             }) {
                 VStack(alignment: .center, spacing: 3) {
                     Image(systemName: "magnifyingglass")
                         .font(iconFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.search.rawValue ? Color("blue") : Color("black"))
+                        .foregroundColor(selectedTab == .search ? Color("blue") : Color("black"))
                         .accessibilityLabel(Text("Search".l10n()))
                     Text("Search".l10n()).font(textFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.search.rawValue ? Color("blue") : Color("black"))
+                        .foregroundColor(selectedTab == .search ? Color("blue") : Color("black"))
                 }
             }
         }
@@ -88,22 +88,22 @@ struct MenuView: View {
 
     struct MyListButton: View {
 
-        @Binding var selectedTab: Int
+        @Binding var selectedTab: Tab
 
         let iconFont = Font.system(size: 27).bold()
         let textFont = Font.system(size: 12)
 
         var body: some View {
             Button(action: {
-                self.selectedTab = MenuItemEnum.myList.rawValue
+                self.selectedTab = .list
             }, label: {
                 VStack(alignment: .center, spacing: 3) {
                     Image(systemName: "bookmark")
                         .font(iconFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.myList.rawValue ? Color("blue") : Color("black"))
+                        .foregroundColor(selectedTab == .list ? Color("blue") : Color("black"))
                         .accessibilityLabel(Text("My List".l10n()))
                     Text("My List".l10n()).font(textFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.myList.rawValue ? Color("blue") : Color("black"))
+                        .foregroundColor(selectedTab == .list ? Color("blue") : Color("black"))
                         .accessibilityLabel(Text("My List"))
 
                 }
@@ -113,24 +113,24 @@ struct MenuView: View {
 
     struct ParameterButton: View {
 
-        @Binding var selectedTab: Int
+        @Binding var selectedTab: Tab
 
         let iconFont = Font.system(size: 27).bold()
         let textFont = Font.system(size: 12)
 
         var body: some View {
             Button(action: {
-                self.selectedTab = MenuItemEnum.params.rawValue
+                self.selectedTab = .param
             }, label: {
                 VStack(alignment: .center, spacing: 3) {
                     Image(systemName: "gearshape")
                         .font(iconFont)
-                        .foregroundColor(selectedTab == MenuItemEnum.params.rawValue ? Color("blue") : Color("black"))
+                        .foregroundColor(selectedTab == .param ? Color("blue") : Color("black"))
                         .accessibilityLabel(Text("Params".l10n()))
                     Text("Params".l10n())
                         .font(textFont)
                         .foregroundColor(
-                            selectedTab == MenuItemEnum.params.rawValue ? Color("blue") : Color("black"))
+                            selectedTab == .param ? Color("blue") : Color("black"))
                 }
             })
         }
@@ -148,11 +148,11 @@ struct MenuView: View {
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView(selectedTab: .constant(0))
+		MenuView(selectedTab: .constant(.home))
             .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
             .previewDisplayName("iPhone 12")
 
-        MenuView(selectedTab: .constant(0))
+		MenuView(selectedTab: .constant(.home))
             .previewDevice(PreviewDevice(rawValue: "iPad 12"))
             .previewDisplayName("iPad 12")
     }
