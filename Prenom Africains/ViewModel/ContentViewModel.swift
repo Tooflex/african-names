@@ -17,22 +17,36 @@ class ContentViewModel: ObservableObject {
 	@Published var currentLanguage = L10n.shared.language
 
 	func checkDeepLink(url: URL) -> Bool {
-		guard let host = URLComponents(url: url, resolvingAgainstBaseURL: true)?.host else {
+		guard let host = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
 			return false
 		}
 
-		switch host {
-			case Tab.home.rawValue:
-				selectedTab = .home
-			case Tab.search.rawValue:
-				selectedTab = .search
-			case Tab.list.rawValue:
-				selectedTab = .list
-			case Tab.param.rawValue:
-				selectedTab = .param
+		print(host.queryItems ?? [])
 
-			default:
-				return getFirstnameFromLink(name: host)
+		switch host.queryItems?.first?.name {
+			case "tab":
+				switch host.queryItems?.first?.value {
+					case Tab.home.rawValue:
+						selectedTab = .home
+					case Tab.search.rawValue:
+						selectedTab = .search
+					case Tab.list.rawValue:
+						selectedTab = .list
+					case Tab.param.rawValue:
+						selectedTab = .param
+
+					default: return false
+
+				}
+			case "name":
+				if let name = host.queryItems?.first?.value {
+					return getFirstnameFromLink(name: name)
+				} else {
+					return false
+				}
+
+			default: return false
+
 		}
 		print(selectedTab.rawValue)
 		return true

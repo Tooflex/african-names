@@ -31,7 +31,7 @@ protocol AccessTokenStorage: AnyObject {
 		for session: Session,
 		completion: @escaping (Result<URLRequest, Error>) -> Void) {
 			// swiftlint:disable force_try
-			var prefix = try! "https://" + Configuration.value(for: "API_ENDPOINT")
+			let prefix = try! "https://" + Configuration.value(for: "API_ENDPOINT")
 		guard urlRequest.url?.absoluteString.hasPrefix(prefix) == true else {
 			return completion(.success(urlRequest))
 		}

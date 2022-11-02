@@ -108,10 +108,12 @@ final class FirstNameViewModel: ObservableObject {
 		var lastLanguage = getLastSelectedLanguages()
 		if noResults || (lastLanguage.count > 1 && lastLanguage[0] != lastLanguage[1]) {
 			self.isLoading = true
-
-			DispatchQueue.global(qos: .userInitiated).async {
-				UserDefaults.standard.set([lastLanguage.popLast()], forKey: "LastSelectedLanguage")
+			if let getLast = lastLanguage.popLast() {
+				var newTab = [String]()
+				newTab.append(getLast)
+				UserDefaults.standard.set(newTab, forKey: "LastSelectedLanguage")
 			}
+
 		}
         dataRepository.fetchFirstnames { response in
 
