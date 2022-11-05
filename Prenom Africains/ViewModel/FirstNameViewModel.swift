@@ -28,6 +28,11 @@ final class FirstNameViewModel: ObservableObject {
 
 	private let loginApiService = AuthentificationService()
 
+	// @Published var showIntersitialAd: Bool = false
+	@Published var adFrequency = RemoteConfigManager.value(forKey: RemoteConfigKeys.adFrequency)
+
+	private var showAdCounter = 0
+
     init() {
 		getFirstnames()
 		if !self.isFiltered {
@@ -130,6 +135,15 @@ final class FirstNameViewModel: ObservableObject {
             self.isLoading = false
         }
     }
+
+	func incrementShowAdCounter(_ adViewModel: AdsViewModel) {
+		self.showAdCounter += 1
+		print(showAdCounter)
+		if self.showAdCounter >= Int(self.adFrequency) ?? 10 {
+			self.showAdCounter = 0
+			adViewModel.showInterstitial.toggle()
+		}
+	}
 
     private func createFilterCompound(filterArray: [String: Any]) -> NSCompoundPredicate {
 
