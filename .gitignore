@@ -102,7 +102,8 @@ iOSInjectionProject/
 !*.xcodeproj/xcshareddata/
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
-!*.xcodeproj/project.xcworkspace/xcshareddata
+!*.xcodeproj/project.xcworkspace/
+!*.xcodeproj/project.xcworkspace/xcshareddata/
 
 ### Configs ###
 *.xcconfig
