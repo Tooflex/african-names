@@ -79,7 +79,7 @@ struct DescriptionView: View {
 						.onAppear {
 							Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
 								AnalyticsParameterItemID: firstNameViewModel.currentFirstname.id,
-								AnalyticsParameterContentType: "name meaning",
+								AnalyticsParameterContentType: "name meaning"
 							])
 						}
                     }
@@ -292,7 +292,7 @@ struct DescriptionView: View {
     }
 
 	func registerFavoriteEvent() {
-		
+
 	}
 
     // MARK: Haptics functions

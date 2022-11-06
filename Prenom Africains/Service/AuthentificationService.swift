@@ -19,12 +19,12 @@ final class AuthentificationService: AuthentificationServiceProtocol {
 	private let manager: Session
 	init(manager: Session = Session.default) {
 		self.manager = manager
-		manager.sessionConfiguration.timeoutIntervalForRequest = 30
-		manager.sessionConfiguration.timeoutIntervalForResource = 30
+		manager.sessionConfiguration.timeoutIntervalForRequest = 10
+		manager.sessionConfiguration.timeoutIntervalForResource = 10
 	}
 
 	 private let username = Bundle.main.infoDictionary!["API_USER"] as? String ?? ""
-	 private let password = Bundle.main.infoDictionary!["API_PASSWORD"] as? String ?? ""
+	 private let password = ProcessInfo.processInfo.environment["API_PASSWORD"]!
 
 	var tokens: Set<AnyCancellable> = []
 
