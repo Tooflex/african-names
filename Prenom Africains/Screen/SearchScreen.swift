@@ -140,7 +140,7 @@ struct SearchScreen: View {
             // MARK: - SlideOver Search Results Card
             SlideOverCard(isPresented: $isShowingResults, onDismiss: {
 				Analytics.logEvent(AnalyticsEventSearch, parameters: [
-					AnalyticsParameterSearchTerm : searchText as NSObject
+					AnalyticsParameterSearchTerm: searchText as NSObject
 				])
                 isShowingResults = false
                 searchText = ""
