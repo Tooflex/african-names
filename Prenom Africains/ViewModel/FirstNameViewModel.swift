@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-
+import L10n_swift
 
 final class FirstNameViewModel: ObservableObject {
 
@@ -26,12 +26,20 @@ final class FirstNameViewModel: ObservableObject {
 
     private var task: AnyCancellable?
 
+	private let loginApiService = AuthentificationService()
+
     init() {
-        getFirstnames()
-        fetchOnline()
+		getFirstnames()
+		if !self.isFiltered {
+			self.fetchOnline()
+		}
     }
 
     func onAppear() {
+		let defaults = UserDefaults.standard
+		let filters = defaults.object(forKey: "Filters") as? [String: Any] ?? [String: Any]()
+		print("Current filters:")
+		print(filters)
        getFirstnames()
     }
 
@@ -97,13 +105,20 @@ final class FirstNameViewModel: ObservableObject {
     }
 
     func fetchOnline() {
-        if noResults {
-            isLoading = true
-        }
+		var lastLanguage = getLastSelectedLanguages()
+		if noResults || (lastLanguage.count > 1 && lastLanguage[0] != lastLanguage[1]) {
+			self.isLoading = true
+			if let getLast = lastLanguage.popLast() {
+				var newTab = [String]()
+				newTab.append(getLast)
+				UserDefaults.standard.set(newTab, forKey: "LastSelectedLanguage")
+			}
+
+		}
         dataRepository.fetchFirstnames { response in
 
             switch response.result {
-            case .success(_):
+            case .success:
                 if self.noResults {
                     self.getFirstnames()
                 } else {
@@ -127,10 +142,6 @@ final class FirstNameViewModel: ObservableObject {
         var subPredicates = [NSPredicate]()
         let favoritePredicate = NSPredicate(format: "isFavorite == %d", filterIsFavorite ?? false)
         subPredicates.append(favoritePredicate)
-
-        if filterArea.isEmpty && filterOrigins.isEmpty && filterGender.isEmpty && filterSize.isEmpty && (filterIsFavorite == nil || !filterIsFavorite!) {
-            self.clearFilters()
-        }
 
         if !filterArea.isEmpty {
             let areaPredicate = NSPredicate(format: "regions IN %@", filterArea)
@@ -158,4 +169,9 @@ final class FirstNameViewModel: ObservableObject {
 
         return compoundPredicate
     }
+
+	private func getLastSelectedLanguages() -> [String] {
+		let defaults = UserDefaults.standard
+		return defaults.object(forKey: "LastSelectedLanguage") as? [String] ?? []
+	}
 }

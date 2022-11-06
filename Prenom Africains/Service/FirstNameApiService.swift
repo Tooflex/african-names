@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import Combine
+import L10n_swift
 
 protocol FirstNameApiServiceProtocol {
 
@@ -25,9 +26,8 @@ protocol FirstNameApiServiceProtocol {
 }
 
 final class FirstNameApiService: FirstNameApiServiceProtocol {
-
-    private let manager: Session
-    init(manager: Session = Session.default) {
+	private let manager: Session
+	init(manager: Session = Session(interceptor: RequestInterceptor(storage: AuthToken()))) {
         self.manager = manager
         manager.sessionConfiguration.timeoutIntervalForRequest = 30
         manager.sessionConfiguration.timeoutIntervalForResource = 30
@@ -39,20 +39,19 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
     private let originsEndpoint = "/api/v1/origins"
     private let orUrlSeparator = "*%20OR%20"
 
-    private let username = Bundle.main.infoDictionary!["API_USER"] as? String ?? ""
-    private let password = Bundle.main.infoDictionary!["API_PASSWORD"] as? String ?? ""
-
     var tokens: Set<AnyCancellable> = []
 
     func fetchFirstnames(completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void) {
+		let languageCodeSelection = L10n.shared.language
+		let parameters: Parameters = [
+			"lang": languageCodeSelection
+		]
         guard let url = URL(string: "api/v1/firstnames/random", relativeTo: API.baseURL) else {
             print("Error: cannot create URL")
             return
         }
 
-        let headers: HTTPHeaders = [.authorization(username: username, password: password)]
-
-        manager.request(url, headers: headers)
+        manager.request(url, parameters: parameters)
             .validate()
             .publishDecodable(type: [FirstnameDataModel].self)
             .sink(receiveCompletion: { (completion) in
@@ -83,9 +82,7 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
 
                 print(url)
 
-                let headers: HTTPHeaders = [.authorization(username: username, password: password)]
-
-                AF.request(url, headers: headers)
+                AF.request(url)
                     .validate()
                     .publishDecodable(type: [FirstnameDataModel].self)
                     .sink(receiveCompletion: { (completion) in
@@ -120,9 +117,7 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
 
             print("URL called: \(url)")
 
-            let headers: HTTPHeaders = [.authorization(username: username, password: password)]
-
-            AF.request(url, headers: headers)
+            AF.request(url)
                 .validate()
                 .publishDecodable(type: [FirstnameDataModel].self)
                 .sink(receiveCompletion: { (completion) in
@@ -146,9 +141,7 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
             return
         }
 
-            let headers: HTTPHeaders = [.authorization(username: username, password: password)]
-
-            AF.request(url, headers: headers)
+            AF.request(url)
                 .validate()
                 .publishDecodable(type: [String].self)
                 .sink(receiveCompletion: { (completion) in

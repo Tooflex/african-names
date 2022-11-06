@@ -10,7 +10,7 @@ import SlideOverCard
 import L10n_swift
 
 struct SearchScreen: View {
-    @Binding var selectedTab: Int
+    @Binding var selectedTab: Tab
     @Binding var searchString: NSCompoundPredicate
 
     @EnvironmentObject var searchScreenViewModel: SearchScreenViewModel
@@ -120,7 +120,7 @@ struct SearchScreen: View {
                     searchScreenViewModel.filterSize = searchScreenViewModel.sizes.filter {
                         $0.isSelected }.map { $0.titleKey.lowercased() }
                     searchScreenViewModel.saveFilters()
-                    self.selectedTab = 0 // Go back to Home screen
+					self.selectedTab = .home // Go back to Home screen
                 }) {
                     HStack {
                         Text("Filter".l10n())
@@ -154,7 +154,7 @@ struct SearchScreen: View {
                             Button {
                                 searchScreenViewModel.selectedFirstnameInSearchResults = firstname
                                 searchScreenViewModel.goToChosenFirstname()
-                                self.selectedTab = 0 // Go back to Home screen
+								self.selectedTab = Tab.home // Go back to Home screen
                             } label: {
                                 NavigationLink(destination: Text(firstname.firstname)) {
                                     Text(firstname.firstname)

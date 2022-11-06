@@ -54,13 +54,13 @@ final class CountryLibraryTests: XCTestCase {
     }
 
     func testCountryExtensionArrayStringByName() {
-        let strings = ["frANce", "", "CanADa", "notacountry", "italy"]
+        let strings = ["frANce", "", "CanADa", "notacountry", "italie"]
         let countries = strings.countries(by: .name)
         print(countries)
         assert(countries.count == 3)
         assert(countries[0].name == "France")
         assert(countries[1].name == "Canada")
-        assert(countries[2].name == "Italy")
+        assert(countries[2].name == "Italie")
     }
 
 }
