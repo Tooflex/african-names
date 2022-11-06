@@ -8,6 +8,7 @@
 import SwiftUI
 import SlideOverCard
 import L10n_swift
+import Firebase
 
 struct SearchScreen: View {
     @Binding var selectedTab: Tab
@@ -138,6 +139,9 @@ struct SearchScreen: View {
             }
             // MARK: - SlideOver Search Results Card
             SlideOverCard(isPresented: $isShowingResults, onDismiss: {
+				Analytics.logEvent(AnalyticsEventSearch, parameters: [
+					AnalyticsParameterSearchTerm : searchText as NSObject
+				])
                 isShowingResults = false
                 searchText = ""
             }) {

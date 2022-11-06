@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -69,6 +69,11 @@
 		15CE568028E893D400F09FE3 /* PrintOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE567F28E893D400F09FE3 /* PrintOption.swift */; };
 		15D167222751CB7A00992D7C /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D167212751CB7A00992D7C /* UIDevice.swift */; };
 		15D4A12E2723752000D8BCA4 /* md-female-select.json in Resources */ = {isa = PBXBuildFile; fileRef = 15D4A12D2723752000D8BCA4 /* md-female-select.json */; };
+		15D4D1E72916BD020019975B /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 15D4D1E62916BD020019975B /* GoogleMobileAds */; };
+		15D4D1E92916C4C80019975B /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15D4D1E82916C4C80019975B /* RemoteConfigDefaults.plist */; };
+		15D4D1EB2916C57A0019975B /* RemoteConfigKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4D1EA2916C57A0019975B /* RemoteConfigKeys.swift */; };
+		15D4D1ED2916C6090019975B /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4D1EC2916C6090019975B /* RemoteConfigManager.swift */; };
+		15D4D1EF2916D4C10019975B /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4D1EE2916D4C10019975B /* AdsManager.swift */; };
 		15E052C7275046BD00C38715 /* FavoriteListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052C6275046BD00C38715 /* FavoriteListViewModelTest.swift */; };
 		15E052C9275046E300C38715 /* SearchScreenViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052C8275046E300C38715 /* SearchScreenViewModelTest.swift */; };
 		15E052CD275047C800C38715 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052CC275047C800C38715 /* Configuration.swift */; };
@@ -182,6 +187,10 @@
 		15CE567F28E893D400F09FE3 /* PrintOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintOption.swift; sourceTree = "<group>"; };
 		15D167212751CB7A00992D7C /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		15D4A12D2723752000D8BCA4 /* md-female-select.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "md-female-select.json"; sourceTree = "<group>"; };
+		15D4D1E82916C4C80019975B /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
+		15D4D1EA2916C57A0019975B /* RemoteConfigKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigKeys.swift; sourceTree = "<group>"; };
+		15D4D1EC2916C6090019975B /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
+		15D4D1EE2916D4C10019975B /* AdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsManager.swift; sourceTree = "<group>"; };
 		15E052C6275046BD00C38715 /* FavoriteListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewModelTest.swift; sourceTree = "<group>"; };
 		15E052C8275046E300C38715 /* SearchScreenViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenViewModelTest.swift; sourceTree = "<group>"; };
 		15E052CA2750473600C38715 /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Dev.xcconfig; sourceTree = "<group>"; };
@@ -218,6 +227,7 @@
 				152F3C492649B53F000D564B /* SlideOverCard in Frameworks */,
 				15515FC52677D04B009C2BDF /* Realm in Frameworks */,
 				15EFF4B2290FD10200755906 /* FirebaseAnalyticsSwift in Frameworks */,
+				15D4D1E72916BD020019975B /* GoogleMobileAds in Frameworks */,
 				15EFF4B6290FD10200755906 /* FirebaseDynamicLinks in Frameworks */,
 				15EFF4B4290FD10200755906 /* FirebaseCrashlytics in Frameworks */,
 				15EFF4B8290FD10200755906 /* FirebaseRemoteConfigSwift in Frameworks */,
@@ -275,6 +285,7 @@
 				156F0AFD260817300076AB4B /* Prenom AfricainsUITests */,
 				15ABCB3A262A564B00036B3E /* Prenom AfricainsSlowTests */,
 				156F0ADF2608172F0076AB4B /* Products */,
+				15D4D1DB2916ACAA0019975B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -311,6 +322,7 @@
 				15E052CB2750474F00C38715 /* Release.xcconfig */,
 				156F0AEA260817300076AB4B /* Info.plist */,
 				15EFF4AE290FCDCD00755906 /* GoogleService-Info.plist */,
+				15D4D1E82916C4C80019975B /* RemoteConfigDefaults.plist */,
 				15F8801B27408CC400766E30 /* Localizable.strings */,
 			);
 			path = "Prenom Africains";
@@ -424,8 +436,18 @@
 				15CE567728E858CF00F09FE3 /* KeychainManager.swift */,
 				15CE567B28E8690700F09FE3 /* AuthToken.swift */,
 				15CE567F28E893D400F09FE3 /* PrintOption.swift */,
+				15D4D1EA2916C57A0019975B /* RemoteConfigKeys.swift */,
+				15D4D1EC2916C6090019975B /* RemoteConfigManager.swift */,
+				15D4D1EE2916D4C10019975B /* AdsManager.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		15D4D1DB2916ACAA0019975B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		15EA7DE4260933A3006BC8F2 /* Model */ = {
@@ -476,11 +498,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 156F0B03260817300076AB4B /* Build configuration list for PBXNativeTarget "Prenom Africains" */;
 			buildPhases = (
-				15640717266840A80084908F /* ShellScript */,
+				15640717266840A80084908F /* SwifLint */,
 				156F0ADA2608172F0076AB4B /* Sources */,
 				156F0ADB2608172F0076AB4B /* Frameworks */,
 				156F0ADC2608172F0076AB4B /* Resources */,
-				15EFF4B9290FDB4100755906 /* ShellScript */,
+				15EFF4B9290FDB4100755906 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -498,6 +520,7 @@
 				15EFF4B3290FD10200755906 /* FirebaseCrashlytics */,
 				15EFF4B5290FD10200755906 /* FirebaseDynamicLinks */,
 				15EFF4B7290FD10200755906 /* FirebaseRemoteConfigSwift */,
+				15D4D1E62916BD020019975B /* GoogleMobileAds */,
 			);
 			productName = "Prenom Africains";
 			productReference = 156F0ADE2608172F0076AB4B /* Prenom Africains.app */;
@@ -602,6 +625,7 @@
 				15515FC32677D04B009C2BDF /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				15454CC827590D6A00D0B699 /* XCRemoteSwiftPackageReference "L10n-swift" */,
 				15EFF4B0290FD10200755906 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				158C011829154EA00090A180 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 156F0ADF2608172F0076AB4B /* Products */;
 			projectDirPath = "";
@@ -628,6 +652,7 @@
 				157FFA51273EB9300037E32A /* noresults.json in Resources */,
 				15F8801927408CC400766E30 /* Localizable.strings in Resources */,
 				15515FCC2677E35F009C2BDF /* MOCK_DATA.json in Resources */,
+				15D4D1E92916C4C80019975B /* RemoteConfigDefaults.plist in Resources */,
 				157FFA59273F14410037E32A /* heart_like.json in Resources */,
 				1544144F264F52BD00BA6887 /* Colors.xcassets in Resources */,
 				157FFA5D273F252B0037E32A /* loading-rainbow.json in Resources */,
@@ -660,8 +685,9 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		15640717266840A80084908F /* ShellScript */ = {
+		15640717266840A80084908F /* SwifLint */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -669,16 +695,18 @@
 			);
 			inputPaths = (
 			);
+			name = SwifLint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint autocorrect && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint && swiftlint autocorrect\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
-		15EFF4B9290FDB4100755906 /* ShellScript */ = {
+		15EFF4B9290FDB4100755906 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -688,6 +716,7 @@
 				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
 				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
+			name = Crashlytics;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -725,6 +754,7 @@
 				15E052CF2750492700C38715 /* ParamViewModel.swift in Sources */,
 				157FFA55273ED3540037E32A /* FilterChip.swift in Sources */,
 				15F8801427404D8200766E30 /* CountryLibrary.swift in Sources */,
+				15D4D1EB2916C57A0019975B /* RemoteConfigKeys.swift in Sources */,
 				15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */,
 				15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */,
 				15F880182740514900766E30 /* ParamScreen.swift in Sources */,
@@ -735,6 +765,7 @@
 				15CE567628E8568200F09FE3 /* LoginPayload.swift in Sources */,
 				15CAC5232646E837007E838C /* SearchScreen.swift in Sources */,
 				15CE567828E858CF00F09FE3 /* KeychainManager.swift in Sources */,
+				15D4D1EF2916D4C10019975B /* AdsManager.swift in Sources */,
 				15E8DE45266308DE0036A99F /* ChipsDataModel.swift in Sources */,
 				15EA7DF026094112006BC8F2 /* FirstNameViewModel.swift in Sources */,
 				152CDB60266FEB1F003B65C4 /* LegacyTextField.swift in Sources */,
@@ -749,6 +780,7 @@
 				157FFA53273EC50E0037E32A /* ArrayExtension.swift in Sources */,
 				156F0B2726081DA40076AB4B /* LottieView.swift in Sources */,
 				1587CC31273FF0DB0007B89A /* UIColorExtension.swift in Sources */,
+				15D4D1ED2916C6090019975B /* RemoteConfigManager.swift in Sources */,
 				156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */,
 				1598AA8828D61D7500CB600A /* RequestInterceptor.swift in Sources */,
 				15640716266836830084908F /* Vibration.swift in Sources */,
@@ -1216,6 +1248,14 @@
 				minimumVersion = 3.2.1;
 			};
 		};
+		158C011829154EA00090A180 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		15BE326C2624D0E700D8DC8D /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -1264,6 +1304,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 15BE326C2624D0E700D8DC8D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		15D4D1E62916BD020019975B /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 158C011829154EA00090A180 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
 		};
 		15EFF4B1290FD10200755906 /* FirebaseAnalyticsSwift */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -19,6 +19,8 @@ struct MainScreen: View {
 
     @EnvironmentObject var firstNameViewModel: FirstNameViewModel
 
+	@EnvironmentObject var adsViewModel: AdsViewModel
+
     @State private var engine: CHHapticEngine?
 
     @State private var currentColor = Color.gray
@@ -159,7 +161,6 @@ struct MainScreen: View {
                     firstNameViewModel.currentFirstname = firstnames[currentIndex]
                 }
         }
-
     }
 
     // MARK: Previous & Next Buttons
@@ -200,6 +201,7 @@ struct MainScreen: View {
         if isNextFirstname() {
             self.currentIndex = currentIndex + 1
             firstNameViewModel.currentFirstname = firstNameViewModel.firstnamesResults[currentIndex]
+			firstNameViewModel.incrementShowAdCounter(adsViewModel)
         } else {
             nomNomPattern()
         }
@@ -213,6 +215,7 @@ struct MainScreen: View {
         if isPreviousFirstname() {
             self.currentIndex = currentIndex - 1
             firstNameViewModel.currentFirstname = firstNameViewModel.firstnamesResults[currentIndex]
+			firstNameViewModel.incrementShowAdCounter(adsViewModel)
         } else {
             nomNomPattern()
         }
