@@ -997,7 +997,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tooflexdev.Prenom-Africains.debug";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tooflexdev.Prenom-Africains";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
