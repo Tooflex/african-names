@@ -28,7 +28,6 @@ final class FirstNameViewModel: ObservableObject {
 
 	private let loginApiService = AuthentificationService()
 
-	// @Published var showIntersitialAd: Bool = false
 	@Published var adFrequency = RemoteConfigManager.value(forKey: RemoteConfigKeys.adFrequency)
 
 	private var showAdCounter = 0

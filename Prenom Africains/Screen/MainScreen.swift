@@ -161,7 +161,6 @@ struct MainScreen: View {
                     firstNameViewModel.currentFirstname = firstnames[currentIndex]
                 }
         }
-//		.presentInterstitialAd(isPresented: $firstNameViewModel.showIntersitialAd, adUnitId: "ca-app-pub-3940256099942544/4411468910")
     }
 
     // MARK: Previous & Next Buttons
