@@ -8,6 +8,7 @@
 import SwiftUI
 import L10n_swift
 import FirebaseDynamicLinks
+import Firebase
 
 struct ShareButton: View {
 
@@ -21,6 +22,10 @@ struct ShareButton: View {
 
 	var body: some View {
 		Button(action: {
+			Analytics.logEvent(AnalyticsEventShare, parameters: [
+				AnalyticsParameterItemID: firstname.id,
+				AnalyticsParameterContentType: "url"
+			])
 			generateDynamicLink(firstname: self.firstname) { url in
 				self.showShareSheet.toggle()
 				shareSheetItems = []

@@ -9,15 +9,20 @@ import SwiftUI
 import RealmSwift
 import FirebaseCore
 import FirebaseDynamicLinks
+import GoogleMobileAds
 
 @main
 struct PrenomAfricainsApp: App {
 
+	@StateObject var contentViewModel = ContentViewModel()
+	let adsViewModel = AdsViewModel.shared
+
 	init() {
 		FirebaseApp.configure()
+		RemoteConfigManager.configure()
+		GADMobileAds.sharedInstance().start(completionHandler: nil)
 	}
 
-	@StateObject var contentViewModel = ContentViewModel()
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -25,6 +30,7 @@ struct PrenomAfricainsApp: App {
                  .environmentObject(SearchScreenViewModel())
                  .environmentObject(ParamViewModel())
 				 .environmentObject(contentViewModel)
+				 .environmentObject(adsViewModel)
 			// 1
 				 .onOpenURL { url in
 					 print("Incoming URL parameter is: \(url)")

@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreHaptics
 import L10n_swift
+import Firebase
 
 struct DescriptionView: View {
     @Environment(\.colorScheme) var currentMode
@@ -50,34 +51,49 @@ struct DescriptionView: View {
 
                     // MARK: Meaning text
                     if firstNameViewModel.currentFirstname.meaning.count > 65 {
-                    Button {
-                        print("Tapped")
-                        isShowPopoverMeaning.toggle()
-                    } label: {
-                    Text(firstNameViewModel.currentFirstname.meaning.trimmingCharacters(in: .whitespacesAndNewlines))
-                        .font(.title2)
-                        .multilineTextAlignment(.center)
-                        .frame(
-                            width: UIScreen.main.bounds.width * 0.8,
-                            height: 100 * sizeMultiplier(),
-                            alignment: .center)
-                        .foregroundColor(.white)
-                    }
+						ZStack(alignment: .bottomTrailing) {
+							Text(firstNameViewModel.currentFirstname.meaning.trimmingCharacters(in: .whitespacesAndNewlines))
+								.font(.title2)
+								.multilineTextAlignment(.center)
+								.frame(
+									width: UIScreen.main.bounds.width * 0.8,
+									height: 100 * sizeMultiplier(),
+									alignment: .center)
+								.foregroundColor(.white)
+							Button {
+								print("Tapped")
+								isShowPopoverMeaning.toggle()
+							} label: {
+								Text("More...")
+									.font(/*@START_MENU_TOKEN@*/.callout/*@END_MENU_TOKEN@*/)
+									.fontWeight(.bold)
+									.foregroundColor(Color("black"))
+									.padding([.top])
+									.offset(x: 0, y: 25)
+							}
+						}
                     .popover(isPresented: $isShowPopoverMeaning) {
                         PopoverView(
                             text: LocalizedStringKey("Meaning".l10n()),
                             textMore: "\(firstNameViewModel.currentFirstname.meaning)")
+						.onAppear {
+							Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
+								AnalyticsParameterItemID: firstNameViewModel.currentFirstname.id,
+								AnalyticsParameterContentType: "name meaning",
+							])
+						}
                     }
-                    } else {
-						Text(firstNameViewModel.currentFirstname.meaning.trimmingCharacters(in: .whitespacesAndNewlines))
-                            .font(.title2)
-                            .multilineTextAlignment(.center)
-                            .frame(
-                                width: UIScreen.main.bounds.width * 0.8,
-                                height: 100 * sizeMultiplier(),
-                                alignment: .center)
-                            .foregroundColor(.white)
-                    }
+					} else {
+							Text(firstNameViewModel.currentFirstname.meaning.trimmingCharacters(in: .whitespacesAndNewlines))
+								.font(.title2)
+								.multilineTextAlignment(.center)
+								.frame(
+									width: UIScreen.main.bounds.width * 0.8,
+									height: 100 * sizeMultiplier(),
+									alignment: .center)
+								.foregroundColor(.white)
+					}
+
                 }
                     Spacer()
                 }
@@ -275,6 +291,10 @@ struct DescriptionView: View {
         return 1
     }
 
+	func registerFavoriteEvent() {
+		
+	}
+
     // MARK: Haptics functions
     func prepareHaptics() {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
@@ -344,24 +364,24 @@ extension Color {
     static let darkPurple = Color(red: 133, green: 96, blue: 136)
 }
 
-// struct DescriptionView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ForEach(ColorScheme.allCases, id: \.self) {
-//            Group {
+ struct DescriptionView_Previews: PreviewProvider {
+    static var previews: some View {
+        ForEach(ColorScheme.allCases, id: \.self) {
+            Group {
 //                DescriptionView()
 //                    .previewDevice("iPad Pro (12.9-inch) (4th generation)")
 //                    .previewDisplayName("iPad Pro 12")
 //                    .landscape()
-//
-//                DescriptionView()
-//                    .previewDevice("iPhone 8")
-//                    .previewDisplayName("iPhone 8")
-//
-//                DescriptionView()
-//                    .previewDevice("iPhone 12 Pro Max")
-//                    .previewDisplayName("iPhone 12 Pro Max")
-//            }.preferredColorScheme($0).environmentObject(FirstNameViewModel())
-//        }
-//
-//    }
-// }
+
+                DescriptionView()
+                    .previewDevice("iPhone 8")
+                    .previewDisplayName("iPhone 8")
+
+                DescriptionView()
+                    .previewDevice("iPhone 12 Pro Max")
+                    .previewDisplayName("iPhone 12 Pro Max")
+            }.preferredColorScheme($0).environmentObject(FirstNameViewModel())
+        }
+
+    }
+ }
