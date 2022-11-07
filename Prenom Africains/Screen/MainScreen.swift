@@ -175,7 +175,7 @@ struct MainScreen: View {
             .onTapGesture {
                 previousFirstname()
             }
-            .accessibility(label: Text("left button".l10n()))
+            .accessibility(label: Text("left button"))
     }
 
     fileprivate func rightButton() -> some View {
@@ -189,7 +189,7 @@ struct MainScreen: View {
             .onTapGesture {
                 nextFirstname()
             }
-            .accessibility(label: Text("right button".l10n()))
+            .accessibility(label: Text("right button"))
     }
 
     fileprivate func isNextFirstname() -> Bool {

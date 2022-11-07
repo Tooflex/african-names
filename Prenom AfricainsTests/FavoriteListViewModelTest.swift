@@ -14,10 +14,13 @@ class FavoriteListViewModelTest: XCTestCase {
 	var repository: DataRepository!
 	var favoriteViewModel: FavoriteListViewModel!
 	var selectedFirstname = FirstnameDB()
+	var userDefaults: UserDefaults = UserDefaults(suiteName: #file)!
 
 	override func setUpWithError() throws {
-		let userDefaults = UserDefaults(suiteName: #file)!
+		userDefaults = UserDefaults(suiteName: #file)!
 		userDefaults.removePersistentDomain(forName: #file)
+
+		userDefaults.set([], forKey: "Filters")
 
 		repository = DataRepository()
 		favoriteViewModel = FavoriteListViewModel(userDefaults: userDefaults)
@@ -36,9 +39,8 @@ class FavoriteListViewModelTest: XCTestCase {
 
 		favoriteViewModel.saveFilters()
 
-		let defaults = UserDefaults.standard
 		// swiftlint:disable force_cast
-		let retrievedFilters = defaults.object(forKey: "Filters") as! [String: AnyHashable]
+		let retrievedFilters = userDefaults.object(forKey: "Filters") as! [String: AnyHashable]
 
 		let filters = [
 			"isFavorite": true,
