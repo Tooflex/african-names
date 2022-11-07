@@ -30,12 +30,38 @@
       codeCoverageEnabled = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO">
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "156F0AEE260817300076AB4B"
                BuildableName = "Prenom AfricainsTests.xctest"
                BlueprintName = "Prenom AfricainsTests"
+               ReferencedContainer = "container:Prenom Africains.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "YES"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "156F0AF9260817300076AB4B"
+               BuildableName = "Prenom AfricainsUITests.xctest"
+               BlueprintName = "Prenom AfricainsUITests"
+               ReferencedContainer = "container:Prenom Africains.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES"
+            testExecutionOrdering = "random">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "15ABCB38262A564B00036B3E"
+               BuildableName = "Prenom AfricainsSlowTests.xctest"
+               BlueprintName = "Prenom AfricainsSlowTests"
                ReferencedContainer = "container:Prenom Africains.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -51,6 +77,22 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "156F0ADD2608172F0076AB4B"
+            BuildableName = "Prenom Africains.app"
+            BlueprintName = "Prenom Africains"
+            ReferencedContainer = "container:Prenom Africains.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "API_PASSWORD"
+            value = "123456"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
