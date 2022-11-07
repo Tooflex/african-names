@@ -180,6 +180,7 @@
 		15CAC5202646D7F7007E838C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		15CAC5222646E837007E838C /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		15CAC5242646ECF1007E838C /* ChipsOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsOptionView.swift; sourceTree = "<group>"; };
+		15CE38FE291888E200148BA5 /* ci_post_clone.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = ci_post_clone.sh; sourceTree = "<group>"; };
 		15CE567328E84A3700F09FE3 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		15CE567528E8568200F09FE3 /* LoginPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPayload.swift; sourceTree = "<group>"; };
 		15CE567728E858CF00F09FE3 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -280,6 +281,7 @@
 		156F0AD52608172F0076AB4B = {
 			isa = PBXGroup;
 			children = (
+				15CE38FD2918886100148BA5 /* ci_scripts */,
 				156F0AE02608172F0076AB4B /* Prenom Africains */,
 				156F0AF2260817300076AB4B /* Prenom AfricainsTests */,
 				156F0AFD260817300076AB4B /* Prenom AfricainsUITests */,
@@ -422,6 +424,14 @@
 				15ABCB3D262A564B00036B3E /* Info.plist */,
 			);
 			path = "Prenom AfricainsSlowTests";
+			sourceTree = "<group>";
+		};
+		15CE38FD2918886100148BA5 /* ci_scripts */ = {
+			isa = PBXGroup;
+			children = (
+				15CE38FE291888E200148BA5 /* ci_post_clone.sh */,
+			);
+			path = ci_scripts;
 			sourceTree = "<group>";
 		};
 		15CFF01A261396A100B06E32 /* Util */ = {
