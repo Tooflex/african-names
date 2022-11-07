@@ -7,4 +7,4 @@
 #  
 echo $FIREBASE_SECRET | base64 --decode > $CI_WORKSPACE/Prenom\ Africains/GoogleService-Info.plist
 
-plutil -replace API_PASSWORD -string $API_PASSWORD Info.plist
+plutil -replace API_PASSWORD -string $API_PASSWORD $CI_WORKSPACE/Prenom\ Africains/Info.plist
