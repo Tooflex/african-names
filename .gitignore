@@ -106,7 +106,7 @@ iOSInjectionProject/
 !*.xcodeproj/project.xcworkspace/xcshareddata/
 
 ### Configs ###
-*.xcconfig
+# *.xcconfig
 
 ### Firebase ###
 GoogleService-Info.plist
