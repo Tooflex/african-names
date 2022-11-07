@@ -53,5 +53,4 @@ final class CountryLibraryTests: XCTestCase {
         assert(countries[0].name == "France")
     }
 
-
 }
