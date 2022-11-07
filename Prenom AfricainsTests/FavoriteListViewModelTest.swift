@@ -30,7 +30,7 @@ class FavoriteListViewModelTest: XCTestCase {
 
 	func testSaveFilters() {
 
-		//XCTExpectFailure("Expected to fail randomly")
+		// XCTExpectFailure("Expected to fail randomly")
 //
 //		selectedFirstname.id = 1
 //		selectedFirstname.firstname = "TestName"

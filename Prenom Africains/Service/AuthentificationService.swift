@@ -24,7 +24,7 @@ final class AuthentificationService: AuthentificationServiceProtocol {
 	}
 
 	 private let username = Bundle.main.infoDictionary!["API_USER"] as? String ?? ""
-	 private let password = ProcessInfo.processInfo.environment["API_PASSWORD"]!
+	 private let password = ProcessInfo.processInfo.environment["API_PASSWORD"] ?? Bundle.main.infoDictionary!["API_PASSWORD"] as? String ?? ""
 
 	var tokens: Set<AnyCancellable> = []
 
