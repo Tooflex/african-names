@@ -1001,6 +1001,7 @@
 				INFOPLIST_FILE = "Prenom Africains/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "African Names Dev";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1031,6 +1032,7 @@
 				INFOPLIST_FILE = "Prenom Africains/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "African Names";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.reference";
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
