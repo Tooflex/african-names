@@ -1,0 +1,13 @@
+//
+//  Release.xcconfig
+//  Prenom Africains
+//
+//  Created by Otourou Da Costa on 25/11/2021.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_ENDPOINT = africannames.app
+API_USER = user
+INTERSTITIAL_ID = ca-app-pub-9839591490433108/1234250181
