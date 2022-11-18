@@ -98,7 +98,7 @@ struct DescriptionView: View {
                     Spacer()
                 }
                 .padding(.horizontal)
-                .frame(idealWidth: geometry.size.width * 0.8, maxHeight: geometry.size.height, alignment: .center)
+                .frame(idealWidth: geometry.size.width * 0.8 * sizeMultiplier(), maxHeight: geometry.size.height * sizeMultiplier(), alignment: .center)
             }
 
             Spacer()
@@ -115,6 +115,8 @@ struct DescriptionView: View {
                             width: 30 * sizeMultiplier(),
                             height: 30 * sizeMultiplier(),
                             alignment: .center)
+						.padding(.top)
+						.padding(.horizontal)
                         .foregroundColor(Color.white)
                 }
 
@@ -126,6 +128,8 @@ struct DescriptionView: View {
                             width: 30 * sizeMultiplier(),
                             height: 30 * sizeMultiplier(),
                             alignment: .center)
+						.padding(.top)
+						.padding(.horizontal)
                         .foregroundColor(Color.white)
                 }
                 case Gender.mixed.rawValue:
@@ -138,6 +142,8 @@ struct DescriptionView: View {
                             width: 30 * sizeMultiplier(),
                             height: 30 * sizeMultiplier(),
                             alignment: .center)
+						.padding(.top)
+						.padding(.horizontal)
                         .foregroundColor(Color.white)
 
                     Image("md-female")
@@ -147,6 +153,7 @@ struct DescriptionView: View {
                             width: 30 * sizeMultiplier(),
                             height: 30 * sizeMultiplier(),
                             alignment: .center)
+						.padding(.top)
                         .foregroundColor(Color.white)
                 }
                 case Gender.undefined.rawValue:
@@ -166,13 +173,16 @@ struct DescriptionView: View {
                 Spacer()
                 // MARK: Origin Text
                 if firstNameViewModel.currentFirstname.origins.count < 12 {
-                    Text("Origins:".l10n() + " \(firstNameViewModel.currentFirstname.origins)")
-                        .frame(width: 250, alignment: .trailing)
-                        .truncationMode(.tail)
-                        .font(.title2)
-                        .lineLimit(1)
-                        .padding(.horizontal)
-                        .foregroundColor(.white)
+					if !firstNameViewModel.currentFirstname.origins.isEmpty {
+						Text("Origins:".l10n() + " \(firstNameViewModel.currentFirstname.origins)")
+							.frame(width: 250, alignment: .trailing)
+							.truncationMode(.tail)
+							.font(.title2)
+							.lineLimit(1)
+							.padding(.top)
+							.padding(.horizontal)
+							.foregroundColor(.white)
+					}
                 } else {
                     Button {
                         print("Tapped")
@@ -183,6 +193,7 @@ struct DescriptionView: View {
                             .truncationMode(.tail)
                             .font(.title2)
                             .lineLimit(1)
+							.padding(.top)
                             .padding(.horizontal)
                     }
                     .foregroundColor(.white)
@@ -260,15 +271,19 @@ struct DescriptionView: View {
         if vSizeClass == .regular && hSizeClass == .regular {
             return 2
         } else {
-            return 1
+			return 0.8
         }
     }
 
     func sizeMultiplierMeaningRectangle() -> CGFloat {
         // Check for a specific model
-        if UIScreen.current == .iPhone5_8 || UIScreen.current == .iPhone5_5 {
+        if UIScreen.current == .iPhone5_8 {
             return 1
         }
+
+		if UIScreen.current == .iPhone5_5 {
+			return 0.8
+		}
 
         // Check for multiple models
         if UIScreen.current == .iPhone4_7 {

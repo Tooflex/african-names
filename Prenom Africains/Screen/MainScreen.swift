@@ -60,16 +60,16 @@ struct MainScreen: View {
                             height: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
                     }
 
-                    if self.firstNameViewModel.isFiltered {
-                        HStack {
-                            Spacer()
-                            FilterChip(text: "filters on".l10n(), color: .white, action: {
-                                self.firstNameViewModel.clearFilters()
-                                self.firstNameViewModel.getFirstnames()
-                            })
-                                .padding(.horizontal)
-                        }
-                    }
+//                    if self.firstNameViewModel.isFiltered {
+//                        HStack {
+//                            Spacer()
+//                            FilterChip(text: "filters on".l10n(), color: .white, action: {
+//                                self.firstNameViewModel.clearFilters()
+//                                self.firstNameViewModel.getFirstnames()
+//                            })
+//                                .padding(.horizontal)
+//                        }
+//                    }
 
                     LottieView(name: "noresults".l10n(), loopMode: .playOnce)
                         .frame(
@@ -131,9 +131,9 @@ struct MainScreen: View {
                                     FilterChip(text: "filters on".l10n(), color: .white, action: {
                                         self.firstNameViewModel.clearFilters()
                                         self.firstNameViewModel.getFirstnames()
-                                    })
-                                        .padding(.horizontal)
+									}).padding(.horizontal, 30 * sizeMultiplierSpacer())
                                 }
+								Spacer(minLength: 30)
                             }
                             DescriptionView()
                         }
@@ -409,8 +409,8 @@ struct MainScreen: View {
                 .previewDisplayName("iPhone 12")
 
             MainScreen()
-                .previewDevice("iPhone 8")
-                .previewDisplayName("iPhone 8")
+                .previewDevice("iPhone 8 Plus")
+                .previewDisplayName("iPhone 8 Plus")
         }.preferredColorScheme($0)
                 .environmentObject(FirstNameViewModel())
         }
