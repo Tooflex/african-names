@@ -9,6 +9,7 @@ import SwiftUI
 import SlideOverCard
 import L10n_swift
 import Firebase
+import FirebaseAnalytics
 
 struct SearchScreen: View {
     @Binding var selectedTab: Tab
@@ -47,7 +48,14 @@ struct SearchScreen: View {
                     }
                     ChipsOptionView(
                                     title: "Area".l10n(),
-                                    data: searchScreenViewModel.areas)
+									data: searchScreenViewModel.areas, action: { chipView in
+										if chipView.chip.isSelected {
+											searchScreenViewModel.filterArea.append(chipView.chip.titleKey.capitalized)
+											print(searchScreenViewModel.filterArea)
+										} else {
+											searchScreenViewModel.filterArea = searchScreenViewModel.filterArea.filter { $0 != chipView.chip.titleKey.capitalized }
+										}
+									})
                     Text("Gender".l10n())
                         .font(.title2)
                         .bold()
@@ -84,6 +92,7 @@ struct SearchScreen: View {
                         Button(action: {
                             print("Male selected to unselected")
                             searchScreenViewModel.filterMale = !searchScreenViewModel.filterMale
+
                         }) {
                             LottieView(name: "md-male-select", fromMarker: "touchDownStart", toMarker: "touchUpEnd" )
                                 .padding(.all, -30)
@@ -102,15 +111,17 @@ struct SearchScreen: View {
                     }
                     ChipsOptionView(
                         title: "Size".l10n(),
-                        data: searchScreenViewModel.sizes)
+						data: searchScreenViewModel.sizes, action: { chipView in
+							if chipView.chip.isSelected {
+								searchScreenViewModel.filterSize.append(chipView.chip.titleKey)
+							} else {
+								searchScreenViewModel.filterSize = searchScreenViewModel.filterSize.filter { $0 != chipView.chip.titleKey }
+							}
+						})
                 }
                 // MARK: Filter Submit Button
                 Group {
                 Button(action: {
-                    // Update filters
-                    searchScreenViewModel.filterIsFavorite = searchScreenViewModel.filterIsFavorite
-                    searchScreenViewModel.filterArea = searchScreenViewModel.areas.filter {
-                        $0.isSelected }.map { $0.titleKey.capitalized }
                     searchScreenViewModel.filterGender = []
                     if searchScreenViewModel.filterMale {
                         searchScreenViewModel.filterGender.append("male")
@@ -118,8 +129,7 @@ struct SearchScreen: View {
                     if searchScreenViewModel.filterFemale {
                         searchScreenViewModel.filterGender.append("female")
                     }
-                    searchScreenViewModel.filterSize = searchScreenViewModel.sizes.filter {
-                        $0.isSelected }.map { $0.titleKey.lowercased() }
+
                     searchScreenViewModel.saveFilters()
 					self.selectedTab = .home // Go back to Home screen
                 }) {
@@ -186,9 +196,3 @@ struct SearchScreen: View {
         }
     }
 }
-
-// struct SearchScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SearchScreen(selectedTab: .constant(0))
-//    }
-// }

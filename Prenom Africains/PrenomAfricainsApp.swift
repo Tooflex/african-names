@@ -15,20 +15,26 @@ import GoogleMobileAds
 struct PrenomAfricainsApp: App {
 
 	@StateObject var contentViewModel = ContentViewModel()
+	var firstnameViewModel: FirstNameViewModel
+	var searchViewModel: SearchScreenViewModel
+	var paramViewModel: ParamViewModel
 	let adsViewModel = AdsViewModel.shared
 
 	init() {
 		FirebaseApp.configure()
 		RemoteConfigManager.configure()
 		GADMobileAds.sharedInstance().start(completionHandler: nil)
+		firstnameViewModel = FirstNameViewModel()
+		searchViewModel = SearchScreenViewModel()
+		paramViewModel = ParamViewModel()
 	}
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(FirstNameViewModel())
-                 .environmentObject(SearchScreenViewModel())
-                 .environmentObject(ParamViewModel())
+                .environmentObject(firstnameViewModel)
+                 .environmentObject(searchViewModel)
+                 .environmentObject(paramViewModel)
 				 .environmentObject(contentViewModel)
 				 .environmentObject(adsViewModel)
 			// 1

@@ -246,11 +246,4 @@ class DataRepositoryTest: XCTestCase {
         XCTAssert(filteredFirstnameAfterToggle.isFavorite)
     }
 
-//    func testPerformanceExample() throws {
-//
-//        self.measure {
-//            // TODO
-//        }
-//    }
-
 }

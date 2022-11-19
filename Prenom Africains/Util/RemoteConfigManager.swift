@@ -13,7 +13,7 @@ struct RemoteConfigManager {
 		var remoteConfig = RemoteConfig.remoteConfig()
 
 		let settings = RemoteConfigSettings()
-		settings.minimumFetchInterval = 0 // TODO: 7200
+		settings.minimumFetchInterval = 7200
 		remoteConfig.configSettings = settings
 		remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
 		return remoteConfig
