@@ -60,16 +60,17 @@ struct MainScreen: View {
                             height: 54 * sizeMultiplier(vSizeClass, hSizeClass, regularConstant: 4.0))
                     }
 
-//                    if self.firstNameViewModel.isFiltered {
-//                        HStack {
-//                            Spacer()
-//                            FilterChip(text: "filters on".l10n(), color: .white, action: {
-//                                self.firstNameViewModel.clearFilters()
-//                                self.firstNameViewModel.getFirstnames()
-//                            })
-//                                .padding(.horizontal)
-//                        }
-//                    }
+					// When no results and is filtered
+                    if self.firstNameViewModel.isFiltered {
+                        HStack {
+                            Spacer()
+                            FilterChip(text: "filters on".l10n(), color: .white, action: {
+                                self.firstNameViewModel.clearFilters()
+                                self.firstNameViewModel.getFirstnames()
+                            })
+                                .padding(.horizontal)
+                        }
+                    }
 
                     LottieView(name: "noresults".l10n(), loopMode: .playOnce)
                         .frame(
@@ -130,6 +131,7 @@ struct MainScreen: View {
                                     Spacer()
                                     FilterChip(text: "filters on".l10n(), color: .white, action: {
                                         self.firstNameViewModel.clearFilters()
+
                                         self.firstNameViewModel.getFirstnames()
 									}).padding(.horizontal, 30 * sizeMultiplierSpacer())
                                 }

@@ -9,36 +9,28 @@ import SwiftUI
 
 struct ChipsOptionView: View {
 
-    @EnvironmentObject var searchScreenViewModel: SearchScreenViewModel
-    @State var title: String
-    @State var data: [ChipsDataModel]
+    private var title: String
+	private var data: [ChipsDataModel]
+	private var action: (_ chipView: ChipsView) -> Void
+
+	public init(title: String, data: [ChipsDataModel], action: @escaping (_ chipView: ChipsView) -> Void) {
+		self.title = title
+		self.data = data
+		self.action = action
+	}
+
     var body: some View {
         VStack {
-            ChipsContent( searchScreenViewModel: searchScreenViewModel, title: title, data: data)
+			ChipsContent(title: title, data: data, action: action)
             Spacer()
         }
     }
 }
 
 struct ChipsContent: View {
-    @ObservedObject var searchScreenViewModel: SearchScreenViewModel
     @State var title: String
     @State var data: [ChipsDataModel]
-    fileprivate func filterByChip(isSelected: Bool, chipsData: ChipsDataModel) {
-
-        if isSelected {
-            searchScreenViewModel.addToFilterChainString(newFilter: title, newFilterValue: chipsData.titleKey)
-            if title == "area" {
-                searchScreenViewModel.filterArea.append(chipsData.titleKey)
-            }
-        } else {
-            searchScreenViewModel.removeFromFilterChainString(
-                filterToRemove: title,
-                filterValueToRemove: chipsData.titleKey)
-        }
-
-        print(searchScreenViewModel.currentFilterChain)
-    }
+	@State var action: (_ chipView: ChipsView) -> Void
 
     var body: some View {
         return GeometryReader { _ in
@@ -52,11 +44,9 @@ struct ChipsContent: View {
                         let chipView: ChipsView = ChipsView(chip: chipsData)
                             chipView.onTapGesture {
                                 chipsData.isSelected.toggle()
-
-                                filterByChip(isSelected: chipsData.isSelected, chipsData: chipsData)
+								action(chipView)
                             }
                             .padding(.all, 5)
-
                     }
                 }
                 }
@@ -73,19 +63,6 @@ struct ChipsContent: View {
             data: [
                 ChipsDataModel(isSelected: false, titleKey: "Wesh", displayedTitle: "Wesh translated"),
                 ChipsDataModel(isSelected: false, titleKey: "Yo", displayedTitle: "Yo translated")
-            ])
+			], action: {_ in })
     }
  }
-
-// extension ChipsContent {
-//
-//    typealias CompletionHandler = (_ success: Bool) -> Void
-//
-//    public func onChipTapped(completionHandler: CompletionHandler) -> some View {
-//
-//        let flag = true // true if download succeed,false otherwise
-//
-//        completionHandler(flag)
-//        return self
-//    }
-// }
