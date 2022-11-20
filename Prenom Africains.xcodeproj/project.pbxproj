@@ -59,6 +59,8 @@
 		15ABCB3C262A564B00036B3E /* PrenomAfricainsSlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB3B262A564B00036B3E /* PrenomAfricainsSlowTests.swift */; };
 		15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15ABCB47262A59B600036B3E /* NetworkMonitor.swift */; };
 		15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 15BE326D2624D0E700D8DC8D /* Alamofire */; };
+		15C2FAAC292A6115003E97BA /* MarqueeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C2FAAB292A6115003E97BA /* MarqueeTextView.swift */; };
+		15C2FAAE292A614B003E97BA /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C2FAAD292A614B003E97BA /* UIFontExtension.swift */; };
 		15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5202646D7F7007E838C /* SearchBarView.swift */; };
 		15CAC5232646E837007E838C /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5222646E837007E838C /* SearchScreen.swift */; };
 		15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5242646ECF1007E838C /* ChipsOptionView.swift */; };
@@ -177,6 +179,8 @@
 		15ABCB3B262A564B00036B3E /* PrenomAfricainsSlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrenomAfricainsSlowTests.swift; sourceTree = "<group>"; };
 		15ABCB3D262A564B00036B3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15ABCB47262A59B600036B3E /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		15C2FAAB292A6115003E97BA /* MarqueeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeTextView.swift; sourceTree = "<group>"; };
+		15C2FAAD292A614B003E97BA /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		15CAC5202646D7F7007E838C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		15CAC5222646E837007E838C /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		15CAC5242646ECF1007E838C /* ChipsOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsOptionView.swift; sourceTree = "<group>"; };
@@ -381,6 +385,7 @@
 				15FC2A4A2648A10B0025BCF3 /* SlidingOverCard.swift */,
 				157FFA56273EF2BF0037E32A /* WaveShape.swift */,
 				15AA134B2751467200EB98FE /* PopoverView.swift */,
+				15C2FAAB292A6115003E97BA /* MarqueeTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 				1587CC30273FF0DB0007B89A /* UIColorExtension.swift */,
 				1587CC2E273FEF220007B89A /* ViewExtension.swift */,
 				15D167212751CB7A00992D7C /* UIDevice.swift */,
+				15C2FAAD292A614B003E97BA /* UIFontExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -712,7 +718,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint && swiftlint autocorrect\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint --fix && swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		15EFF4B9290FDB4100755906 /* Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -742,6 +748,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15C2FAAC292A6115003E97BA /* MarqueeTextView.swift in Sources */,
+				15C2FAAE292A614B003E97BA /* UIFontExtension.swift in Sources */,
 				15515FC92677D423009C2BDF /* FirstnameDB.swift in Sources */,
 				15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */,
 				1535635E2739BDCD007B1959 /* FavoriteListViewModel.swift in Sources */,

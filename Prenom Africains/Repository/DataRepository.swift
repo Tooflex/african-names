@@ -11,6 +11,13 @@ import Alamofire
 
 protocol DataRepositoryProtocol {
     func fetchFirstnames(completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void)
+	func fetchLocalData<T: Object>(type: T.Type, filter: NSPredicate) throws -> Results<T>
+	func fetchLocalData<T: Object>(type: T.Type, filter: String?) -> Results<T>
+	func searchFirstname(
+		searchString: String,
+		completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void)
+	func toggleFavorited(firstnameObj: FirstnameDataModel)
+	func toggleFavorited(firstnameObj: FirstnameDB)
 }
 
 final class DataRepository: ObservableObject, DataRepositoryProtocol {

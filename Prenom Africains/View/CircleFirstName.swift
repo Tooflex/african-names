@@ -7,6 +7,9 @@
 
 import SwiftUI
 import AVFoundation
+import L10n_swift
+
+let synthesizer = AVSpeechSynthesizer()
 
 struct CircleFirstName: View {
     @Environment(\.colorScheme) var currentMode
@@ -109,12 +112,17 @@ struct CircleFirstName: View {
 
         switch prenom.gender {
         case Gender.male.rawValue:
-            utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_fr-FR_compact")
+				utterance.voice =
+				AVSpeechSynthesisVoice.speechVoices().first(where: { $0.language.contains(L10n.shared.language) && $0.gender == AVSpeechSynthesisVoiceGender.male })
+
+			case Gender.female.rawValue:
+				utterance.voice =
+				AVSpeechSynthesisVoice.speechVoices().first(where: { $0.language.contains(L10n.shared.language) && $0.gender == AVSpeechSynthesisVoiceGender.female })
         default:
-            utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_fr-FR_compact")
+				utterance.voice =
+				AVSpeechSynthesisVoice.speechVoices().first(where: { $0.language.contains(L10n.shared.language) && $0.gender == AVSpeechSynthesisVoiceGender.female })
         }
 
-        let synthesizer = AVSpeechSynthesizer()
         synthesizer.speak(utterance)
     }
 }

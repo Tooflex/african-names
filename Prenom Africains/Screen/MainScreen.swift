@@ -19,6 +19,8 @@ struct MainScreen: View {
 
     @EnvironmentObject var firstNameViewModel: FirstNameViewModel
 
+	@EnvironmentObject var contentViewModel: ContentViewModel
+
 	@EnvironmentObject var adsViewModel: AdsViewModel
 
     @State private var engine: CHHapticEngine?

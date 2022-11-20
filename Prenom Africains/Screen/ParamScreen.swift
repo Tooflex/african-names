@@ -12,6 +12,8 @@ struct ParamScreen: View {
 
     @Binding var selectedTab: Tab
 
+	@EnvironmentObject var contentViewModel: ContentViewModel
+
     @EnvironmentObject var paramViewModel: ParamViewModel
 
     var body: some View {

@@ -14,7 +14,7 @@ class ContentViewModel: ObservableObject {
 
 	@Published var selectedTab: Tab = Tab.home
 	@Published var currentFirstname: FirstnameDB = FirstnameDB()
-	@Published var currentLanguage = L10n.shared.language
+	@Published var isLanguageChanged = false
 
 	func checkDeepLink(url: URL) -> Bool {
 		guard let host = URLComponents(url: url, resolvingAgainstBaseURL: false) else {

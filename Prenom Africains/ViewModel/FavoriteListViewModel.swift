@@ -20,7 +20,9 @@ final class FavoriteListViewModel: ObservableObject {
 		self.userDefaults = userDefaults
         self.favoritedFirstnamesResults = Array(dataRepository.fetchLocalData(
             type: FirstnameDB.self,
-            filter: "isFavorite = true"))
+			filter: "isFavorite = true")).sorted {
+				return $0.firstname < $1.firstname
+			}
         selectedFirstname = FirstnameDB()
     }
 
