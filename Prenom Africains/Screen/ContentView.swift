@@ -13,8 +13,6 @@ struct ContentView: View {
 
 	@EnvironmentObject var contentViewModel: ContentViewModel
 
-    @State var searchString = NSCompoundPredicate()
-
     var body: some View {
         ZStack {
             currentMode == .dark ? Color.gray : Color.offWhite
@@ -23,7 +21,7 @@ struct ContentView: View {
 				case .home:
                     MainScreen()
 				case .search:
-                    SearchScreen(selectedTab: $contentViewModel.selectedTab, searchString: $searchString)
+					SearchScreen(selectedTab: $contentViewModel.selectedTab, searchString: $contentViewModel.searchString)
 				case .list:
                     FavoriteListScreen(selectedTab: $contentViewModel.selectedTab)
 				case .param:

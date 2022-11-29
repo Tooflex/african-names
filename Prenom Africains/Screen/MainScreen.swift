@@ -158,13 +158,19 @@ struct MainScreen: View {
         })
         .onAppear(perform: {
             prepareHaptics()
-            firstNameViewModel.onAppear()
+			firstNameViewModel.onAppear()
         })
         .onReceive(firstNameViewModel.$firstnamesResults) { firstnames in
                 if !firstnames.isEmpty {
                     firstNameViewModel.currentFirstname = firstnames[currentIndex]
                 }
         }
+		.onReceive(contentViewModel.$isLanguageChanged) { _ in
+			if !contentViewModel.isFirstLaunch {
+				print("Get firstnames after language changed")
+				firstNameViewModel.fetchOnline()
+			}
+		}
     }
 
     // MARK: Previous & Next Buttons

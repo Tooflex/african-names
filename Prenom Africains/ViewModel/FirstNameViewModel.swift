@@ -38,7 +38,6 @@ final class FirstNameViewModel: ObservableObject {
 		if !self.isFiltered {
 			self.fetchOnline()
 		}
-
     }
 
     func onAppear() {
@@ -121,7 +120,7 @@ final class FirstNameViewModel: ObservableObject {
 			}
 
 		}
-        dataRepository.fetchFirstnames { response in
+		dataRepository.fetchFirstnames { [self] response in
 
             switch response.result {
             case .success:
@@ -130,6 +129,13 @@ final class FirstNameViewModel: ObservableObject {
                 } else {
                     print("Firstnames updated silently")
                 }
+					if let all = response.value?.totalElements {
+						if all > dataRepository.count() {
+							dataRepository.fetchFirstnames(numberOfElements: (all)) { _ in
+								self.getFirstnames()
+							}
+						}
+					}
             case .failure(let error):
                 print(error.localizedDescription)
             }
