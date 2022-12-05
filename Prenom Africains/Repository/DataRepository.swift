@@ -10,7 +10,18 @@ import RealmSwift
 import Alamofire
 
 protocol DataRepositoryProtocol {
-    func fetchFirstnames(completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void)
+    func fetchFirstnames(completion: @escaping (DataResponse<FirstnameResponse, AFError>) -> Void)
+
+	func fetchFirstnames(numberOfElements: Int, completion: @escaping (DataResponse<FirstnameResponse, AFError>) -> Void)
+
+	func fetchLocalData<T: Object>(type: T.Type, filter: NSPredicate) throws -> Results<T>
+	func fetchLocalData<T: Object>(type: T.Type, filter: String?) -> Results<T>
+	func searchFirstname(
+		searchString: String,
+		completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void)
+	func toggleFavorited(firstnameObj: FirstnameDataModel)
+	func toggleFavorited(firstnameObj: FirstnameDB)
+	func count() -> Int
 }
 
 final class DataRepository: ObservableObject, DataRepositoryProtocol {
@@ -140,16 +151,30 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
         return results
     }
 
-    func fetchFirstnames(completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void) {
+    func fetchFirstnames(completion: @escaping (DataResponse<FirstnameResponse, AFError>) -> Void) {
         apiService.fetchFirstnames { result in
 
-            if let firstnames = result.value {
-                self.addAll(firstnamesToAdd: firstnames)
+			if let firstnameResponse = result.value {
+				if let firstnames = firstnameResponse.content {
+					self.addAll(firstnamesToAdd: firstnames)
+				}
             }
 
             completion(result)
         }
     }
+
+	func fetchFirstnames(numberOfElements: Int, completion: @escaping (Alamofire.DataResponse<FirstnameResponse, Alamofire.AFError>) -> Void) {
+		apiService.fetchFirstnames(numberOfElements: numberOfElements) { result in
+			if let firstnameResponse = result.value {
+				if let firstnames = firstnameResponse.content {
+					self.addAll(firstnamesToAdd: firstnames)
+				}
+			}
+
+			completion(result)
+		}
+	}
 
     func searchFirstname(
         searchString: String,
@@ -202,5 +227,9 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
             print(error)
         }
     }
+
+	func count() -> Int {
+		return realm.objects(FirstnameDB.self).count
+	}
 
 }

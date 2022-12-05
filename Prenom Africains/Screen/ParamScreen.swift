@@ -12,6 +12,8 @@ struct ParamScreen: View {
 
     @Binding var selectedTab: Tab
 
+	@EnvironmentObject var contentViewModel: ContentViewModel
+
     @EnvironmentObject var paramViewModel: ParamViewModel
 
     var body: some View {
@@ -37,6 +39,7 @@ struct ParamScreen: View {
                 }.onChange(of: paramViewModel.languageCodeSelection) { _ in
                     print("Lang changed to: \(String(describing: paramViewModel.languageCodeSelection))")
 					L10n.shared.language = paramViewModel.languageCodeSelection
+					contentViewModel.isLanguageChanged = true
 					selectedTab = .home
 					paramViewModel.saveLastSelectedLanguage()
                 }

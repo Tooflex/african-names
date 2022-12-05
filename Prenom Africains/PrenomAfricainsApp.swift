@@ -14,7 +14,7 @@ import GoogleMobileAds
 @main
 struct PrenomAfricainsApp: App {
 
-	@StateObject var contentViewModel = ContentViewModel()
+	var contentViewModel: ContentViewModel
 	var firstnameViewModel: FirstNameViewModel
 	var searchViewModel: SearchScreenViewModel
 	var paramViewModel: ParamViewModel
@@ -27,6 +27,7 @@ struct PrenomAfricainsApp: App {
 		firstnameViewModel = FirstNameViewModel()
 		searchViewModel = SearchScreenViewModel()
 		paramViewModel = ParamViewModel()
+		contentViewModel = ContentViewModel()
 	}
 
     var body: some Scene {

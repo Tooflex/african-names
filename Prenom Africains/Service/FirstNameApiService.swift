@@ -12,7 +12,9 @@ import L10n_swift
 
 protocol FirstNameApiServiceProtocol {
 
-    func fetchFirstnames(completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void)
+    func fetchFirstnames(completion: @escaping (DataResponse<FirstnameResponse, AFError>) -> Void)
+
+	func fetchFirstnames(numberOfElements: Int, completion: @escaping (DataResponse<FirstnameResponse, AFError>) -> Void)
 
     func searchFirstnamesRemote(
         searchString: String,
@@ -26,6 +28,7 @@ protocol FirstNameApiServiceProtocol {
 }
 
 final class FirstNameApiService: FirstNameApiServiceProtocol {
+
 	private let manager: Session
 	init(manager: Session = Session(interceptor: RequestInterceptor(storage: AuthToken()))) {
         self.manager = manager
@@ -41,19 +44,19 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
 
     var tokens: Set<AnyCancellable> = []
 
-    func fetchFirstnames(completion: @escaping (DataResponse<[FirstnameDataModel], AFError>) -> Void) {
+    func fetchFirstnames(completion: @escaping (DataResponse<FirstnameResponse, AFError>) -> Void) {
 		let languageCodeSelection = L10n.shared.language
 		let parameters: Parameters = [
 			"lang": languageCodeSelection
 		]
-        guard let url = URL(string: "api/v1/firstnames/random", relativeTo: API.baseURL) else {
+        guard let url = URL(string: "api/v1/firstnames", relativeTo: API.baseURL) else {
             print("Error: cannot create URL")
             return
         }
 
         manager.request(url, parameters: parameters)
             .validate()
-            .publishDecodable(type: [FirstnameDataModel].self)
+            .publishDecodable(type: FirstnameResponse.self)
             .sink(receiveCompletion: { (completion) in
                 switch completion {
                 case .finished:
@@ -65,6 +68,36 @@ final class FirstNameApiService: FirstNameApiServiceProtocol {
                 completion(response)
             }).store(in: &tokens)
     }
+
+	func fetchFirstnames(numberOfElements: Int, completion: @escaping (DataResponse<FirstnameResponse, AFError>) -> Void) {
+
+		if numberOfElements > 0 {
+			let languageCodeSelection = L10n.shared.language
+			let parameters: Parameters = [
+				"lang": languageCodeSelection,
+				"size": numberOfElements,
+				"page": 0
+			]
+			guard let url = URL(string: "api/v1/firstnames", relativeTo: API.baseURL) else {
+				print("Error: cannot create URL")
+				return
+			}
+
+			manager.request(url, parameters: parameters)
+				.validate()
+				.publishDecodable(type: FirstnameResponse.self)
+				.sink(receiveCompletion: { (completion) in
+					switch completion {
+						case .finished:
+							()
+						case .failure(let error):
+							print(error)
+					}
+				}, receiveValue: { (response) in
+					completion(response)
+				}).store(in: &tokens)
+		}
+	}
 
     func searchFirstnamesRemote(
         searchString: String,

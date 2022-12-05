@@ -9,6 +9,7 @@ import SwiftUI
 import CoreHaptics
 import L10n_swift
 import Firebase
+import FirebaseAnalytics
 
 struct DescriptionView: View {
     @Environment(\.colorScheme) var currentMode
@@ -176,7 +177,6 @@ struct DescriptionView: View {
 					if !firstNameViewModel.currentFirstname.origins.isEmpty {
 						Text("Origins:".l10n() + " \(firstNameViewModel.currentFirstname.origins)")
 							.frame(width: 250, alignment: .trailing)
-							.truncationMode(.tail)
 							.font(.title2)
 							.lineLimit(1)
 							.padding(.top)
@@ -188,10 +188,8 @@ struct DescriptionView: View {
                         print("Tapped")
                         isShowPopoverOrigins.toggle()
                     } label: {
-                        Text("Origins:".l10n() + " \(firstNameViewModel.currentFirstname.origins)")
+						MarqueeTextView(text: "Origins:".l10n() + " \(firstNameViewModel.currentFirstname.origins)", font: UIFont.preferredFont(from: .title2), delayTime: 0)
                             .frame(width: 250, alignment: .trailing)
-                            .truncationMode(.tail)
-                            .font(.title2)
                             .lineLimit(1)
 							.padding(.top)
                             .padding(.horizontal)

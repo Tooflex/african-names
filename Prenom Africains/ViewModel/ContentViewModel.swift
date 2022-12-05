@@ -12,9 +12,19 @@ class ContentViewModel: ObservableObject {
 
 	private let dataRepository = DataRepository.sharedInstance
 
-	@Published var selectedTab: Tab = Tab.home
-	@Published var currentFirstname: FirstnameDB = FirstnameDB()
-	@Published var currentLanguage = L10n.shared.language
+	@Published var selectedTab: Tab
+	@Published var currentFirstname: FirstnameDB
+	@Published var isLanguageChanged: Bool
+	@Published var searchString: NSCompoundPredicate
+	@Published var isFirstLaunch: Bool
+
+	init() {
+		selectedTab = Tab.home
+		currentFirstname = FirstnameDB()
+		isLanguageChanged = false
+		isFirstLaunch = true
+		searchString = NSCompoundPredicate()
+	}
 
 	func checkDeepLink(url: URL) -> Bool {
 		guard let host = URLComponents(url: url, resolvingAgainstBaseURL: false) else {

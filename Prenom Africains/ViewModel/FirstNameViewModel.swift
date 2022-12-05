@@ -11,7 +11,7 @@ import L10n_swift
 
 final class FirstNameViewModel: ObservableObject {
 
-    private let dataRepository = DataRepository.sharedInstance
+	private let dataRepository: DataRepositoryProtocol
 
     @Published var favoritedFirstnamesResults: [FirstnameDB] = []
     @Published var firstnamesResults: [FirstnameDB] = []
@@ -33,6 +33,7 @@ final class FirstNameViewModel: ObservableObject {
 	private var showAdCounter = 0
 
     init() {
+		dataRepository = DataRepository.sharedInstance
 		getFirstnames()
 		if !self.isFiltered {
 			self.fetchOnline()
@@ -63,11 +64,11 @@ final class FirstNameViewModel: ObservableObject {
         self.favoritedFirstnamesResults = Array(dataRepository.fetchLocalData(
             type: FirstnameDB.self,
             filter: "isFavorite = true"))
-        self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self))
+        self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self, filter: ""))
 
         if filters.isEmpty {
             self.isFiltered = false
-            self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self)).shuffled()
+            self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "")).shuffled()
         } else {
             self.isFiltered = true
             let filterOnTop = filters["onTop"] as? Int ?? -1
@@ -83,7 +84,7 @@ final class FirstNameViewModel: ObservableObject {
                     type: FirstnameDB.self,
                     filter: compoundFilter)).shuffled()
             } catch {
-                self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self)).shuffled()
+                self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "")).shuffled()
                 print("Errors in filtering")
             }
 
@@ -119,7 +120,7 @@ final class FirstNameViewModel: ObservableObject {
 			}
 
 		}
-        dataRepository.fetchFirstnames { response in
+		dataRepository.fetchFirstnames { [self] response in
 
             switch response.result {
             case .success:
@@ -128,6 +129,13 @@ final class FirstNameViewModel: ObservableObject {
                 } else {
                     print("Firstnames updated silently")
                 }
+					if let all = response.value?.totalElements {
+						if all > dataRepository.count() {
+							dataRepository.fetchFirstnames(numberOfElements: (all)) { _ in
+								self.getFirstnames()
+							}
+						}
+					}
             case .failure(let error):
                 print(error.localizedDescription)
             }

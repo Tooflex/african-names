@@ -48,7 +48,6 @@ final class AuthentificationService: AuthentificationServiceProtocol {
 				switch completion {
 					case .finished:
 						()
-						break
 					case .failure(let error):
 						print(error)
 				}

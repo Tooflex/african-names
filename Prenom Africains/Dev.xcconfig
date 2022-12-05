@@ -8,6 +8,6 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-API_ENDPOINT = 4cef-2a01-e0a-81c-fa90-61bb-421-f5df-f5f4.ngrok.io
+API_ENDPOINT = d94b-2a01-e0a-81c-fa90-3d6b-37c4-ece0-c897.ngrok.io
 API_USER = tooflex
 INTERSTITIAL_ID = ca-app-pub-3940256099942544/4411468910
