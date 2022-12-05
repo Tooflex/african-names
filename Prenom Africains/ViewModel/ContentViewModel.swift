@@ -16,11 +16,13 @@ class ContentViewModel: ObservableObject {
 	@Published var currentFirstname: FirstnameDB
 	@Published var isLanguageChanged: Bool
 	@Published var searchString: NSCompoundPredicate
+	@Published var isFirstLaunch: Bool
 
 	init() {
 		selectedTab = Tab.home
 		currentFirstname = FirstnameDB()
 		isLanguageChanged = false
+		isFirstLaunch = true
 		searchString = NSCompoundPredicate()
 	}
 

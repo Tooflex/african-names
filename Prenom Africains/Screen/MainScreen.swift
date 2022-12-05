@@ -159,18 +159,25 @@ struct MainScreen: View {
         .onAppear(perform: {
             prepareHaptics()
 			firstNameViewModel.onAppear()
+			contentViewModel.isFirstLaunch = false
         })
         .onReceive(firstNameViewModel.$firstnamesResults) { firstnames in
                 if !firstnames.isEmpty {
                     firstNameViewModel.currentFirstname = firstnames[currentIndex]
                 }
         }
-		.onReceive(contentViewModel.$isLanguageChanged) { _ in
-			if !contentViewModel.isFirstLaunch {
-				print("Get firstnames after language changed")
-				firstNameViewModel.fetchOnline()
+		.onReceive(contentViewModel.$isLanguageChanged) { isLanguageChanged in
+			// Only execute the code in this closure if the value of isLanguageChanged meets certain criteria
+			if isLanguageChanged == true {
+				if !contentViewModel.isFirstLaunch {
+					print("Get firstnames after language changed")
+					firstNameViewModel.fetchOnline()
+					contentViewModel.isFirstLaunch = false
+				}
+				contentViewModel.isLanguageChanged = false
 			}
 		}
+
     }
 
     // MARK: Previous & Next Buttons
