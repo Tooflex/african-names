@@ -5,8 +5,37 @@
   Created by Otourou Da Costa on 29/05/2021.
   
 */
-"hello-title" = "Hello, World!";
-"short" = "short";
-"medium" = "medium";
-"long" = "long";
-
+"hello-title" = "Hallo Welt!";
+"short" = "kurz";
+"medium" = "mittel";
+"long" = "lang";
+"Choose your language" = "Wähle deine Sprache";
+"Home" = "Heim";
+"Search" = "Suche";
+"My List" = "Meine Liste";
+"Params" = "Parameter";
+"Share" = "Teilen";
+"Origins: %@" = "Herkunft: %@";
+"Origins:" = "Ursprünge:";
+"Origins" = "Ursprünge";
+"Search a firstname" = "Suchen Sie einen Vornamen";
+"Only show favorites" = "Nur Favoriten anzeigen";
+"Area" = "Bereich";
+"Gender" = "Geschlecht";
+"Size" = "Größe";
+"Filter" = "Filter";
+"filters on" = "Filter an";
+"north africa" = "Nordafrika";
+"east africa" = "Ostafrika";
+"west africa" = "Westafrika";
+"south africa" = "Südafrika";
+"northern africa" = "Nordafrika";
+"eastern africa" = "Ostafrika";
+"western africa" = "Westafrika";
+"southern africa" = "Südafrika";
+"No favorite firstname" = "Kein Lieblingsvorname";
+"right button" = "rechter Knopf";
+"left button" = "linker Knopf";
+"Meaning" = "Bedeutung";
+"More..." = "Mehr...";
+"Cancel" = "Absagen";
