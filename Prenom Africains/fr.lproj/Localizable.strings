@@ -29,6 +29,7 @@
 "north africa" = "afrique du nord";
 "east africa" = "afrique de l'est";
 "west africa" = "afrique de l'ouest";
+"south africa" = "south africa";
 "northern africa" = "afrique du nord";
 "eastern africa" = "afrique de l'est";
 "western africa" = "afrique de l'ouest";
@@ -37,5 +38,8 @@
 "No favorite firstname" = "Pas de prénom favori";
 "right button" = "bouton droit";
 "left button" = "bouton gauche";
+"Meaning" = "Signification";
+"More..." = "Plus...";
+"Cancel" = "Annuler";
 
 

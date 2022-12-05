@@ -6,7 +6,36 @@
   
 */
 "hello-title" = "Hello, World!";
-"short" = "short";
-"medium" = "medium";
-"long" = "long";
-
+"short" = "breve";
+"medium" = "media";
+"long" = "lunga";
+"Choose your language" = "Seleziona la tua lingua";
+"Home" = "Iniziale";
+"Search" = "Ricerca";
+"My List" = "La mia lista";
+"Params" = "Impostazioni";
+"Share" = "Condividere";
+"Origins: %@" = "Origini: %@";
+"Origins:" = "Origini:";
+"Origins" = "Origini";
+"Search a firstname" = "Cerca un nome";
+"Only show favorites" = "Mostra solo i preferiti";
+"Area" = "La zona";
+"Gender" = "Genere";
+"Size" = "Dimensione";
+"Filter" = "Filtro";
+"filters on" = "filtri attivi";
+"north africa" = "Nord Africa";
+"east africa" = "Africa dell'est";
+"west africa" = "Africa occidentale";
+"south africa" = "Sud Africa";
+"northern africa" = "nordafrica";
+"eastern africa" = "africa orientale";
+"western africa" = "africa occidentale";
+"southern africa" = "africa meridionale";
+"No favorite firstname" = "Nessun nome preferito";
+"right button" = "pulsante destro";
+"left button" = "pulsante di sinistra";
+"Meaning" = "Significato";
+"More..." = "Di più...";
+"Cancel" = "Annulla";

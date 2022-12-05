@@ -28,6 +28,7 @@
 "north africa" = "north africa";
 "east africa" = "east africa";
 "west africa" = "west africa";
+"south africa" = "south africa";
 "northern africa" = "north africa";
 "eastern africa" = "east africa";
 "western africa" = "west africa";
@@ -35,4 +36,7 @@
 "No favorite firstname" = "No favorite firstname";
 "right button" = "right button";
 "left button" = "left button";
+"Meaning" = "Meaning";
+"More..." = "More...";
+"Cancel" = "Cancel";
 

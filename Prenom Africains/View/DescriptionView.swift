@@ -65,7 +65,7 @@ struct DescriptionView: View {
 								print("Tapped")
 								isShowPopoverMeaning.toggle()
 							} label: {
-								Text("More...")
+								Text("More...".l10n())
 									.font(/*@START_MENU_TOKEN@*/.callout/*@END_MENU_TOKEN@*/)
 									.fontWeight(.bold)
 									.foregroundColor(Color("black"))

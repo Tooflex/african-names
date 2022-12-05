@@ -37,7 +37,7 @@ struct SearchBarView: View {
                     .id(true)
                  // Force TextField to accept editable
                 if showCancelButton {
-                    Button("Cancel") {
+					Button("Cancel".l10n()) {
                         showingSheet = false
                     }
                     .foregroundColor(Color(.systemBlue))
