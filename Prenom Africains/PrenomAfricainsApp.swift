@@ -10,6 +10,7 @@ import RealmSwift
 import FirebaseCore
 import FirebaseDynamicLinks
 import GoogleMobileAds
+import Lottie
 
 @main
 struct PrenomAfricainsApp: App {
@@ -28,6 +29,8 @@ struct PrenomAfricainsApp: App {
 		searchViewModel = SearchScreenViewModel()
 		paramViewModel = ParamViewModel()
 		contentViewModel = ContentViewModel()
+		LottieConfiguration.shared.renderingEngine = .mainThread
+
 	}
 
     var body: some Scene {
