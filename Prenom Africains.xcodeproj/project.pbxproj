@@ -1303,7 +1303,7 @@
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.1;
+				minimumVersion = 4.0.0;
 			};
 		};
 		158C011829154EA00090A180 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {

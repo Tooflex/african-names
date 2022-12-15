@@ -14,14 +14,14 @@ struct LottieView: UIViewRepresentable {
     var fromMarker: String?
     var toMarker: String?
 
-    var animationView = AnimationView()
+    var animationView = LottieAnimationView()
 
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView(frame: .zero)
-
-        animationView.animation = Animation.named(name)
+        animationView.animation = LottieAnimation.named(name)
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = loopMode
+		animationView.backgroundBehavior = .pause
 
         if let fromMarker = fromMarker {
             if let toMarker = toMarker {
@@ -44,5 +44,7 @@ struct LottieView: UIViewRepresentable {
         return view
     }
 
-    func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<LottieView>) {}
+    func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<LottieView>) {
+		animationView.backgroundBehavior = .pause
+	}
 }
