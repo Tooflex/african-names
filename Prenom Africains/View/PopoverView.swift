@@ -9,19 +9,39 @@ import SwiftUI
 
 struct PopoverView: View {
 
-    @State var text: LocalizedStringKey
+	@State var title: LocalizedStringKey = "Meaning"
+	@State var titleMore: LocalizedStringKey = "More"
+    @State var text: String
     @State var textMore: String
 
     var body: some View {
         VStack {
             HStack {
-                Text(text)
+				Text(title)
                     .fontWeight(.heavy)
             }
             .font(.largeTitle)
             .padding()
-            Text(textMore)
+			Text(text)
+			Divider()
+				.padding(.bottom)
+
+			Collapsible(
+				label: { Text(titleMore) },
+				content: {
+					HStack {
+						Text(textMore)
+						Spacer()
+					}
+					.frame(maxWidth: .infinity)
+					.padding()
+				}
+			)
+			.frame(maxWidth: .infinity)
+
+			Spacer()
         }
+		.padding()
     }
 }
 
