@@ -15,6 +15,7 @@ struct FirstnameDataModel: Identifiable, Codable, Hashable {
     var gender: Gender
     var isFavorite: Bool
     var meaning: String?
+	var meaningMore: String?
     var origins: String?
     var soundURL: String?
     var regions: String?
@@ -24,6 +25,7 @@ struct FirstnameDataModel: Identifiable, Codable, Hashable {
         self.id = 0
         self.firstname = "No Firstname"
         self.meaning = "No meaning"
+		self.meaningMore = ""
         self.origins = "No origins"
         self.soundURL = ""
         self.regions = ""
@@ -33,7 +35,7 @@ struct FirstnameDataModel: Identifiable, Codable, Hashable {
     }
 
     enum CodingKeys: String, CodingKey {
-        case id, firstname, gender, meaning, origins, soundURL, regions, size
+        case id, firstname, gender, meaning, meaningMore, origins, soundURL, regions, size
     }
 
     init(from decoder: Decoder) throws {
@@ -44,6 +46,8 @@ struct FirstnameDataModel: Identifiable, Codable, Hashable {
         firstname = try container.decodeIfPresent(String.self, forKey: .firstname)
 
         meaning = try container.decodeIfPresent(String.self, forKey: .meaning)
+
+		meaningMore = try container.decodeIfPresent(String.self, forKey: .meaningMore)
 
         origins = try container.decodeIfPresent(String.self, forKey: .origins)
 
@@ -71,6 +75,7 @@ extension FirstnameDataModel {
         gender = Gender(rawValue: firstnameDB.gender) ?? Gender.undefined
         isFavorite = firstnameDB.isFavorite
         meaning = firstnameDB.meaning
+		meaningMore = firstnameDB.meaningMore
         origins = firstnameDB.origins
         soundURL = firstnameDB.soundURL
         regions = firstnameDB.regions
@@ -83,6 +88,7 @@ extension FirstnameDataModel: Equatable {
         return lhs.id == rhs.id &&
         lhs.firstname == rhs.firstname &&
         lhs.meaning == rhs.meaning &&
+		lhs.meaningMore == rhs.meaningMore &&
         lhs.origins == rhs.origins &&
         lhs.soundURL == rhs.soundURL &&
         lhs.isFavorite == rhs.isFavorite &&
