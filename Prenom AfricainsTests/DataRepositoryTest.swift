@@ -44,6 +44,8 @@ class DataRepositoryTest: XCTestCase {
 
         XCTAssert(fetchedFirstname.meaning == firstameToTest.meaning)
 
+		XCTAssert(fetchedFirstname.meaningMore == firstameToTest.meaningMore)
+
         XCTAssert(fetchedFirstname.soundURL == firstameToTest.soundURL)
 
         XCTAssert(fetchedFirstname.isFavorite == firstameToTest.isFavorite)
@@ -59,6 +61,7 @@ class DataRepositoryTest: XCTestCase {
         firstname1.id = 0
         firstname1.firstname = "Toto1"
         firstname1.meaning = "Meaning1"
+		firstname1.meaningMore = "Meaning more 1"
         firstname1.soundURL = "http://sounds.com/sound1"
         firstname1.regions = "Region 1"
         firstname1.origins = "Origin 1"
@@ -68,6 +71,7 @@ class DataRepositoryTest: XCTestCase {
         firstname2.id = 1
         firstname2.firstname = "Toto2"
         firstname2.meaning = "Meaning2"
+		firstname1.meaningMore = "Meaning more 2"
         firstname2.soundURL = "http://sounds.com/sound2"
         firstname2.regions = "Region 2"
         firstname2.origins = "Origin 2"
@@ -77,6 +81,7 @@ class DataRepositoryTest: XCTestCase {
         firstname3.id = 2
         firstname3.firstname = "Toto3"
         firstname3.meaning = "Meaning3"
+		firstname1.meaningMore = "Meaning more 3"
         firstname3.soundURL = "http://sounds.com/sound3"
         firstname3.regions = "Region 3"
         firstname3.origins = "Origin 3"
@@ -86,6 +91,7 @@ class DataRepositoryTest: XCTestCase {
         firstname4.id = 3
         firstname4.firstname = "Toto4"
         firstname4.meaning = "Meaning4"
+		firstname1.meaningMore = "Meaning more 4"
         firstname4.soundURL = "http://sounds.com/sound4"
         firstname4.regions = "Region 4"
         firstname4.origins = "Origin 4"
@@ -134,6 +140,7 @@ class DataRepositoryTest: XCTestCase {
         retrievedFirstnameDM.firstname = "Toto updated"
         retrievedFirstnameDM.gender = Gender.male
         retrievedFirstnameDM.meaning = "meaning updated"
+		retrievedFirstnameDM.meaningMore = "meaning more updated"
         retrievedFirstnameDM.origins = "origin updated"
         retrievedFirstnameDM.size = Size.long
         retrievedFirstnameDM.soundURL = "soundurl updated"
@@ -148,6 +155,7 @@ class DataRepositoryTest: XCTestCase {
         XCTAssert(retrievedFirstnameAfterUpdated.firstname == "Toto updated")
         XCTAssert(retrievedFirstnameAfterUpdated.gender == Gender.male)
         XCTAssert(retrievedFirstnameAfterUpdated.meaning == "meaning updated")
+		XCTAssert(retrievedFirstnameAfterUpdated.meaningMore == "meaning more updated")
         XCTAssert(retrievedFirstnameAfterUpdated.origins == "origin updated")
         XCTAssert(retrievedFirstnameAfterUpdated.size == Size.long)
         XCTAssert(retrievedFirstnameAfterUpdated.soundURL == "soundurl updated")

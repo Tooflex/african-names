@@ -51,7 +51,8 @@ struct DescriptionView: View {
                     }
 
                     // MARK: Meaning text
-                    if firstNameViewModel.currentFirstname.meaning.count > 65 {
+					if firstNameViewModel.currentFirstname.meaning.count > 65
+						|| firstNameViewModel.currentFirstname.meaningMore.count > 0 {
 						ZStack(alignment: .bottomTrailing) {
 							Text(firstNameViewModel.currentFirstname.meaning.trimmingCharacters(in: .whitespacesAndNewlines))
 								.font(.title2)
@@ -75,8 +76,8 @@ struct DescriptionView: View {
 						}
                     .popover(isPresented: $isShowPopoverMeaning) {
                         PopoverView(
-                            text: LocalizedStringKey("Meaning".l10n()),
-                            textMore: "\(firstNameViewModel.currentFirstname.meaning)")
+							text: firstNameViewModel.currentFirstname.meaning,
+							textMore: "\(firstNameViewModel.currentFirstname.meaningMore)")
 						.onAppear {
 							Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
 								AnalyticsParameterItemID: firstNameViewModel.currentFirstname.id,
@@ -197,8 +198,10 @@ struct DescriptionView: View {
                     .foregroundColor(.white)
                     .popover(isPresented: $isShowPopoverOrigins) {
                         PopoverView(
-                            text: LocalizedStringKey("Origins"),
-                            textMore: "\(firstNameViewModel.currentFirstname.origins)")
+                            title: LocalizedStringKey("Origins"),
+							text: "\(firstNameViewModel.currentFirstname.origins)",
+                            textMore: "\(firstNameViewModel.currentFirstname.origins)"
+						)
                     }
                 }
 

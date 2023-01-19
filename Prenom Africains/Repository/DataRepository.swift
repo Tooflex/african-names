@@ -33,6 +33,26 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
     public static let sharedInstance = DataRepository()
 
     init(apiService: FirstNameApiServiceProtocol = FirstNameApiService()) {
+
+		let config = Realm.Configuration(
+			// Set the new schema version. This must be greater than the previously used
+			// version (if you've never set a schema version before, the version is 0).
+			schemaVersion: 1,
+
+			// Set the block which will be called automatically when opening a Realm with
+			// a schema version lower than the one set above
+			migrationBlock: { migration, oldSchemaVersion in
+
+				if oldSchemaVersion < 1 {
+					// Add your class name where you have added new property 'tranport'.
+					migration.enumerateObjects(ofType: FirstnameDB.className()) { _, newObject in
+						newObject?["meaningMore"] = ""
+					}
+				}
+			}
+		)
+		Realm.Configuration.defaultConfiguration = config
+
         // swiftlint:disable force_try
         realm = try! Realm()
         self.apiService = apiService
@@ -45,6 +65,7 @@ final class DataRepository: ObservableObject, DataRepositoryProtocol {
         firstnameDB.firstname = firstname.firstname ?? ""
         firstnameDB.gender = firstname.gender.rawValue
         firstnameDB.meaning = firstname.meaning ?? ""
+		firstnameDB.meaningMore = firstname.meaningMore ?? ""
         firstnameDB.origins = firstname.origins ?? ""
         firstnameDB.firstnameSize = firstname.size?.rawValue ?? ""
         firstnameDB.regions = firstname.regions ?? ""

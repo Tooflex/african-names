@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		15061FE52725E1B80022CBBB /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15061FE42725E1B80022CBBB /* Size.swift */; };
 		151297BE28FB0B98000BB26C /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151297BD28FB0B98000BB26C /* ContentViewModel.swift */; };
+		1516C84E29754FE300072639 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1516C84D29754FE300072639 /* AppDelegate.swift */; };
+		1516C850297551A800072639 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 1516C84F297551A800072639 /* FirebaseMessaging */; };
 		151A063926E27F9800F8760D /* DataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151A063826E27F9800F8760D /* DataRepository.swift */; };
+		151AB232294B1D8A00F0B19C /* Collabsible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151AB231294B1D8A00F0B19C /* Collabsible.swift */; };
 		152CDB60266FEB1F003B65C4 /* LegacyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152CDB5F266FEB1F003B65C4 /* LegacyTextField.swift */; };
 		152F3C492649B53F000D564B /* SlideOverCard in Frameworks */ = {isa = PBXBuildFile; productRef = 152F3C482649B53F000D564B /* SlideOverCard */; };
 		152F3C4B264C6F71000D564B /* SearchBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152F3C4A264C6F71000D564B /* SearchBarButton.swift */; };
@@ -129,7 +132,9 @@
 /* Begin PBXFileReference section */
 		15061FE42725E1B80022CBBB /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		151297BD28FB0B98000BB26C /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		1516C84D29754FE300072639 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		151A063826E27F9800F8760D /* DataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepository.swift; sourceTree = "<group>"; };
+		151AB231294B1D8A00F0B19C /* Collabsible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collabsible.swift; sourceTree = "<group>"; };
 		152CDB5F266FEB1F003B65C4 /* LegacyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegacyTextField.swift; sourceTree = "<group>"; };
 		152F3C4A264C6F71000D564B /* SearchBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarButton.swift; sourceTree = "<group>"; };
 		15300A87266C1F47000AAAF6 /* SearchCriteria.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCriteria.swift; sourceTree = "<group>"; };
@@ -231,6 +236,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1516C850297551A800072639 /* FirebaseMessaging in Frameworks */,
 				156F0B1A26081CA60076AB4B /* Lottie in Frameworks */,
 				15454CCA27590D6A00D0B699 /* L10n-swift in Frameworks */,
 				152F3C492649B53F000D564B /* SlideOverCard in Frameworks */,
@@ -359,6 +365,7 @@
 				15EFF4AE290FCDCD00755906 /* GoogleService-Info.plist */,
 				15D4D1E82916C4C80019975B /* RemoteConfigDefaults.plist */,
 				15F8801B27408CC400766E30 /* Localizable.strings */,
+				1516C84D29754FE300072639 /* AppDelegate.swift */,
 			);
 			path = "Prenom Africains";
 			sourceTree = "<group>";
@@ -415,6 +422,7 @@
 				157FFA56273EF2BF0037E32A /* WaveShape.swift */,
 				15AA134B2751467200EB98FE /* PopoverView.swift */,
 				15C2FAAB292A6115003E97BA /* MarqueeTextView.swift */,
+				151AB231294B1D8A00F0B19C /* Collabsible.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -567,6 +575,7 @@
 				15EFF4B5290FD10200755906 /* FirebaseDynamicLinks */,
 				15EFF4B7290FD10200755906 /* FirebaseRemoteConfigSwift */,
 				15D4D1E62916BD020019975B /* GoogleMobileAds */,
+				1516C84F297551A800072639 /* FirebaseMessaging */,
 			);
 			productName = "Prenom Africains";
 			productReference = 156F0ADE2608172F0076AB4B /* Prenom Africains.app */;
@@ -790,6 +799,7 @@
 				15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */,
 				15FC2A4B2648A10B0025BCF3 /* SlidingOverCard.swift in Sources */,
 				152F3C4B264C6F71000D564B /* SearchBarButton.swift in Sources */,
+				1516C84E29754FE300072639 /* AppDelegate.swift in Sources */,
 				1598AA8A28D6291500CB600A /* AuthentificationService.swift in Sources */,
 				15E052CD275047C800C38715 /* Configuration.swift in Sources */,
 				15D167222751CB7A00992D7C /* UIDevice.swift in Sources */,
@@ -803,6 +813,7 @@
 				157FFA55273ED3540037E32A /* FilterChip.swift in Sources */,
 				15F8801427404D8200766E30 /* CountryLibrary.swift in Sources */,
 				15D4D1EB2916C57A0019975B /* RemoteConfigKeys.swift in Sources */,
+				151AB232294B1D8A00F0B19C /* Collabsible.swift in Sources */,
 				15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */,
 				15EA7DE6260933C8006BC8F2 /* Gender.swift in Sources */,
 				155133AE2934318C001E9FFB /* Pageable.swift in Sources */,
@@ -1047,7 +1058,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tooflexdev.Prenom-Africains";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1081,7 +1092,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tooflexdev.Prenom-Africains";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1303,7 +1314,7 @@
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.1;
+				minimumVersion = 4.0.0;
 			};
 		};
 		158C011829154EA00090A180 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
@@ -1333,6 +1344,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1516C84F297551A800072639 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 15EFF4B0290FD10200755906 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
 		152F3C482649B53F000D564B /* SlideOverCard */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 152F3C472649B53F000D564B /* XCRemoteSwiftPackageReference "SlideOverCard" */;
