@@ -15,6 +15,8 @@ import Lottie
 @main
 struct PrenomAfricainsApp: App {
 
+	@UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+
 	var contentViewModel: ContentViewModel
 	var firstnameViewModel: FirstNameViewModel
 	var searchViewModel: SearchScreenViewModel
