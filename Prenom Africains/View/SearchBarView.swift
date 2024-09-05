@@ -26,7 +26,9 @@ struct SearchBarView: View {
                     // Fallback on earlier versions
                 LegacyTextField(text: $searchText, isFirstResponder: $isFirstResponder)
                     .onChange(of: searchText) { newValue in
-                        searchScreenViewModel.searchFirstnamesLocal(searchString: newValue)
+                        Task {
+                            try? await searchScreenViewModel.searchFirstnames(searchString: newValue)
+                        }
                     }
                     .onAppear(perform: {
                         self.showCancelButton = true

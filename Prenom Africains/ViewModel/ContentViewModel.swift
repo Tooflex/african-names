@@ -8,17 +8,19 @@
 import SwiftUI
 import L10n_swift
 
+@MainActor
 class ContentViewModel: ObservableObject {
-
-	private let dataRepository = DataRepository.sharedInstance
 
 	@Published var selectedTab: Tab
 	@Published var currentFirstname: FirstnameDB
 	@Published var isLanguageChanged: Bool
 	@Published var searchString: NSCompoundPredicate
 	@Published var isFirstLaunch: Bool
+    
+    private let service: FirstNameService
 
-	init() {
+	init(service: FirstNameService) {
+        self.service = service
 		selectedTab = Tab.home
 		currentFirstname = FirstnameDB()
 		isLanguageChanged = false
@@ -63,7 +65,7 @@ class ContentViewModel: ObservableObject {
 	}
 
 	func getFirstnameFromLink(name: String) -> Bool {
-		var firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self)).shuffled()
+        var firstnamesResults = Array(service.getLocalFirstnames().shuffled())
 
 		if let firstnameToPutOnTop = firstnamesResults.filter({ $0.firstname.lowercased() == name.lowercased() }).first {
 			firstnamesResults.move(firstnameToPutOnTop, to: 0)
