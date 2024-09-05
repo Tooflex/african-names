@@ -78,11 +78,11 @@
 		15CE568028E893D400F09FE3 /* PrintOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE567F28E893D400F09FE3 /* PrintOption.swift */; };
 		15D167222751CB7A00992D7C /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D167212751CB7A00992D7C /* UIDevice.swift */; };
 		15D4A12E2723752000D8BCA4 /* md-female-select.json in Resources */ = {isa = PBXBuildFile; fileRef = 15D4A12D2723752000D8BCA4 /* md-female-select.json */; };
-		15D4D1E72916BD020019975B /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 15D4D1E62916BD020019975B /* GoogleMobileAds */; };
 		15D4D1E92916C4C80019975B /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15D4D1E82916C4C80019975B /* RemoteConfigDefaults.plist */; };
 		15D4D1EB2916C57A0019975B /* RemoteConfigKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4D1EA2916C57A0019975B /* RemoteConfigKeys.swift */; };
 		15D4D1ED2916C6090019975B /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4D1EC2916C6090019975B /* RemoteConfigManager.swift */; };
 		15D4D1EF2916D4C10019975B /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4D1EE2916D4C10019975B /* AdsManager.swift */; };
+		15DBA1892C89E4BA0072C4E3 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 15DBA1882C89E4BA0072C4E3 /* GoogleMobileAds */; };
 		15E052C7275046BD00C38715 /* FavoriteListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052C6275046BD00C38715 /* FavoriteListViewModelTest.swift */; };
 		15E052C9275046E300C38715 /* SearchScreenViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052C8275046E300C38715 /* SearchScreenViewModelTest.swift */; };
 		15E052CD275047C800C38715 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052CC275047C800C38715 /* Configuration.swift */; };
@@ -242,8 +242,8 @@
 				15454CCA27590D6A00D0B699 /* L10n-swift in Frameworks */,
 				152F3C492649B53F000D564B /* SlideOverCard in Frameworks */,
 				15515FC52677D04B009C2BDF /* Realm in Frameworks */,
+				15DBA1892C89E4BA0072C4E3 /* GoogleMobileAds in Frameworks */,
 				15EFF4B2290FD10200755906 /* FirebaseAnalyticsSwift in Frameworks */,
-				15D4D1E72916BD020019975B /* GoogleMobileAds in Frameworks */,
 				15EFF4B6290FD10200755906 /* FirebaseDynamicLinks in Frameworks */,
 				15EFF4B4290FD10200755906 /* FirebaseCrashlytics in Frameworks */,
 				15EFF4B8290FD10200755906 /* FirebaseRemoteConfigSwift in Frameworks */,
@@ -576,9 +576,9 @@
 				15EFF4B3290FD10200755906 /* FirebaseCrashlytics */,
 				15EFF4B5290FD10200755906 /* FirebaseDynamicLinks */,
 				15EFF4B7290FD10200755906 /* FirebaseRemoteConfigSwift */,
-				15D4D1E62916BD020019975B /* GoogleMobileAds */,
 				1516C84F297551A800072639 /* FirebaseMessaging */,
 				15A2216F2C7C725200C5B2EA /* Supabase */,
+				15DBA1882C89E4BA0072C4E3 /* GoogleMobileAds */,
 			);
 			productName = "Prenom Africains";
 			productReference = 156F0ADE2608172F0076AB4B /* Prenom Africains.app */;
@@ -683,8 +683,8 @@
 				15515FC32677D04B009C2BDF /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				15454CC827590D6A00D0B699 /* XCRemoteSwiftPackageReference "L10n-swift" */,
 				15EFF4B0290FD10200755906 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				158C011829154EA00090A180 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				15A2216E2C7C725200C5B2EA /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				15DBA1872C89E4BA0072C4E3 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 156F0ADF2608172F0076AB4B /* Products */;
 			projectDirPath = "";
@@ -1323,14 +1323,6 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		158C011829154EA00090A180 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.5.0;
-			};
-		};
 		15A2216E2C7C725200C5B2EA /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase-community/supabase-swift.git";
@@ -1345,6 +1337,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.4.2;
+			};
+		};
+		15DBA1872C89E4BA0072C4E3 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.8.0;
 			};
 		};
 		15EFF4B0290FD10200755906 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -1398,9 +1398,9 @@
 			package = 15BE326C2624D0E700D8DC8D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		15D4D1E62916BD020019975B /* GoogleMobileAds */ = {
+		15DBA1882C89E4BA0072C4E3 /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 158C011829154EA00090A180 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			package = 15DBA1872C89E4BA0072C4E3 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
 		};
 		15EFF4B1290FD10200755906 /* FirebaseAnalyticsSwift */ = {

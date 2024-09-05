@@ -31,35 +31,33 @@ class FirstNameViewModel: ObservableObject {
         self.service = service
         self.adFrequency = RemoteConfigManager.value(forKey: RemoteConfigKeys.adFrequency) as? Int ?? 10
         
-        loadFirstnames()
+        Task { await loadFirstnames() }
         
-        // Observe changes in UserDefaults for filters
         NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+            .receive(on: RunLoop.main)
             .sink { [weak self] _ in
-                self?.loadFirstnames()
+                Task { await self?.loadFirstnames() }
             }
             .store(in: &cancellables)
     }
     
     func onAppear() {
-        loadFirstnames()
-        if !isFiltered {
-            fetchOnline()
+        Task {
+            await loadFirstnames()
+            if !isFiltered {
+                await fetchOnline()
+            }
         }
     }
     
-    func loadFirstnames() {
+    func loadFirstnames() async {
         let filters = UserDefaults.standard.object(forKey: "Filters") as? [String: Any] ?? [:]
         
-        Task {
-            favoritedFirstnames = service.getLocalFirstnames(filter: "isFavorite = true")
-        }
+        favoritedFirstnames = service.getLocalFirstnames(filter: "isFavorite = true")
         
         if filters.isEmpty {
-            Task {
-                isFiltered = false
-                firstnames = service.getLocalFirstnames().shuffled()
-            }
+            isFiltered = false
+            firstnames = service.getLocalFirstnames().shuffled()
         } else {
             isFiltered = true
             firstnames = service.filterFirstnames(filters: filters).shuffled()
@@ -73,15 +71,11 @@ class FirstNameViewModel: ObservableObject {
             currentFirstname = first
             noResults = false
         } else {
-            Task {
-                noResults = true
-            }
+            noResults = true
         }
         
-        Task {
-            noData = firstnames.isEmpty
-        }
-        // Move firstnameOnTop to the top of the list if it exists
+        noData = firstnames.isEmpty
+        
         if let onTop = firstnameOnTop, let index = firstnames.firstIndex(where: { $0.id == onTop.id }) {
             firstnames.move(fromOffsets: IndexSet(integer: index), toOffset: 0)
         }
@@ -89,27 +83,21 @@ class FirstNameViewModel: ObservableObject {
     
     func toggleFavorited(firstname: FirstnameDB) async {
         try? await service.toggleFavorited(firstname: firstname)
-        loadFirstnames()
+        await loadFirstnames()
     }
     
-    func fetchOnline() {
+    func fetchOnline() async {
         guard !isLoading else { return }
         
         isLoading = true
         
-        Task {
-            do {
-                _ = try await service.fetchFirstnames(page: 0, size: 1000)
-                DispatchQueue.main.async {
-                    self.loadFirstnames()
-                    self.isLoading = false
-                }
-            } catch {
-                print("Error fetching firstnames: \(error)")
-                DispatchQueue.main.async {
-                    self.isLoading = false
-                }
-            }
+        do {
+            _ = try await service.fetchFirstnames(page: 0, size: 1000)
+            await loadFirstnames()
+            isLoading = false
+        } catch {
+            print("Error fetching firstnames: \(error)")
+            isLoading = false
         }
     }
     
@@ -124,20 +112,16 @@ class FirstNameViewModel: ObservableObject {
     func clearFilters() {
         UserDefaults.standard.removeObject(forKey: "Filters")
         isFiltered = false
-        loadFirstnames()
+        Task { await loadFirstnames() }
     }
     
-    func searchFirstnames(searchString: String) {
-        Task {
-            do {
-                let searchResults = try await service.searchFirstnames(searchString: searchString, page: 0, size: 1000)
-                DispatchQueue.main.async {
-                    self.firstnames = searchResults.map { FirstnameDB(from: $0) }
-                    self.noResults = self.firstnames.isEmpty
-                }
-            } catch {
-                print("Error searching firstnames: \(error)")
-            }
+    func searchFirstnames(searchString: String) async {
+        do {
+            let searchResults = try await service.searchFirstnames(searchString: searchString, page: 0, size: 1000)
+            firstnames = searchResults.map { FirstnameDB(from: $0) }
+            noResults = firstnames.isEmpty
+        } catch {
+            print("Error searching firstnames: \(error)")
         }
     }
 }
