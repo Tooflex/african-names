@@ -16,33 +16,65 @@ import Lottie
 struct PrenomAfricainsApp: App {
 
 	@UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-
+    
+    let firstnameRepository: FirstNameRepository
+    
+    let fistnameService: FirstNameService
+    
 	var contentViewModel: ContentViewModel
 	var firstnameViewModel: FirstNameViewModel
 	var searchViewModel: SearchScreenViewModel
 	var paramViewModel: ParamViewModel
+    var searchScreenViewModel: SearchScreenViewModel
+    var favoriteListViewModel: FavoriteListViewModel
 	let adsViewModel = AdsViewModel.shared
 
 	init() {
 		FirebaseApp.configure()
 		RemoteConfigManager.configure()
 		GADMobileAds.sharedInstance().start(completionHandler: nil)
-		firstnameViewModel = FirstNameViewModel()
-		searchViewModel = SearchScreenViewModel()
-		paramViewModel = ParamViewModel()
-		contentViewModel = ContentViewModel()
+        
+        firstnameRepository = FirstNameRepository()
+        fistnameService = FirstNameService(repository: firstnameRepository)
+        contentViewModel = ContentViewModel(service: fistnameService)
+        firstnameViewModel = FirstNameViewModel(service: fistnameService)
+        paramViewModel = ParamViewModel()
+        searchViewModel = SearchScreenViewModel(service: fistnameService)
+        searchScreenViewModel = SearchScreenViewModel(service: fistnameService)
+        favoriteListViewModel = FavoriteListViewModel(service: fistnameService)
+        
 		LottieConfiguration.shared.renderingEngine = .mainThread
 
 	}
+    
+    func getEncryptionKey() -> Data? {
+        let query: [String: Any] = [
+            kSecClass as String: kSecClassGenericPassword,
+            kSecAttrService as String: "com.tooflexdev.Prenom-Africains.realm.encryptionKey",
+            kSecReturnData as String: kCFBooleanTrue!,
+            kSecMatchLimit as String: kSecMatchLimitOne
+        ]
+        
+        var dataTypeRef: AnyObject? = nil
+        let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &dataTypeRef)
+        
+        if status == errSecSuccess {
+            return dataTypeRef as? Data
+        } else {
+            print("Error retrieving key from Keychain: \(status)")
+            return nil
+        }
+    }
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(firstnameViewModel)
-                 .environmentObject(searchViewModel)
-                 .environmentObject(paramViewModel)
-				 .environmentObject(contentViewModel)
-				 .environmentObject(adsViewModel)
+                .environmentObject(searchScreenViewModel)
+                .environmentObject(paramViewModel)
+                .environmentObject(contentViewModel)
+                .environmentObject(adsViewModel)
+                .environmentObject(favoriteListViewModel)
 			// 1
 				 .onOpenURL { url in
 					 print("Incoming URL parameter is: \(url)")
@@ -81,6 +113,12 @@ struct PrenomAfricainsApp: App {
 						 print("No Link Handled")
 					 }
 				 }
+//                 .onAppear {
+//                     if let key = getEncryptionKey() {
+//                         print("eee")
+//                         print(key)
+//                     }
+//                 }
         }
     }
 }

@@ -6,38 +6,46 @@
 //
 
 import Foundation
+import SwiftUI
 
+@MainActor
 final class FavoriteListViewModel: ObservableObject {
-
-    @Published var selectedFirstname: FirstnameDB
-
-    let dataRepository = DataRepository.sharedInstance
-    @Published var favoritedFirstnamesResults: [FirstnameDB]?
-
-	let userDefaults: UserDefaults
-
-    init(userDefaults: UserDefaults) {
-		self.userDefaults = userDefaults
-        self.favoritedFirstnamesResults = Array(dataRepository.fetchLocalData(
-            type: FirstnameDB.self,
-			filter: "isFavorite = true")).sorted {
-				return $0.firstname < $1.firstname
-			}
-        selectedFirstname = FirstnameDB()
+    private let service: FirstNameService
+    
+    @Published var selectedFirstname: FirstnameDB?
+    @Published var favoritedFirstnames: [FirstnameDB] = []
+    
+    init(service: FirstNameService) {
+        self.service = service
+        Task {
+            await loadFavorites()
+        }
     }
-
+    
+    func loadFavorites() async {
+        do {
+            favoritedFirstnames = try await service.getFavoritedFirstnames()
+            favoritedFirstnames.sort { $0.firstname < $1.firstname }
+        } catch {
+            print("Error loading favorites: \(error)")
+        }
+    }
+    
     func saveFilters() {
+        guard let selectedFirstname = selectedFirstname else { return }
         let filters = [
             "isFavorite": true,
             "onTop": selectedFirstname.id
         ] as [String: Any]
-        userDefaults.set(filters, forKey: "Filters")
+        UserDefaults.standard.set(filters, forKey: "Filters")
     }
-
-    func removeFromList(firstname: FirstnameDB) {
-        dataRepository.toggleFavorited(firstnameObj: firstname)
-        self.favoritedFirstnamesResults = Array(dataRepository.fetchLocalData(
-            type: FirstnameDB.self,
-            filter: "isFavorite = true"))
+    
+    func removeFromList(firstname: FirstnameDB) async {
+        do {
+            try await service.toggleFavorited(firstname: firstname)
+            await loadFavorites()
+        } catch {
+            print("Error toggling favorite: \(error)")
+        }
     }
 }

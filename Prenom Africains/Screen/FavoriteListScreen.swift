@@ -9,19 +9,14 @@ import SwiftUI
 import L10n_swift
 
 struct FavoriteListScreen: View {
-
     @Environment(\.colorScheme) var currentMode
-
     @Environment(\.verticalSizeClass) var vSizeClass
-
     @Environment(\.horizontalSizeClass) var hSizeClass
-
     @Binding var selectedTab: Tab
-
-	@StateObject fileprivate var viewModel = FavoriteListViewModel(userDefaults: UserDefaults.standard)
+    
+    @EnvironmentObject private var viewModel: FavoriteListViewModel
 
     var body: some View {
-
         VStack {
             Group {
                 Spacer()
@@ -31,55 +26,67 @@ struct FavoriteListScreen: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
             }
-            if let favorites = viewModel.favoritedFirstnamesResults {
-                if favorites.isEmpty {
-                    VStack {
-                        Spacer()
-
-                        LottieView(name: "noresults", loopMode: .playOnce)
-                            .frame(
-                                width: 54 * sizeMultiplier(vSizeClass, hSizeClass),
-                                height: 54 * sizeMultiplier(vSizeClass, hSizeClass))
-                        Text("No favorite firstname".l10n())
-
-                        Spacer()
-                    }
-
-                } else {
+            
+            if viewModel.favoritedFirstnames.isEmpty {
+                VStack {
                     Spacer()
-                    List {
-                        ForEach(favorites) { firstname in
+                    LottieView(name: "noresults", loopMode: .playOnce)
+                        .frame(
+                            width: 54 * sizeMultiplier(vSizeClass, hSizeClass),
+                            height: 54 * sizeMultiplier(vSizeClass, hSizeClass))
+                    Text("No favorite firstname".l10n())
+                    Spacer()
+                }
+            } else {
+                Spacer()
+                List {
+                    ForEach(viewModel.favoritedFirstnames) { firstname in
                         Button(action: {
                             viewModel.selectedFirstname = firstname
                             viewModel.saveFilters()
-							self.selectedTab = .home // Go back to Home screen
+                            selectedTab = .home // Go back to Home screen
                         }, label: {
-                            if firstname.gender == Gender.male.rawValue {
-                                Text("\(firstname.firstname)").foregroundColor(Color("blue"))
-                            } else if firstname.gender == Gender.female.rawValue {
-                                Text("\(firstname.firstname)").foregroundColor(Color("pink"))
-                            } else if firstname.gender == Gender.mixed.rawValue {
-                                Text("\(firstname.firstname)").foregroundColor(Color("purple"))
-                            } else {
-                                Text("\(firstname.firstname)").foregroundColor(Color("black"))
-                            }
-                        }).padding(10)
-                                .swipeActions {
+                            Text("\(firstname.firstname)")
+                                .foregroundColor(colorForGender(firstname.gender))
+                        })
+                        .padding(10)
+                        .swipeActions {
                             Button {
-                                self.viewModel.removeFromList(firstname: firstname)
+                                Task {
+                                    await viewModel.removeFromList(firstname: firstname)
+                                }
                             } label: {
                                 Label("Delete".l10n(), systemImage: "trash")
                             }
                             .tint(.red)
                         }
-                        }
-
                     }
-                    .background(.regularMaterial)
-                    Spacer()
                 }
+                .background(.regularMaterial)
+                Spacer()
             }
-
+        }
+        .task {
+            await viewModel.loadFavorites()
+        }
+    }
+    
+    private func colorForGender(_ gender: String) -> Color {
+        switch gender {
+        case Gender.male.rawValue:
+            return Color("blue")
+        case Gender.female.rawValue:
+            return Color("pink")
+        case Gender.mixed.rawValue:
+            return Color("purple")
+        default:
+            return Color("black")
         }
     }
 }
+
+//// Assuming this function is defined elsewhere in your project
+//func sizeMultiplier(_ vSizeClass: UserInterfaceSizeClass?, _ hSizeClass: UserInterfaceSizeClass?) -> CGFloat {
+//    // Implementation details
+//    return 1.0 // Placeholder return value
+//}

@@ -7,192 +7,168 @@
 
 import Foundation
 import Combine
-import L10n_swift
+import SwiftUI
 
-final class FirstNameViewModel: ObservableObject {
-
-	private let dataRepository: DataRepositoryProtocol
-
-    @Published var favoritedFirstnamesResults: [FirstnameDB] = []
-    @Published var firstnamesResults: [FirstnameDB] = []
-
+@MainActor
+class FirstNameViewModel: ObservableObject {
+    private let service: FirstNameService
+    
+    @Published var favoritedFirstnames: [FirstnameDB] = []
+    @Published var firstnames: [FirstnameDB] = []
     @Published var isLoading = false
     @Published var isFiltered = false
-    @Published var noResults = false // No filter results
-    @Published var noData = false // No firstnames in DB
-
-    @Published var currentFirstname: FirstnameDB = FirstnameDB()
-    var firstnameOnTop: FirstnameDB = FirstnameDB()
-
-    private var task: AnyCancellable?
-
-	private let loginApiService = AuthentificationService()
-
-	@Published var adFrequency = RemoteConfigManager.value(forKey: RemoteConfigKeys.adFrequency)
-
-	private var showAdCounter = 0
-
-    init() {
-		dataRepository = DataRepository.sharedInstance
-		getFirstnames()
-		if !self.isFiltered {
-			self.fetchOnline()
-		}
+    @Published var noResults = false
+    @Published var noData = false
+    @Published var currentFirstname: FirstnameDB?
+    @Published var firstnameOnTop: FirstnameDB?
+    
+    @Published var adFrequency: Int
+    private var showAdCounter = 0
+    
+    private var cancellables = Set<AnyCancellable>()
+    
+    init(service: FirstNameService) {
+        self.service = service
+        self.adFrequency = RemoteConfigManager.value(forKey: RemoteConfigKeys.adFrequency) as? Int ?? 10
+        
+        loadFirstnames()
+        
+        // Observe changes in UserDefaults for filters
+        NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+            .sink { [weak self] _ in
+                self?.loadFirstnames()
+            }
+            .store(in: &cancellables)
     }
-
+    
     func onAppear() {
-		let defaults = UserDefaults.standard
-		let filters = defaults.object(forKey: "Filters") as? [String: Any] ?? [String: Any]()
-		print("Current filters:")
-		print(filters)
-       getFirstnames()
+        loadFirstnames()
+        if !isFiltered {
+            fetchOnline()
+        }
     }
-
-    /// Clear filters from UserDefaults
-    func clearFilters() {
-        let filters = [String: Any]()
-        print("My filters")
-        print(filters)
-        UserDefaults.standard.set(filters, forKey: "Filters")
-        self.isFiltered = false
-    }
-
-    func getFirstnames() {
-        let defaults = UserDefaults.standard
-        let filters = defaults.object(forKey: "Filters") as? [String: Any] ?? [String: Any]()
-
-        self.favoritedFirstnamesResults = Array(dataRepository.fetchLocalData(
-            type: FirstnameDB.self,
-            filter: "isFavorite = true"))
-        self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self, filter: ""))
-
+    
+    func loadFirstnames() {
+        let filters = UserDefaults.standard.object(forKey: "Filters") as? [String: Any] ?? [:]
+        
+        Task {
+            favoritedFirstnames = service.getLocalFirstnames(filter: "isFavorite = true")
+        }
+        
         if filters.isEmpty {
-            self.isFiltered = false
-            self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "")).shuffled()
+            Task {
+                isFiltered = false
+                firstnames = service.getLocalFirstnames().shuffled()
+            }
         } else {
-            self.isFiltered = true
-            let filterOnTop = filters["onTop"] as? Int ?? -1
-            if filterOnTop != -1 {
-                firstnameOnTop = dataRepository.fetchLocalData(
-                    type: FirstnameDB.self,
-                    filter: "id = \(filterOnTop)").first ?? FirstnameDB()
-            }
-
-            let compoundFilter = self.createFilterCompound(filterArray: filters)
-            do {
-                try self.firstnamesResults = Array(dataRepository.fetchLocalData(
-                    type: FirstnameDB.self,
-                    filter: compoundFilter)).shuffled()
-            } catch {
-                self.firstnamesResults = Array(dataRepository.fetchLocalData(type: FirstnameDB.self, filter: "")).shuffled()
-                print("Errors in filtering")
-            }
-
-        }
-        // Put chosen firstname from favorite list first in main screen
-        if firstnameOnTop.id != 0 {
-            if let firstnameToPutOnTop = self.firstnamesResults.filter({ $0.id == firstnameOnTop.id }).first {
-                self.firstnamesResults.move(firstnameToPutOnTop, to: 0)
+            isFiltered = true
+            firstnames = service.filterFirstnames(filters: filters).shuffled()
+            
+            if let filterOnTop = filters["onTop"] as? Int, filterOnTop != -1 {
+                firstnameOnTop = firstnames.first { $0.id == filterOnTop }
             }
         }
-
-        if let firstFirstname = self.firstnamesResults.first {
-            self.currentFirstname = firstFirstname
-            self.noResults = false
+        
+        if let first = firstnames.first {
+            currentFirstname = first
+            noResults = false
         } else {
-            self.noResults = true
+            Task {
+                noResults = true
+            }
+        }
+        
+        Task {
+            noData = firstnames.isEmpty
+        }
+        // Move firstnameOnTop to the top of the list if it exists
+        if let onTop = firstnameOnTop, let index = firstnames.firstIndex(where: { $0.id == onTop.id }) {
+            firstnames.move(fromOffsets: IndexSet(integer: index), toOffset: 0)
         }
     }
-
-    func toggleFavorited(firstnameObj: FirstnameDB) {
-        objectWillChange.send()
-        dataRepository.toggleFavorited(firstnameObj: firstnameObj)
+    
+    func toggleFavorited(firstname: FirstnameDB) async {
+        try? await service.toggleFavorited(firstname: firstname)
+        loadFirstnames()
     }
-
+    
     func fetchOnline() {
-		var lastLanguage = getLastSelectedLanguages()
-		if noResults || (lastLanguage.count > 1 && lastLanguage[0] != lastLanguage[1]) {
-			self.isLoading = true
-			if let getLast = lastLanguage.popLast() {
-				var newTab = [String]()
-				newTab.append(getLast)
-				UserDefaults.standard.set(newTab, forKey: "LastSelectedLanguage")
-			}
-
-		}
-		dataRepository.fetchFirstnames { [self] response in
-
-            switch response.result {
-            case .success:
-                if self.noResults {
-                    self.getFirstnames()
-                } else {
-                    print("Firstnames updated silently")
+        guard !isLoading else { return }
+        
+        isLoading = true
+        
+        Task {
+            do {
+                _ = try await service.fetchFirstnames(page: 0, size: 1000)
+                DispatchQueue.main.async {
+                    self.loadFirstnames()
+                    self.isLoading = false
                 }
-					if let all = response.value?.totalElements {
-						if all > dataRepository.count() {
-							dataRepository.fetchFirstnames(numberOfElements: (all)) { _ in
-								self.getFirstnames()
-							}
-						}
-					}
-            case .failure(let error):
-                print(error.localizedDescription)
+            } catch {
+                print("Error fetching firstnames: \(error)")
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                }
             }
-            self.isLoading = false
         }
     }
-
-	func incrementShowAdCounter(_ adViewModel: AdsViewModel) {
-		self.showAdCounter += 1
-		print(showAdCounter)
-		if self.showAdCounter >= Int(self.adFrequency) ?? 10 {
-			self.showAdCounter = 0
-			adViewModel.showInterstitial.toggle()
-		}
-	}
-
-    private func createFilterCompound(filterArray: [String: Any]) -> NSCompoundPredicate {
-
-        let filterIsFavorite = filterArray["isFavorite"] as? Bool
-        let filterArea = filterArray["regions"] as? [String] ?? []
-        let filterOrigins = filterArray["origins"] as? [String] ?? []
-        let filterGender = filterArray["gender"] as? [String] ?? []
-        let filterSize = filterArray["size"] as? [String] ?? []
-
-        var subPredicates = [NSPredicate]()
-        let favoritePredicate = NSPredicate(format: "isFavorite == %d", filterIsFavorite ?? false)
-        subPredicates.append(favoritePredicate)
-
-        if !filterArea.isEmpty {
-            let areaPredicate = NSPredicate(format: "regions IN %@", filterArea)
-            subPredicates.append(areaPredicate)
+    
+    func incrementShowAdCounter(_ adViewModel: AdsViewModel) {
+        showAdCounter += 1
+        if showAdCounter >= adFrequency {
+            showAdCounter = 0
+            adViewModel.showInterstitial.toggle()
         }
-
-        if !filterOrigins.isEmpty {
-            let originsPredicate = NSPredicate(format: "origins IN %@", filterOrigins)
-            subPredicates.append(originsPredicate)
-        }
-
-        if !filterGender.isEmpty {
-            let genderPredicate = NSPredicate(format: "gender IN %@", filterGender)
-            print(genderPredicate)
-            subPredicates.append(genderPredicate)
-        }
-
-        if !filterSize.isEmpty {
-            let sizePredicate = NSPredicate(format: "firstnameSize IN %@", filterSize)
-            print(sizePredicate)
-            subPredicates.append(sizePredicate)
-        }
-
-        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: subPredicates)
-
-        return compoundPredicate
     }
+    
+    func clearFilters() {
+        UserDefaults.standard.removeObject(forKey: "Filters")
+        isFiltered = false
+        loadFirstnames()
+    }
+    
+    func searchFirstnames(searchString: String) {
+        Task {
+            do {
+                let searchResults = try await service.searchFirstnames(searchString: searchString, page: 0, size: 1000)
+                DispatchQueue.main.async {
+                    self.firstnames = searchResults.map { FirstnameDB(from: $0) }
+                    self.noResults = self.firstnames.isEmpty
+                }
+            } catch {
+                print("Error searching firstnames: \(error)")
+            }
+        }
+    }
+}
 
-	private func getLastSelectedLanguages() -> [String] {
-		let defaults = UserDefaults.standard
-		return defaults.object(forKey: "LastSelectedLanguage") as? [String] ?? []
-	}
+extension FirstnameDB {
+    convenience init(from model: FirstnameDataModel) {
+        self.init()
+        self.id = model.id ?? 0
+        self.firstname = model.firstname ?? ""
+        self.gender = model.gender.rawValue
+        self.meaning = model.meaning ?? ""
+        self.meaningMore = model.meaningMore ?? ""
+        self.origins = model.origins ?? ""
+        self.firstnameSize = model.size?.rawValue ?? ""
+        self.regions = model.regions ?? ""
+        self.soundURL = model.soundURL ?? ""
+        self.isFavorite = model.isFavorite
+    }
+}
+
+extension FirstnameDataModel {
+    init(from db: FirstnameDB) {
+        self.id = db.id
+        self.firstname = db.firstname
+        self.gender = Gender(rawValue: db.gender) ?? .undefined
+        self.meaning = db.meaning
+        self.meaningMore = db.meaningMore
+        self.origins = db.origins
+        self.size = Size(rawValue: db.firstnameSize)
+        self.regions = db.regions
+        self.soundURL = db.soundURL
+        self.isFavorite = db.isFavorite
+    }
 }
