@@ -73,7 +73,11 @@ final class SearchScreenViewModel: ObservableObject {
     }
     
     func toggleGender(_ gender: String) {
-        filters.gender = [gender]
+        if filters.gender.contains(gender) {
+            filters.gender.removeAll { $0 == gender }
+        } else {
+            filters.gender.append(gender)
+        }
         updateChipsSelection()
     }
     

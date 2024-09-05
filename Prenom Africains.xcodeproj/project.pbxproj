@@ -57,7 +57,6 @@
 		1588BCDD273D571400F91E42 /* DataRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588BCDC273D571400F91E42 /* DataRepositoryTest.swift */; };
 		1588BCDF273DFE1900F91E42 /* FirstnameApiServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588BCDE273DFE1900F91E42 /* FirstnameApiServiceTests.swift */; };
 		1588BCE3273E00CC00F91E42 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588BCE2273E00CC00F91E42 /* MockURLProtocol.swift */; };
-		1598AA8828D61D7500CB600A /* RequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598AA8728D61D7500CB600A /* RequestInterceptor.swift */; };
 		1598AA8A28D6291500CB600A /* AuthentificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598AA8928D6291500CB600A /* AuthentificationService.swift */; };
 		15A134BC272476EB0019AE90 /* md-male-select.json in Resources */ = {isa = PBXBuildFile; fileRef = 15A134BB272476EB0019AE90 /* md-male-select.json */; };
 		15A134BF272572D80019AE90 /* FirstNameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A134BE272572D80019AE90 /* FirstNameService.swift */; };
@@ -74,7 +73,6 @@
 		15CE567428E84A3700F09FE3 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE567328E84A3700F09FE3 /* LoginResponse.swift */; };
 		15CE567628E8568200F09FE3 /* LoginPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE567528E8568200F09FE3 /* LoginPayload.swift */; };
 		15CE567828E858CF00F09FE3 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE567728E858CF00F09FE3 /* KeychainManager.swift */; };
-		15CE567C28E8690700F09FE3 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE567B28E8690700F09FE3 /* AuthToken.swift */; };
 		15CE568028E893D400F09FE3 /* PrintOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE567F28E893D400F09FE3 /* PrintOption.swift */; };
 		15D167222751CB7A00992D7C /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D167212751CB7A00992D7C /* UIDevice.swift */; };
 		15D4A12E2723752000D8BCA4 /* md-female-select.json in Resources */ = {isa = PBXBuildFile; fileRef = 15D4A12D2723752000D8BCA4 /* md-female-select.json */; };
@@ -181,7 +179,6 @@
 		1588BCDC273D571400F91E42 /* DataRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryTest.swift; sourceTree = "<group>"; };
 		1588BCDE273DFE1900F91E42 /* FirstnameApiServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnameApiServiceTests.swift; sourceTree = "<group>"; };
 		1588BCE2273E00CC00F91E42 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
-		1598AA8728D61D7500CB600A /* RequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInterceptor.swift; sourceTree = "<group>"; };
 		1598AA8928D6291500CB600A /* AuthentificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationService.swift; sourceTree = "<group>"; };
 		15A134BB272476EB0019AE90 /* md-male-select.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "md-male-select.json"; sourceTree = "<group>"; };
 		15A134BE272572D80019AE90 /* FirstNameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNameService.swift; sourceTree = "<group>"; };
@@ -199,7 +196,6 @@
 		15CE567328E84A3700F09FE3 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		15CE567528E8568200F09FE3 /* LoginPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPayload.swift; sourceTree = "<group>"; };
 		15CE567728E858CF00F09FE3 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		15CE567B28E8690700F09FE3 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		15CE567F28E893D400F09FE3 /* PrintOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintOption.swift; sourceTree = "<group>"; };
 		15D167212751CB7A00992D7C /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		15D4A12D2723752000D8BCA4 /* md-female-select.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "md-female-select.json"; sourceTree = "<group>"; };
@@ -487,9 +483,7 @@
 				15ABCB47262A59B600036B3E /* NetworkMonitor.swift */,
 				15640715266836830084908F /* Vibration.swift */,
 				15E052CC275047C800C38715 /* Configuration.swift */,
-				1598AA8728D61D7500CB600A /* RequestInterceptor.swift */,
 				15CE567728E858CF00F09FE3 /* KeychainManager.swift */,
-				15CE567B28E8690700F09FE3 /* AuthToken.swift */,
 				15CE567F28E893D400F09FE3 /* PrintOption.swift */,
 				15D4D1EA2916C57A0019975B /* RemoteConfigKeys.swift */,
 				15D4D1EC2916C6090019975B /* RemoteConfigManager.swift */,
@@ -823,7 +817,6 @@
 				155133AE2934318C001E9FFB /* Pageable.swift in Sources */,
 				15F880182740514900766E30 /* ParamScreen.swift in Sources */,
 				15AA134C2751467200EB98FE /* PopoverView.swift in Sources */,
-				15CE567C28E8690700F09FE3 /* AuthToken.swift in Sources */,
 				15E8DE472663093B0036A99F /* ChipsView.swift in Sources */,
 				15CE567628E8568200F09FE3 /* LoginPayload.swift in Sources */,
 				15CAC5232646E837007E838C /* SearchScreen.swift in Sources */,
@@ -847,7 +840,6 @@
 				15D4D1ED2916C6090019975B /* RemoteConfigManager.swift in Sources */,
 				155133B0293431F0001E9FFB /* Sort.swift in Sources */,
 				156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */,
-				1598AA8828D61D7500CB600A /* RequestInterceptor.swift in Sources */,
 				15640716266836830084908F /* Vibration.swift in Sources */,
 				1587CC2F273FEF220007B89A /* ViewExtension.swift in Sources */,
 				15645E88263B5B8B0017E8B7 /* LandscapeModifier.swift in Sources */,
