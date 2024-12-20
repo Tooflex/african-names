@@ -7,10 +7,6 @@
 
 import Foundation
 import Supabase
-import L10n_swift
-
-import Foundation
-import Combine
 
 @MainActor
 class FirstNameService {

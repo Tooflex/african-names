@@ -20,6 +20,7 @@ struct PrenomAfricainsApp: App {
     let firstnameRepository: FirstNameRepository
     
     let fistnameService: FirstNameService
+    let filterService: FilterService
     
 	var contentViewModel: ContentViewModel
 	var firstnameViewModel: FirstNameViewModel
@@ -36,11 +37,12 @@ struct PrenomAfricainsApp: App {
         
         firstnameRepository = FirstNameRepository()
         fistnameService = FirstNameService(repository: firstnameRepository)
-        contentViewModel = ContentViewModel(service: fistnameService)
+        filterService = FilterService()
+        contentViewModel = ContentViewModel(service: fistnameService, filterService: filterService)
         firstnameViewModel = FirstNameViewModel(service: fistnameService)
         paramViewModel = ParamViewModel()
-        searchViewModel = SearchScreenViewModel(service: fistnameService)
-        searchScreenViewModel = SearchScreenViewModel(service: fistnameService)
+        searchViewModel = SearchScreenViewModel(service: fistnameService, filterService: filterService)
+        searchScreenViewModel = SearchScreenViewModel(service: fistnameService, filterService: filterService)
         favoriteListViewModel = FavoriteListViewModel(service: fistnameService)
         
 		LottieConfiguration.shared.renderingEngine = .mainThread

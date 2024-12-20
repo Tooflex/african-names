@@ -49,17 +49,48 @@ class FirstNameRepository {
         return realm.objects(type).filter(filter)
     }
     
-    func fetchRemoteData(page: Int, size: Int) async throws -> [FirstnameDataModel] {
-        let realm = try! Realm()
-
+    func fetchRemoteData(page: Int, size: Int, language: String = "en") async throws -> [FirstnameDataModel] {
         let from = page * size
         let to = from + size - 1
         
-        let query = client
-            .from("firstname")
-            .select("*", head: false, count: .exact)
-            .order("firstname")
-            .range(from: from, to: to)
+        let query: PostgrestTransformBuilder
+        
+        if language == "fr" {
+            query = client
+                .from("firstname")
+                .select("""
+                    id,\
+                    firstname,\
+                    gender,\
+                    meaning,\
+                    meaning_more,\
+                    origins,\
+                    sound_url,\
+                    regions,\
+                    size,\
+                    firstname_translation!inner(meaning_translation,origins_translation, language_code)
+                    """)
+                .order("firstname")
+                .range(from: from, to: to)
+        } else {
+            query = client
+                .from("firstname")
+                .select("""
+                    id,\
+                    firstname,\
+                    gender,\
+                    meaning,\
+                    meaning_more,\
+                    origins,\
+                    sound_url,\
+                    regions,\
+                    size,\
+                    firstname_translation!inner(meaning_translation,origins_translation, language_code)
+                    """)
+                .eq("firstname_translation.language_code", value: language)
+                .order("firstname")
+                .range(from: from, to: to)
+        }
         
         return try await query.execute().value
     }
@@ -183,6 +214,22 @@ class FirstNameRepository {
         firstnameDB.regions = firstname.regions ?? ""
         firstnameDB.soundURL = firstname.soundURL ?? ""
         firstnameDB.isFavorite = firstname.isFavorite
+        
+        // Handle translations
+        if let translations = firstname.translations {
+            // Clear existing translations
+            firstnameDB.translations.removeAll()
+            
+            // Add new translations
+            for modelTranslation in translations {
+                let translationDB = FirstnameTranslationDB()
+                translationDB.meaningTranslation = modelTranslation.meaningTranslation ?? ""
+                translationDB.originsTranslation = modelTranslation.originsTranslation ?? ""
+                translationDB.languageCode = modelTranslation.languageCode ?? "en"
+                firstnameDB.translations.append(translationDB)
+            }
+        }
+        
         return firstnameDB
     }
 }

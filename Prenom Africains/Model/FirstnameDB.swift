@@ -15,14 +15,16 @@ class FirstnameDB: Object, Identifiable {
     @objc dynamic var gender = ""
     @objc dynamic var isFavorite = false
     @objc dynamic var meaning = ""
-	@objc dynamic var meaningMore = ""
+    @objc dynamic var meaningMore = ""
     @objc dynamic var origins = ""
     @objc dynamic var soundURL = ""
     @objc dynamic var regions = ""
     @objc dynamic var firstnameSize = ""
+    
+    // Add translations relationship
+    let translations = List<FirstnameTranslationDB>()
 
     override static func primaryKey() -> String? {
         "id"
     }
-
 }

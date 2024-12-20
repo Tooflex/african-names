@@ -307,7 +307,7 @@ struct MainScreen_Previews: PreviewProvider {
                     .previewDisplayName("iPhone 8 Plus")
             }
             .preferredColorScheme(scheme)
-            .environmentObject(ContentViewModel(service: FirstNameService(repository: FirstNameRepository())))
+            .environmentObject(ContentViewModel(service: FirstNameService(repository: FirstNameRepository()), filterService: FilterService()))
             .environmentObject(AdsViewModel())
         }
     }

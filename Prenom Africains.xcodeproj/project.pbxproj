@@ -67,6 +67,7 @@
 		15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 15BE326D2624D0E700D8DC8D /* Alamofire */; };
 		15C2FAAC292A6115003E97BA /* MarqueeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C2FAAB292A6115003E97BA /* MarqueeTextView.swift */; };
 		15C2FAAE292A614B003E97BA /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C2FAAD292A614B003E97BA /* UIFontExtension.swift */; };
+		15C9DFA92C91F9AD002FAFB4 /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9DFA82C91F9AD002FAFB4 /* FilterService.swift */; };
 		15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5202646D7F7007E838C /* SearchBarView.swift */; };
 		15CAC5232646E837007E838C /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5222646E837007E838C /* SearchScreen.swift */; };
 		15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5242646ECF1007E838C /* ChipsOptionView.swift */; };
@@ -80,6 +81,7 @@
 		15D4D1EB2916C57A0019975B /* RemoteConfigKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4D1EA2916C57A0019975B /* RemoteConfigKeys.swift */; };
 		15D4D1ED2916C6090019975B /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4D1EC2916C6090019975B /* RemoteConfigManager.swift */; };
 		15D4D1EF2916D4C10019975B /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4D1EE2916D4C10019975B /* AdsManager.swift */; };
+		15D5FE3D2D16183200C073D6 /* FirstnameTranslationDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5FE3C2D16183200C073D6 /* FirstnameTranslationDB.swift */; };
 		15DBA1892C89E4BA0072C4E3 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 15DBA1882C89E4BA0072C4E3 /* GoogleMobileAds */; };
 		15E052C7275046BD00C38715 /* FavoriteListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052C6275046BD00C38715 /* FavoriteListViewModelTest.swift */; };
 		15E052C9275046E300C38715 /* SearchScreenViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052C8275046E300C38715 /* SearchScreenViewModelTest.swift */; };
@@ -189,6 +191,7 @@
 		15ABCB47262A59B600036B3E /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		15C2FAAB292A6115003E97BA /* MarqueeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeTextView.swift; sourceTree = "<group>"; };
 		15C2FAAD292A614B003E97BA /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		15C9DFA82C91F9AD002FAFB4 /* FilterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
 		15CAC5202646D7F7007E838C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		15CAC5222646E837007E838C /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		15CAC5242646ECF1007E838C /* ChipsOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsOptionView.swift; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 		15D4D1EA2916C57A0019975B /* RemoteConfigKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigKeys.swift; sourceTree = "<group>"; };
 		15D4D1EC2916C6090019975B /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		15D4D1EE2916D4C10019975B /* AdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsManager.swift; sourceTree = "<group>"; };
+		15D5FE3C2D16183200C073D6 /* FirstnameTranslationDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnameTranslationDB.swift; sourceTree = "<group>"; };
 		15E052C6275046BD00C38715 /* FavoriteListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewModelTest.swift; sourceTree = "<group>"; };
 		15E052C8275046E300C38715 /* SearchScreenViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenViewModelTest.swift; sourceTree = "<group>"; };
 		15E052CA2750473600C38715 /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Dev.xcconfig; sourceTree = "<group>"; };
@@ -454,6 +458,7 @@
 			children = (
 				15A134BE272572D80019AE90 /* FirstNameService.swift */,
 				1598AA8928D6291500CB600A /* AuthentificationService.swift */,
+				15C9DFA82C91F9AD002FAFB4 /* FilterService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -507,6 +512,7 @@
 				155133B129343569001E9FFB /* Response */,
 				15E8DE44266308DE0036A99F /* ChipsDataModel.swift */,
 				1539F17F26E4ED67009889B5 /* FirstnameDataModel.swift */,
+				15D5FE3C2D16183200C073D6 /* FirstnameTranslationDB.swift */,
 				15515FC82677D423009C2BDF /* FirstnameDB.swift */,
 				15300A87266C1F47000AAAF6 /* SearchCriteria.swift */,
 				155133AD2934318C001E9FFB /* Pageable.swift */,
@@ -789,6 +795,7 @@
 				15C2FAAE292A614B003E97BA /* UIFontExtension.swift in Sources */,
 				15515FC92677D423009C2BDF /* FirstnameDB.swift in Sources */,
 				15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */,
+				15D5FE3D2D16183200C073D6 /* FirstnameTranslationDB.swift in Sources */,
 				1535635E2739BDCD007B1959 /* FavoriteListViewModel.swift in Sources */,
 				15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */,
 				15E8DE49266366390036A99F /* SearchScreenViewModel.swift in Sources */,
@@ -806,6 +813,7 @@
 				15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */,
 				157FFA57273EF2BF0037E32A /* WaveShape.swift in Sources */,
 				15A134BF272572D80019AE90 /* FirstNameService.swift in Sources */,
+				15C9DFA92C91F9AD002FAFB4 /* FilterService.swift in Sources */,
 				151297BE28FB0B98000BB26C /* ContentViewModel.swift in Sources */,
 				15E052CF2750492700C38715 /* ParamViewModel.swift in Sources */,
 				157FFA55273ED3540037E32A /* FilterChip.swift in Sources */,

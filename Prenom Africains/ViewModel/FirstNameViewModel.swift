@@ -12,6 +12,7 @@ import SwiftUI
 @MainActor
 class FirstNameViewModel: ObservableObject {
     private let service: FirstNameService
+    private let filterService = FilterService()
     
     @Published var favoritedFirstnames: [FirstnameDB] = []
     @Published var firstnames: [FirstnameDB] = []
@@ -51,21 +52,21 @@ class FirstNameViewModel: ObservableObject {
     }
     
     func loadFirstnames() async {
-        let filters = UserDefaults.standard.object(forKey: "Filters") as? [String: Any] ?? [:]
+        let filters = filterService.loadFilters()
         
         favoritedFirstnames = service.getLocalFirstnames(filter: "isFavorite = true")
-        
-        if filters.isEmpty {
-            isFiltered = false
-            firstnames = service.getLocalFirstnames().shuffled()
-        } else {
-            isFiltered = true
-            firstnames = service.filterFirstnames(filters: filters).shuffled()
-            
-            if let filterOnTop = filters["onTop"] as? Int, filterOnTop != -1 {
-                firstnameOnTop = firstnames.first { $0.id == filterOnTop }
-            }
-        }
+                
+        if !filterService.isAnyFilterApplied() {
+             isFiltered = false
+             firstnames = service.getLocalFirstnames().shuffled()
+         } else {
+             isFiltered = true
+             firstnames = service.filterFirstnames(filters: filterService.filtersAsDictionary()).shuffled()
+             
+             if filters.onTop != 0 {
+                 firstnameOnTop = firstnames.first { $0.id == filters.onTop }
+             }
+         }
         
         if let first = firstnames.first {
             currentFirstname = first
@@ -115,6 +116,11 @@ class FirstNameViewModel: ObservableObject {
         Task { await loadFirstnames() }
     }
     
+    func loadFilters() -> Filters? {
+        guard let data = UserDefaults.standard.data(forKey: "Filters") else { return nil }
+        return try? JSONDecoder().decode(Filters.self, from: data)
+    }
+    
     func searchFirstnames(searchString: String) async {
         do {
             let searchResults = try await service.searchFirstnames(searchString: searchString, page: 0, size: 1000)
@@ -123,22 +129,6 @@ class FirstNameViewModel: ObservableObject {
         } catch {
             print("Error searching firstnames: \(error)")
         }
-    }
-}
-
-extension FirstnameDB {
-    convenience init(from model: FirstnameDataModel) {
-        self.init()
-        self.id = model.id ?? 0
-        self.firstname = model.firstname ?? ""
-        self.gender = model.gender.rawValue
-        self.meaning = model.meaning ?? ""
-        self.meaningMore = model.meaningMore ?? ""
-        self.origins = model.origins ?? ""
-        self.firstnameSize = model.size?.rawValue ?? ""
-        self.regions = model.regions ?? ""
-        self.soundURL = model.soundURL ?? ""
-        self.isFavorite = model.isFavorite
     }
 }
 
@@ -154,5 +144,53 @@ extension FirstnameDataModel {
         self.regions = db.regions
         self.soundURL = db.soundURL
         self.isFavorite = db.isFavorite
+    }
+}
+
+extension FirstnameDB {
+    func getDisplayMeaning(deviceLanguage: String) -> String {
+        if deviceLanguage == "fr" {
+            return meaning
+        } else {
+            // Find the translation for the current language
+            let translation = translations.first { $0.languageCode == deviceLanguage }
+            print("Translation: \(translation?.meaningTranslation ?? "")")
+            return translation?.meaningTranslation ?? meaning // Fallback to French meaning if no translation
+        }
+    }
+    
+    // Helper method to get translation for a specific language
+    func getTranslation(for languageCode: String) -> FirstnameTranslationDB? {
+        return translations.first { $0.languageCode == languageCode }
+    }
+}
+
+// Add convenience init to convert from data model
+extension FirstnameDB {
+    convenience init(from model: FirstnameDataModel) {
+        self.init()
+        
+        self.id = model.id ?? 0
+        self.firstname = model.firstname ?? ""
+        self.gender = model.gender.rawValue
+        self.isFavorite = model.isFavorite
+        self.meaning = model.meaning ?? ""
+        self.meaningMore = model.meaningMore ?? ""
+        self.origins = model.origins ?? ""
+        self.soundURL = model.soundURL ?? ""
+        self.regions = model.regions ?? ""
+        self.firstnameSize = model.size?.rawValue ?? ""
+        
+        // Handle translations
+        if let modelTranslations = model.translations {
+            for modelTranslation in modelTranslations {
+                let translationDB = FirstnameTranslationDB()
+                translationDB.meaningTranslation = modelTranslation.meaningTranslation ?? ""
+                translationDB.originsTranslation = modelTranslation.originsTranslation ?? ""
+                // Note: You'll need to set the languageCode based on your data structure
+                translationDB.languageCode = "en" // Set appropriate language code
+                translations.append(translationDB)
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ import L10n_swift
 @MainActor
 final class SearchScreenViewModel: ObservableObject {
     private let service: FirstNameService
+    private let filterService: FilterService
     
     @Published var searchResults: [FirstnameDB] = []
     @Published var loading = false
@@ -20,19 +21,24 @@ final class SearchScreenViewModel: ObservableObject {
     @Published var areas: [ChipsDataModel] = []
     @Published var origins: [ChipsDataModel] = []
     @Published var currentFilterChain = ""
-    @Published var filters = Filters()
+    @Published var filters: Filters
     @Published var selectedFirstnameInSearchResults: FirstnameDB?
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(service: FirstNameService) {
+    init(service: FirstNameService, filterService: FilterService) {
         self.service = service
+        self.filterService = filterService
+        self.filters = filterService.loadFilters()
+        
         initializeChips()
-        loadFilters()
+        updateChipsSelection()
         
         $filters
             .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
-            .sink { [weak self] _ in self?.saveFilters() }
+            .sink { [weak self] filters in
+                self?.filterService.saveFilters(filters)
+            }
             .store(in: &cancellables)
     }
     
@@ -63,8 +69,9 @@ final class SearchScreenViewModel: ObservableObject {
     }
     
     func goToChosenFirstname() {
-        guard let selectedFirstname = selectedFirstnameInSearchResults else { return }
-        UserDefaults.standard.set(["onTop": selectedFirstname.id], forKey: "Filters")
+        if let selectedFirstname = selectedFirstnameInSearchResults {
+            filterService.saveOnTopFirstname(selectedFirstname.id)
+        }
     }
     
     func filterIsFavorite(_ isFavorite: Bool) {
@@ -81,21 +88,37 @@ final class SearchScreenViewModel: ObservableObject {
         updateChipsSelection()
     }
     
+    func toggleSize(_ size: String) {
+        if filters.size.contains(size) {
+            filters.size.removeAll { $0 == size }
+        } else {
+            filters.size.append(size)
+        }
+        updateChipsSelection()
+    }
+    
+    func toggleArea(_ area: String) {
+        if filters.regions.contains(area) {
+            filters.regions.removeAll { $0 == area }
+        } else {
+            filters.regions.append(area)
+        }
+        updateChipsSelection()
+    }
+    
+    func toggleOrigin(_ origin: String) {
+        if filters.origins.contains(origin) {
+            filters.origins.removeAll { $0 == origin }
+        } else {
+            filters.origins.append(origin)
+        }
+        updateChipsSelection()
+    }
+    
     private func initializeChips() {
         sizes = service.fetchSizes().map { ChipsDataModel(isSelected: false, titleKey: $0, displayedTitle: $0.l10n(resource: "en").l10n()) }
         areas = service.fetchAreas().map { ChipsDataModel(isSelected: false, titleKey: $0, displayedTitle: $0.l10n()) }
         origins = service.fetchOrigins().map { ChipsDataModel(isSelected: false, titleKey: $0, displayedTitle: $0.l10n()) }
-    }
-    
-    private func loadFilters() {
-        if let savedFilters = UserDefaults.standard.object(forKey: "Filters") as? [String: Any] {
-            filters = Filters(dict: savedFilters)
-            updateChipsSelection()
-        }
-    }
-    
-    func saveFilters() {
-        UserDefaults.standard.set(filters.asDictionary(), forKey: "Filters")
     }
     
     private func updateChipsSelection() {
@@ -103,33 +126,5 @@ final class SearchScreenViewModel: ObservableObject {
         areas.forEach { $0.isSelected = filters.regions.contains($0.titleKey.capitalized) }
         origins.forEach { $0.isSelected = filters.origins.contains($0.titleKey.capitalized) }
     }
-    
 }
 
-struct Filters: Codable {
-    var isFavorite: Bool = false
-    var regions: [String] = []
-    var origins: [String] = []
-    var gender: [String] = []
-    var size: [String] = []
-    
-    init() {}
-    
-    init(dict: [String: Any]) {
-        isFavorite = dict["isFavorite"] as? Bool ?? false
-        regions = dict["regions"] as? [String] ?? []
-        origins = dict["origins"] as? [String] ?? []
-        gender = dict["gender"] as? [String] ?? []
-        size = dict["size"] as? [String] ?? []
-    }
-    
-    func asDictionary() -> [String: Any] {
-        return [
-            "isFavorite": isFavorite,
-            "regions": regions,
-            "origins": origins,
-            "gender": gender,
-            "size": size
-        ]
-    }
-}

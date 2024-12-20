@@ -32,12 +32,30 @@ final class FavoriteListViewModel: ObservableObject {
     }
     
     func saveFilters() {
-        guard let selectedFirstname = selectedFirstname else { return }
-        let filters = [
-            "isFavorite": true,
-            "onTop": selectedFirstname.id
-        ] as [String: Any]
-        UserDefaults.standard.set(filters, forKey: "Filters")
+        var filters = Filters()
+        
+        if let selectedFirstname = selectedFirstname {
+            filters.isFavorite = true
+            filters.onTop = selectedFirstname.id
+        }
+        
+        // Assuming you want to keep existing values for other properties,
+        // you might want to load the existing filters first:
+        if let existingFilters = loadFilters() {
+            filters.regions = existingFilters.regions
+            filters.origins = existingFilters.origins
+            filters.gender = existingFilters.gender
+            filters.size = existingFilters.size
+        }
+        
+        let encodedFilters = try? JSONEncoder().encode(filters)
+        UserDefaults.standard.set(encodedFilters, forKey: "Filters")
+    }
+    
+    // Helper function to load existing filters
+    func loadFilters() -> Filters? {
+        guard let data = UserDefaults.standard.data(forKey: "Filters") else { return nil }
+        return try? JSONDecoder().decode(Filters.self, from: data)
     }
     
     func removeFromList(firstname: FirstnameDB) async {

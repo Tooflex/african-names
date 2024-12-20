@@ -86,7 +86,7 @@ struct SearchScreen: View {
                 // MARK: Filter Submit Button
                 Group {
                     Button(action: {
-                        viewModel.saveFilters()
+                        //self.viewModel.
                         self.selectedTab = .home // Go back to Home screen
                     }) {
                         HStack {
@@ -138,6 +138,9 @@ struct SearchScreen: View {
                     }.frame(alignment: .center)
                 }
             }
+        }
+        .onAppear {
+            //viewModel.searchFirstnames(searchString: <#T##String#>)
         }
         .task {
             await viewModel.searchFirstnames(searchString: searchText)
