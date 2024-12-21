@@ -58,7 +58,6 @@ class FilterService {
     }
 }
 
-// Assuming Filters struct is defined elsewhere, but including it here for completeness
 struct Filters: Codable {
     var isFavorite: Bool = false
     var regions: [String] = []

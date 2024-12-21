@@ -62,7 +62,7 @@ struct ChipsContent: View {
             title: "Test",
             data: [
                 ChipsDataModel(isSelected: false, titleKey: "Wesh", displayedTitle: "Wesh translated"),
-                ChipsDataModel(isSelected: false, titleKey: "Yo", displayedTitle: "Yo translated")
+                ChipsDataModel(isSelected: true, titleKey: "Yo", displayedTitle: "Yo translated")
 			], action: {_ in })
     }
  }

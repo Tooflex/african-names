@@ -55,8 +55,6 @@ struct LottieView: UIViewRepresentable {
             guard let animationView = animationView else { return }
 
             animationView.stop()
-            print("Updating animation view with markers: \(fromMarker ?? "nil") to \(toMarker ?? "nil")")
-
             animationView.layoutIfNeeded()
             
             // Play the animation

@@ -56,7 +56,6 @@ struct DescriptionView: View {
 
     private var meaningContent: some View {
         let deviceLanguage = Locale.current.languageCode ?? "en"
-        print("deviceLanguage: \(deviceLanguage)")
         
         return VStack {
             Text(viewModel.currentFirstname?.getDisplayMeaning(deviceLanguage: deviceLanguage)

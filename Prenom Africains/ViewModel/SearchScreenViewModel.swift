@@ -110,14 +110,21 @@ final class SearchScreenViewModel: ObservableObject {
         filters = filterService.loadFilters()
     }
     
+    func loadFilters() {
+        filters = filterService.loadFilters()
+    }
+    
     // MARK: - Private Methods
     
     private func initializeChips() {
+        self.loadFilters()
         sizes = service.fetchSizes().map { size in
-            ChipsDataModel(
-                isSelected: filters.size.contains(size.capitalized),
+            print("Size: \(size)")
+            sizes.forEach { print("Size filters: \($0.titleKey)") }
+            return ChipsDataModel(
+                isSelected: filters.size.contains(size),
                 titleKey: size,
-                displayedTitle: size.l10n(resource: "en").l10n()
+                displayedTitle: size.l10n()
             )
         }
         
@@ -139,7 +146,7 @@ final class SearchScreenViewModel: ObservableObject {
     }
     
     private func updateChipsSelection() {
-        sizes.forEach { $0.isSelected = filters.size.contains($0.titleKey.capitalized) }
+        sizes.forEach { $0.isSelected = filters.size.contains($0.titleKey) }
         areas.forEach { $0.isSelected = filters.regions.contains($0.titleKey.capitalized) }
         origins.forEach { $0.isSelected = filters.origins.contains($0.titleKey.capitalized) }
     }

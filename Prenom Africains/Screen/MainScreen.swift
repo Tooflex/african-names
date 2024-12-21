@@ -170,9 +170,7 @@ struct MainScreen: View {
     
     private func onAppearActions() {
         prepareHaptics()
-        if contentViewModel.isFirstLaunch {
-            viewModel.onAppear()
-        }
+        viewModel.onAppear()
         contentViewModel.isFirstLaunch = false
     }
     
