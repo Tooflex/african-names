@@ -73,7 +73,11 @@ struct MainScreen: View {
     }
     
     private var refreshButton: some View {
-        Button(action: viewModel.fetchOnline) {
+        Button {
+            Task {
+                await viewModel.fetchOnline()
+            }
+        } label: {
             HStack {
                 Image(systemName: "goforward")
                 Text("Tap to refresh")
@@ -86,8 +90,11 @@ struct MainScreen: View {
         HStack {
             Spacer()
             FilterChip(text: "filters on".l10n(), color: .white) {
-                viewModel.clearFilters()
-                viewModel.loadFirstnames()
+                Task {
+                    viewModel.clearFilters()
+                    await viewModel.loadFirstnames()
+                }
+
             }
             .padding(.horizontal)
         }
@@ -170,7 +177,9 @@ struct MainScreen: View {
     private func handleLanguageChange(_ isLanguageChanged: Bool) {
         if isLanguageChanged && !contentViewModel.isFirstLaunch {
             print("Get firstnames after language changed")
-            viewModel.fetchOnline()
+            Task {
+                await viewModel.fetchOnline()
+            }
             contentViewModel.isFirstLaunch = false
         }
         contentViewModel.isLanguageChanged = false
@@ -298,7 +307,7 @@ struct MainScreen_Previews: PreviewProvider {
                     .previewDisplayName("iPhone 8 Plus")
             }
             .preferredColorScheme(scheme)
-            .environmentObject(ContentViewModel(service: FirstNameService(repository: FirstNameRepository())))
+            .environmentObject(ContentViewModel(service: FirstNameService(repository: FirstNameRepository()), filterService: FilterService()))
             .environmentObject(AdsViewModel())
         }
     }

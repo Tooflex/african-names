@@ -14,24 +14,13 @@ struct LottieView: UIViewRepresentable {
     var fromMarker: String?
     var toMarker: String?
 
-    var animationView = LottieAnimationView()
-
     func makeUIView(context: UIViewRepresentableContext<LottieView>) -> UIView {
         let view = UIView(frame: .zero)
+        let animationView = LottieAnimationView()
         animationView.animation = LottieAnimation.named(name)
         animationView.contentMode = .scaleAspectFit
         animationView.loopMode = loopMode
-		animationView.backgroundBehavior = .pause
-
-        if let fromMarker = fromMarker {
-            if let toMarker = toMarker {
-                animationView.play(fromMarker: fromMarker, toMarker: toMarker, loopMode: loopMode) { _ in
-
-                }
-            }
-        } else {
-            animationView.play()
-        }
+        animationView.backgroundBehavior = .pause
 
         animationView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(animationView)
@@ -41,10 +30,40 @@ struct LottieView: UIViewRepresentable {
             animationView.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
 
+        context.coordinator.animationView = animationView
+
         return view
     }
 
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<LottieView>) {
-		animationView.backgroundBehavior = .pause
-	}
+        context.coordinator.updateAnimation(fromMarker: fromMarker, toMarker: toMarker, loopMode: loopMode)
+    }
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    class Coordinator: NSObject {
+        var parent: LottieView
+        var animationView: LottieAnimationView?
+
+        init(_ parent: LottieView) {
+            self.parent = parent
+        }
+
+        func updateAnimation(fromMarker: String?, toMarker: String?, loopMode: LottieLoopMode) {
+            guard let animationView = animationView else { return }
+
+            animationView.stop()
+            animationView.layoutIfNeeded()
+            
+            // Play the animation
+            if let fromMarker = fromMarker, let toMarker = toMarker {
+                // Add a tiny delay to ensure the view is ready
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    animationView.play(fromMarker: fromMarker, toMarker: toMarker, loopMode: loopMode)
+                }
+            }
+        }
+    }
 }

@@ -7,10 +7,6 @@
 
 import Foundation
 import Supabase
-import L10n_swift
-
-import Foundation
-import Combine
 
 @MainActor
 class FirstNameService {
@@ -76,10 +72,6 @@ class FirstNameService {
     func fetchAreas() -> [String] {
         return ["northern africa", "eastern africa", "western africa", "southern africa"]
     }
-    
-//    func toggleFavorited(firstname: FirstnameDataModel) {
-//        repository.toggleFavorited(firstnameObj: firstname)
-//    }
     
     func getFavoritedFirstnames() async throws -> [FirstnameDB] {
         return try await repository.getFavoritedFirstnames()

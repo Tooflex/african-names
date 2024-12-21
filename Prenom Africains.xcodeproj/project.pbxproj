@@ -57,7 +57,6 @@
 		1588BCDD273D571400F91E42 /* DataRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588BCDC273D571400F91E42 /* DataRepositoryTest.swift */; };
 		1588BCDF273DFE1900F91E42 /* FirstnameApiServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588BCDE273DFE1900F91E42 /* FirstnameApiServiceTests.swift */; };
 		1588BCE3273E00CC00F91E42 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1588BCE2273E00CC00F91E42 /* MockURLProtocol.swift */; };
-		1598AA8828D61D7500CB600A /* RequestInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598AA8728D61D7500CB600A /* RequestInterceptor.swift */; };
 		1598AA8A28D6291500CB600A /* AuthentificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1598AA8928D6291500CB600A /* AuthentificationService.swift */; };
 		15A134BC272476EB0019AE90 /* md-male-select.json in Resources */ = {isa = PBXBuildFile; fileRef = 15A134BB272476EB0019AE90 /* md-male-select.json */; };
 		15A134BF272572D80019AE90 /* FirstNameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A134BE272572D80019AE90 /* FirstNameService.swift */; };
@@ -68,21 +67,22 @@
 		15BE326E2624D0E700D8DC8D /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 15BE326D2624D0E700D8DC8D /* Alamofire */; };
 		15C2FAAC292A6115003E97BA /* MarqueeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C2FAAB292A6115003E97BA /* MarqueeTextView.swift */; };
 		15C2FAAE292A614B003E97BA /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C2FAAD292A614B003E97BA /* UIFontExtension.swift */; };
+		15C9DFA92C91F9AD002FAFB4 /* FilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C9DFA82C91F9AD002FAFB4 /* FilterService.swift */; };
 		15CAC5212646D7F7007E838C /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5202646D7F7007E838C /* SearchBarView.swift */; };
 		15CAC5232646E837007E838C /* SearchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5222646E837007E838C /* SearchScreen.swift */; };
 		15CAC5252646ECF1007E838C /* ChipsOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CAC5242646ECF1007E838C /* ChipsOptionView.swift */; };
 		15CE567428E84A3700F09FE3 /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE567328E84A3700F09FE3 /* LoginResponse.swift */; };
 		15CE567628E8568200F09FE3 /* LoginPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE567528E8568200F09FE3 /* LoginPayload.swift */; };
 		15CE567828E858CF00F09FE3 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE567728E858CF00F09FE3 /* KeychainManager.swift */; };
-		15CE567C28E8690700F09FE3 /* AuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE567B28E8690700F09FE3 /* AuthToken.swift */; };
 		15CE568028E893D400F09FE3 /* PrintOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15CE567F28E893D400F09FE3 /* PrintOption.swift */; };
 		15D167222751CB7A00992D7C /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D167212751CB7A00992D7C /* UIDevice.swift */; };
 		15D4A12E2723752000D8BCA4 /* md-female-select.json in Resources */ = {isa = PBXBuildFile; fileRef = 15D4A12D2723752000D8BCA4 /* md-female-select.json */; };
-		15D4D1E72916BD020019975B /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 15D4D1E62916BD020019975B /* GoogleMobileAds */; };
 		15D4D1E92916C4C80019975B /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15D4D1E82916C4C80019975B /* RemoteConfigDefaults.plist */; };
 		15D4D1EB2916C57A0019975B /* RemoteConfigKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4D1EA2916C57A0019975B /* RemoteConfigKeys.swift */; };
 		15D4D1ED2916C6090019975B /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4D1EC2916C6090019975B /* RemoteConfigManager.swift */; };
 		15D4D1EF2916D4C10019975B /* AdsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D4D1EE2916D4C10019975B /* AdsManager.swift */; };
+		15D5FE3D2D16183200C073D6 /* FirstnameTranslationDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D5FE3C2D16183200C073D6 /* FirstnameTranslationDB.swift */; };
+		15DBA1892C89E4BA0072C4E3 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 15DBA1882C89E4BA0072C4E3 /* GoogleMobileAds */; };
 		15E052C7275046BD00C38715 /* FavoriteListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052C6275046BD00C38715 /* FavoriteListViewModelTest.swift */; };
 		15E052C9275046E300C38715 /* SearchScreenViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052C8275046E300C38715 /* SearchScreenViewModelTest.swift */; };
 		15E052CD275047C800C38715 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E052CC275047C800C38715 /* Configuration.swift */; };
@@ -181,7 +181,6 @@
 		1588BCDC273D571400F91E42 /* DataRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRepositoryTest.swift; sourceTree = "<group>"; };
 		1588BCDE273DFE1900F91E42 /* FirstnameApiServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnameApiServiceTests.swift; sourceTree = "<group>"; };
 		1588BCE2273E00CC00F91E42 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
-		1598AA8728D61D7500CB600A /* RequestInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestInterceptor.swift; sourceTree = "<group>"; };
 		1598AA8928D6291500CB600A /* AuthentificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentificationService.swift; sourceTree = "<group>"; };
 		15A134BB272476EB0019AE90 /* md-male-select.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "md-male-select.json"; sourceTree = "<group>"; };
 		15A134BE272572D80019AE90 /* FirstNameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstNameService.swift; sourceTree = "<group>"; };
@@ -192,6 +191,7 @@
 		15ABCB47262A59B600036B3E /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
 		15C2FAAB292A6115003E97BA /* MarqueeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarqueeTextView.swift; sourceTree = "<group>"; };
 		15C2FAAD292A614B003E97BA /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
+		15C9DFA82C91F9AD002FAFB4 /* FilterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterService.swift; sourceTree = "<group>"; };
 		15CAC5202646D7F7007E838C /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		15CAC5222646E837007E838C /* SearchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreen.swift; sourceTree = "<group>"; };
 		15CAC5242646ECF1007E838C /* ChipsOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsOptionView.swift; sourceTree = "<group>"; };
@@ -199,7 +199,6 @@
 		15CE567328E84A3700F09FE3 /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		15CE567528E8568200F09FE3 /* LoginPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPayload.swift; sourceTree = "<group>"; };
 		15CE567728E858CF00F09FE3 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		15CE567B28E8690700F09FE3 /* AuthToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToken.swift; sourceTree = "<group>"; };
 		15CE567F28E893D400F09FE3 /* PrintOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintOption.swift; sourceTree = "<group>"; };
 		15D167212751CB7A00992D7C /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
 		15D4A12D2723752000D8BCA4 /* md-female-select.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "md-female-select.json"; sourceTree = "<group>"; };
@@ -207,6 +206,7 @@
 		15D4D1EA2916C57A0019975B /* RemoteConfigKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigKeys.swift; sourceTree = "<group>"; };
 		15D4D1EC2916C6090019975B /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		15D4D1EE2916D4C10019975B /* AdsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsManager.swift; sourceTree = "<group>"; };
+		15D5FE3C2D16183200C073D6 /* FirstnameTranslationDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstnameTranslationDB.swift; sourceTree = "<group>"; };
 		15E052C6275046BD00C38715 /* FavoriteListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteListViewModelTest.swift; sourceTree = "<group>"; };
 		15E052C8275046E300C38715 /* SearchScreenViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchScreenViewModelTest.swift; sourceTree = "<group>"; };
 		15E052CA2750473600C38715 /* Dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Dev.xcconfig; sourceTree = "<group>"; };
@@ -242,8 +242,8 @@
 				15454CCA27590D6A00D0B699 /* L10n-swift in Frameworks */,
 				152F3C492649B53F000D564B /* SlideOverCard in Frameworks */,
 				15515FC52677D04B009C2BDF /* Realm in Frameworks */,
+				15DBA1892C89E4BA0072C4E3 /* GoogleMobileAds in Frameworks */,
 				15EFF4B2290FD10200755906 /* FirebaseAnalyticsSwift in Frameworks */,
-				15D4D1E72916BD020019975B /* GoogleMobileAds in Frameworks */,
 				15EFF4B6290FD10200755906 /* FirebaseDynamicLinks in Frameworks */,
 				15EFF4B4290FD10200755906 /* FirebaseCrashlytics in Frameworks */,
 				15EFF4B8290FD10200755906 /* FirebaseRemoteConfigSwift in Frameworks */,
@@ -458,6 +458,7 @@
 			children = (
 				15A134BE272572D80019AE90 /* FirstNameService.swift */,
 				1598AA8928D6291500CB600A /* AuthentificationService.swift */,
+				15C9DFA82C91F9AD002FAFB4 /* FilterService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -487,9 +488,7 @@
 				15ABCB47262A59B600036B3E /* NetworkMonitor.swift */,
 				15640715266836830084908F /* Vibration.swift */,
 				15E052CC275047C800C38715 /* Configuration.swift */,
-				1598AA8728D61D7500CB600A /* RequestInterceptor.swift */,
 				15CE567728E858CF00F09FE3 /* KeychainManager.swift */,
-				15CE567B28E8690700F09FE3 /* AuthToken.swift */,
 				15CE567F28E893D400F09FE3 /* PrintOption.swift */,
 				15D4D1EA2916C57A0019975B /* RemoteConfigKeys.swift */,
 				15D4D1EC2916C6090019975B /* RemoteConfigManager.swift */,
@@ -513,6 +512,7 @@
 				155133B129343569001E9FFB /* Response */,
 				15E8DE44266308DE0036A99F /* ChipsDataModel.swift */,
 				1539F17F26E4ED67009889B5 /* FirstnameDataModel.swift */,
+				15D5FE3C2D16183200C073D6 /* FirstnameTranslationDB.swift */,
 				15515FC82677D423009C2BDF /* FirstnameDB.swift */,
 				15300A87266C1F47000AAAF6 /* SearchCriteria.swift */,
 				155133AD2934318C001E9FFB /* Pageable.swift */,
@@ -576,9 +576,9 @@
 				15EFF4B3290FD10200755906 /* FirebaseCrashlytics */,
 				15EFF4B5290FD10200755906 /* FirebaseDynamicLinks */,
 				15EFF4B7290FD10200755906 /* FirebaseRemoteConfigSwift */,
-				15D4D1E62916BD020019975B /* GoogleMobileAds */,
 				1516C84F297551A800072639 /* FirebaseMessaging */,
 				15A2216F2C7C725200C5B2EA /* Supabase */,
+				15DBA1882C89E4BA0072C4E3 /* GoogleMobileAds */,
 			);
 			productName = "Prenom Africains";
 			productReference = 156F0ADE2608172F0076AB4B /* Prenom Africains.app */;
@@ -683,8 +683,8 @@
 				15515FC32677D04B009C2BDF /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 				15454CC827590D6A00D0B699 /* XCRemoteSwiftPackageReference "L10n-swift" */,
 				15EFF4B0290FD10200755906 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				158C011829154EA00090A180 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				15A2216E2C7C725200C5B2EA /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				15DBA1872C89E4BA0072C4E3 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 			);
 			productRefGroup = 156F0ADF2608172F0076AB4B /* Products */;
 			projectDirPath = "";
@@ -795,6 +795,7 @@
 				15C2FAAE292A614B003E97BA /* UIFontExtension.swift in Sources */,
 				15515FC92677D423009C2BDF /* FirstnameDB.swift in Sources */,
 				15645E86263B54E20017E8B7 /* AdaptiveView.swift in Sources */,
+				15D5FE3D2D16183200C073D6 /* FirstnameTranslationDB.swift in Sources */,
 				1535635E2739BDCD007B1959 /* FavoriteListViewModel.swift in Sources */,
 				15ABCB48262A59B600036B3E /* NetworkMonitor.swift in Sources */,
 				15E8DE49266366390036A99F /* SearchScreenViewModel.swift in Sources */,
@@ -812,6 +813,7 @@
 				15EA7DE0260921A0006BC8F2 /* MenuView.swift in Sources */,
 				157FFA57273EF2BF0037E32A /* WaveShape.swift in Sources */,
 				15A134BF272572D80019AE90 /* FirstNameService.swift in Sources */,
+				15C9DFA92C91F9AD002FAFB4 /* FilterService.swift in Sources */,
 				151297BE28FB0B98000BB26C /* ContentViewModel.swift in Sources */,
 				15E052CF2750492700C38715 /* ParamViewModel.swift in Sources */,
 				157FFA55273ED3540037E32A /* FilterChip.swift in Sources */,
@@ -823,7 +825,6 @@
 				155133AE2934318C001E9FFB /* Pageable.swift in Sources */,
 				15F880182740514900766E30 /* ParamScreen.swift in Sources */,
 				15AA134C2751467200EB98FE /* PopoverView.swift in Sources */,
-				15CE567C28E8690700F09FE3 /* AuthToken.swift in Sources */,
 				15E8DE472663093B0036A99F /* ChipsView.swift in Sources */,
 				15CE567628E8568200F09FE3 /* LoginPayload.swift in Sources */,
 				15CAC5232646E837007E838C /* SearchScreen.swift in Sources */,
@@ -847,7 +848,6 @@
 				15D4D1ED2916C6090019975B /* RemoteConfigManager.swift in Sources */,
 				155133B0293431F0001E9FFB /* Sort.swift in Sources */,
 				156F0B2C260821470076AB4B /* DescriptionView.swift in Sources */,
-				1598AA8828D61D7500CB600A /* RequestInterceptor.swift in Sources */,
 				15640716266836830084908F /* Vibration.swift in Sources */,
 				1587CC2F273FEF220007B89A /* ViewExtension.swift in Sources */,
 				15645E88263B5B8B0017E8B7 /* LandscapeModifier.swift in Sources */,
@@ -1323,14 +1323,6 @@
 				minimumVersion = 4.0.0;
 			};
 		};
-		158C011829154EA00090A180 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.5.0;
-			};
-		};
 		15A2216E2C7C725200C5B2EA /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase-community/supabase-swift.git";
@@ -1345,6 +1337,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.4.2;
+			};
+		};
+		15DBA1872C89E4BA0072C4E3 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.8.0;
 			};
 		};
 		15EFF4B0290FD10200755906 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -1398,9 +1398,9 @@
 			package = 15BE326C2624D0E700D8DC8D /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
-		15D4D1E62916BD020019975B /* GoogleMobileAds */ = {
+		15DBA1882C89E4BA0072C4E3 /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 158C011829154EA00090A180 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			package = 15DBA1872C89E4BA0072C4E3 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
 		};
 		15EFF4B1290FD10200755906 /* FirebaseAnalyticsSwift */ = {

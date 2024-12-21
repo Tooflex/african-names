@@ -49,8 +49,10 @@ struct SearchScreen: View {
                         data: viewModel.areas,
                         action: { chipView in
                             if chipView.chip.isSelected {
+                                let _ = print("Selected \(chipView.chip.titleKey)")
                                 viewModel.filters.regions.append(chipView.chip.titleKey.capitalized)
                             } else {
+                                let _ = print("Removed \(chipView.chip.titleKey)")
                                 viewModel.filters.regions.removeAll { $0 == chipView.chip.titleKey.capitalized }
                             }
                         })
@@ -76,8 +78,10 @@ struct SearchScreen: View {
                         data: viewModel.sizes,
                         action: { chipView in
                             if chipView.chip.isSelected {
+                                let _ = print("Selected \(chipView.chip.titleKey)")
                                 viewModel.filters.size.append(chipView.chip.titleKey)
                             } else {
+                                let _ = print("Removed \(chipView.chip.titleKey)")
                                 viewModel.filters.size.removeAll { $0 == chipView.chip.titleKey }
                             }
                         })
@@ -86,7 +90,6 @@ struct SearchScreen: View {
                 // MARK: Filter Submit Button
                 Group {
                     Button(action: {
-                        viewModel.saveFilters()
                         self.selectedTab = .home // Go back to Home screen
                     }) {
                         HStack {
@@ -138,6 +141,9 @@ struct SearchScreen: View {
                     }.frame(alignment: .center)
                 }
             }
+        }
+        .onAppear {
+            viewModel.loadFilters()
         }
         .task {
             await viewModel.searchFirstnames(searchString: searchText)

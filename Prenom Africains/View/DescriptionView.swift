@@ -55,14 +55,18 @@ struct DescriptionView: View {
     }
 
     private var meaningContent: some View {
-        VStack {
-            Text(viewModel.currentFirstname?.meaning.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
+        let deviceLanguage = Locale.current.languageCode ?? "en"
+        
+        return VStack {
+            Text(viewModel.currentFirstname?.getDisplayMeaning(deviceLanguage: deviceLanguage)
+                .trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
                 .font(.title2)
                 .multilineTextAlignment(.center)
                 .padding()
                 .foregroundColor(.white)
             
-            if (viewModel.currentFirstname?.meaning.count ?? 0) > 65 || !(viewModel.currentFirstname?.meaningMore.isEmpty ?? true) {
+            if let firstname = viewModel.currentFirstname,
+                (firstname.getDisplayMeaning(deviceLanguage: deviceLanguage).count > 65 || !firstname.meaningMore.isEmpty) {
                 Button("More...".l10n()) {
                     isShowPopoverMeaning.toggle()
                 }
@@ -71,10 +75,10 @@ struct DescriptionView: View {
                 .padding(.bottom)
             }
         }
-        .frame(width: UIScreen.main.bounds.width * 0.75) // Slightly smaller than the background
+        .frame(width: UIScreen.main.bounds.width * 0.75)
         .popover(isPresented: $isShowPopoverMeaning) {
             PopoverView(
-                text: viewModel.currentFirstname?.meaning ?? "",
+                text: viewModel.currentFirstname?.getDisplayMeaning(deviceLanguage: deviceLanguage) ?? "",
                 textMore: viewModel.currentFirstname?.meaningMore ?? "")
         }
     }
@@ -153,7 +157,7 @@ struct DescriptionView: View {
 
     private var favoriteButton: some View {
         Button(action: {
-            Task {
+            Task { @MainActor in
                 await viewModel.toggleFavorited(firstname: viewModel.currentFirstname ?? FirstnameDB())
                 complexSuccess()
             }
