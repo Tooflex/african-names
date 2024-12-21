@@ -21,7 +21,11 @@ final class SearchScreenViewModel: ObservableObject {
     @Published var areas: [ChipsDataModel] = []
     @Published var origins: [ChipsDataModel] = []
     @Published var currentFilterChain = ""
-    @Published var filters: Filters
+    @Published var filters: Filters {
+        didSet {
+            updateChipsSelection()
+        }
+    }
     @Published var selectedFirstnameInSearchResults: FirstnameDB?
     
     private var cancellables = Set<AnyCancellable>()
@@ -32,8 +36,8 @@ final class SearchScreenViewModel: ObservableObject {
         self.filters = filterService.loadFilters()
         
         initializeChips()
-        updateChipsSelection()
         
+        // Observe filters changes and save them
         $filters
             .debounce(for: .seconds(0.5), scheduler: RunLoop.main)
             .sink { [weak self] filters in
@@ -44,81 +48,94 @@ final class SearchScreenViewModel: ObservableObject {
     
     func searchFirstnames(searchString: String) async {
         guard !searchString.isEmpty else {
-            await MainActor.run {
-                searchResults = []
-            }
+            searchResults = []
             return
         }
         
-        await MainActor.run {
-            loading = true
-        }
+        loading = true
         
         do {
             let results = try await service.searchFirstnames(searchString: searchString, filters: filters)
-            await MainActor.run {
-                searchResults = results
-                loading = false
-            }
+            searchResults = results
+            loading = false
         } catch {
             print("Search error: \(error)")
-            await MainActor.run {
-                loading = false
-            }
+            loading = false
         }
     }
     
     func goToChosenFirstname() {
-        if let selectedFirstname = selectedFirstnameInSearchResults {
-            filterService.saveOnTopFirstname(selectedFirstname.id)
+        guard let selectedFirstname = selectedFirstnameInSearchResults else { return }
+        filterService.saveOnTopFirstname(selectedFirstname.id)
+    }
+    
+    // MARK: - Filter Updates
+    
+    func updateFilter<T: Equatable>(_ keyPath: WritableKeyPath<Filters, [T]>, value: T) {
+        filterService.updateFilters { filters in
+            if filters[keyPath: keyPath].contains(value) {
+                filters[keyPath: keyPath].removeAll { $0 == value }
+            } else {
+                filters[keyPath: keyPath].append(value)
+            }
         }
+        filters = filterService.loadFilters()
     }
     
     func filterIsFavorite(_ isFavorite: Bool) {
-        filters.isFavorite = isFavorite
-        updateChipsSelection()
+        filterService.updateFilters { filters in
+            filters.isFavorite = isFavorite
+        }
+        filters = filterService.loadFilters()
     }
     
     func toggleGender(_ gender: String) {
-        if filters.gender.contains(gender) {
-            filters.gender.removeAll { $0 == gender }
-        } else {
-            filters.gender.append(gender)
-        }
-        updateChipsSelection()
+        updateFilter(\.gender, value: gender)
     }
     
     func toggleSize(_ size: String) {
-        if filters.size.contains(size) {
-            filters.size.removeAll { $0 == size }
-        } else {
-            filters.size.append(size)
-        }
-        updateChipsSelection()
+        updateFilter(\.size, value: size)
     }
     
     func toggleArea(_ area: String) {
-        if filters.regions.contains(area) {
-            filters.regions.removeAll { $0 == area }
-        } else {
-            filters.regions.append(area)
-        }
-        updateChipsSelection()
+        updateFilter(\.regions, value: area)
     }
     
     func toggleOrigin(_ origin: String) {
-        if filters.origins.contains(origin) {
-            filters.origins.removeAll { $0 == origin }
-        } else {
-            filters.origins.append(origin)
-        }
-        updateChipsSelection()
+        updateFilter(\.origins, value: origin)
     }
     
+    func clearFilters() {
+        filterService.clearFilters()
+        filters = filterService.loadFilters()
+    }
+    
+    // MARK: - Private Methods
+    
     private func initializeChips() {
-        sizes = service.fetchSizes().map { ChipsDataModel(isSelected: false, titleKey: $0, displayedTitle: $0.l10n(resource: "en").l10n()) }
-        areas = service.fetchAreas().map { ChipsDataModel(isSelected: false, titleKey: $0, displayedTitle: $0.l10n()) }
-        origins = service.fetchOrigins().map { ChipsDataModel(isSelected: false, titleKey: $0, displayedTitle: $0.l10n()) }
+        sizes = service.fetchSizes().map { size in
+            ChipsDataModel(
+                isSelected: filters.size.contains(size.capitalized),
+                titleKey: size,
+                displayedTitle: size.l10n(resource: "en").l10n()
+            )
+        }
+        
+        areas = service.fetchAreas().map { area in
+            ChipsDataModel(
+                isSelected: filters.regions.contains(area.capitalized),
+                titleKey: area,
+                displayedTitle: area.l10n()
+            )
+        }
+        
+        origins = service.fetchOrigins().map { origin in
+            ChipsDataModel(
+                isSelected: filters.origins.contains(origin.capitalized),
+                titleKey: origin,
+                displayedTitle: origin.l10n()
+            )
+        }
     }
     
     private func updateChipsSelection() {

@@ -158,7 +158,7 @@ struct DescriptionView: View {
 
     private var favoriteButton: some View {
         Button(action: {
-            Task {
+            Task { @MainActor in
                 await viewModel.toggleFavorited(firstname: viewModel.currentFirstname ?? FirstnameDB())
                 complexSuccess()
             }

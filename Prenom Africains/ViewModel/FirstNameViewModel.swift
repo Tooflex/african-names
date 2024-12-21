@@ -12,7 +12,7 @@ import SwiftUI
 @MainActor
 class FirstNameViewModel: ObservableObject {
     private let service: FirstNameService
-    private let filterService = FilterService()
+    private let filterService: FilterService
     
     @Published var favoritedFirstnames: [FirstnameDB] = []
     @Published var firstnames: [FirstnameDB] = []
@@ -22,6 +22,7 @@ class FirstNameViewModel: ObservableObject {
     @Published var noData = false
     @Published var currentFirstname: FirstnameDB?
     @Published var firstnameOnTop: FirstnameDB?
+    @Published var isCurrentFavorite = false
     
     @Published var adFrequency: Int
     private var showAdCounter = 0
@@ -30,6 +31,7 @@ class FirstNameViewModel: ObservableObject {
     
     init(service: FirstNameService) {
         self.service = service
+        self.filterService = FilterService()
         self.adFrequency = RemoteConfigManager.value(forKey: RemoteConfigKeys.adFrequency) as? Int ?? 10
         
         Task { await loadFirstnames() }
@@ -52,21 +54,20 @@ class FirstNameViewModel: ObservableObject {
     }
     
     func loadFirstnames() async {
-        let filters = filterService.loadFilters()
-        
         favoritedFirstnames = service.getLocalFirstnames(filter: "isFavorite = true")
-                
+        
         if !filterService.isAnyFilterApplied() {
-             isFiltered = false
-             firstnames = service.getLocalFirstnames().shuffled()
-         } else {
-             isFiltered = true
-             firstnames = service.filterFirstnames(filters: filterService.filtersAsDictionary()).shuffled()
-             
-             if filters.onTop != 0 {
-                 firstnameOnTop = firstnames.first { $0.id == filters.onTop }
-             }
-         }
+            isFiltered = false
+            firstnames = service.getLocalFirstnames().shuffled()
+        } else {
+            isFiltered = true
+            firstnames = service.filterFirstnames(filters: filterService.filtersAsDictionary()).shuffled()
+            
+            let filters = filterService.loadFilters()
+            if filters.onTop != 0 {
+                firstnameOnTop = firstnames.first { $0.id == filters.onTop }
+            }
+        }
         
         if let first = firstnames.first {
             currentFirstname = first
@@ -84,7 +85,7 @@ class FirstNameViewModel: ObservableObject {
     
     func toggleFavorited(firstname: FirstnameDB) async {
         try? await service.toggleFavorited(firstname: firstname)
-        await loadFirstnames()
+        isCurrentFavorite = firstname.isFavorite
     }
     
     func fetchOnline() async {
@@ -111,14 +112,19 @@ class FirstNameViewModel: ObservableObject {
     }
     
     func clearFilters() {
-        UserDefaults.standard.removeObject(forKey: "Filters")
+        filterService.clearFilters()
         isFiltered = false
         Task { await loadFirstnames() }
     }
     
-    func loadFilters() -> Filters? {
-        guard let data = UserDefaults.standard.data(forKey: "Filters") else { return nil }
-        return try? JSONDecoder().decode(Filters.self, from: data)
+    func updateFilters(_ update: @escaping (inout Filters) -> Void) {
+        filterService.updateFilters(update: update)
+        Task { await loadFirstnames() }
+    }
+    
+    func setFirstnameOnTop(_ firstname: FirstnameDB) {
+        filterService.saveOnTopFirstname(firstname.id)
+        Task { await loadFirstnames() }
     }
     
     func searchFirstnames(searchString: String) async {

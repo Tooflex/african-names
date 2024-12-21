@@ -55,10 +55,16 @@ struct LottieView: UIViewRepresentable {
             guard let animationView = animationView else { return }
 
             animationView.stop()
+            print("Updating animation view with markers: \(fromMarker ?? "nil") to \(toMarker ?? "nil")")
+
+            animationView.layoutIfNeeded()
+            
+            // Play the animation
             if let fromMarker = fromMarker, let toMarker = toMarker {
-                animationView.play(fromMarker: fromMarker, toMarker: toMarker, loopMode: loopMode)
-            } else {
-                animationView.play()
+                // Add a tiny delay to ensure the view is ready
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    animationView.play(fromMarker: fromMarker, toMarker: toMarker, loopMode: loopMode)
+                }
             }
         }
     }
